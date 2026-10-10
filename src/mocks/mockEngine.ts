@@ -43,7 +43,10 @@ import {
 export class MockAperironEngine implements AperironEngine {
   private readonly catalog: Catalog;
 
-  constructor(customCatalog: Catalog = FIXTURE_CATALOG) {
+  constructor(customCatalog: Catalog = FIXTURE_CATALOG, private readonly options: {
+    baselineMatrix?: Readonly<Record<string, Readonly<Record<string, AccessLevel>>>>;
+    requirementsResolver?: (params: DestinationRequirementsParams) => Result<DestinationRequirements>;
+  } = {}) {
     this.catalog = customCatalog;
   }
 
@@ -351,6 +354,8 @@ export class MockAperironEngine implements AperironEngine {
       return failure('INVALID_DESTINATION', `Destination '${destinationId}' not found.`);
     }
 
+    if (this.options.requirementsResolver) return this.options.requirementsResolver(params);
+
     // If matching synthetic fixture, return rich fixture data
     if (passportId === 'IN' && destinationId === 'JP') {
       return success(FIXTURE_REQUIREMENTS_IN_JP);
@@ -422,7 +427,7 @@ export class MockAperironEngine implements AperironEngine {
 
   private resolveBaselineAccess(passportId: CountryId, destinationId: CountryId): AccessLevel {
     if (passportId === destinationId) return 'visa_free';
-    const matrixEntry = FIXTURE_BASELINE_MATRIX[passportId]?.[destinationId];
+    const matrixEntry = (this.options.baselineMatrix ?? FIXTURE_BASELINE_MATRIX)[passportId]?.[destinationId];
     return matrixEntry ?? 'unknown';
   }
 

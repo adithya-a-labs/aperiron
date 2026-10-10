@@ -9,7 +9,7 @@
  * @see docs/DATA_POLICY.md
  */
 
-import { Catalog, CountrySummary } from '../shared/contracts';
+import type { Catalog, CountrySummary } from '../shared/contracts';
 import { TREATIES } from './treaties';
 
 export const PASSPORTS: readonly CountrySummary[] = [

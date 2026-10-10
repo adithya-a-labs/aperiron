@@ -9,8 +9,7 @@
  * @see docs/CONTRACTS.md
  */
 
-import {
-  CountryId,
+import type {
   DestinationRequirements,
   DestinationRequirementsParams
 } from '../shared/contracts';

@@ -10,7 +10,7 @@
  * @see docs/CONTRACTS.md
  */
 
-import { Treaty } from '../shared/contracts';
+import type { Treaty } from '../shared/contracts';
 
 export const TREATIES: readonly Treaty[] = [
   // --------------------------------------------------------------------------

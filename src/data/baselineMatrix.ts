@@ -10,7 +10,7 @@
  * @see docs/PRODUCT.md
  */
 
-import { AccessLevel, CountryId } from '../shared/contracts';
+import type { AccessLevel, CountryId } from '../shared/contracts';
 
 export const BASELINE_ACCESS_MATRIX: Record<CountryId, Record<CountryId, AccessLevel>> = {
   // ==========================================================================
