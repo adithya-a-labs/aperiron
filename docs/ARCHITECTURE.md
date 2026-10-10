@@ -2,15 +2,17 @@
 
 ## Current state and direction
 
-At documentation setup, the repository has no application scaffold, dependencies,
-engine, or verified visa dataset. The following describes the planned architecture.
+The frontend foundation uses React/Vite/TypeScript, Tailwind, Zustand, and a
+provisional lookup adapter with fictional fixtures. The core engine and verified
+visa dataset are not implemented. The following describes the target architecture.
 It must be updated when actual module boundaries change. Progress belongs in the
 [state map](state/README.md), not in duplicate status paragraphs across documents.
 
 The initial direction is a local-first React + Vite + TypeScript application.
-Proposed supporting tools are Tailwind/shadcn/ui, Zustand, react-simple-maps, D3/SVG,
-and Motion. Versions and precise packages are not selected or installed yet. Add
-dependencies when their feature needs them and commit one package-manager lockfile.
+The frontend currently uses Tailwind, Zustand, D3/SVG, TopoJSON, and Lucide. Exact
+versions are pinned in package.json and package-lock.json. shadcn/ui and Motion are
+deferred until needed. See [FRONTEND.md](FRONTEND.md) for the implemented seam;
+the seven-method engine contract remains a draft.
 
 ## Dependency direction
 

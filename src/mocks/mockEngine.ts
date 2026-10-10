@@ -10,31 +10,30 @@
  */
 
 import {
-  AccessBreakdown,
-  AccessDifference,
-  AccessiblePairTransition,
-  AccessLevel,
-  Catalog,
-  CountryId,
-  DestinationAccess,
-  DestinationRequirements,
-  DestinationRequirementsParams,
-  DocumentRequirement,
+  type AccessBreakdown,
+  type AccessDifference,
+  type AccessiblePairTransition,
+  type AccessLevel,
+  type Catalog,
+  type CountryId,
+  type DestinationAccess,
+  type DestinationRequirements,
+  type DestinationRequirementsParams,
+  type DocumentRequirement,
   failure,
   isAccessible,
-  OptimizationResult,
-  PassportComparison,
-  PassportView,
-  PurchaseResult,
-  Result,
-  SimulationImpact,
+  type OptimizationResult,
+  type PassportComparison,
+  type PassportView,
+  type PurchaseResult,
+  type Result,
+  type SimulationImpact,
   success,
-  Treaty,
-  TreatyId,
-  VisaDNA,
-  WorldState
+  type TreatyId,
+  type VisaDNA,
+  type WorldState
 } from '../shared/contracts';
-import { AperironEngine } from '../shared/engineApi';
+import type { AperironEngine } from '../shared/engineApi';
 import {
   FIXTURE_BASELINE_MATRIX,
   FIXTURE_CATALOG,

@@ -27,9 +27,17 @@ The process-only policy override allows this unsigned repository script on Windo
 without changing persistent execution policy. The checker uses inline local links
 and simple skill frontmatter; it does not validate arbitrary Markdown or YAML.
 
-Application commands are not yet defined. During scaffolding, add real scripts
-for type checking, focused tests, linting where configured, and production build.
-Update this guide with exact commands after running them successfully.
+The frontend supports `npm run typecheck`, `npm test`, `npm run build`, and
+`npm run check` (all three). See [FRONTEND.md](FRONTEND.md) for installation and
+ports. Node's test runner covers invalid IDs, destination preservation across passport
+switching, reset, and fictional/unverified fixture provenance. There is no lint
+configuration yet. Browser checks cover the integrated map/panel flow separately.
+
+For the local sibling page workspaces, the coordinator can use
+`node scripts/verify-page-worktree-ports.mjs` after building each workspace. It
+checks simultaneous development/production-preview HTTP responses and strict
+port collision handling, then stops its own server processes. Assigned ports
+must be free. See [PARALLEL_FRONTEND.md](PARALLEL_FRONTEND.md) for setup and ports.
 
 ## Checks by change
 

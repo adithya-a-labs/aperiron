@@ -74,9 +74,9 @@ lockfile for dependency installation and document required environment variables
 in an example file without secrets. Store actual credentials in ignored local
 files or the provider's credential mechanism.
 
-Current limitation: there is no `package.json`, lockfile, or app runtime requirement
-yet. Commands such as `npm run dev`, `npm run build`, and `npm test` are target
-conventions, not runnable checks in the documentation-only repository.
+The frontend now has package.json and an npm lockfile. Use Node 22.12+ in the 22.x
+line, `npm ci`, and `npm run dev`. See [FRONTEND.md](FRONTEND.md) for exact commands
+and the provisional view contract; core engine semantics still require coordination.
 
 Repo-local skills live in `.agents/skills/` and travel through Git. Personal skills,
 MCP connections, authentication, and chats do not travel with the repository. On
@@ -102,6 +102,8 @@ Respect a user-requested branch name. Avoid mixing independent tasks into
 the same branch and never reset another task's local changes to get a clean tree.
 
 Review diffs as you work. Choose checks from [VERIFICATION.md](VERIFICATION.md).
+For parallel frontend agents, use detached worktrees from the committed foundation
+and the file ownership in [PARALLEL_FRONTEND.md](PARALLEL_FRONTEND.md).
 Update affected explanation docs together with changed behavior. Keep evolving
 implementation details out of product-facing copy unless they help the user.
 

@@ -19,10 +19,24 @@ and the Border Market let users experiment with changing policy rules.
 | [Verification](docs/VERIFICATION.md) | Available checks and meaningful validation scenarios. |
 | [Decisions](docs/decisions/README.md) | Accepted choices, rationale, and unresolved topics. |
 
-At the 2026-10-10 documentation setup, application code and a verified visa
-dataset have not been implemented. See the state map for current progress. The
+The frontend preview now has a React/Vite foundation and fictional sample data.
+The core engine and verified visa dataset remain unimplemented. See the state map
+for current progress. The
 LLM integration remains proposed. `dev-adithyaa` owns frontend experience; the
 `dev-prabhu` owns the core engine. See development guidance for role boundaries.
+
+## Run the frontend
+
+Use Node 22.12+ (22.x) and npm:
+
+```text
+npm ci
+npm run dev
+```
+
+Open `http://127.0.0.1:5173`. Use `npm run check` to typecheck, test, and build.
+See [frontend setup](docs/FRONTEND.md) and [parallel tasks](docs/PARALLEL_FRONTEND.md).
+Sample classifications are fictional and must not be used as travel guidance.
 
 ## Agent development
 
@@ -51,6 +65,6 @@ powershell -NoProfile -ExecutionPolicy Bypass -File scripts/check-docs.ps1
 git diff --check
 ```
 
-Application install/dev/build commands will be documented after scaffolding.
+Application commands are documented in the frontend setup guide.
 The execution-policy override applies only to this checker process and does not
 change the device's persistent policy. Inspect the script before running it.

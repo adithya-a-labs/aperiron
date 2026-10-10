@@ -2,8 +2,9 @@
 
 ## Status and source of truth
 
-The pasted project context supplies a draft TypeScript API. There are currently no
-implementation files for it. This document preserves the agreed direction and
+The pasted project context supplies a draft TypeScript API. No core implementation
+exists yet. `src/frontend/types.ts` is a provisional view adapter for sample-only
+UI development, not the frozen core API. This document preserves direction and
 identifies decisions needed before freezing the first executable contract.
 
 Once created, `src/shared/contracts.ts` and `src/shared/engineApi.ts` are the

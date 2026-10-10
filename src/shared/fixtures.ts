@@ -12,13 +12,13 @@
  */
 
 import {
-  AccessLevel,
-  Catalog,
-  CountryId,
-  DestinationRequirements,
+  type AccessLevel,
+  type Catalog,
+  type CountryId,
+  type DestinationRequirements,
   INITIAL_CREDITS,
-  Treaty,
-  WorldState
+  type Treaty,
+  type WorldState
 } from './contracts';
 
 export const FIXTURE_PASSPORTS = [
