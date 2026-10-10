@@ -9,19 +9,19 @@
  */
 
 import {
-  Catalog,
-  CountryId,
-  DestinationRequirements,
-  DestinationRequirementsParams,
-  OptimizationResult,
-  PassportComparison,
-  PassportView,
-  PurchaseResult,
-  Result,
-  SimulationImpact,
-  TreatyId,
-  VisaDNA,
-  WorldState
+  type Catalog,
+  type CountryId,
+  type DestinationRequirements,
+  type DestinationRequirementsParams,
+  type OptimizationResult,
+  type PassportComparison,
+  type PassportView,
+  type PurchaseResult,
+  type Result,
+  type SimulationImpact,
+  type TreatyId,
+  type VisaDNA,
+  type WorldState
 } from './contracts';
 
 export interface AperironEngine {

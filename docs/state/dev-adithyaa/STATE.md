@@ -1,79 +1,60 @@
 # dev-adithyaa — current state
 
-- Updated at: 2026-10-10T15:15:09Z
+- Updated at: 2026-10-10T15:30:35Z
 - Status: in_progress
-- Task: Page worktree guidance delivered; common frontend baseline and integration pending
+- Task: Relocating page worktrees to local sibling folders; older map/panel worktrees removed
 - Branch: dev-adithyaa
 - Role: Frontend experience owner
-- Baseline commit: adb14d9
-- Latest run: [20261010T151509Z-worktree-guidance-85b611e7](runs/20261010T151509Z-worktree-guidance-85b611e7.md)
+- Baseline commit: bc18264
+- Latest run: [20261010T153035Z-local-worktrees-1891aa45](runs/20261010T153035Z-local-worktrees-1891aa45.md)
 
 ## Completed
 
-Product/architecture/contracts/data/development/verification documentation, agent
-skills and documentation checker are established. Frontend foundation is committed
-at adb14d9: React, TypeScript, Vite, Tailwind, Zustand, selection shell, provisional
-adapter and fictional fixtures for three passports/six destinations.
-Separate commits implement offline map/search (76afb97) and destination brief
-(5227d93); neither is integrated into this checkout. Palette is saved in
-[COLOUR_PALETTE.md](../../COLOUR_PALETTE.md); UI application is explicitly deferred.
-This analysis-only review reconciled stale setup checkpoint claims with Git/source.
+Frontend foundation and React Simple Maps are committed in the current baseline.
+Phase 1 shared contracts, fixtures and mock engine are now present after remote
+integration. Applied local type-only import corrections to three shared/mock files
+so the merged source passes the existing TypeScript configuration. No API or
+calculation semantics changed; Prabhu records untouched.
+
+Created five attached managed detached worktrees: page-explore (5174/6174),
+page-compare (5175/6175), page-dna (5176/6176), page-market (5177/6177),
+page-optimizer (5178/6178), development/preview ports respectively. Installed
+independent dependencies, configured strict ports and wrote per-worktree assignment
+and agent docs plus own setup records. Added setup/port verification scripts and
+updated parallel-development/verification guidance. Playful design boards remain
+local reference assets under output/design-concepts/playful-v3.
 
 ## In progress
 
-Integrating the map and panel remains outstanding. Current components are
-placeholders. No core engine, verified regulation dataset, DNA, comparison,
-treaty simulation or optimizer is implemented in this checkout.
+Actual pages and shared playful visual foundation are not implemented. The common
+app still uses the provisional frontend adapter. Older map/panel commits 76afb97
+and 5227d93 remain unintegrated. Verified regulation dataset is not established.
 
 ## Verification
 
-Earlier foundation checkpoint records typecheck, three tests, production build,
-documentation check and browser preview passing. This review inspected source and
-component commit contents; application tests/build/browser checks were not rerun.
-Combined UI behavior remains unverified. Direct worktree status access was denied;
-uncommitted work in those checkouts was not assessed. Documentation checks follow
-this state write.
+Coordinator and five new worktrees passed typecheck, three frontend tests,
+production build and all 10 Phase 1 mock checks after import fixes. npm ci passed
+in all worktrees. All five development and five preview endpoints responded
+simultaneously on assigned ports; duplicate Explore correctly refused port 5174.
+Test servers were stopped. Per-worktree docs/whitespace checks passed after records;
+coordinator checks follow write. Browser visual flows not run: no page UI changed.
 
 ## Blockers
 
-No foundation blocker. Core API semantics need coordination with Prabhu.
+None for worktree setup. Shared page wiring and engine adapter integration require
+coordinated implementation; actual types take precedence over stale prose.
 
 ## Next actions
 
-Integrate map/panel changes while preserving run history and local palette edits;
-verify combined selection, switching and responsive/keyboard behavior. Coordinate
-engine contracts before actual engine integration.
+Open the relevant workspace and read WORKTREE.md. Implement shared UI foundation
+and integrate existing map/panel work before wiring new page flows. Preserve
+per-page ownership and coordinator-controlled shared files. Start servers using
+npm.cmd run dev from each worktree; builds use npm.cmd run check.
 
 ## Coordination
 
-Frontend belongs to dev-adithyaa; engine belongs to dev-prabhu, whose record remains
-not_started. Provisional frontend types are not a frozen engine API. Foundation is
-committed; palette and this review's records remain local/uncommitted. No push or
-deployment performed in this review; remote freshness was not checked.
-
-## Latest dependency update
-
-React Simple Maps 5.0.5 installed and pinned; components do not yet import it.
-Current npm run check passed: typecheck, three tests and production build.
-Updated FRONTEND.md; installation and records are local/uncommitted. Existing
-palette deferral and map/panel integration work remain unchanged.
-## Latest design exploration
-
-Generated a preview board for Explore, Compare, Visa DNA and Border Market using
-warm backgrounds, sunny buttons, travel illustrations and palette accents.
-This is an illustrative proposal, not implemented UI or real regulation data.
-No application code changed. User requested playful, happy, minimal interaction.
-## Revised concepts
-
-Four boards saved under output/design-concepts cover eight screens, including
-separate optional/proposed concepts. Marketing prose removed; functional states
-and documented journeys included. Raster output has palette and sample-value
-inconsistencies; use exact hex values/docs as implementation authority. No UI code
-changed and no engine semantics were frozen. Records and images remain local.
-## Reference-led playful revision
-
-Saved four new boards under output/design-concepts/playful-v3, using supplied
-reference's warm backgrounds, illustrations, rounded controls and colorful accents.
-Eight screens retain core journeys and separate optional concepts. Generated
-labels/maps contain illustrative inconsistencies recorded in latest run; docs
-remain authoritative. No application code changed, committed or pushed.
+All frontend page work represents dev-adithyaa; engine/data belongs to dev-prabhu.
+Do not overwrite local Vite ports during page integration or copy them into the
+coordinator checkout. Preserve all unique run history. Worktrees share Git objects
+but have independent files/dependencies. No commit/push/deployment or page workers
+started in this run. Setup/import fixes and records remain local/uncommitted.

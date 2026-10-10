@@ -33,6 +33,12 @@ ports. Node's test runner covers invalid IDs, destination preservation across pa
 switching, reset, and fictional/unverified fixture provenance. There is no lint
 configuration yet. Browser checks cover the integrated map/panel flow separately.
 
+For the local sibling page workspaces, the coordinator can use
+`node scripts/verify-page-worktree-ports.mjs` after building each workspace. It
+checks simultaneous development/production-preview HTTP responses and strict
+port collision handling, then stops its own server processes. Assigned ports
+must be free. See [PARALLEL_FRONTEND.md](PARALLEL_FRONTEND.md) for setup and ports.
+
 ## Checks by change
 
 | Area | Useful verification |
