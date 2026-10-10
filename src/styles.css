@@ -2387,6 +2387,13 @@ main { overflow: visible; }
 .travel-brief { margin: 20px 0; }
 .travel-rule .rule-action { display: block; width: fit-content; margin-top: 10px; }
 .travel-heading .text-button { font-size: 13px; }
+.research-result { white-space: normal; }
+.research-result > p { white-space: pre-wrap; overflow-wrap: anywhere; }
+.research-leads { display: grid; gap: 8px; }
+.research-leads h4 { font-size: 14px; margin: 0; }
+.research-leads ul { margin: 0; padding-left: 20px; }
+.research-leads li + li { margin-top: 12px; }
+.source-url { display: block; overflow-wrap: anywhere; font-size: 12px; margin-top: 4px; }
 .compare-search { display: flex; width: min(100%, 380px); max-width: none; margin: 24px 0 12px; }
 .compare-search input { width: 100%; min-width: 0; }
 .results-panel > .segmented { flex-wrap: wrap; justify-content: center; }

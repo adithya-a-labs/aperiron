@@ -40,6 +40,7 @@ import { composeExploration } from "./engine/exploration";
 import { primaryAccess } from "./shared/travelDetails";
 import { TravelBrief } from "./components/TravelBrief";
 import { PassportSelect } from "./components/PassportSelect";
+import { ResearchAnswer } from "./components/ResearchAnswer";
 import { pageHash, readPage, type Page } from "./frontend/navigation";
 
 type GroqResearch = ResearchResponse & { contextKey: string };
@@ -492,7 +493,7 @@ function CountryPage({ inspectSecond = false }: { inspectSecond?: boolean }) {
             {research?.contextKey === contextKey && (
               <div className="research-result">
                 <b>Unverified research · {research.model}</b>
-                <p>{research.answer}</p>
+                <ResearchAnswer answer={research.answer} />
                 <small>{research.disclaimer} Retrieved {research.retrievedAt}.</small>
               </div>
             )}
