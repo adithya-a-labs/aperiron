@@ -11,13 +11,13 @@
 
 import { resolveDestinationRequirements } from '../data/regulations';
 import {
-  Catalog,
-  DestinationRequirements,
-  DestinationRequirementsParams,
   failure,
-  Result,
   success,
-  WorldState
+  type Catalog,
+  type DestinationRequirements,
+  type DestinationRequirementsParams,
+  type Result,
+  type WorldState
 } from '../shared/contracts';
 import { resolveEffectiveAccess } from './access';
 

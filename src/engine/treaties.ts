@@ -15,16 +15,16 @@
  */
 
 import {
-  AccessiblePairTransition,
-  Catalog,
   failure,
   isAccessible,
-  PurchaseResult,
-  Result,
-  SimulationImpact,
   success,
-  TreatyId,
-  WorldState
+  type AccessiblePairTransition,
+  type Catalog,
+  type PurchaseResult,
+  type Result,
+  type SimulationImpact,
+  type TreatyId,
+  type WorldState
 } from '../shared/contracts';
 import { getDestinationAccessList } from './access';
 import { calculateGlobalMobilityScore } from './scoring';
