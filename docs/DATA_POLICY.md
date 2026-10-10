@@ -111,3 +111,15 @@ Use explicit statuses such as draft, reviewed, stale, and unresolved once the
 schema is finalized. Review produces a focused report of supported claims, missing
 evidence, contextual issues, and affected pairs. It never silently promotes a
 sample record into a sourced baseline.
+
+## Current frontend data boundary
+
+The playful frontend uses the full prototype matrix for modeled access and fictional
+treaty calculations, with a visible prototype label. It does not expose the generic
+fallback in `src/data/regulations.ts`: that function constructs unsupported stay
+limits, document requirements, fees, processing estimates, URLs and verification dates.
+The explicit records also require claim-level source/applicability review before
+being presented as guidance. `src/frontend/engine.ts` therefore injects an unknown
+requirements resolver. This preserves baseline/simulation isolation and prevents a
+sample classification from implying verified traveller requirements. The underlying
+data is left for its owner to review; this is not a claim that it has been corrected.

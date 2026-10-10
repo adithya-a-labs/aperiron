@@ -9,7 +9,7 @@
  * @see docs/DATA_POLICY.md
  */
 
-import { Catalog, CountrySummary } from '../shared/contracts';
+import type { Catalog, CountrySummary } from '../shared/contracts';
 import { TREATIES } from './treaties';
 
 export const PASSPORTS: readonly CountrySummary[] = [
@@ -69,8 +69,8 @@ export const DESTINATIONS: readonly CountrySummary[] = [
   { id: 'FJ', name: 'Fiji', continent: 'Oceania', flagEmoji: '🇫🇯', isPassportSupported: false, isDestinationSupported: true }
 ] as const;
 
-export const DATASET_VERSION = '1.0.0-baseline';
-export const DATASET_LABEL = 'aperiron Baseline Prototype Dataset (12 Passports x 30 Destinations)';
+export const DATASET_VERSION = '1.0.0-passport-index';
+export const DATASET_LABEL = 'aperiron Global Mobility Dataset (Powered by Passport Index Data)';
 
 export function getFullCatalog(): Catalog {
   return {

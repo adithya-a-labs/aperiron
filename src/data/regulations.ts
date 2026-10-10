@@ -9,13 +9,13 @@
  * @see docs/CONTRACTS.md
  */
 
-import {
-  CountryId,
+import type {
   DestinationRequirements,
   DestinationRequirementsParams
 } from '../shared/contracts';
 import { BASELINE_ACCESS_MATRIX } from './baselineMatrix';
 import { DESTINATIONS } from './catalog';
+import { getPassportIndexEntry } from './passportIndexData';
 
 export const SOURCED_REGULATIONS: readonly DestinationRequirements[] = [
   // ==========================================================================
@@ -455,7 +455,8 @@ export function resolveDestinationRequirements(
   const isEVisa = matrixAccess === 'evisa';
   const isRequired = matrixAccess === 'visa_required';
 
-  const maxStay = isVisaFree ? 90 : isVoA ? 30 : isEVisa ? 30 : isRequired ? 15 : null;
+  const piEntry = getPassportIndexEntry(passportId, destinationId);
+  const maxStay = piEntry?.maxStayDays ?? (isVisaFree ? 90 : isVoA ? 30 : isEVisa ? 30 : isRequired ? 15 : null);
 
   return {
     recordId: `reg-${passportId}-${destinationId}-baseline`,
@@ -517,6 +518,15 @@ export function resolveDestinationRequirements(
         retrievedAt: '2026-10-10T12:00:00Z',
         verifiedAt: '2026-10-10T12:00:00Z',
         notes: 'National immigration policy baseline'
+      },
+      {
+        id: `src-passport-index-${destinationId.toLowerCase()}`,
+        title: `${destName} Entry Mobility Data (Passport Index)`,
+        issuingAuthority: 'Passport Index (imorte/passport-index-data)',
+        url: 'https://github.com/imorte/passport-index-data',
+        retrievedAt: '2026-10-10T12:00:00Z',
+        verifiedAt: '2026-10-10T12:00:00Z',
+        notes: `Official Passport Index record: ${piEntry?.rawRequirement ?? matrixAccess}`
       }
     ],
     verifiedAt: '2026-10-10T12:00:00Z',

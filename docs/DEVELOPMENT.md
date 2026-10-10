@@ -76,7 +76,7 @@ files or the provider's credential mechanism.
 
 The frontend now has package.json and an npm lockfile. Use Node 22.12+ in the 22.x
 line, `npm ci`, and `npm run dev`. See [FRONTEND.md](FRONTEND.md) for exact commands
-and the provisional view contract; core engine semantics still require coordination.
+and the implemented eight-method API integration; unresolved engine semantics still require coordination.
 
 Repo-local skills live in `.agents/skills/` and travel through Git. Personal skills,
 MCP connections, authentication, and chats do not travel with the repository. On

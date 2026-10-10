@@ -2,81 +2,92 @@
 
 ## Setup
 
-Use Node 22.12 or newer in the 22.x line (the repository's `.nvmrc` selects 22).
-Node 24+ also satisfies the package engine requirement. Install using the committed
-npm lockfile, not a second package manager's lockfile:
+Use Node 22.12+ in the 22.x line, or Node 24+. Install the committed npm lockfile:
 
 ```text
 npm ci
 npm run dev
-```
-
-Open the local address printed by Vite, normally `http://127.0.0.1:5173`. The
-development server binds to loopback. If port 5173 is occupied, explicitly choose
-another port with `npm run dev -- --port 5174`. Separate worktrees need distinct
-ports and their own dependency installation.
-
-```text
-npm run typecheck
-npm test
-npm run build
-npm run preview
 npm run check
 ```
 
-On Windows, use `npm.cmd` if PowerShell blocks the npm script shim. `check` runs
-type checks, focused unit tests, and a production build. There is no configured
-lint command yet; do not claim lint passed. No secret or environment variable is
-required for the local preview.
+Vite binds to loopback on strict port 5173. If occupied, use an explicit free port,
+for example `npm run dev -- --port 5175`. On Windows use `npm.cmd` if PowerShell
+blocks the npm shim. No secrets, remote map service, database or backend server
+are required. The current user requested implementation in the main checkout on
+`dev-adithyaa`; sibling worktrees are not involved.
 
-## Foundation
+`check` runs TypeScript, Node tests through tsx, and a production build. `npm run
+preview` serves the build. No lint configuration exists.
 
-Future visual work should consult the user-supplied [colour palette](COLOUR_PALETTE.md).
-It is stored as a reference only; applying it to the UI is deferred by the user.
+## Visual system
 
-- React + TypeScript + Vite for the application and build.
-- Tailwind's Vite plugin plus semantic CSS tokens in `src/styles.css`.
-- Zustand for passport/destination UI selection.
-- Lucide for consistent interface icons.
-- React Simple Maps 5.0.5 is installed for map development; components do not yet import it.
-- D3 geographic projection and TopoJSON tooling with locally bundled world-atlas
-  geometry for the map component. No runtime remote map request is required.
-- Node's test runner through tsx for frontend adapter/store invariants. The test
-  script explicitly names the starter suite; extend it as new suites are added.
+The user authorized applying the [colour palette](COLOUR_PALETTE.md) and the
+`output/design-concepts/playful-v3` reference boards. The interface uses warm ivory,
+navy typography, yellow pill actions, teal and blue map/DNA accents, and red stamps.
+Locally authored SVG postcard art, passport booklets and landscapes reflect the
+references without embedding a screenshot as a page. System fonts and bundled
+world-atlas geography work offline. Layouts adapt from 360px to desktop, with
+keyboard focus, native controls/dialogs and reduced-motion support.
 
-The visual direction is a restrained dark geographic workspace: mint for primary
-actions, muted green-gray surfaces, compact uppercase labels, and readable data.
-Do not use color as the only access indicator. Preserve focus visibility, mobile
-layout, reduced motion, and offline-safe system fonts.
+React, TypeScript, Vite, Zustand, Lucide and Tailwind's Vite plugin remain the stack.
+Most visual styling is semantic CSS. D3 and TopoJSON render the map and rotating
+orthographic globe. React Simple Maps remains installed but is not used by this
+implementation. No new runtime dependencies were needed.
 
-## Provisional view contract
+## Pages and API mapping
 
-`src/frontend/types.ts` defines UI view models and the synchronous `FrontendAdapter`.
-It is not a frozen core-engine API and does not replace the seven methods in
-[CONTRACTS.md](CONTRACTS.md). Prabhu's implementation will be adapted at
-`src/store/explorerStore.ts`, where `frontendAdapter` is selected. Coordinated
-changes to this seam may be required after the core contract is agreed.
+| Hash route | Interface | Engine method(s) |
+| --- | --- | --- |
+| `#/explore` | Passport selection, searchable map/list, destination postcard, baseline/simulation toggle | `getCatalog`, `getPassportView` |
+| `#/country` | Country notebook, purpose, missing-data and source context, separate fictional effect | `getDestinationRequirements`, `getPassportView` |
+| `#/compare` | Two passports, swap, shared/unique sets, category differences, scores | `comparePassports` |
+| `#/dna` | Deterministic petals, baseline/simulation patterns | `generateVisaDNA` |
+| `#/market` | Category filters, preview dialog, purchase, balance, reset | `getCatalog`, `purchaseTreaty` |
+| `#/impact` | Before/after maps and DNA, global delta, new pairs, purchased treaties | `calculateImpact`, `getPassportView`, `generateVisaDNA` |
+| `#/optimizer` | Budget, greedy suggestions, projected world, explicit individual purchase | `optimizeTreaties`, `purchaseTreaty`, `getPassportView` |
+| `#/more` | Supported-passport lottery and rotating globe; unavailable route/AI concepts | `getCatalog`, `getPassportView` |
 
-The mock in `src/mocks/frontendAdapter.ts` contains explicitly fictional data for
-three passports and six destinations. It implements lookup only, not scoring,
-treaties, DNA, or optimization. Document requirements, fees, stay conditions,
-processing times, and sources are unavailable rather than fabricated. It must not
-be presented as real travel guidance.
+## Engine integration
 
-The store owns only selection and reset. Requirements are derived from the current
-passport/destination pair, so passport switching cannot retain another nationality's
-details. A future asynchronous adapter needs request cancellation or input-key
-validation before displaying results.
+`src/frontend/engine.ts` selects the implementation of the authoritative
+`src/shared/engineApi.ts` interface. It currently configures `MockAperironEngine`
+with the 12-passport, 30-destination baseline matrix and 16 fictional treaties.
+This is a functional local prototype, not the planned production engine.
+The optional mock constructor dependencies are additive; default shared fixtures
+and public method signatures remain unchanged.
 
-## Component integration boundary
+`src/store/appStore.ts` holds passport/comparison/destination, world state and
+purchase feedback. Pages derive calculations from the engine. Navigation uses
+hash routes; selection and simulation survive page changes but reset on reload.
+Preview and optimizer calls never mutate the active world. Reset preserves UI
+selection. Engine failures on purchase become visible status messages.
 
-`WorldMap` receives destinations, access categories, selected destination, and a
-selection callback. `DestinationPanel` receives passport, destination, requirements,
-and a close callback. These are controlled components; they do not import the store,
-mock, or core engine. The app owns their wiring.
+The country notebook deliberately returns unknown requirements from the adapter.
+Existing generic data fallbacks invent fees, stay limits and URLs; curated records
+also lack claim-level verification evidence. These are not displayed as verified
+travel information. Missing details are rendered explicitly. The notebook renders
+contract fields and sources when a reviewed resolver supplies them.
+See [DATA_POLICY.md](DATA_POLICY.md) for the review gate.
 
-Map styles belong in `WorldMap.css`; panel styles belong in `DestinationPanel.css`.
-Shared tokens and page layout belong in `styles.css`. Agent-specific work must not
-change package files, shared types, store, or app wiring without coordination.
+The old `frontend/types.ts`, `mocks/frontendAdapter.ts`, `store/explorerStore.ts`
+and starter map/panel components are retained for compatibility with earlier
+component work, but are no longer wired into `App.tsx`.
 
-See [PARALLEL_FRONTEND.md](PARALLEL_FRONTEND.md) for worktree tasks and integration.
+## Verification
+
+`src/store/appStore.test.ts` covers all 360 matrix entries, destination preservation,
+invalid IDs, immutable previews, purchases, duplicates, insufficient credits,
+reset, DNA changes, optimizer bounds/projected impact, and honest missing data.
+Browser QA covers all eight routes, desktop/mobile layouts, search misses,
+passport changes, purchase/preview/reset, budget edges, lottery and globe controls.
+Local evidence is written to ignored `output/playwright/`.
+
+## Game temporarily disabled
+
+`src/frontend/features.ts` sets `GAME_ENABLED` to false at the user's request.
+The game implementations above remain in source for later restoration. Play is
+hidden from navigation; market/impact/optimizer URLs display Explore. Simulation
+switches, the country simulation section and DNA before/after comparison are hidden.
+Explore, Compare, DNA and the globe use baseline data even if a prior session held
+a purchased treaty. DNA's primary action now opens Explore. Re-enable the flag to
+restore the retained game UI. Verified country data remains a separate dependency.

@@ -1,60 +1,60 @@
-# dev-adithyaa — current state
+# dev-adithyaa state
 
-- Updated at: 2026-10-10T15:30:35Z
-- Status: in_progress
-- Task: Relocating page worktrees to local sibling folders; older map/panel worktrees removed
+- Updated at: 2026-10-10T17:11:00Z
+- Status: ready_for_review
+- Task: Group and commit research and AI proposal documentation
 - Branch: dev-adithyaa
-- Role: Frontend experience owner
-- Baseline commit: bc18264
-- Latest run: [20261010T153035Z-local-worktrees-1891aa45](runs/20261010T153035Z-local-worktrees-1891aa45.md)
+- Baseline commit: 097ac17
+- Latest run: [grouped research commits](runs/20261010T171024Z-group-research-commits-a83f92.md)
 
 ## Completed
 
-Frontend foundation and React Simple Maps are committed in the current baseline.
-Phase 1 shared contracts, fixtures and mock engine are now present after remote
-integration. Applied local type-only import corrections to three shared/mock files
-so the merged source passes the existing TypeScript configuration. No API or
-calculation semantics changed; Prabhu records untouched.
+GAME_ENABLED=false hides Play, game routes, simulation switches, country simulation
+content and DNA before/after comparisons while preserving source. Old game URLs show
+Explore. Active views use baseline data; DNA action opens Explore. Updated product
+and frontend docs to reflect the user's temporary priority change.
 
-Created five attached managed detached worktrees: page-explore (5174/6174),
-page-compare (5175/6175), page-dna (5176/6176), page-market (5177/6177),
-page-optimizer (5178/6178), development/preview ports respectively. Installed
-independent dependencies, configured strict ports and wrote per-worktree assignment
-and agent docs plus own setup records. Added setup/port verification scripts and
-updated parallel-development/verification guidance. Playful design boards remain
-local reference assets under output/design-concepts/playful-v3.
+Research completed for visa APIs, government sources and competitive positioning.
+Broader search found close overlaps for the earlier mixed-passport preparation
+recommendation, especially canwego and Jettova. Identified narrower hypotheses:
+event inclusion intervention planning, passport custody scheduling and document-aware
+disruption rehearsal. These remain unvalidated proposals, with adjacent competitors;
+no application code or accepted product scope changed this run.
+
+Proposed embedded LLM intent capture and sourced explanations, backed by validated
+tools and a server-side boundary. Reviewed official API documentation. LLM remains
+unimplemented; verified data remains prerequisite for real regulation answers.
+Reviewed Groq tool capabilities; clarified that model access requires separate
+grounding data and a server-side integration. No provider integration implemented.
+Reviewed built-in Groq browser search and backend tool alternatives. Proposed
+targeted official-source retrieval with separate validation and evidence caching;
+no web retrieval implemented.
 
 ## In progress
 
-Actual pages and shared playful visual foundation are not implemented. The common
-app still uses the provisional frontend adapter. Older map/panel commits 76afb97
-and 5227d93 remain unintegrated. Verified regulation dataset is not established.
+No implementation in progress; product direction awaits selection and validation.
 
 ## Verification
 
-Coordinator and five new worktrees passed typecheck, three frontend tests,
-production build and all 10 Phase 1 mock checks after import fixes. npm ci passed
-in all worktrees. All five development and five preview endpoints responded
-simultaneously on assigned ports; duplicate Explore correctly refused port 5174.
-Test servers were stopped. Per-worktree docs/whitespace checks passed after records;
-coordinator checks follow write. Browser visual flows not run: no page UI changed.
+Research: provider-owned documentation reviewed; authenticated API requests not run. Prior implementation: strict TypeScript/production build passed. Browser checks passed across five active
+pages and three disabled URLs, including DNA navigation. Unit tests not repeated:
+engine/store behavior unchanged. Documentation links and whitespace checked.
 
 ## Blockers
 
-None for worktree setup. Shared page wiring and engine adapter integration require
-coordinated implementation; actual types take precedence over stale prose.
+Verified regulation data and production engine integration remain pending. Prototype
+classifications must not be represented as verified travel guidance.
 
 ## Next actions
 
-Open the relevant workspace and read WORKTREE.md. Implement shared UI foundation
-and integrate existing map/panel work before wiring new page flows. Preserve
-per-page ownership and coordinator-controlled shared files. Start servers using
-npm.cmd run dev from each worktree; builds use npm.cmd run check.
+Validate one proposed workflow with intended users before changing accepted scope.
+Existing scope remains exploration, country information, comparison and Visa DNA.
+Restore the game feature flag only when requested. Commit/push only when authorized.
 
 ## Coordination
 
-All frontend page work represents dev-adithyaa; engine/data belongs to dev-prabhu.
-Do not overwrite local Vite ports during page integration or copy them into the
-coordinator checkout. Preserve all unique run history. Worktrees share Git objects
-but have independent files/dependencies. No commit/push/deployment or page workers
-started in this run. Setup/import fixes and records remain local/uncommitted.
+Game code retained; shared contracts and engine semantics unchanged. Other developer
+records untouched. Main checkout only. Pause is in baseline 097ac17. Research and
+AI proposal records grouped for user-authorized local commits; check Git history
+for resulting hashes. Previous frontend commits remain in branch history. No push
+requested or performed in this run.

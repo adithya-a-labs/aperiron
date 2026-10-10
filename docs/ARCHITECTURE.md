@@ -2,18 +2,13 @@
 
 ## Current state and direction
 
-The frontend foundation uses React/Vite/TypeScript, Tailwind, Zustand, and a
-provisional lookup adapter with fictional fixtures. The core engine and verified
-visa dataset are not implemented. The following describes the target architecture.
-It must be updated when actual module boundaries change. Progress belongs in the
-[state map](state/README.md), not in duplicate status paragraphs across documents.
-
-The initial direction is a local-first React + Vite + TypeScript application.
-The frontend currently uses Tailwind, Zustand, D3/SVG, TopoJSON, and Lucide. Exact
-versions are pinned in package.json and package-lock.json. shadcn/ui and Motion are
-deferred until needed. See [FRONTEND.md](FRONTEND.md) for the implemented seam;
-the seven-method engine contract remains a draft.
-
+The React/Vite/TypeScript frontend uses the executable eight-method
+`AperironEngine` interface in `src/shared/engineApi.ts`. The provider in
+`src/frontend/engine.ts` selects a mock engine over the prototype data catalog;
+`src/store/appStore.ts` owns selection and fictional world state. The production
+engine and verified regulation coverage remain future work. See
+[FRONTEND.md](FRONTEND.md) for implemented routes, dependency details and integration.
+Progress and verification belong in the [state map](state/README.md).
 ## Dependency direction
 
 | Layer | Owns | May depend on |

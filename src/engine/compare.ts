@@ -9,15 +9,15 @@
  */
 
 import {
-  AccessDifference,
-  Catalog,
-  CountryId,
   failure,
   isAccessible,
-  PassportComparison,
-  Result,
   success,
-  WorldState
+  type AccessDifference,
+  type Catalog,
+  type CountryId,
+  type PassportComparison,
+  type Result,
+  type WorldState
 } from '../shared/contracts';
 import { getDestinationAccessList } from './access';
 import { calculateMobilityScore } from './scoring';

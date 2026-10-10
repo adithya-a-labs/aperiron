@@ -90,3 +90,14 @@ Summarize what changed, why it matters, checks performed, and material remaining
 limitations. Write the same factual verification result in the developer run log.
 Do not describe the other developer's work as verified unless you performed the
 relevant checks against the integrated code.
+
+## Playful frontend regression coverage
+
+The current app uses all eight engine methods. `npm test` includes the new
+`src/store/appStore.test.ts` integration suite as well as starter adapter tests.
+Browser acceptance includes every hash route at desktop and mobile widths,
+keyboard activation of supported map countries, missing search results, preserved
+destination after passport switching, comparison groups, deterministic DNA,
+non-spending previews, successful purchases, reset, budget zero, lottery and globe.
+Prototype classifications are not verified visa advice. Browser/source checks do
+not validate travel guidance. Optional AI/transit planning remain unavailable.

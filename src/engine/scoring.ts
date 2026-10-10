@@ -8,7 +8,7 @@
  * @see docs/CONTRACTS.md (Semantics to freeze: Scoring)
  */
 
-import { AccessBreakdown, AccessLevel, Catalog, WorldState } from '../shared/contracts';
+import type { AccessBreakdown, AccessLevel, Catalog, WorldState } from '../shared/contracts';
 import { getDestinationAccessList } from './access';
 
 /**
