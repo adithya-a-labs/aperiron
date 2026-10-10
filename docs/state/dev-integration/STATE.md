@@ -1,11 +1,11 @@
 # dev-integration state
 
-- Updated at: 2026-10-10T19:16:24Z
+- Updated at: 2026-10-10T19:18:53.362Z
 - Status: ready_for_review
-- Task: Group and commit full dataset integration
+- Task: Consolidate all dev-integration branch changes into a new log
 - Branch: dev-integration
-- Baseline commit: 0f152d2
-- Latest run: [Grouped full dataset commits](runs/20261010T191624Z-full-data-commits-e273b6.md)
+- Baseline commit: c983f64
+- Latest run: [Consolidated branch log](runs/20261010T191758Z-branch-summary-9d62a4.md)
 
 ## Completed
 
@@ -21,9 +21,10 @@ Project documentation reconciled.
 
 ## In progress
 
-No implementation in progress. Full dataset commit bc6539f and map/UI commit
-334c6d5 are created locally. Documentation and all own run records are prepared
-for the final documentation commit; its result is checked after writing.
+No implementation in progress. All six integration commits succeeded locally;
+latest is c983f64. A new consolidated branch log records the complete change range
+5d4f3b3..c983f64 and prior verification evidence. Only this log/state update is
+uncommitted.
 
 ## Verification
 
@@ -43,7 +44,7 @@ provider verification. Vite future-loader advisory remains nonblocking.
 
 ## Next actions
 
-Review the grouped local commits. Push only when requested. Review official sources
+Review the grouped local commits and consolidated log. Commit/push only when requested. Review official sources
 before adding detailed traveller guidance. Configure ignored .env for live research.
 
 ## Coordination
@@ -51,5 +52,5 @@ before adding detailed traveller guidance. Configure ignored .env for live resea
 Explicit dev-integration assignment; both module owners' records untouched.
 No public method signature changes. Full coverage/order changes modeled scores,
 comparison sets and DNA fingerprints; documented dataset version bump records this.
-Data and UI changes are committed locally; the documentation group includes own
-state and run records. Nothing pushed.
+All six implementation/documentation commits are local and confirmed. This new
+consolidated log/state update remains uncommitted. Nothing pushed.
