@@ -1,13 +1,25 @@
 # dev-integration state
 
-- Updated at: 2026-10-10T22:31:13Z
+- Updated at: 2026-10-10T23:26:32Z
 - Status: ready_for_review
-- Task: Group and commit backend integration changes
+- Task: Audit the implemented desktop frontend using Emil's relevant skills
 - Branch: dev-integration
-- Baseline commit: f8789dd
-- Latest run: [Grouped assistant commits](runs/20261010T222917Z-grouped-assistant-commits-a943ce.md)
+- Baseline commit: 11bc22adab3efbf52fab7ed6dce0d86dc4d5a541
+- Latest run: [Desktop frontend audit](runs/20261010T232700Z-desktop-audit-b63e81.md)
 
 ## Completed
+
+Completed a source and running-browser audit of all five active screens, with
+desktop-first scope and no mobile optimization. The
+[prioritized report](../../FRONTEND_AUDIT_2026-10-11.md) records 13 findings,
+reproduction evidence, recommended fixes and verification limits. Three P1
+findings concern passport-picker focus/semantics, map/globe keyboard navigation,
+and SVG motion bypassing reduced-motion preferences. Preserve the existing visual
+direction; improve desktop viewport fit and comparison/notebook flows next.
+No application implementation changed. Recent frontend merges are present in the
+baseline; older lane records saying those changes are uncommitted are stale.
+
+Prior backend milestone:
 
 Implemented all 30 versioned assistant operations: sessions/profiles, proposals,
 deterministic map queries, cache-only country context, scoped conversations,
@@ -36,11 +48,24 @@ history is preserved in the runs directory.
 
 ## In progress
 
+No audit implementation changes started. Findings are ready for review; proposed
+fixes have not been accepted or implemented.
+
 No remaining backend implementation work in this milestone. Frontend integration,
 official evidence review/import and multilingual semantic evaluation are separate
 follow-ups, not delivered UI or verified travel guidance.
 
 ## Verification
+
+Current audit: typecheck passed and 65/65 existing tests passed outside socket
+restrictions. Initial sandbox test run failed 24 loopback HTTP tests; rerun passed.
+Browser reviewed Explore/Notebook/Compare/DNA/More, keyboard selection, empty
+search, long names, same-passport comparison, reduced-motion and stubbed API
+failures/success. Screenshots under ignored output/playwright/frontend-audit.
+Actual zoom, screen reader, exhaustive contrast, frame profiling and a production
+build were not run. Documentation/whitespace checks recorded in the latest run.
+
+Prior backend verification:
 
 npm run check passed: typecheck, 65 tests, production build. Final focused
 assistant regression after resource-type/CORS tightening: 21/21 and typecheck
@@ -58,6 +83,9 @@ ignored and do not enter branch logs.
 
 ## Blockers
 
+No audit blocker. Accessibility and UX findings remain unresolved. Screenshot
+artifacts are local/ignored and will not sync through Git automatically.
+
 No implementation blocker. Account 8000 TPM requires pacing/cooldown. Snapshot,
 provider details and browser findings remain unreviewed; no reviewed document
 coverage or automatic permit exceptions. Single-process private file store only.
@@ -66,12 +94,21 @@ future-native-loader advisory remains nonblocking.
 
 ## Next actions
 
+Review the desktop audit and prioritize F01–F03 before visual polish. Implement
+approved fixes in coordination with frontend owners, preserving existing engine
+contracts and paused-game scope. Add screen-reader and actual-zoom validation.
+
 Frontend team can consume the backend guide/OpenAPI/fixtures without changing
 engine calculations. Review/import official evidence before required document
 checklists or permit-dependent eligibility. Review the grouped commits; push only
 when requested.
 
 ## Coordination
+
+Audit explicitly assigned to dev-integration; other lane records untouched.
+Audit report and current run/state updates are local and uncommitted; no push.
+No contract changes or new product features were introduced. Existing implementation
+records below describe the preceding backend milestone, not changes in this audit.
 
 Explicit dev-integration assignment; both module owners' records untouched.
 Additive assistant contracts serve future frontend consumers; existing eight
