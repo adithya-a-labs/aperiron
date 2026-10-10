@@ -69,8 +69,8 @@ export const DESTINATIONS: readonly CountrySummary[] = [
   { id: 'FJ', name: 'Fiji', continent: 'Oceania', flagEmoji: '🇫🇯', isPassportSupported: false, isDestinationSupported: true }
 ] as const;
 
-export const DATASET_VERSION = '1.0.0-passport-index';
-export const DATASET_LABEL = 'aperiron Global Mobility Dataset (Powered by Passport Index Data)';
+export const DATASET_VERSION = '1.0.1-passport-index';
+export const DATASET_LABEL = 'aperiron Passport Index snapshot (unverified; 12 passports, 30 destinations)';
 
 export function getFullCatalog(): Catalog {
   return {

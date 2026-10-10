@@ -1,14 +1,16 @@
+import type { AccessLevel, CountryId } from '../shared/contracts';
 /**
  * aperiron: The Passport Paradox
  * Engine: Destination Regulations Lookup Service
  *
- * Resolves structured, official destination requirements with consular citations,
+ * Resolves unreviewed snapshot data with explicit missing requirement details,
  * while isolating baseline provenance from simulated treaty unlocks.
  *
  * @see docs/DATA_POLICY.md (Simulation isolation)
  * @see docs/CONTRACTS.md (Country regulation extension)
  */
 
+import { DATASET_VERSION } from '../data/catalog';
 import { resolveDestinationRequirements } from '../data/regulations';
 import {
   failure,
@@ -16,14 +18,12 @@ import {
   type Catalog,
   type DestinationRequirements,
   type DestinationRequirementsParams,
-  type Result,
-  type WorldState
+  type Result
 } from '../shared/contracts';
-import { resolveEffectiveAccess } from './access';
+import { getBaselineAccess } from './access';
 
 export function getDestinationRequirements(
   params: DestinationRequirementsParams,
-  state: WorldState,
   catalog: Catalog,
   customMatrix?: Record<CountryId, Record<CountryId, AccessLevel>>
 ): Result<DestinationRequirements> {
@@ -39,23 +39,11 @@ export function getDestinationRequirements(
     return failure('INVALID_DESTINATION', `Destination '${destinationId}' not found in active catalog.`);
   }
 
-  // 1. Resolve authentic baseline requirement record
-  const baselineRecord = resolveDestinationRequirements(params);
-
-  // 2. Check effective access under active treaties
-  const effective = resolveEffectiveAccess(passportId, destinationId, state, catalog, customMatrix);
-
-  if (effective.isSimulated) {
-    // Return composite record with simulation overlay, strictly preserving baseline provenance
-    return success({
-      ...baselineRecord,
-      accessLevel: effective.accessLevel,
-      maxStayDays: effective.maxStayDays ?? baselineRecord.maxStayDays,
-      isSimulated: true,
-      simulatedEffect: `Simulated entry unlocked under ${effective.simulatedViaTreatyName ?? 'active treaty'}.`,
-      baselineAccessLevel: baselineRecord.accessLevel
-    });
-  }
-
-  return success(baselineRecord);
+  // Regulation lookup always uses baseline data. Fictional overlays belong in
+  // getPassportView; they cannot change real requirements or stay limits.
+  return success(resolveDestinationRequirements(
+    params,
+    getBaselineAccess(passportId, destinationId, customMatrix),
+    catalog.datasetVersion === DATASET_VERSION
+  ));
 }

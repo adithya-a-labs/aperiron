@@ -2,8 +2,8 @@
  * aperiron: The Passport Paradox
  * Baseline Access Matrix (Powered by Passport Index)
  *
- * 12 Passports x 30 Destinations = 360 real-world baseline access records.
- * Derived directly from the official Passport Index open data repository:
+ * 12 Passports x 30 Destinations = 360 modeled baseline access entries.
+ * Derived directly from the third-party Passport Index snapshot repository:
  * https://github.com/imorte/passport-index-data
  *
  * @see docs/DATA_POLICY.md
@@ -12,7 +12,7 @@
 
 import type { AccessLevel, CountryId } from '../shared/contracts';
 import { DESTINATIONS, PASSPORTS } from './catalog';
-import { PASSPORT_INDEX_DATA } from './passportIndexData';
+import { PASSPORT_INDEX_DATA } from './supportedPassportIndexData';
 
 function buildBaselineMatrix(): Record<CountryId, Record<CountryId, AccessLevel>> {
   const matrix: Record<CountryId, Record<CountryId, AccessLevel>> = {};

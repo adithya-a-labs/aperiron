@@ -1,3 +1,4 @@
+import type { AccessLevel, CountryId } from '../shared/contracts';
 /**
  * aperiron: The Passport Paradox
  * Engine: Treaty Optimizer
@@ -39,16 +40,13 @@ export function optimizeTreaties(
 
   const effectiveBudget = Math.min(Math.floor(budget), state.creditsRemaining);
   if (effectiveBudget <= 0) {
+    const impact = calculateImpact(state, state, catalog, customMatrix);
+    if (!impact.success) return impact;
     return success({
       recommendedTreatyIds: [],
       totalCost: 0,
       budgetRequested: budget,
-      projectedImpact: {
-        beforeGlobalScore: 0,
-        afterGlobalScore: 0,
-        scoreDelta: 0,
-        newlyAccessiblePairs: []
-      },
+      projectedImpact: impact.data,
       rationale: 'No credits available in active state or budget too low.'
     });
   }

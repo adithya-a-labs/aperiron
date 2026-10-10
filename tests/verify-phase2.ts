@@ -132,19 +132,19 @@ function runPhase2Tests() {
       }
     }
   }
-  console.log(`✓ Verified curated Sourced Regulations (${SOURCED_REGULATIONS.length} records with official HTTPS sources and authorities)`);
+  console.log(`✓ Validated legacy regulation schema only; claims remain unreviewed (${SOURCED_REGULATIONS.length} records with official HTTPS sources and authorities)`);
 
   // Test 6: Sourced Regulation Resolver
   const exactReq = resolveDestinationRequirements({ passportId: 'IN', destinationId: 'JP' });
-  if (exactReq.recordId !== 'reg-IN-JP-tourism' || exactReq.accessLevel !== 'visa_required') {
-    throw new Error('resolveDestinationRequirements failed to return curated record for IN -> JP');
+  if (exactReq.accessLevel !== BASELINE_ACCESS_MATRIX.IN.JP || exactReq.verifiedAt !== '' || exactReq.documents.length !== 0) {
+    throw new Error('Unreviewed curated requirements leaked into IN -> JP lookup');
   }
 
   const fallbackReq = resolveDestinationRequirements({ passportId: 'BR', destinationId: 'FR' });
-  if (fallbackReq.accessLevel !== 'visa_free' || fallbackReq.documents.length === 0) {
+  if (fallbackReq.accessLevel !== 'visa_free' || fallbackReq.documents.length !== 0 || fallbackReq.fees !== undefined) {
     throw new Error('resolveDestinationRequirements failed fallback generation for BR -> FR');
   }
-  console.log(`✓ resolveDestinationRequirements() successfully resolved curated and fallback records`);
+  console.log(`✓ resolveDestinationRequirements() returns snapshot classifications without invented detailed requirements`);
 
   console.log('\nAll Phase 2 Catalog, Matrix, Treaties & Regulations tests PASSED successfully!');
 }

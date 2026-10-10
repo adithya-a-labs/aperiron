@@ -139,23 +139,19 @@ function runPhase3Tests() {
   }
   console.log(`✓ Optimizer recommended ${optResult.data.recommendedTreatyIds.length} treaties for ${optResult.data.totalCost} credits (Budget: 50): +${optResult.data.projectedImpact.scoreDelta} global score`);
 
-  // Test 9: Destination Requirements with Simulation Isolation
-  const reqBefore = realEngine.getDestinationRequirements({ passportId: 'IN', destinationId: 'JP', state: INITIAL_WORLD_STATE });
-  const reqAfter = realEngine.getDestinationRequirements({ passportId: 'IN', destinationId: 'JP', state: stateAfterTreaty });
-
-  if (!reqBefore.success || !reqAfter.success) {
-    throw new Error('getDestinationRequirements failed');
+  // Test 9: baseline-only requirements ignore extra simulation fields.
+  const selection = { passportId: 'IN', destinationId: 'JP' };
+  const reqBefore = realEngine.getDestinationRequirements(selection);
+  const reqAfter = realEngine.getDestinationRequirements({ ...selection, ...{ state: stateAfterTreaty } });
+  if (!reqBefore.success || !reqAfter.success) throw new Error('Requirements lookup failed');
+  if (reqBefore.data.isSimulated || reqAfter.data.isSimulated ||
+      JSON.stringify(reqBefore.data) !== JSON.stringify(reqAfter.data)) {
+    throw new Error('Treaties must not alter baseline requirements');
   }
-  if (reqBefore.data.isSimulated || reqBefore.data.accessLevel !== 'visa_required') {
-    throw new Error('reqBefore should not be simulated');
+  if (reqBefore.data.verifiedAt !== '' || reqBefore.data.fees !== undefined) {
+    throw new Error('Unreviewed requirements must not invent verification or fees');
   }
-  if (!reqAfter.data.isSimulated || reqAfter.data.accessLevel !== 'visa_on_arrival') {
-    throw new Error('reqAfter should have isSimulated: true and accessLevel: visa_on_arrival');
-  }
-  if (reqAfter.data.sources.length === 0 || !reqAfter.data.sources[0].url.startsWith('https://')) {
-    throw new Error('reqAfter lost official source citations during simulation overlay!');
-  }
-  console.log(`✓ Destination Requirements verified: Baseline visa_required -> Simulated VoA while preserving official sources`);
+  console.log('✓ Baseline requirements unchanged by fictional state; details remain unverified');
 
   console.log('\nAll 9 Phase 3 Core Engine verification tests PASSED successfully!');
 }

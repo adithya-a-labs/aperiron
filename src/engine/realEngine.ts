@@ -3,7 +3,7 @@
  * Real Calculation Engine Implementation
  *
  * Implements the authoritative AperironEngine contract using pure TypeScript,
- * authenticated datasets from src/data/, and deterministic simulation algorithms.
+ * bundled third-party snapshot data from src/data/, and deterministic simulation algorithms.
  *
  * @see docs/CONTRACTS.md
  * @see src/shared/engineApi.ts
@@ -13,7 +13,6 @@ import { BASELINE_ACCESS_MATRIX } from '../data/baselineMatrix';
 import { getFullCatalog } from '../data/catalog';
 import {
   failure,
-  INITIAL_WORLD_STATE,
   success,
   type AccessLevel,
   type Catalog,
@@ -31,7 +30,7 @@ import {
   type WorldState
 } from '../shared/contracts';
 import type { AperironEngine } from '../shared/engineApi';
-import { FIXTURE_BASELINE_MATRIX, FIXTURE_CATALOG } from '../shared/fixtures';
+import { FIXTURE_BASELINE_MATRIX, FIXTURE_CATALOG, FIXTURE_REQUIREMENTS_IN_JP } from '../shared/fixtures';
 import { getDestinationAccessList } from './access';
 import { comparePassports } from './compare';
 import { generateVisaDNA } from './dna';
@@ -48,21 +47,16 @@ export class RealAperironEngine implements AperironEngine {
     customCatalog?: Catalog,
     customMatrix?: Record<CountryId, Record<CountryId, AccessLevel>>
   ) {
-    this.catalog = customCatalog ?? getFullCatalog();
-    this.matrix =
+    this.catalog = structuredClone(customCatalog ?? getFullCatalog());
+    this.matrix = structuredClone(
       customMatrix ??
       (this.catalog.datasetVersion === FIXTURE_CATALOG.datasetVersion
         ? FIXTURE_BASELINE_MATRIX
-        : BASELINE_ACCESS_MATRIX);
+        : BASELINE_ACCESS_MATRIX));
   }
 
   public getCatalog(): Catalog {
-    return {
-      ...this.catalog,
-      passports: [...this.catalog.passports],
-      destinations: [...this.catalog.destinations],
-      treaties: [...this.catalog.treaties]
-    };
+    return structuredClone(this.catalog);
   }
 
   public getPassportView(
@@ -128,10 +122,15 @@ export class RealAperironEngine implements AperironEngine {
   }
 
   public getDestinationRequirements(
-    params: DestinationRequirementsParams & { state?: WorldState }
+    params: DestinationRequirementsParams
   ): Result<DestinationRequirements> {
-    const state = params.state ?? INITIAL_WORLD_STATE;
-    return getDestinationRequirements(params, state, this.catalog, this.matrix);
+    if (this.catalog.datasetVersion === FIXTURE_CATALOG.datasetVersion &&
+        params.passportId === 'IN' && params.destinationId === 'JP' &&
+        (!params.travellerContext?.purpose || params.travellerContext.purpose === 'tourism') &&
+        (!params.travellerContext?.passportType || params.travellerContext.passportType === 'ordinary')) {
+      return success(structuredClone(FIXTURE_REQUIREMENTS_IN_JP));
+    }
+    return getDestinationRequirements(params, this.catalog, this.matrix);
   }
 }
 

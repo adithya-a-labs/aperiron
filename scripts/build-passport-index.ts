@@ -10,14 +10,7 @@
 
 import * as fs from 'fs';
 import * as path from 'path';
-
-interface ParsedEntry {
-  passport: string;
-  destination: string;
-  rawRequirement: string;
-  accessLevel: 'visa_free' | 'visa_on_arrival' | 'evisa' | 'visa_required' | 'restricted' | 'unknown';
-  maxStayDays: number | null;
-}
+import { PASSPORTS, DESTINATIONS } from '../src/data/catalog';
 
 function parseRequirement(req: string): {
   accessLevel: 'visa_free' | 'visa_on_arrival' | 'evisa' | 'visa_required' | 'restricted' | 'unknown';
@@ -26,7 +19,7 @@ function parseRequirement(req: string): {
   const trimmed = req.trim().toLowerCase();
 
   if (trimmed === '-1' || trimmed === 'visa free') {
-    return { accessLevel: 'visa_free', maxStayDays: 90 };
+    return { accessLevel: 'visa_free', maxStayDays: null };
   }
 
   // Numeric values in Passport Index indicate visa-free entry with N days stay (e.g. 90, 30, 180, etc.)
@@ -35,15 +28,15 @@ function parseRequirement(req: string): {
   }
 
   if (trimmed === 'e-visa') {
-    return { accessLevel: 'evisa', maxStayDays: 30 };
+    return { accessLevel: 'evisa', maxStayDays: null };
   }
 
   if (trimmed === 'eta') {
-    return { accessLevel: 'evisa', maxStayDays: 90 };
+    return { accessLevel: 'evisa', maxStayDays: null };
   }
 
   if (trimmed === 'visa on arrival') {
-    return { accessLevel: 'visa_on_arrival', maxStayDays: 30 };
+    return { accessLevel: 'visa_on_arrival', maxStayDays: null };
   }
 
   if (trimmed === 'visa required') {
@@ -51,7 +44,7 @@ function parseRequirement(req: string): {
   }
 
   if (trimmed === 'no admission') {
-    return { accessLevel: 'restricted', maxStayDays: 0 };
+    return { accessLevel: 'restricted', maxStayDays: null };
   }
 
   return { accessLevel: 'unknown', maxStayDays: null };
@@ -66,7 +59,7 @@ function build() {
   const lines = content.split(/\r?\n/).filter((l) => l.trim().length > 0);
 
   // Skip header: Passport,Destination,Requirement
-  const matrix: Record<string, Record<string, { accessLevel: string; maxStayDays: number | null; raw: string }>> = {};
+  const matrix: Record<string, Record<string, { accessLevel: string; maxStayDays: number | null; rawRequirement: string }>> = {};
 
   let recordCount = 0;
   for (let i = 1; i < lines.length; i++) {
@@ -88,7 +81,7 @@ function build() {
     matrix[passport][destination] = {
       accessLevel: parsed.accessLevel,
       maxStayDays: parsed.maxStayDays,
-      raw: rawReq
+      rawRequirement: rawReq
     };
     recordCount++;
   }
@@ -101,7 +94,7 @@ function build() {
  * Compiled Passport Index Dataset
  *
  * Source: https://github.com/imorte/passport-index-data
- * License: ODbL / Open Data
+ * License information: see src/data/passport-index/README.md
  * Total Records: ${recordCount} across ${Object.keys(matrix).length} sovereign nations and territories.
  */
 
@@ -120,7 +113,7 @@ export const PASSPORT_INDEX_DATA: Record<CountryId, Record<CountryId, PassportIn
   )};
 
 /**
- * Resolves entry requirements from the official Passport Index dataset.
+ * Resolves entry requirements from the bundled third-party Passport Index snapshot.
  */
 export function getPassportIndexEntry(
   passportId: CountryId,
@@ -138,6 +131,19 @@ export function getPassportIndexEntry(
 `;
 
   fs.writeFileSync(outputPath, tsCode, 'utf-8');
+  // The browser only supports this catalog. Keep the full snapshot available
+  // for audit/tests without shipping all 39,601 entries to every page.
+  const supported = Object.fromEntries(PASSPORTS.map(p => [p.id,
+    Object.fromEntries(DESTINATIONS.map(d => [d.id, matrix[p.id][d.id]]))
+  ]));
+  const supportedCode = tsCode
+    .replace('import type { AccessLevel, CountryId }', 'import type { CountryId }')
+    .replace(JSON.stringify(matrix, null, 2), JSON.stringify(supported, null, 2))
+    .replace(/export interface PassportIndexEntry \{[\s\S]*?\n\}/,
+      "import type { PassportIndexEntry } from './passportIndexData';\nexport type { PassportIndexEntry } from './passportIndexData';")
+    .replace('Total Records: '+recordCount+' across '+Object.keys(matrix).length+' sovereign nations and territories.',
+      'Catalog subset: '+PASSPORTS.length+' passports x '+DESTINATIONS.length+' destinations.');
+  fs.writeFileSync(path.join(path.dirname(outputPath), 'supportedPassportIndexData.ts'), supportedCode, 'utf-8');
   console.log(`Successfully generated ${outputPath}`);
 }
 

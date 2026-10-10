@@ -1,3 +1,4 @@
+import type { CountryId } from '../shared/contracts';
 /**
  * aperiron: The Passport Paradox
  * Engine: Mobility Scoring & Analytics
