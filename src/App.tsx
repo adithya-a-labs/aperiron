@@ -65,7 +65,7 @@ function Tag({ level }: { level: AccessLevel }) {
     </span>
   );
 }
-function Legend() {
+function Legend({ outside = true }: { outside?: boolean }) {
   return (
     <div className="legend">
       {Object.entries(accessLabels).map(([key, label]) => (
@@ -74,10 +74,7 @@ function Legend() {
           {label}
         </span>
       ))}
-      <span>
-        <i className="unsupported-key" />
-        Outside coverage
-      </span>
+      {outside && <span><i className="unsupported-key" />Outside coverage</span>}
     </div>
   );
 }
@@ -715,6 +712,9 @@ function Dna() {
     ),
   );
   const dna = simulated ? after : baseline;
+  const baselineLevels = unwrap(engine.getPassportView(passport, INITIAL_WORLD_STATE)).destinations.map(d => d.accessLevel);
+  const afterLevels = unwrap(engine.getPassportView(passport, GAME_ENABLED ? world : INITIAL_WORLD_STATE)).destinations.map(d => d.accessLevel);
+  const levels = simulated ? afterLevels : baselineLevels;
   return (
     <>
       <Heading eyebrow="03 / VISA DNA" title="Your passport has a pattern.">
@@ -733,27 +733,22 @@ function Dna() {
             create your passport’s fingerprint.
           </p>
           <ModeSwitch simulated={simulated} setSimulated={setSimulated} />
-          <div className="dna-stats">
-            <div>
-              <b>{dna.summary.visaFree}</b>
-              <span>Visa-free</span>
-            </div>
-            <div>
-              <b>{dna.summary.evisa}</b>
-              <span>eVisa</span>
-            </div>
-            <div>
-              <b>{dna.summary.total}</b>
-              <span>Places modeled</span>
-            </div>
-          </div>
+          <p className="dna-encoding-note">Petal length follows the modeled weight. Color shows the access category; unknown data is gray, distinct from red restrictions, even though both have zero weight.</p>
+          <dl className="dna-stats">
+            {([
+              ['Visa-free', dna.summary.visaFree], ['On arrival', dna.summary.visaOnArrival],
+              ['eVisa', dna.summary.evisa], ['Visa required', dna.summary.visaRequired],
+              ['Restricted', dna.summary.restricted], ['Unknown', dna.summary.unknown],
+            ] as const).map(([label, count]) => <div key={label}><dd>{count}</dd><dt>{label}</dt></div>)}
+          </dl>
+          <p className="result-count">{dna.summary.total} destinations modeled</p>
           <Button onClick={() => go(GAME_ENABLED ? "market" : "explore")}>
             {GAME_ENABLED ? "Change your world" : "Explore destinations"}{" "}
             <ArrowRight size={18} />
           </Button>
         </div>
         <div className="dna-hero">
-          <DnaFlower dna={dna} />
+          <DnaFlower dna={dna} levels={levels} />
           <span className="round-stamp">
             UNIQUELY
             <br />
@@ -761,12 +756,12 @@ function Dna() {
           </span>
         </div>
       </div>
-      <Legend />
+      <Legend outside={false} />
       <details className="dna-details">
         <summary>How your pattern is made</summary>
         <p>
           The engine provides a stable vector in catalog order. Petal lengths
-          and colors reflect modeled access weights; this illustration is not a
+          reflect modeled access weights; colors use the snapshot categories; this illustration is not a
           personal or biological fingerprint. Restricted and unknown both have
           zero weight in the current engine.
         </p>
@@ -775,12 +770,12 @@ function Dna() {
       {GAME_ENABLED && (
         <div className="dna-comparison">
           <div>
-            <DnaFlower dna={baseline} small />
+            <DnaFlower dna={baseline} levels={baselineLevels} small />
             <span>Baseline</span>
           </div>
           <ArrowRight />
           <div>
-            <DnaFlower dna={after} small />
+            <DnaFlower dna={after} levels={afterLevels} small />
             <span>Your simulation</span>
           </div>
           <p>

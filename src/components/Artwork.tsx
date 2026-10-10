@@ -1,5 +1,5 @@
 import { useId, useState, useEffect } from "react";
-import type { VisaDNA } from "../shared/contracts";
+import type { AccessLevel, VisaDNA } from "../shared/contracts";
 import { accessColors } from "../frontend/engine";
 import { getCountryLandmark } from "../data/countryLandmarks";
 
@@ -251,8 +251,10 @@ export function PassportBook({
 export function DnaFlower({
   dna,
   small = false,
+  levels,
 }: {
   dna: VisaDNA;
+  levels?: readonly AccessLevel[];
   small?: boolean;
 }) {
   const colors = [
@@ -267,7 +269,7 @@ export function DnaFlower({
       className={`dna-flower ${small ? "small" : ""}`}
       viewBox="0 0 500 500"
       role="img"
-      aria-label={`Visa DNA for ${dna.passportId}; ${dna.vector.length} destination values. ${dna.summary.visaFree} visa-free, ${dna.summary.evisa} eVisa.`}
+      aria-label={`Visa DNA for ${dna.passportId}; ${dna.vector.length} destination values. ${dna.summary.visaFree} visa-free, ${dna.summary.visaOnArrival} on arrival, ${dna.summary.evisa} eVisa, ${dna.summary.visaRequired} visa required, ${dna.summary.restricted} restricted, ${dna.summary.unknown} unknown.`}
     >
       {dna.vector.map((value, i) => (
         <g
@@ -276,8 +278,7 @@ export function DnaFlower({
         >
           <path
             d={`M257 224 C${305 + value * 25} 182 ${320 + value * 90} 131 ${295 + value * 45} ${39 + (1 - value) * 47} C${280 + value * 36} ${19 + (1 - value) * 48} ${263 + value * 28} 31 ${279 + value * 32} ${65 + (1 - value) * 38} C${310 + value * 60} 138 286 188 257 224Z`}
-            fill={
-              colors[
+            fill={levels?.[i] ? accessColors[levels[i]] : colors[
                 value === 1
                   ? 4
                   : value >= 0.8
