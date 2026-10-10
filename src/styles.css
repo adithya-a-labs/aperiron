@@ -2374,6 +2374,19 @@ main { overflow: visible; }
 .page-explore .destination-list { max-height: max(240px, calc(100dvh - 390px)); overflow-y: auto; }
 .map-country { transition: opacity 120ms; }
 .map-country:focus-visible { stroke: #032b43; stroke-width: 3; filter: drop-shadow(0 0 2px #fffdf7); transition: none; }
+.comparison-return { margin-left: 24px; }
+.compare-search { display: flex; width: min(100%, 380px); max-width: none; margin: 24px 0 12px; }
+.compare-search input { width: 100%; min-width: 0; }
+.results-panel > .segmented { flex-wrap: wrap; justify-content: center; }
+.comparison-table-wrap { border: 1px solid var(--line); border-radius: 18px; overflow: hidden; background: var(--paper); margin-top: 12px; }
+.comparison-table { width: 100%; table-layout: fixed; border-collapse: collapse; text-align: left; font-size: 14px; }
+.comparison-table th, .comparison-table td { padding: 14px 18px; border-bottom: 1px solid var(--line); overflow-wrap: anywhere; }
+.comparison-table thead { background: #edf2e8; }
+.comparison-table tbody tr:last-child > * { border-bottom: 0; }
+.comparison-table td a { display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 8px; border-radius: 5px; }
+.comparison-table td a > span:last-child { display: inline-flex; align-items: center; gap: 5px; font-size: 12px; color: #155779; text-decoration: underline; text-underline-offset: 3px; }
+.comparison-table .tag { font-size: 12px; }
+.comparison-table tbody tr:hover { background: #f4f5ec; }
 .landscape { width: 100%; margin-left: 0; margin-right: 0; overflow: hidden; }
 .globe-map .map-keyboard-help { max-width: 400px; margin: 0 auto 8px; }
 @media (min-width: 1101px) {

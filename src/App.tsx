@@ -390,6 +390,9 @@ function CountryPage({ inspectSecond = false }: { inspectSecond?: boolean }) {
         <ArrowLeft size={17} />
         Back to the world
       </button>
+      <button className="text-button comparison-return" onClick={() => go("compare")}>
+        <ArrowLeftRight size={17} /> Back to comparison
+      </button>
       <Heading
         eyebrow="COUNTRY NOTEBOOK"
         title={`A little closer to ${country(destination).name}.`}
@@ -590,6 +593,7 @@ function Compare() {
   const { passport, comparison, setPassport, setComparison, world } =
     useAppStore();
   const [mode, setMode] = useState<"shared" | "a" | "b" | "changes">("shared");
+  const [query, setQuery] = useState("");
   const [simulated, setSimulated] = useState(false);
   const data = unwrap(
     engine.comparePassports(
@@ -606,6 +610,14 @@ function Compare() {
         : mode === "b"
           ? data.onlyB
           : data.differences.map((d) => d.destinationId);
+  const state = GAME_ENABLED && simulated ? world : INITIAL_WORLD_STATE;
+  const viewA = unwrap(engine.getPassportView(passport, state));
+  const viewB = unwrap(engine.getPassportView(comparison, state));
+  const levelsA = new Map(viewA.destinations.map(d => [d.destinationId, d.accessLevel]));
+  const levelsB = new Map(viewB.destinations.map(d => [d.destinationId, d.accessLevel]));
+  const matchingIds = [...ids].filter(id => `${country(id).name} ${id}`.toLowerCase().includes(query.trim().toLowerCase()))
+    .sort((a, b) => country(a).name.localeCompare(country(b).name));
+  const inspectLink = (id: string, second = false) => pageHash('country', { passport, comparison, destination: id }, second ? 'second' : undefined);
   return (
     <>
       <Heading eyebrow="02 / COMPARE" title="Two passports. New possibilities.">
@@ -691,35 +703,24 @@ function Compare() {
             Access differences ({data.differences.length})
           </button>
         </div>
-        <div className="compare-results">
-          {ids.length ? (
-            ids.map((id) => (
-              <div key={id}>
-                <span>
-                  {country(id).flagEmoji} {country(id).name}
-                </span>
-                {mode === "changes" && (
-                  <>
-                    <Tag
-                      level={
-                        data.differences.find((d) => d.destinationId === id)!
-                          .accessLevelA
-                      }
-                    />
-                    <ArrowRight size={14} />
-                    <Tag
-                      level={
-                        data.differences.find((d) => d.destinationId === id)!
-                          .accessLevelB
-                      }
-                    />
-                  </>
-                )}
-              </div>
-            ))
-          ) : (
-            <p>No destinations in this group. Try a different passport.</p>
-          )}
+        <label className="search compare-search"><Search size={18} />
+          <input aria-label="Find a comparison destination" placeholder="Find a destination" value={query} onChange={event => setQuery(event.target.value)} />
+        </label>
+        <p className="result-count" role="status">{matchingIds.length} destinations · sorted by name</p>
+        <div className="comparison-table-wrap">
+          {matchingIds.length ? <table className="comparison-table">
+            <caption className="sr-only">Snapshot access by passport. Select an access category to open its country notebook.</caption>
+            <thead><tr><th scope="col">Destination</th><th scope="col">{country(passport).name}</th><th scope="col">{country(comparison).name}</th></tr></thead>
+            <tbody>{matchingIds.map(id => <tr key={id}>
+              <th scope="row">{country(id).flagEmoji} {country(id).name}</th>
+              <td><a href={inspectLink(id)} aria-label={`Inspect ${country(passport).name} passport requirements for ${country(id).name}`}>
+                <Tag level={levelsA.get(id)!} /><span>Inspect <ArrowRight size={14} /></span></a></td>
+              <td><a href={inspectLink(id, true)} aria-label={`Inspect ${country(comparison).name} passport requirements for ${country(id).name}`}>
+                <Tag level={levelsB.get(id)!} /><span>Inspect <ArrowRight size={14} /></span></a></td>
+            </tr>)}</tbody>
+          </table> : <div className="empty-state"><p>{query ? "No matching destinations. Try another name." : passport === comparison ? "These are the same passport, so there are no unique destinations or access differences." : "No destinations in this group. Try another group or passport."}</p>
+            {query && <Button secondary onClick={() => setQuery("")}>Clear search</Button>}
+          </div>}
         </div>
       </div>
       <Landscape />
