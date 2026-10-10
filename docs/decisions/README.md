@@ -17,6 +17,7 @@ why a choice was made.
 | [0006](0006-frontend-foundation-and-worktree-boundaries.md) | Accepted | Runnable frontend scaffold, provisional adapter, and isolated component worktrees. |
 | [0007](0007-local-groq-research.md) | Accepted | Local Groq Browser Search through a server endpoint and optional Country Notebook action. |
 | [0008](0008-travel-buddy-destination-enrichment.md) | Accepted; implemented | Local map and model calculations with cached Travel Buddy destination enrichment. |
+| [0009](0009-backend-map-assistant.md) | Accepted; backend implemented | Local map/country assistant and group planner services; frontend deferred. |
 
 ## Adding or superseding a record
 
@@ -35,5 +36,5 @@ rationale and mark it superseded; do not erase inconvenient history. Update the
 relevant explanation docs as part of the same change.
 
 Open topics include final scoring/precedence,
-regulation lookup types, dataset selection, and broader AI explanation workflows.
+regulation lookup types, dataset selection, and AI workflows beyond the accepted backend milestone.
 Do not create accepted records for these without an actual decision.

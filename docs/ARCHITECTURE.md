@@ -160,12 +160,36 @@ without returning upstream bodies. The frontend aborts and invalidates requests 
 selection changes and unmount. HTTP request/response types live in
 `src/shared/research.ts`; these do not change the eight-method engine API.
 
+## Versioned assistant services
+
+The user-authorized [backend assistant milestone](decisions/0009-backend-map-assistant.md)
+adds 30 operations under `/api/v1/assistant` through the same API router.
+`server/assistant/` owns sessions, atomic persistence, queued jobs, provider calls,
+context assembly and intent routing. Shared runtime schemas/types/fixtures live in
+`src/shared/assistant/`; generated OpenAPI and integration guidance are linked from
+the [backend guide](ASSISTANT_BACKEND.md). No frontend source changed.
+
+Contexts and map/group queries consume existing baseline engine methods and
+cache-only TravelService reads. Group enrichment explicitly selects/deduplicates
+pairs and respects the existing quota service. New assistant model work uses 120B;
+legacy research retains 20B. Browser search and strict generation are separate
+bounded stages. Models cannot write baseline data, apply profiles or purchase
+treaties. Evidence discovery remains unreviewed; required checklists depend on
+reviewed coverage absent from this milestone.
+
+Private sessions/resources live in ignored `.local/assistant`, with local ownership,
+CSRF, revision binding, persistent idempotency, expiry and restart interruption.
+Only one process may use a storage directory. Queue and provider budgets fail
+closed; provider rate limits persist a cooldown without automatic retry. Saved
+briefs deterministically retain selected facts/answers and export provenance.
+This local authentication boundary does not provide public accounts.
+
 ## Runtime and deployment
 
 Bundle geography assets needed for the local demo rather than assuming an external
 map URL will remain available. The baseline application should build to static
 assets. Confirm actual package scripts before documenting runnable commands.
 
-No hosting, authentication, database, CI pipeline, scheduled agent, or automatic
-sync service is created by this documentation. See [development](DEVELOPMENT.md)
-for how to add verification and recurring review without duplicate writers.
+No hosting, public account service, external database, CI pipeline, scheduled agent
+or automatic sync service is added. Local assistant sessions and file persistence
+are implemented as described above. See [development](DEVELOPMENT.md) for setup.
