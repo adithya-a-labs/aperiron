@@ -1,89 +1,82 @@
 # dev-integration state
 
-- Updated at: 2026-10-10T20:43:18Z
+- Updated at: 2026-10-10T22:31:13Z
 - Status: ready_for_review
-- Task: Explain local application startup commands
+- Task: Group and commit backend integration changes
 - Branch: dev-integration
-- Baseline commit: c1376e5
-- Latest run: [Local startup instructions](runs/20261010T204500Z-run-instructions-2a87cf.md)
+- Baseline commit: f8789dd
+- Latest run: [Grouped assistant commits](runs/20261010T222917Z-grouped-assistant-commits-a943ce.md)
 
 ## Completed
 
-All 199 snapshot passports and 199 destinations (39,601 pairs) now power selectors,
-map, search, notebook, comparison, Visa DNA, lottery and research validation.
-Compiler generates compact full runtime data and source-derived country metadata;
-all countries are map-selectable with point markers for missing coarse polygons.
-Country metadata attribution/license included. Dataset version is
-1.1.0-passport-index-full, with ISO alpha-2 DNA ordering and 199 values. Shared
-engine methods unchanged; synthetic fixtures unchanged. Game remains paused.
-Baseline requirements remain separate from fictional purchases and visibly unverified.
-Project documentation reconciled.
+Implemented all 30 versioned assistant operations: sessions/profiles, proposals,
+deterministic map queries, cache-only country context, scoped conversations,
+research/evidence/jobs, explanation actions, local trips/group overlap, bounded
+enrichment, preparation checklists and immutable brief exports. Shared runtime
+schemas/types/fixtures, generated OpenAPI, origin/CSRF checks, ownership, revisions,
+persistent idempotency, queue/rate/budget controls, restart interruption and
+provider cooldown are delivered. New model work uses 120B; legacy 20B and the
+three original routes remain compatible. No frontend, engine or dataset edits.
+
+Live 120B strict JSON, map proposals, cached country chat and browser research
+succeeded. Real schema incompatibilities were fixed and account TPM rejection
+handled explicitly. Discovered sources and model explanations remain unreviewed;
+held-document exceptions cannot grant access. No reviewed document rules exist,
+so checklists provide preparation tasks and gaps. Brief saving is deterministic.
+
+[Backend guide](../../ASSISTANT_BACKEND.md) and
+[accepted decision](../../decisions/0009-backend-map-assistant.md) document the
+frontend handoff, runtime limits and evidence boundaries. Project docs reconciled.
+
+Previously delivered full snapshot coverage remains 199 passports/destinations,
+39,601 pairs, version 1.1.0-passport-index-full and 199-value DNA. Existing Travel
+Buddy enrichment/cache and quota controls remain; no live Travel Buddy calls
+were made this run. The game stays paused. Prior implementation/evaluation
+history is preserved in the runs directory.
 
 ## In progress
 
-[Decision 0008 implementation](runs/20261010T203409Z-travel-enrichment-implementation-9ac731.md)
-is ready for review. Local snapshot stays primary for
-full map/model calculations. Cached provider details enrich selected destinations;
-exact primary rules compose exploration cells. Conditions do not grant access.
-Source/fetch labels remain unverified. Persistent quota reservations, deduplication,
-two-call concurrency, seven-day refresh age, thirty-day retention and twenty-call
-reserve implemented with configurable defaults. Nine prior detail responses
-imported without API calls. One live service refresh succeeded in 894 ms; remaining
-quota 104/120. No structured document checklist generated.
-
-Concurrent [Groq evaluation](runs/20261010T203352Z-groq-proposal-evaluation-d6a8c2.md)
-is preserved. Existing Groq uses 20B/unstructured research; contextual 120B,
-structured evidence and editable filters remain proposals outside this task.
-
-[Expanded AI evaluation](runs/20261010T203621Z-ai-opportunity-map-4e1b97.md) covers map discovery, group-passport overlap, evidence
-research, reviewed checklists/timelines, conditional rules, route/climate adapters,
-document assistance, voice and researcher tooling. All remain proposals with
-explicit data dependencies; no AI-home redesign accepted. Provider implementation
-and verification remain recorded in the linked implementation run above. No app
-changes or live calls during this analysis.
+No remaining backend implementation work in this milestone. Frontend integration,
+official evidence review/import and multilingual semantic evaluation are separate
+follow-ups, not delivered UI or verified travel guidance.
 
 ## Verification
 
-Latest commit run: documentation and whitespace checks passed; no application
-code changed and no API calls made. The preceding implementation passed 44 tests
-and production build; those checks were not repeated for grouping commits.
+npm run check passed: typecheck, 65 tests, production build. Final focused
+assistant regression after resource-type/CORS tightening: 21/21 and typecheck
+passed. All 30 operations exercise runtime response validation. Existing engine,
+Travel Buddy and legacy research tests passed. OpenAPI generation/drift and docs
+checks passed; no independent external OpenAPI linter. JavaScript remains
+489.92 KB (gzip 155.51 KB), with the same frontend bundle filename.
 
-Prior AI exploration: official Groq model/search/caching/speech documentation and
-current model selection inspected. No model calls or application tests this run;
-application results below belong to the preceding implementation run.
-
-npm run check passed: typecheck, 44 tests and production build. New checks cover
-normalization, exclusions, persistence/corruption, quotas/reset, concurrency,
-auth/timeout failure, HTTP validation, response races and simulation isolation.
-Importer standalone typecheck passed. Browser checked Japan details, Türkiye
-exception, business unknown, Australia map override, zero-refresh passport switch,
-compare/DNA and mobile overflow; screenshots inspected. Restart restored cache
-without spending quota. One authenticated IN/JP application refresh passed.
-JavaScript 489.92 KB (gzip 155.51 KB). Docs/whitespace passed. Earlier full-matrix,
-generation, globe and lottery checks remain historical evidence. Groq model/search
-entitlement still not authenticated in either this or the concurrent evaluation.
+Twelve bounded authenticated Groq attempts across diagnostics: five successful,
+six schema rejections during calibration, one TPM rejection. Successful strict
+probe about 2.5 s; HTTP map about 1.6 s, chat about 2.7 s; searches about 13.1 s
+and 5.3 s. Successful responses reported 44,877 total tokens. No live Travel Buddy
+refreshes. Timing is observational, not a guarantee. Raw diagnostic reports are
+ignored and do not enter branch logs.
 
 ## Blockers
 
-No blocker to exploration. Snapshot data and detailed official requirements remain
-unverified; unsupported traveller contexts return unknown. No authenticated Groq
-provider verification. Vite future-loader advisory remains nonblocking.
+No implementation blocker. Account 8000 TPM requires pacing/cooldown. Snapshot,
+provider details and browser findings remain unreviewed; no reviewed document
+coverage or automatic permit exceptions. Single-process private file store only.
+Translation guards do not establish complete semantic correctness. Existing Vite
+future-native-loader advisory remains nonblocking.
 
 ## Next actions
 
-Review the local grouped commits; push only when requested. Use
-cached demo pairs to preserve quota. Official document requirements need separate
-review. For later AI work, follow the preserved proposal and confirm model/search
-access and citation shape before implementation.
+Frontend team can consume the backend guide/OpenAPI/fixtures without changing
+engine calculations. Review/import official evidence before required document
+checklists or permit-dependent eligibility. Review the grouped commits; push only
+when requested.
 
 ## Coordination
 
 Explicit dev-integration assignment; both module owners' records untouched.
-No public method signature changes. Full coverage/order changes modeled scores,
-comparison sets and DNA fingerprints; documented dataset version bump records this.
-Baseline c1376e5 includes committed trial/decision records. Additive provider types
-and exploration composition documented; original engine signatures unchanged.
-Concurrent integration analysis log preserved; no application conflict observed.
-Implementation commits: e083f0b (backend/cache), ba62d70 (exploration UI),
-447f14d (implementation documentation). This state and analysis records accompany
-the final documentation/state commit. Cache/credentials/screenshots ignored. No push.
+Additive assistant contracts serve future frontend consumers; existing eight
+engine methods and legacy payloads are unchanged. TravelService gains an internal
+optional dispatch observer for accurate per-job counts. Server/Vite middleware
+configuration changed; frontend implementation files did not. Planning edits
+preserved. Backend work and documentation are grouped into 34 focused local
+commits, including the final state/run record. No push.
