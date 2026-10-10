@@ -19,61 +19,51 @@ export const CURATED_LANDMARKS: Record<string, { landmarkName: string; location:
     landmarkName: "Taj Mahal",
     location: "Agra, Uttar Pradesh",
     caption: "The timeless ivory-white marble mausoleum on the Yamuna river.",
-    imagePath: "/images/postcards/in-taj-mahal.webp",
   },
   JP: {
     landmarkName: "Mount Fuji & Chureito Pagoda",
     location: "Fujiyoshida, Yamanashi",
     caption: "Snow-capped peak framed by cherry blossoms and vermilion wood.",
-    imagePath: "/images/postcards/jp-mount-fuji.webp",
   },
   CN: {
     landmarkName: "The Great Wall of China",
     location: "Mutianyu, Beijing",
     caption: "Ancient serpentine stone ramparts winding through green ridge peaks.",
-    imagePath: "/images/postcards/cn-great-wall.webp",
   },
   SG: {
     landmarkName: "Marina Bay Sands & Supertrees",
     location: "Marina Bay, Singapore",
     caption: "Futuristic vertical gardens and illuminated skyline by the bay.",
-    imagePath: "/images/postcards/sg-marina-bay.webp",
   },
   TH: {
     landmarkName: "Wat Arun & Grand Palace",
     location: "Bangkok",
     caption: "The Temple of Dawn standing proud beside the Chao Phraya river.",
-    imagePath: "/images/postcards/th-wat-arun.webp",
   },
   VN: {
     landmarkName: "Ha Long Bay",
     location: "Quảng Ninh",
     caption: "Emerald waters and thousands of towering limestone islands.",
-    imagePath: "/images/postcards/vn-ha-long-bay.webp",
   },
   ID: {
     landmarkName: "Borobudur Temple",
     location: "Magelang, Central Java",
     caption: "Ancient 9th-century Buddhist stupas greeting misty volcanic dawns.",
-    imagePath: "/images/postcards/id-borobudur.webp",
   },
   MY: {
     landmarkName: "Petronas Twin Towers",
     location: "Kuala Lumpur",
     caption: "Twin spire architecture glowing brilliantly into the tropical evening.",
-    imagePath: "/images/postcards/my-petronas-towers.webp",
   },
   KR: {
     landmarkName: "Gyeongbokgung Palace",
     location: "Seoul",
     caption: "Grand Joseon dynasty pavilions with Bukhansan mountains behind.",
-    imagePath: "/images/postcards/kr-gyeongbokgung.webp",
   },
   AE: {
     landmarkName: "Burj Khalifa & The Fountains",
     location: "Downtown Dubai",
     caption: "The world's tallest tower rising over illuminated desert fountains.",
-    imagePath: "/images/postcards/ae-burj-khalifa.webp",
   },
   SA: {
     landmarkName: "Al-Ula & Hegra",
@@ -84,7 +74,6 @@ export const CURATED_LANDMARKS: Record<string, { landmarkName: string; location:
     landmarkName: "The Treasury at Petra",
     location: "Ma'an Governorate",
     caption: "The rose-red carved Hellenistic facade hidden in the desert gorge.",
-    imagePath: "/images/postcards/jo-petra.webp",
   },
   LK: {
     landmarkName: "Sigiriya Lion Rock Fortress",
@@ -105,7 +94,6 @@ export const CURATED_LANDMARKS: Record<string, { landmarkName: string; location:
     landmarkName: "Hagia Sophia & Bosphorus",
     location: "Istanbul",
     caption: "Historic domes and minarets bridging Europe and Asia.",
-    imagePath: "/images/postcards/tr-hagia-sophia.webp",
   },
   KH: {
     landmarkName: "Angkor Wat",
@@ -143,49 +131,41 @@ export const CURATED_LANDMARKS: Record<string, { landmarkName: string; location:
     landmarkName: "The Eiffel Tower",
     location: "Paris",
     caption: "Iron lattice monument watching over the Seine and Parisian boulevards.",
-    imagePath: "/images/postcards/fr-eiffel-tower.webp",
   },
   DE: {
     landmarkName: "Neuschwanstein Castle",
     location: "Schwangau, Bavaria",
     caption: "Fairy-tale Romanesque revival castle among Bavarian alpine pines.",
-    imagePath: "/images/postcards/de-neuschwanstein.webp",
   },
   IT: {
     landmarkName: "The Colosseum",
     location: "Rome",
     caption: "Iconic flavian amphitheatre holding two millennia of history.",
-    imagePath: "/images/postcards/it-colosseum.webp",
   },
   GB: {
     landmarkName: "Big Ben & Westminster",
     location: "London, England",
     caption: "The Great Bell of the clock tower above the River Thames.",
-    imagePath: "/images/postcards/gb-big-ben.webp",
   },
   ES: {
     landmarkName: "Basílica de la Sagrada Família",
     location: "Barcelona, Catalonia",
     caption: "Gaudí’s magnificent organic masterwork reaching toward the sky.",
-    imagePath: "/images/postcards/es-sagrada-familia.webp",
   },
   NL: {
     landmarkName: "Zaanse Schans Windmills",
     location: "Zaandam, North Holland",
     caption: "Historic green wooden windmills and colorful tulip meadows.",
-    imagePath: "/images/postcards/nl-windmills.webp",
   },
   CH: {
     landmarkName: "The Matterhorn",
     location: "Zermatt, Valais",
     caption: "The pyramid peak of the Swiss Alps mirrored in alpine lakes.",
-    imagePath: "/images/postcards/ch-matterhorn.webp",
   },
   GR: {
     landmarkName: "The Parthenon on the Acropolis",
     location: "Athens",
     caption: "Classical marble columns standing proud over the Aegean sea.",
-    imagePath: "/images/postcards/gr-parthenon.webp",
   },
   PT: {
     landmarkName: "Belém Tower & Sintra",
@@ -263,25 +243,21 @@ export const CURATED_LANDMARKS: Record<string, { landmarkName: string; location:
     landmarkName: "The Golden Gate Bridge",
     location: "San Francisco, California",
     caption: "International orange suspension towers rising above ocean fog.",
-    imagePath: "/images/postcards/us-golden-gate.webp",
   },
   CA: {
     landmarkName: "Banff & Lake Louise",
     location: "Alberta",
     caption: "Turquoise glacier-fed waters framed by rugged Canadian Rockies.",
-    imagePath: "/images/postcards/ca-lake-louise.webp",
   },
   BR: {
     landmarkName: "Christ the Redeemer",
     location: "Rio de Janeiro",
     caption: "The open-armed icon atop Corcovado mountain overlooking Copacabana.",
-    imagePath: "/images/postcards/br-christ-redeemer.webp",
   },
   MX: {
     landmarkName: "El Castillo at Chichén Itzá",
     location: "Yucatán Peninsula",
     caption: "Monumental stepped pyramid of ancient Maya astronomical genius.",
-    imagePath: "/images/postcards/mx-chichen-itza.webp",
   },
   AR: {
     landmarkName: "Iguazu Falls",
@@ -292,7 +268,6 @@ export const CURATED_LANDMARKS: Record<string, { landmarkName: string; location:
     landmarkName: "Machu Picchu",
     location: "Cusco Region",
     caption: "The Lost Citadel of the Incas nestled in misty Andean peaks.",
-    imagePath: "/images/postcards/pe-machu-picchu.webp",
   },
   CL: {
     landmarkName: "Moai of Easter Island",
@@ -330,7 +305,6 @@ export const CURATED_LANDMARKS: Record<string, { landmarkName: string; location:
     landmarkName: "The Great Pyramids & Sphinx",
     location: "Giza Plateau, Cairo",
     caption: "Ancient wonders of the pharaohs standing timeless under golden sands.",
-    imagePath: "/images/postcards/eg-pyramids.webp",
   },
   ZA: {
     landmarkName: "Table Mountain",
@@ -378,7 +352,6 @@ export const CURATED_LANDMARKS: Record<string, { landmarkName: string; location:
     landmarkName: "Sydney Opera House",
     location: "Sydney, New South Wales",
     caption: "Distinctive sail roofs gleaming against the blue Sydney harbour.",
-    imagePath: "/images/postcards/au-opera-house.webp",
   },
   NZ: {
     landmarkName: "Milford Sound",

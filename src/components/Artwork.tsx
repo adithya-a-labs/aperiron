@@ -1,7 +1,6 @@
-import { useId, useState, useEffect } from "react";
+import { useId } from "react";
 import type { AccessLevel, VisaDNA } from "../shared/contracts";
-import { accessColors } from "../frontend/engine";
-import { getCountryLandmark } from "../data/countryLandmarks";
+import { accessColors, catalog } from "../frontend/engine";
 
 export function Landscape({ compact = false }: { compact?: boolean }) {
   const id = useId();
@@ -80,50 +79,16 @@ export function PostcardArt({
   countryId?: string;
 }) {
   const id = useId();
-  const landmark = countryId ? getCountryLandmark(countryId) : null;
-  const [imgStatus, setImgStatus] = useState<"idle" | "loading" | "loaded" | "error">(
-    landmark?.imagePath ? "loading" : "idle",
-  );
-
-  useEffect(() => {
-    if (landmark?.imagePath) {
-      setImgStatus("loading");
-    } else {
-      setImgStatus("idle");
-    }
-  }, [countryId, landmark?.imagePath]);
-
-  const hasImage = Boolean(landmark?.imagePath && imgStatus !== "error");
-
+  const countryName = catalog.destinations.find(c => c.id === countryId)?.name;
+  const description = ["A mountain and a garden", "An island in a turquoise sea", "A bridge between two shores", "An open garden gate"][variant % 4];
   return (
     <div className="postcard-art-wrap">
-      {hasImage ? (
-        <>
-          {imgStatus === "loading" && <div className="postcard-shimmer" />}
-          <img
-            src={landmark!.imagePath}
-            alt={landmark ? `${landmark.landmarkName}, ${landmark.countryName}` : "Iconic landmark"}
-            className={`postcard-photo ${imgStatus === "loaded" ? "loaded" : "loading"}`}
-            onLoad={() => setImgStatus("loaded")}
-            onError={() => setImgStatus("error")}
-          />
-        </>
-      ) : (
         <svg
           className="postcard-art"
           viewBox="0 0 420 236"
           preserveAspectRatio="xMidYMid slice"
           role="img"
-          aria-label={
-            landmark
-              ? `${landmark.landmarkName}, ${landmark.countryName}`
-              : [
-                  "A mountain and a Japanese garden",
-                  "An island in a turquoise sea",
-                  "A bridge between two shores",
-                  "An open garden gate",
-                ][variant % 4]
-          }
+          aria-label={`${description} — illustration${countryName ? ` for ${countryName}` : ''}, not a photograph of a specific landmark`}
         >
           <defs>
             <linearGradient id={id} x2="0" y2="1">
@@ -211,15 +176,11 @@ export function PostcardArt({
             strokeWidth="12"
           />
         </svg>
-      )}
-      {landmark && (
-        <div className="postcard-landmark-badge" title={`${landmark.landmarkName} (${landmark.location})`}>
-          <span className="landmark-title">
-            📍 <b>{landmark.landmarkName}</b>
-          </span>
-          <span className="landmark-loc">{landmark.location}</span>
-        </div>
-      )}
+      {countryName && <div className="postcard-landmark-badge">
+        <span className="landmark-title"><b>{countryName}</b></span>
+        <span className="landmark-loc">Illustrated landscape</span>
+      </div>}
+
     </div>
   );
 }
