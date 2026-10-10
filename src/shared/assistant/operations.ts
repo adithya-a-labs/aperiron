@@ -1,0 +1,36 @@
+import { requests } from './schemas';
+import { responses } from './responses';
+
+/** Shared route catalog: generator and contract tests verify this against the executable router. */
+export const operations = [
+  ['GET', '/capabilities', null, 'capabilities', 200, false],
+  ['POST', '/sessions', 'empty', 'session', 201, false],
+  ['GET', '/sessions/current', null, 'session', 200, false],
+  ['DELETE', '/sessions/current', null, null, 204, false],
+  ['GET', '/profile', null, 'profileResource', 200, false],
+  ['PUT', '/profile', 'profilePut', 'profileResource', 200, false],
+  ['POST', '/profile/interpret', 'profileInterpret', 'job', 202, true],
+  ['POST', '/map/interpret', 'mapInterpret', 'job', 202, true],
+  ['POST', '/map/query', 'mapQuery', 'mapResult', 200, false],
+  ['GET', '/countries/{destinationId}/context', null, 'countryContext', 200, false],
+  ['POST', '/conversations', 'conversation', 'conversation', 201, false],
+  ['GET', '/conversations/{conversationId}', null, 'conversationPage', 200, false],
+  ['POST', '/conversations/{conversationId}/messages', 'message', 'job', 202, true],
+  ['POST', '/research', 'research', 'job', 202, true],
+  ['GET', '/evidence/{evidenceId}', null, 'evidence', 200, false],
+  ['GET', '/jobs/{jobId}', null, 'job', 200, false],
+  ['DELETE', '/jobs/{jobId}', null, null, 204, false],
+  ['POST', '/explanations', 'explanation', 'job', 202, true],
+  ['POST', '/trips', 'trip', 'tripResource', 201, false],
+  ['GET', '/trips/{tripId}', null, 'tripResource', 200, false],
+  ['PUT', '/trips/{tripId}', 'tripPut', 'tripResource', 200, false],
+  ['DELETE', '/trips/{tripId}', null, null, 204, false],
+  ['POST', '/trips/{tripId}/destinations/query', 'groupQuery', 'mapResult', 200, false],
+  ['GET', '/trips/{tripId}/countries/{destinationId}/context', null, 'groupContext', 200, false],
+  ['POST', '/trips/{tripId}/enrichment', 'enrichment', 'job', 202, true],
+  ['POST', '/checklists', 'checklist', 'job', 202, true],
+  ['POST', '/briefs', 'brief', 'job', 202, true],
+  ['GET', '/briefs/{briefId}', null, 'briefRead', 200, false],
+  ['GET', '/briefs/{briefId}/export', null, null, 200, false],
+  ['DELETE', '/briefs/{briefId}', null, null, 204, false],
+] as const satisfies ReadonlyArray<readonly [string, string, keyof typeof requests | null, keyof typeof responses | 'evidence' | null, number, boolean]>;
