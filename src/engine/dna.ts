@@ -14,7 +14,15 @@
  * @see docs/PRODUCT.md (Inspect Visa DNA)
  */
 
-import { Catalog, CountryId, failure, Result, success, VisaDNA, WorldState } from '../shared/contracts';
+import {
+  failure,
+  success,
+  type Catalog,
+  type CountryId,
+  type Result,
+  type VisaDNA,
+  type WorldState
+} from '../shared/contracts';
 import { getDestinationAccessList } from './access';
 import { accessLevelToWeight, calculateAccessBreakdown } from './scoring';
 

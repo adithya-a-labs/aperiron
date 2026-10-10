@@ -73,8 +73,8 @@ function runPhase3Tests() {
   const jpDestBefore = inView.data.destinations.find((d) => d.destinationId === 'JP');
   const jpDestAfter = inViewAfter.data.destinations.find((d) => d.destinationId === 'JP');
 
-  if (jpDestBefore?.accessLevel !== 'visa_required') {
-    throw new Error(`Expected IN->JP before to be 'visa_required', got ${jpDestBefore?.accessLevel}`);
+  if (jpDestBefore?.accessLevel !== 'evisa') {
+    throw new Error(`Expected IN->JP before to be 'evisa', got ${jpDestBefore?.accessLevel}`);
   }
   if (jpDestAfter?.accessLevel !== 'visa_on_arrival') {
     throw new Error(`Expected IN->JP after to be 'visa_on_arrival', got ${jpDestAfter?.accessLevel}`);

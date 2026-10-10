@@ -12,25 +12,25 @@
 import { BASELINE_ACCESS_MATRIX } from '../data/baselineMatrix';
 import { getFullCatalog } from '../data/catalog';
 import {
-  AccessLevel,
-  Catalog,
-  CountryId,
-  DestinationRequirements,
-  DestinationRequirementsParams,
   failure,
   INITIAL_WORLD_STATE,
-  OptimizationResult,
-  PassportComparison,
-  PassportView,
-  PurchaseResult,
-  Result,
-  SimulationImpact,
   success,
-  TreatyId,
-  VisaDNA,
-  WorldState
+  type AccessLevel,
+  type Catalog,
+  type CountryId,
+  type DestinationRequirements,
+  type DestinationRequirementsParams,
+  type OptimizationResult,
+  type PassportComparison,
+  type PassportView,
+  type PurchaseResult,
+  type Result,
+  type SimulationImpact,
+  type TreatyId,
+  type VisaDNA,
+  type WorldState
 } from '../shared/contracts';
-import { AperironEngine } from '../shared/engineApi';
+import type { AperironEngine } from '../shared/engineApi';
 import { FIXTURE_BASELINE_MATRIX, FIXTURE_CATALOG } from '../shared/fixtures';
 import { getDestinationAccessList } from './access';
 import { comparePassports } from './compare';

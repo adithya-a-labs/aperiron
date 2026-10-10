@@ -7,3 +7,4 @@ export * from './catalog';
 export * from './treaties';
 export * from './baselineMatrix';
 export * from './regulations';
+export * from './passportIndexData';

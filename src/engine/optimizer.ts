@@ -16,14 +16,14 @@
  */
 
 import {
-  Catalog,
   failure,
-  OptimizationResult,
-  Result,
   success,
-  Treaty,
-  TreatyId,
-  WorldState
+  type Catalog,
+  type OptimizationResult,
+  type Result,
+  type Treaty,
+  type TreatyId,
+  type WorldState
 } from '../shared/contracts';
 import { calculateImpact } from './treaties';
 

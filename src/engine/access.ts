@@ -11,7 +11,7 @@
  */
 
 import { BASELINE_ACCESS_MATRIX } from '../data/baselineMatrix';
-import {
+import type {
   AccessLevel,
   Catalog,
   CountryId,
