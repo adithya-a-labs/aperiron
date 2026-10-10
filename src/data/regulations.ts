@@ -16,7 +16,7 @@ import type {
 } from '../shared/contracts';
 import { BASELINE_ACCESS_MATRIX } from './baselineMatrix';
 
-import { getPassportIndexEntry } from './supportedPassportIndexData';
+import { getPassportIndexEntry } from './runtimePassportIndexData';
 
 export const SOURCED_REGULATIONS: readonly DestinationRequirements[] = [
   // ==========================================================================

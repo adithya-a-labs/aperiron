@@ -12,7 +12,7 @@
 
 import { DATASET_VERSION } from '../data/catalog';
 import { BASELINE_ACCESS_MATRIX } from '../data/baselineMatrix';
-import { getPassportIndexEntry } from '../data/supportedPassportIndexData';
+import { getPassportIndexEntry } from '../data/runtimePassportIndexData';
 import type {
   AccessLevel,
   Catalog,

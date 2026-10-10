@@ -20,8 +20,8 @@ beforeEach(() =>
 );
 
 test("full catalog maps every passport/destination to the supplied matrix", () => {
-  assert.equal(catalog.passports.length, 12);
-  assert.equal(catalog.destinations.length, 30);
+  assert.equal(catalog.passports.length, 199);
+  assert.equal(catalog.destinations.length, 199);
   for (const passport of catalog.passports) {
     const view = value(
       engine.getPassportView(passport.id, INITIAL_WORLD_STATE),

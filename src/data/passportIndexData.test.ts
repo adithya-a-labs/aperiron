@@ -2,15 +2,15 @@ import assert from 'node:assert/strict';
 import { readFileSync } from 'node:fs';
 import { test } from 'node:test';
 import { PASSPORT_INDEX_DATA } from './passportIndexData';
-import { PASSPORT_INDEX_DATA as SUPPORTED_DATA } from './supportedPassportIndexData';
+import { PASSPORT_INDEX_DATA as RUNTIME_DATA } from './runtimePassportIndexData';
 import { PASSPORTS, DESTINATIONS } from './catalog';
 
-test('browser subset exactly matches the audited snapshot for the supported catalog', () => {
-  assert.deepEqual(Object.keys(SUPPORTED_DATA), PASSPORTS.map(p => p.id));
+test('full runtime dataset exactly matches the audited snapshot for every catalog country', () => {
+  assert.deepEqual(Object.keys(RUNTIME_DATA), PASSPORTS.map(p => p.id));
   for (const passport of PASSPORTS) {
-    assert.deepEqual(Object.keys(SUPPORTED_DATA[passport.id]), DESTINATIONS.map(d => d.id));
+    assert.deepEqual(Object.keys(RUNTIME_DATA[passport.id]), DESTINATIONS.map(d => d.id));
     for (const destination of DESTINATIONS)
-      assert.deepEqual(SUPPORTED_DATA[passport.id][destination.id], PASSPORT_INDEX_DATA[passport.id][destination.id]);
+      assert.deepEqual(RUNTIME_DATA[passport.id][destination.id], PASSPORT_INDEX_DATA[passport.id][destination.id]);
   }
 });
 

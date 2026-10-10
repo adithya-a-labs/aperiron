@@ -15,10 +15,10 @@ function runPhase3Tests() {
 
   // Test 1: Real Engine Catalog
   const catalog = realEngine.getCatalog();
-  if (catalog.passports.length !== 12 || catalog.destinations.length !== 30 || catalog.treaties.length !== 16) {
+  if (catalog.passports.length !== 199 || catalog.destinations.length !== 199 || catalog.treaties.length !== 16) {
     throw new Error('realEngine getCatalog() mismatch');
   }
-  console.log('✓ realEngine instantiated successfully with 12 passports, 30 destinations, and 16 treaties');
+  console.log('✓ realEngine instantiated successfully with 199 passports, 199 destinations, and 16 treaties');
 
   // Test 2: Passport View & Realistic Scoring Tiers
   const sgView = realEngine.getPassportView('SG', INITIAL_WORLD_STATE);
@@ -38,7 +38,7 @@ function runPhase3Tests() {
   if (brView.data.score <= inView.data.score || inView.data.score <= ngView.data.score) {
     throw new Error('Score hierarchy mismatch across tiers (SG > BR > IN > NG)');
   }
-  if (sgView.data.destinations.length !== 30 || sgView.data.accessBreakdown.total !== 30) {
+  if (sgView.data.destinations.length !== 199 || sgView.data.accessBreakdown.total !== 199) {
     throw new Error('Breakdown or destination count mismatch');
   }
   console.log('✓ Scoring hierarchy adheres to realistic passport mobility tiers (Singapore > Brazil > India > Nigeria)');
@@ -108,10 +108,10 @@ function runPhase3Tests() {
   if (dna1.data.hash !== dna2.data.hash || dna1.data.vector.join(',') !== dna2.data.vector.join(',')) {
     throw new Error('Visa DNA non-deterministic across identical effective states!');
   }
-  if (dna1.data.vector.length !== 30) {
-    throw new Error(`Visa DNA vector length must be 30, got ${dna1.data.vector.length}`);
+  if (dna1.data.vector.length !== 199) {
+    throw new Error(`Visa DNA vector length must be 199, got ${dna1.data.vector.length}`);
   }
-  console.log(`✓ Invariant: Visa DNA produces strictly deterministic 30-dim vector and hash: ${dna1.data.hash}`);
+  console.log(`✓ Invariant: Visa DNA produces strictly deterministic 199-dim vector and hash: ${dna1.data.hash}`);
 
   // Test 7: Passport Comparison Logic
   const comparison = realEngine.comparePassports('SG', 'IN', INITIAL_WORLD_STATE);

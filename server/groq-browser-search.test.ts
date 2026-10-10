@@ -9,6 +9,7 @@ test("research accepts only canonical catalog selections", () => {
   assert.deepEqual(validateResearchRequest({ passportId: "IN", destinationId: "JP", purpose: "tourism" }), {
     passportId: "IN", destinationId: "JP", purpose: "tourism",
   });
+  assert.deepEqual(validateResearchRequest({ passportId: "CN", destinationId: "IS", purpose: "tourism" }), { passportId: "CN", destinationId: "IS", purpose: "tourism" });
   assert.throws(() => validateResearchRequest({ passportId: "ZZ", destinationId: "JP", purpose: "tourism" }), ResearchRequestError);
   assert.throws(() => validateResearchRequest({ passportId: "IN", destinationId: "JP", purpose: "relocation" }), ResearchRequestError);
 });
