@@ -1276,6 +1276,8 @@ function More() {
         <section className="globe-card">
           <span className="eyebrow">A FRESH PERSPECTIVE</span>
           <h2>The world, a little rounder.</h2>
+          <PassportSelect value={passport} onChange={setPassport} label="Globe passport" />
+          <Legend />
           <WorldMap
             globe
             view={unwrap(
