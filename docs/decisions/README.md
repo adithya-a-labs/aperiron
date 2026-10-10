@@ -14,6 +14,7 @@ why a choice was made.
 | [0003](0003-project-name-aperiron.md) | Accepted | Use aperiron throughout project docs and repo-local skills. |
 | [0004](0004-adithyaa-frontend-ownership.md) | Accepted | dev-adithyaa owns frontend experience. |
 | [0005](0005-prabhu-core-engine-ownership.md) | Accepted | dev-prabhu owns the core engine. |
+| [0006](0006-frontend-foundation-and-worktree-boundaries.md) | Accepted | Runnable frontend scaffold, provisional adapter, and isolated component worktrees. |
 
 ## Adding or superseding a record
 

@@ -1,0 +1,70 @@
+@import "tailwindcss";
+
+@theme {
+  --color-ink: #0b1316;
+  --color-surface: #111d21;
+  --color-accent: #a6f3d0;
+  --font-sans: "Segoe UI", Arial, sans-serif;
+}
+:root { font-family: var(--font-sans); color: #e6eeeb; background: #0b1316; font-synthesis: none; text-rendering: optimizeLegibility; color-scheme: dark; }
+* { box-sizing: border-box; }
+body { margin: 0; min-width: 320px; }
+button, select, a { -webkit-tap-highlight-color: transparent; }
+button, select { font: inherit; }
+button, a, select { touch-action: manipulation; }
+button { cursor: pointer; }
+a { color: inherit; text-decoration: none; }
+button:focus-visible, a:focus-visible, select:focus-visible { outline: 2px solid #a6f3d0; outline-offset: 5px; }
+.skip-link { position: absolute; top: -80px; left: 15px; background: #a6f3d0; color: #0b1316; padding: 12px; z-index: 10; }
+.skip-link:focus { top: 10px; }
+.app-header { max-width: 1600px; margin: auto; padding: 25px 4.5%; border-bottom: 1px solid #243237; display: flex; align-items: center; justify-content: space-between; gap: 24px; }
+.brand { display: flex; align-items: center; gap: 10px; font-size: 25px; font-weight: 650; letter-spacing: -1px; }
+.brand svg, .brand-dot { color: #a6f3d0; }
+nav { display: flex; gap: 32px; align-items: center; font-size: 13px; }
+.nav-active { color: #a6f3d0; padding: 12px 0; }
+.nav-upcoming { color: #8d9f9c; }
+.nav-upcoming small { display: block; font-size: 9px; color: #94a9a3; margin-top: 2px; }
+.environment-badge { font-size: 11px; color: #aec2ba; border: 1px solid #30423e; padding: 8px 11px; border-radius: 30px; display: flex; gap: 8px; align-items: center; }
+.environment-badge > span { width: 5px; height: 5px; background: #a6f3d0; border-radius: 50%; }
+main { max-width: 1600px; padding: 45px 4.5% 35px; margin: auto; }
+.page-heading { display: flex; justify-content: space-between; align-items: flex-end; gap: 30px; margin-bottom: 36px; }
+.eyebrow { color: #9fb3ad; font-size: 10px; letter-spacing: 2px; font-weight: 600; margin: 0 0 14px; }
+h1 { font-size: clamp(32px, 3.6vw, 54px); line-height: 1.1; letter-spacing: -2px; font-weight: 450; margin: 0; }
+h1 > span { color: #a6f3d0; }
+.intro { color: #a5b5b0; font-size: 13px; margin: 18px 0 0; }
+.passport-control { width: 285px; flex-shrink: 0; }
+.passport-control label { font-size: 10px; color: #b1c4bd; letter-spacing: 1.6px; }
+.select-wrap { margin-top: 10px; display: flex; align-items: center; gap: 12px; padding: 0 15px; border: 1px solid #4e6a60; background: #14241f; border-radius: 6px; color: #a6f3d0; }
+.select-wrap select { flex: 1; width: 100%; min-width: 0; padding: 16px 0; border: 0; background: transparent; color: #e6eeeb; appearance: none; cursor: pointer; }
+.passport-control p { font-size: 11px; color: #9aafa6; margin: 10px 0 0; }
+.workspace { display: grid; grid-template-columns: minmax(0, 1fr) 310px; border: 1px solid #2d3c40; border-radius: 10px; background: #101b1f; overflow: hidden; }
+.map-panel { min-width: 0; }
+.panel-toolbar { padding: 24px 26px 0; display: flex; justify-content: space-between; align-items: center; }
+.panel-toolbar .eyebrow { font-size: 9px; }
+h2 { font-size: 21px; letter-spacing: -.5px; margin: 5px 0 0; font-weight: 550; }
+.panel-toolbar h2 span { color: #a5b5b0; font-weight: 400; }
+.icon-button { min-width: 44px; height: 44px; border: 1px solid #34464b; background: transparent; color: #b0c6bd; border-radius: 5px; display: grid; place-items: center; }
+.icon-button:hover { background: #20362d; }
+.map-placeholder { min-height: 340px; padding: 45px 26px; color: #a8bcb3; }
+.destination-list { display: flex; gap: 8px; flex-wrap: wrap; }
+.destination-list button { border: 1px solid #3d554c; color: #d5e6dd; background: #192b25; border-radius: 4px; padding: 10px 13px; min-height: 44px; }
+.access-legend { display: flex; flex-wrap: wrap; gap: 14px; padding: 20px 26px; border-top: 1px solid #24363b; font-size: 10px; color: #b6c4bf; }
+.access-legend > span { display: flex; gap: 6px; align-items: center; }
+.access-dot { display: inline-block; width: 7px; height: 7px; border-radius: 50%; }
+.access-visa_free { background: #a6f3d0; }
+.access-visa_on_arrival { background: #79bde6; }
+.access-evisa { background: #d4be83; }
+.access-visa_required { background: #d28c88; }
+.access-restricted { background: #bd92cc; }
+.access-unknown { background: #6a7d80; }
+.destination-panel { padding: 28px 24px; border-left: 1px solid #2d3c40; background: #142025; }
+.destination-panel p { font-size: 13px; line-height: 1.7; color: #b3c3bd; }
+.destination-panel .eyebrow { font-size: 9px; }
+.destination-panel button { border: 1px solid #40564d; background: #1b3027; color: #d5eee1; padding: 10px; border-radius: 4px; min-height: 44px; }
+.dataset-note { display: flex; gap: 12px; align-items: center; margin-top: 18px; }
+.sample-tag { flex-shrink: 0; border: 1px solid #625738; border-radius: 3px; color: #d6c391; font-size: 8px; letter-spacing: 1px; padding: 5px 6px; }
+.dataset-note p { margin: 0; font-size: 11px; line-height: 1.6; color: #a0b3a9; }
+.app-footer { margin: auto; max-width: 1600px; display: flex; gap: 15px; justify-content: space-between; padding: 22px 4.5%; border-top: 1px solid #243237; color: #92a89e; font-size: 10px; }
+@media (max-width: 1000px) { .workspace { grid-template-columns: minmax(0, 1fr) 280px; } nav { gap: 18px; } }
+@media (max-width: 720px) { .app-header { padding: 18px 5%; flex-wrap: wrap; } nav { order: 3; width: 100%; justify-content: space-between; } main { padding: 28px 5%; } .page-heading { align-items: stretch; flex-direction: column; gap: 24px; } .passport-control { width: 100%; } .workspace { grid-template-columns: 1fr; } .destination-panel { border-left: 0; border-top: 1px solid #2d3c40; } .dataset-note { align-items: flex-start; } .app-footer { flex-direction: column; } }
+@media (prefers-reduced-motion: reduce) { *, *::before, *::after { animation: none !important; transition: none !important; scroll-behavior: auto !important; } }
