@@ -110,3 +110,26 @@ HTTP tests for successful research, invalid/oversized inputs, missing configurat
 provider auth/rate-limit failures, malformed responses and credential non-disclosure.
 Provider responses in automated tests are mocked; authenticated Groq requests need
 an account key and are a separate verification step.
+
+## Manual Travel Buddy trial
+
+No application data source switches during this trial. Run the dry-run command:
+
+```powershell
+.\node_modules\.bin\tsx.cmd scripts/test-travel-buddy.ts
+```
+
+After subscribing to the free Basic plan, set TRAVEL_BUDDY_API_KEY in ignored .env.
+Append --live to send at most three sequential visa-check requests (IN/JP, IN/SG,
+CN/ID), with no retries and a ten-second timeout per request. Any HTTP, network or
+schema failure stops the trial. Every manual rerun can consume three more requests;
+this is a bounded smoke tool, not the proposed persistent quota service.
+
+The report under ignored output/travel-buddy/ includes provider response fields,
+snapshot values, latency and available quota headers. Review missing fields,
+primary/secondary rules, conditions and link destinations before deciding on a
+source migration. Successful retrieval does not verify travel requirements.
+
+Consumer authentication follows [RapidAPI Auth](https://docs.rapidapi.com/docs/configuring-api-security);
+response expectations follow [Travel Buddy v2](https://travel-buddy.ai/api/).
+The script is excluded from the automatic test glob and the browser bundle.

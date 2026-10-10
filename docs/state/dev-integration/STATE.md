@@ -1,11 +1,11 @@
 # dev-integration state
 
-- Updated at: 2026-10-10T19:20:57.606Z
+- Updated at: 2026-10-10T19:53:57.035Z
 - Status: ready_for_review
-- Task: Draft PR title and description from the consolidated branch log
+- Task: Prepare bounded Travel Buddy API trial before source migration
 - Branch: dev-integration
-- Baseline commit: 15a2649
-- Latest run: [PR message draft](runs/20261010T192040Z-pr-message-8af321.md)
+- Baseline commit: fa67371444b972d6d09a57474147e8af8d420fc7
+- Latest run: [Travel Buddy trial](runs/20261010T195337Z-travel-buddy-trial-72c1be.md)
 
 ## Completed
 
@@ -21,9 +21,11 @@ Project documentation reconciled.
 
 ## In progress
 
-No implementation in progress. PR title/description drafted from the consolidated
-branch log, which is now committed as 15a2649. Only this run/state update remains
-uncommitted. No PR created.
+Manual Travel Buddy trial prepared with three-request maximum, no retries and
+explicit --live flag. Dry-run/missing-key checks passed; authenticated execution
+awaits TRAVEL_BUDDY_API_KEY in ignored .env. Application data source unchanged.
+Provider-primary migration with snapshot fallback is a proposed direction after
+the trial; earlier enrichment-only plan is not an implemented constraint.
 
 ## Verification
 
@@ -43,14 +45,15 @@ provider verification. Vite future-loader advisory remains nonblocking.
 
 ## Next actions
 
-Review the grouped local commits and consolidated log. Commit/push only when requested. Review official sources
-before adding detailed traveller guidance. Configure ignored .env for live research.
+Configure the subscribed server-side key in ignored .env, then run the bounded
+trial and inspect the ignored response report. Evaluate actual fields, links,
+latency, quota headers and snapshot differences before changing the data resolver.
 
 ## Coordination
 
 Explicit dev-integration assignment; both module owners' records untouched.
 No public method signature changes. Full coverage/order changes modeled scores,
 comparison sets and DNA fingerprints; documented dataset version bump records this.
-All six implementation/documentation commits are local and confirmed. Consolidated
-log committed as 15a2649; PR-draft run/state records remain uncommitted. No new push
-performed.
+Current HEAD fa67371 includes the merged frontend collaboration setup. Planning
+records are local and uncommitted; other developers records remain untouched.
+No new commit or push performed.
