@@ -10,8 +10,8 @@ both developers to edit the same document.
 | dev-prabhu | [STATE.md](dev-prabhu/STATE.md) | [runs/](dev-prabhu/runs/) |
 
 This table is an index, not a duplicate progress summary. The linked state files
-contain the current summaries. Developer responsibilities have not yet been
-assigned; identity alone does not imply engine or frontend ownership.
+contain the current summaries. The user assigned dev-adithyaa to frontend
+experience and dev-prabhu to the core engine. See development guidance for scope.
 
 ## What a run means
 

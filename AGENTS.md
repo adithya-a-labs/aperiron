@@ -47,6 +47,11 @@ logging applies even if a skill was not automatically selected.
 Developer branch names are exactly `dev-adithyaa` and `dev-prabhu`. Do not add
 slash prefixes or task suffixes to these names. Developer identity and module
 ownership remain separate concerns.
+The user assigned `dev-adithyaa` to frontend experience. Follow the scope in
+`docs/DEVELOPMENT.md`; consume engine calculations through shared contracts.
+The user assigned `dev-prabhu` to the core engine: data, regulation lookup,
+simulation calculations, DNA values, treaty logic, scoring, and optimization.
+Both developers coordinate shared contracts, fixtures, and integration.
 
 ## Start of every run
 

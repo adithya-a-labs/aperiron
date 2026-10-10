@@ -3,20 +3,55 @@
 ## Working agreement
 
 Two developers, `dev-adithyaa` and `dev-prabhu`, work against one shared contract.
-Their named role assignments are still open. Until assigned, do not assume that
-either developer owns the engine or frontend based on their identity or device.
+The user assigned `dev-adithyaa` to frontend experience and `dev-prabhu` to the
+core engine. These are explicit role assignments, independent of device identity.
 
 The intended responsibility split is:
 
 | Role | Primary responsibility |
 | --- | --- |
-| Core engine developer | Data, access rules, comparison calculations, DNA values, purchases, scoring, and optimizer. |
-| Experience developer | UI shell, map, country panel, DNA rendering, market, interaction, and UI state. |
+| Core engine developer (dev-prabhu) | Data, access rules, regulation lookup, comparison calculations, DNA values, purchases, scoring, and optimizer. |
+| Experience developer (dev-adithyaa) | UI shell, map, country panel, DNA rendering, market, interaction, and UI state. |
 | Both | Shared contract review, regulation assumptions, fixtures, integration, and demo readiness. |
 
 Ownership reduces conflicting work; it does not prohibit agreed collaboration.
 Record role assignments when the users decide them. Coordinate changes across
 the boundary before changing another developer's expected interface.
+
+### dev-adithyaa frontend scope and first milestones
+
+Own React/Vite setup, styling, responsive layout, accessibility, components/pages,
+UI store, engine adapter, and contract-compatible UI mocks. Build passport and
+destination selectors, interactive map, passport-specific regulation panel,
+comparison views, Visa DNA rendering, treaty marketplace, impact displays,
+optimizer presentation, and reset/feedback interactions.
+
+Start by coordinating shared types and sample responses, then build the app shell
+and the passport-selection to country-panel flow. Next render DNA from engine
+values, wire purchase/results through the store, and add comparison and optimizer
+views. Finish each milestone with relevant UI verification and a run log.
+
+Consume engine calculations rather than duplicating scoring, access resolution,
+treaty effects, DNA numeric generation, or optimization. UI mocks follow shared
+fixtures and are replaced through the adapter when the engine is available.
+Source regulation content through the agreed data interface; frontend ownership
+does not authorize inventing visa information. Optional AI explanation UI is only
+in scope if the integration is adopted.
+
+### dev-prabhu core engine scope and first milestones
+
+Own `src/engine/` and `src/data/`: the catalog and validated dataset, passport
+access resolution, passport-specific regulation lookup, comparison calculations,
+deterministic Visa DNA values, immutable treaty purchases, global impact scoring,
+and budget-constrained optimization. Maintain shared contracts in coordination
+with dev-adithyaa, including error semantics and common expected-result fixtures.
+
+Begin with contract semantics, initial world state, a small labeled fixture dataset,
+and passport/regulation lookup. Then implement comparison/DNA, purchases/impact,
+and the optimizer with focused invariant tests. Keep the engine independent of
+React, Zustand, and rendering. Return structured data the frontend can consume.
+Source claims and review timestamps remain evidence-based; prototype fixtures must
+not imply verified visa guidance. Both developers share integration responsibility.
 
 ## First implementation milestone
 
