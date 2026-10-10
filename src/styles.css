@@ -656,6 +656,41 @@ main {
   font-size: 12px;
   margin-top: 6px;
 }
+.research-box {
+  display: grid;
+  gap: 14px;
+  margin-top: 24px;
+  padding: 20px;
+  border: 1px dashed #94aaa0;
+  border-radius: 15px;
+  background: #f7f8ef;
+}
+.research-box h3 {
+  margin: 4px 0 6px;
+  font-size: 17px;
+}
+.research-box p {
+  margin: 0;
+  font-size: 12px;
+}
+.research-box .button {
+  justify-self: start;
+}
+.research-error {
+  color: var(--red);
+  font-weight: 700;
+}
+.research-result {
+  display: grid;
+  gap: 8px;
+  padding-top: 14px;
+  border-top: 1px solid var(--line);
+  font-size: 12px;
+  white-space: pre-wrap;
+}
+.research-result small {
+  color: #5a737c;
+}
 .notebook details {
   font-size: 12px;
   margin-top: 25px;
