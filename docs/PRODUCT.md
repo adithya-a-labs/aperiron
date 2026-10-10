@@ -106,6 +106,11 @@ The original prototype target is about 12 passports, 30 destinations, and 15-20
 fictional treaties. Treat this as a scope target, not current coverage. Prefer a
 smaller honest dataset to unsupported worldwide claims.
 
+The user has authorized optional local Groq Browser Search in the Country Notebook
+([decision 0007](decisions/0007-local-groq-research.md)). It returns unreviewed
+research for the selected passport, country and purpose. Verified AI explanations
+and broader planning workflows remain proposed.
+
 ## Interaction requirements
 
 - Use a visible legend with text labels, not color alone.

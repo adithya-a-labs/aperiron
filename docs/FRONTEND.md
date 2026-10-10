@@ -19,6 +19,21 @@ are required. The current user requested implementation in the main checkout on
 `check` runs TypeScript, Node tests through tsx, and a production build. `npm run
 preview` serves the build. No lint configuration exists.
 
+To enable Groq Browser Search research locally, copy `.env.example` to a root
+`.env` and set `GROQ_API_KEY`, then run **only `npm run dev`**. Vite serves the
+backend endpoint `/api/groq-research` on the same local port as the frontend;
+no second terminal or proxy configuration is needed. `npm run preview` also serves
+the endpoint for local bundle review. Restart the process after changing `.env`.
+Node's dotenv parser supports quoted values and comments; shell values take
+precedence. The key stays on the server and never belongs in a `VITE_` variable.
+
+The independent `npm run server` command remains available for API-only use on
+loopback port 8787 (`GROQ_SERVER_PORT` overrides this standalone port). It is not
+needed with dev or preview. A static host alone cannot run this endpoint; public
+hosting requires a separately configured backend runtime. Without a key the
+Country Notebook displays a configuration error while its other information
+remains available.
+
 ## Visual system
 
 The user authorized applying the [colour palette](COLOUR_PALETTE.md) and the

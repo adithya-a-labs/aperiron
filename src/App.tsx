@@ -34,6 +34,7 @@ import {
 } from "./components/Artwork";
 import { WorldMap } from "./components/AccessMap";
 import { GAME_ENABLED } from "./frontend/features";
+import { isResearchResponse, type ResearchResponse } from "./shared/research";
 
 const routes = [
   "explore",
@@ -46,6 +47,7 @@ const routes = [
   "more",
 ] as const;
 type Page = (typeof routes)[number];
+type GroqResearch = ResearchResponse & { contextKey: string };
 function readRoute(): Page {
   const value = window.location.hash.slice(2);
   if (!GAME_ENABLED && ["market", "impact", "optimizer"].includes(value))
@@ -344,6 +346,53 @@ function CountryPage() {
     useAppStore();
   const [purpose, setPurpose] =
     useState<TravellerContext["purpose"]>("tourism");
+  const [research, setResearch] = useState<GroqResearch | null>(null);
+  const [researchError, setResearchError] = useState("");
+  const [isResearching, setIsResearching] = useState(false);
+  const researchRequest = useRef(0);
+  const researchAbort = useRef<AbortController | null>(null);
+  const contextKey = `${passport}:${destination}:${purpose}`;
+  useEffect(() => {
+    ++researchRequest.current;
+    researchAbort.current?.abort();
+    setResearch(null);
+    setResearchError("");
+    setIsResearching(false);
+    return () => {
+      ++researchRequest.current;
+      researchAbort.current?.abort();
+    };
+  }, [contextKey]);
+  async function requestResearch() {
+    researchAbort.current?.abort();
+    const controller = new AbortController();
+    researchAbort.current = controller;
+    const requestId = ++researchRequest.current;
+    setIsResearching(true);
+    setResearchError("");
+    setResearch(null);
+    try {
+      const response = await fetch("/api/groq-research", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ passportId: passport, destinationId: destination, purpose }),
+        signal: controller.signal,
+      });
+      const data: unknown = await response.json().catch(() => null);
+      if (!response.ok || !isResearchResponse(data)) {
+        const error = data && typeof data === "object" && "error" in data && typeof data.error === "string"
+          ? data.error : "Research is unavailable. Please try again.";
+        throw new Error(error);
+      }
+      if (requestId === researchRequest.current) setResearch({ ...data, contextKey });
+    } catch (error) {
+      if (requestId === researchRequest.current) {
+        setResearchError(error instanceof Error ? error.message : "Research is unavailable.");
+      }
+    } finally {
+      if (requestId === researchRequest.current) setIsResearching(false);
+    }
+  }
   const result = engine.getDestinationRequirements({
     passportId: passport,
     destinationId: destination,
@@ -471,6 +520,28 @@ function CountryPage() {
               </p>
             </div>
           )}
+          <section className="research-box" aria-live="polite">
+            <div>
+              <span className="eyebrow">OPTIONAL WEB RESEARCH</span>
+              <h3>Look for current official sources</h3>
+              <p>
+                Groq Browser Search can find leads for this exact selection. It
+                does not verify or change Aperiron’s requirements.
+              </p>
+            </div>
+            <Button onClick={requestResearch} disabled={isResearching}>
+              <Search size={17} />
+              {isResearching ? "Researching…" : "Research sources"}
+            </Button>
+            {researchError && <p className="research-error">{researchError}</p>}
+            {research?.contextKey === contextKey && (
+              <div className="research-result">
+                <b>Unverified research · {research.model}</b>
+                <p>{research.answer}</p>
+                <small>{research.disclaimer} Retrieved {research.retrievedAt}.</small>
+              </div>
+            )}
+          </section>
           <details>
             <summary>Sources & traveller context</summary>
             <p>
@@ -1281,8 +1352,8 @@ function More() {
           <Sparkles />
           <h3>A helping hand?</h3>
           <p>
-            AI assistance is still a product proposal. No assistant is
-            connected.
+            Open a country notebook to research official sources with Groq.
+            Research results need source review before travel planning.
           </p>
         </div>
       </div>

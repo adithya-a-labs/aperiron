@@ -106,7 +106,7 @@ different questions and must remain distinguishable.
 
 ## Optional LLM boundary
 
-An LLM integration is proposed, not installed or required. If adopted:
+The user authorized local Groq Browser Search integration. Its boundaries are:
 
 - Place provider credentials behind a server-side endpoint, never in client assets
   or a frontend-exposed environment variable.
@@ -118,9 +118,22 @@ An LLM integration is proposed, not installed or required. If adopted:
   failures with useful structured information still visible.
 - Evaluate unsupported claims and conditional requirements before demoing them.
 
-Adding this endpoint changes the otherwise static deployment architecture and
-requires a decision record. A full vector database is not a prerequisite for a
-small curated source collection.
+The optional Groq research endpoint is implemented locally at
+`server/groq-browser-search.ts`. It accepts only canonical catalog passport,
+destination and purpose values, uses Groq Browser Search with `openai/gpt-oss-20b`,
+and returns an explicitly unverified research brief. It does not write baseline
+records, affect the engine, or include the API key in client assets. Vite dev and
+preview install the server handler at `/api/groq-research`; `npm run dev` starts
+the complete local flow. `npm run server` remains an API-only alternative. It is an
+optional supplement, not a source-verification pipeline or a production deployment
+decision. A full vector database is not a prerequisite for a small curated source
+collection.
+
+The provider request times out after 45 seconds. Public errors distinguish missing
+configuration, provider authentication/model access, rate limits and other failures
+without returning upstream bodies. The frontend aborts and invalidates requests on
+selection changes and unmount. HTTP request/response types live in
+`src/shared/research.ts`; these do not change the eight-method engine API.
 
 ## Runtime and deployment
 

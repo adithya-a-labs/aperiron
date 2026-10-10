@@ -100,4 +100,9 @@ keyboard activation of supported map countries, missing search results, preserve
 destination after passport switching, comparison groups, deterministic DNA,
 non-spending previews, successful purchases, reset, budget zero, lottery and globe.
 Prototype classifications are not verified visa advice. Browser/source checks do
-not validate travel guidance. Optional AI/transit planning remain unavailable.
+not validate travel guidance. Transit planning remains unavailable. Optional Groq
+research is available in the Country Notebook. `npm test` includes actual loopback
+HTTP tests for successful research, invalid/oversized inputs, missing configuration,
+provider auth/rate-limit failures, malformed responses and credential non-disclosure.
+Provider responses in automated tests are mocked; authenticated Groq requests need
+an account key and are a separate verification step.
