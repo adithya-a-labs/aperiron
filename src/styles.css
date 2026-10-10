@@ -73,9 +73,6 @@ input:focus-visible,
   outline: 3px solid var(--blue);
   outline-offset: 4px;
 }
-button:hover:not(:disabled) {
-  transform: translateY(-1px);
-}
 h1,
 h2,
 h3,
@@ -2319,27 +2316,6 @@ dialog::backdrop {
   clip-path: inset(50%);
   white-space: nowrap;
 }
-@media (prefers-reduced-motion: no-preference) {
-  .page-heading,
-  .explore-layout,
-  .dna-layout,
-  .comparison-hero,
-  .notebook,
-  .optimizer-layout,
-  .more-grid {
-    animation: arrive 0.3s ease-out both;
-  }
-  @keyframes arrive {
-    from {
-      opacity: 0;
-      transform: translateY(6px);
-    }
-    to {
-      opacity: 1;
-      transform: translateY(0);
-    }
-  }
-}
 /* Provider details preserve the notebook's existing typography and spacing. */
 .travel-brief { margin: 1.5rem 0; padding: 1.25rem; border: 1px solid var(--line, #deded3); border-radius: 18px; }
 .travel-heading { display: flex; align-items: center; justify-content: space-between; gap: 1rem; flex-wrap: wrap; }
@@ -2427,4 +2403,8 @@ main { overflow: visible; }
   .page-explore .postcard-image { max-height: 145px; }
   .page-explore .postcard-image .postcard-art-wrap { max-height: 145px; }
   .page-explore .postcard > .eyebrow { margin-top: 16px; }
+}
+@media (hover: hover) and (pointer: fine) and (prefers-reduced-motion: no-preference) {
+  .button, .pill, .round-button { transition: transform 140ms cubic-bezier(.23, 1, .32, 1), background-color 140ms; }
+  .button:active:not(:focus-visible), .pill:active:not(:focus-visible), .round-button:active:not(:focus-visible) { transform: scale(.97); }
 }
