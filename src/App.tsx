@@ -442,55 +442,28 @@ function CountryPage({ inspectSecond = false }: { inspectSecond?: boolean }) {
             </div>
             <MapPin size={42} />
           </div>
-          <dl className="requirements">
-            {[
-              [
-                travel.detail ? "Stay reported by provider" : "Stay in snapshot",
-                travel.detail ? travel.detail.primary.duration ?? "Not provided" : requirements.maxStayDays === null
-                  ? "Not verified"
-                  : requirements.maxStayDays + " days (unverified)",
-              ],
-              [
-                "Documents",
-                requirements.documents.length
-                  ? requirements.documents
-                      .map(
-                        (d) =>
-                          d.title +
-                          (d.required ? " (required)" : " (conditional)"),
-                      )
-                      .join("; ")
-                  : "No verified checklist available",
-              ],
-              ["Application", travel.detail ? travel.detail.primary.name : requirements.applicationChannel.name],
-              [
-                "Fee",
-                requirements.fees
-                  ? requirements.fees.amount + " " + requirements.fees.currency
-                  : "Not verified",
-              ],
-              [
-                "Processing",
-                requirements.processingTime
-                  ? requirements.processingTime.estimateDaysMin +
-                    "–" +
-                    requirements.processingTime.estimateDaysMax +
-                    " " +
-                    requirements.processingTime.unit
-                  : "Not verified",
-              ],
-              ["Last verified", requirements.verifiedAt || "Not available"],
-            ].map(([name, value]) => (
-              <div key={name}>
-                <dt>{name}</dt>
-                <dd>{value}</dd>
-              </div>
-            ))}
-          </dl>
           {purpose === 'tourism' && passport !== destination && <TravelBrief
             detail={travel.detail} message={travel.message} refreshing={travel.refreshing} onRefresh={() => void travel.refresh()}
             changed={Boolean(travel.detail && primaryAccess(travel.detail) && primaryAccess(travel.detail) !== sample.accessLevel)}
           />}
+          {!travel.detail && <dl className="requirements rule-summary">
+            <div><dt>Stay in snapshot</dt><dd>{requirements.maxStayDays === null ? "Not verified" : `${requirements.maxStayDays} days (unverified)`}</dd></div>
+            <div><dt>Application</dt><dd>{requirements.applicationChannel.url
+              ? <a href={requirements.applicationChannel.url} target="_blank" rel="noreferrer">{requirements.applicationChannel.name} ↗</a>
+              : requirements.applicationChannel.name}</dd></div>
+          </dl>}
+          <details className="preparation-details" open>
+            <summary>Documents, fees & processing</summary>
+            <dl className="requirements">
+              <div><dt>Documents</dt><dd>{requirements.documents.length
+                ? requirements.documents.map(d => d.title + (d.required ? " (required)" : " (conditional)")).join("; ")
+                : "No verified checklist available"}</dd></div>
+              <div><dt>Fee</dt><dd>{requirements.fees ? `${requirements.fees.amount} ${requirements.fees.currency}` : "Not verified"}</dd></div>
+              <div><dt>Processing</dt><dd>{requirements.processingTime
+                ? `${requirements.processingTime.estimateDaysMin}–${requirements.processingTime.estimateDaysMax} ${requirements.processingTime.unit}` : "Not verified"}</dd></div>
+              <div><dt>Last verified</dt><dd>{requirements.verifiedAt || "Not available"}</dd></div>
+            </dl>
+          </details>
           {!!requirements.unresolvedConditions?.length && (
             <div className="notice-box">
               <b>A few things are still unknown.</b>

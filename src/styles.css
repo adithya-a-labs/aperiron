@@ -2375,6 +2375,18 @@ main { overflow: visible; }
 .map-country { transition: opacity 120ms; }
 .map-country:focus-visible { stroke: #032b43; stroke-width: 3; filter: drop-shadow(0 0 2px #fffdf7); transition: none; }
 .comparison-return { margin-left: 24px; }
+.notebook { grid-template-columns: minmax(0, 1fr) minmax(240px, .45fr); }
+.notebook-main, .notebook-side { min-width: 0; }
+.notebook-side { padding: 24px; }
+.notebook .requirements { margin: 16px 0; }
+.notebook .preparation-details { margin: 20px 0; }
+.notebook .preparation-details summary { font-size: 15px; }
+.requirements > div { grid-template-columns: minmax(100px, 150px) minmax(0, 1fr); gap: 16px; }
+.requirements dd { overflow-wrap: anywhere; }
+.notebook a:not(.button), .research-leads a { text-decoration: underline; text-underline-offset: 3px; color: #155779; }
+.travel-brief { margin: 20px 0; }
+.travel-rule .rule-action { display: block; width: fit-content; margin-top: 10px; }
+.travel-heading .text-button { font-size: 13px; }
 .compare-search { display: flex; width: min(100%, 380px); max-width: none; margin: 24px 0 12px; }
 .compare-search input { width: 100%; min-width: 0; }
 .results-panel > .segmented { flex-wrap: wrap; justify-content: center; }
