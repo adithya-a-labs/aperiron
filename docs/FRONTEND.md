@@ -2,6 +2,11 @@
 
 ## Setup
 
+Frontend-only collaboration uses `dev-frontend`. Read its
+[scope and ownership boundaries](DEVELOPMENT.md#dev-frontend-dedicated-frontend-branch)
+and maintain its [state/run records](state/dev-frontend/STATE.md). Unified application
+integration continues on `dev-integration`.
+
 Use Node 22.12+ in the 22.x line, or Node 24+. Install the committed npm lockfile:
 
 ```text

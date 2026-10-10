@@ -2,7 +2,7 @@
 
 ## Working agreement
 
-Two developers, `dev-adithyaa` and `dev-prabhu`, work against one shared contract.
+The module owners, `dev-adithyaa` and `dev-prabhu`, work against one shared contract.
 The user assigned `dev-adithyaa` to frontend experience and `dev-prabhu` to the
 core engine. These are explicit role assignments, independent of device identity.
 
@@ -12,6 +12,7 @@ The intended responsibility split is:
 | --- | --- |
 | Core engine developer (dev-prabhu) | Data, access rules, regulation lookup, comparison calculations, DNA values, purchases, scoring, and optimizer. |
 | Experience developer (dev-adithyaa) | UI shell, map, country panel, DNA rendering, market, interaction, and UI state. |
+| Frontend collaborator (dev-frontend) | Dedicated frontend branch for UI implementation and polish within the boundaries below; coordinate overlapping files with dev-adithyaa. |
 | Both | Shared contract review, regulation assumptions, fixtures, integration, and demo readiness. |
 
 For the user-assigned integration task, `dev-integration` coordinates both layers
@@ -41,6 +42,43 @@ fixtures and are replaced through the adapter when the engine is available.
 Source regulation content through the agreed data interface; frontend ownership
 does not authorize inventing visa information. Optional AI explanation UI is only
 in scope if the integration is adopted.
+
+### dev-frontend dedicated frontend branch
+
+The user created the exact branch `dev-frontend` for a friend to work solely on
+frontend experience. It is a separate collaboration lane, not a reassignment of
+dev-adithyaa's experience ownership or dev-prabhu's engine ownership. Use the
+branch-scoped [state and run history](state/dev-frontend/STATE.md); `dev-frontend`
+identifies this work lane, not a person's identity.
+
+| Area | Scope on dev-frontend |
+| --- | --- |
+| UI implementation | React components, page layout, navigation, selectors, map interaction, country notebook, passport comparison presentation, Visa DNA rendering, and existing More-page UI. |
+| Visual quality | Styling, approved palette/artwork, responsive layouts, keyboard access, focus, contrast, reduced motion, loading, empty and error states, and concise product copy. |
+| UI state and integration | Selection/navigation state and engine adapter wiring through existing shared types; display engine results without recalculating them. Optional research UI may consume the existing endpoint. |
+| Verification and docs | Frontend tests, browser checks, frontend documentation, and this lane's state/run records. Coordinate shared integration tests before editing. |
+| Coordinated files | `src/App.tsx`, `src/main.tsx`, `src/styles.css`, `src/components/`, `src/frontend/`, `src/store/`, and UI assets. Agree on file/page assignments with dev-adithyaa before concurrent edits. |
+
+Outside this branch's independent scope: `src/engine/`, `src/data/`, dataset
+generation scripts, regulation sourcing/content, access classification, scoring,
+comparison calculations, numeric DNA generation, treaty logic, and optimization.
+Request these changes from dev-prabhu. Shared contracts (`src/shared/`), common
+fixtures/mocks, server/API behavior, dependency/lockfile changes, and build/runtime
+configuration require coordination with affected owners and dev-integration.
+Record a needed interface change and its consumers before implementation; do not
+silently change signatures or duplicate engine logic in the UI.
+
+Prioritize the active map-first exploration, country information, comparison and
+Visa DNA journeys. The game remains paused; restoring game routes, simulation
+controls or treaty actions needs a new user instruction. Existing optional Groq
+research stays visibly unverified. Do not invent missing visa information, promote
+research into verified requirements, or expand into proposed AI/planning features.
+Deployment remains last priority.
+
+Integrate reviewed frontend work through dev-integration after checks appropriate
+to the change (see [VERIFICATION.md](VERIFICATION.md)). Separate branches do not
+prevent merge conflicts in shared UI files. Preserve all lanes' run histories,
+review diffs against the integration baseline, and commit/push only when authorized.
 
 ### dev-prabhu core engine scope and first milestones
 
@@ -91,7 +129,8 @@ added skills do not appear. A skill's instructions do not install its external t
 
 ### Start
 
-- Read root `AGENTS.md`, both developer states, and docs relevant to the task.
+- Read root `AGENTS.md`, both module-owner states, your lane's state, the integration
+  state when relevant, and docs relevant to the task.
 - Confirm identity from the user/task; identity persists for the session unless changed.
 - Inspect the actual branch, starting commit, and uncommitted changes.
 - Fetch remote updates when access is available; inspect before integrating them.
@@ -100,8 +139,9 @@ added skills do not appear. A skill's instructions do not install its external t
 
 ### Work
 
-Use the exact developer branch names `dev-adithyaa` and `dev-prabhu`, without
-slash prefixes or task suffixes. These names do not assign module ownership.
+Use the exact assigned branch names `dev-adithyaa`, `dev-prabhu`, `dev-frontend`,
+or `dev-integration`, without slash prefixes or task suffixes. These names do not
+by themselves assign module ownership; the scope above defines each work lane.
 Respect a user-requested branch name. Avoid mixing independent tasks into
 the same branch and never reset another task's local changes to get a clean tree.
 
