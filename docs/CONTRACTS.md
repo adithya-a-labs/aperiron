@@ -127,6 +127,12 @@ or additional typed errors. Do not silently mutate or repair caller state.
 
 ### DNA
 
+Dataset version 1.1.0-passport-index-full expands the active catalog to all 199
+snapshot origins and destinations. Destination order is ascending ISO alpha-2,
+with 199 DNA values. Scores, comparison sets and DNA fingerprints therefore differ
+from the prior 30-destination catalog. Synthetic shared fixtures remain unchanged;
+no public method signature changed. The UI sorts selector labels independently.
+
 Choose and version the destination ordering, category encoding, vector length,
 and handling of self/unknown destinations. Determinism must not depend on random
 numbers, current time, object iteration order, or remaining credits. The same

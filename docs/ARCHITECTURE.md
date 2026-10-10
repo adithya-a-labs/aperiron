@@ -6,7 +6,7 @@ The React/Vite/TypeScript frontend uses the executable eight-method
 `AperironEngine` interface in `src/shared/engineApi.ts`. The provider in
 `src/frontend/engine.ts` selects `RealAperironEngine` over the bundled Passport Index catalog;
 `src/store/appStore.ts` owns selection and fictional world state. The pure
-TypeScript engine runs in the browser across 12 passports and 30 destinations;
+TypeScript engine runs in the browser across 199 passport origins and 199 destinations;
 detailed official regulation coverage remains future work. See
 [FRONTEND.md](FRONTEND.md) for implemented routes, dependency details and integration.
 Progress and verification belong in the [state map](state/README.md).

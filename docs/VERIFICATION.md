@@ -96,7 +96,7 @@ relevant checks against the integrated code.
 Retained app source consumes all eight engine methods; game pages are paused.
 `npm test` includes the
 `src/store/appStore.test.ts` integration suite, starter adapter tests, real-engine
-integration tests, full CSV/subset consistency checks, and all five legacy
+integration tests, full CSV/runtime consistency and catalog/map coverage checks, and all five legacy
 verification scripts under `tests/verify-*.ts`. The runner counts each legacy
 script as one test containing several assertions.
 Browser acceptance includes every hash route at desktop and mobile widths,

@@ -104,7 +104,10 @@ called a guaranteed global optimum. A player may compare their results with it.
 
 The original prototype target is about 12 passports, 30 destinations, and 15-20
 fictional treaties. Treat this as a scope target, not current coverage. Prefer a
-smaller honest dataset to unsupported worldwide claims.
+smaller honest dataset to unsupported worldwide claims. On 2026-10-11 the user
+authorized exposing the existing full Passport Index snapshot through the active
+application. This expands classification coverage without accepting unverified
+detailed regulation claims.
 
 The user has authorized optional local Groq Browser Search in the Country Notebook
 ([decision 0007](decisions/0007-local-groq-research.md)). It returns unreviewed

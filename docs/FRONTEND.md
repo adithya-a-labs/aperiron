@@ -66,7 +66,7 @@ implementation. No new runtime dependencies were needed.
 
 `src/frontend/engine.ts` selects the implementation of the authoritative
 `src/shared/engineApi.ts` interface. It selects `RealAperironEngine` with the
-12-passport, 30-destination Passport Index snapshot and 16 fictional treaties.
+199-passport, 199-destination Passport Index snapshot and 16 fictional treaties.
 Access, scores, comparison, DNA, purchases and optimization use the real pure
 TypeScript implementation. The mock remains available for synthetic fixture
 checks; active pages do not use it. No calculation server is required.
@@ -83,8 +83,12 @@ Other purposes or passport types return unknown. Fees, documents, processing tim
 and application links remain missing; verification dates remain empty. Legacy
 curated records are retained for review but are not returned by runtime lookup.
 The snapshot citation is third-party and explicitly unverified. Run `npm run
-data:build` after changing the CSV or catalog to regenerate full and browser-subset
-modules; only the supported subset is bundled into the app.
+data:build` after changing the CSV or country metadata to regenerate the audit
+module, compact full runtime matrix and country catalog. All 39,601 pairs are
+bundled; the large audit module is excluded from browser assets. Selectors sort
+country names for browsing while the engine retains ISO alpha-2 destination order.
+The map uses ISO numeric IDs plus point markers for countries omitted by its
+coarse geography. Unsupported areas stay hatched.
 See [DATA_POLICY.md](DATA_POLICY.md) for the review gate.
 
 The old `frontend/types.ts`, `mocks/frontendAdapter.ts`, `store/explorerStore.ts`
@@ -93,7 +97,7 @@ component work, but are no longer wired into `App.tsx`.
 
 ## Verification
 
-`src/store/appStore.test.ts` covers all 360 matrix entries, destination preservation,
+`src/store/appStore.test.ts` covers all 39,601 matrix entries, destination preservation,
 invalid IDs, immutable previews, purchases, duplicates, insufficient credits,
 reset, DNA changes, optimizer bounds/projected impact, and honest missing data.
 Browser acceptance covers active routes, paused-route fallback, desktop/mobile layouts, search misses,

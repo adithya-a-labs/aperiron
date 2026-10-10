@@ -115,9 +115,10 @@ sample record into a sourced baseline.
 ## Current frontend data boundary
 
 The app uses a bundled third-party Passport Index snapshot for ordinary-passport
-tourism across 12 passports and 30 destinations (360 pairs, including modeled
-domestic entry). The full source CSV has 39,601 entries across 199 origins; that
-is audit coverage, not worldwide UI coverage. The bundled README reports a source
+tourism across all 199 origins and 199 destinations stored in the snapshot
+(39,601 pairs, including modeled domestic entry). This is complete snapshot
+coverage in the UI, not coverage of every territory worldwide. The bundled README
+reports a source
 update of 17 February 2026; this does not establish record-level verification.
 No current official guidance was reviewed in the integration run.
 
@@ -126,8 +127,12 @@ stay days. Text categories supply no stay duration. Both e-visa and eta map to t
 shared evisa category; the raw source value remains visible in citation notes.
 Self-entry is modeled as visa-free with no international stay duration. Missing
 or unrecognized values stay unknown. The parser no longer infers generic stays.
-Run npm run data:build after changing raw CSV or catalog; it generates the full
-audit module and a smaller supportedPassportIndexData.ts used by the browser.
+Run npm run data:build after changing raw CSV or country metadata; it generates
+the full audit module, a dictionary-encoded runtimePassportIndexData.ts containing
+all pairs, and countryCatalog.ts. Names, regions, flags, coordinates and numeric
+map IDs come from the bundled mledoze/countries metadata extract (ODbL-1.0); see
+[metadata provenance](../src/data/passport-index/country-metadata-README.md).
+This metadata supplies geography only and adds no visa claims.
 
 Runtime regulation lookup returns the same classification as the map only for
 ordinary tourism, with numeric snapshot stays and an explicitly unverified

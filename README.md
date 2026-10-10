@@ -21,7 +21,7 @@ and the Border Market let users experiment with changing policy rules.
 
 The React/Vite frontend consumes the real TypeScript engine through one shared
 interface. Explore, Compare and Visa DNA use a bundled Passport Index snapshot
-covering 12 passports and 30 destinations. Detailed official requirements remain
+covering all 199 passport origins and 199 destinations in the bundled snapshot. Detailed official requirements remain
 unverified. The game is temporarily hidden. Optional Groq source research runs
 through a local server endpoint; set `GROQ_API_KEY` in ignored root `.env` to enable
 it. See the state map for current progress and verification limits.
