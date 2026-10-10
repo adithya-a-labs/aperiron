@@ -2205,3 +2205,10 @@ dialog::backdrop {
     }
   }
 }
+/* Provider details preserve the notebook's existing typography and spacing. */
+.travel-brief { margin: 1.5rem 0; padding: 1.25rem; border: 1px solid var(--line, #deded3); border-radius: 18px; }
+.travel-heading { display: flex; align-items: center; justify-content: space-between; gap: 1rem; flex-wrap: wrap; }
+.travel-heading h3 { margin: .3rem 0; }
+.travel-status { font-size: .82rem; line-height: 1.5; color: #536a70; }
+.travel-rule p { margin: .4rem 0; }
+.travel-rule a { display: inline-block; margin-top: .4rem; }

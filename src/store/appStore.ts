@@ -8,6 +8,8 @@ interface AppState {
   destination: string;
   world: WorldState;
   notice: string;
+  selectionRevision: number;
+  selectionKey: string | null;
   setPassport: (id: string) => void;
   setComparison: (id: string) => void;
   setDestination: (id: string) => void;
@@ -20,14 +22,16 @@ export const useAppStore = create<AppState>((set, get) => ({
   destination: "JP",
   world: INITIAL_WORLD_STATE,
   notice: "",
+  selectionRevision: 0,
+  selectionKey: null,
   setPassport: (id) => {
-    if (catalog.passports.some((p) => p.id === id)) set({ passport: id });
+    if (catalog.passports.some((p) => p.id === id)) set({ passport: id, selectionKey: null });
   },
   setComparison: (id) => {
     if (catalog.passports.some((p) => p.id === id)) set({ comparison: id });
   },
   setDestination: (id) => {
-    if (catalog.destinations.some((p) => p.id === id)) set({ destination: id });
+    if (catalog.destinations.some((p) => p.id === id)) set({ destination: id, selectionRevision: get().selectionRevision + 1, selectionKey: `${get().passport}:${id}` });
   },
   purchase: (id) => {
     const result = engine.purchaseTreaty(get().world, id);
