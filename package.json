@@ -8,8 +8,9 @@
   },
   "scripts": {
     "dev": "vite --host 127.0.0.1",
+    "server": "tsx server/groq-browser-search.ts",
     "typecheck": "tsc --noEmit",
-    "test": "tsx --test src/store/*.test.ts",
+    "test": "tsx --test src/store/*.test.ts server/*.test.ts",
     "test:watch": "tsx --test --watch src/store/*.test.ts",
     "build": "npm run typecheck && vite build",
     "preview": "vite preview --host 127.0.0.1",
