@@ -1,37 +1,1328 @@
-import { ArrowUpRight, Globe2, RotateCcw, ScanLine } from 'lucide-react'
-import { WorldMap } from './components/WorldMap'
-import { DestinationPanel } from './components/DestinationPanel'
-import { frontendAdapter, useExplorer } from './store/explorerStore'
-import { ACCESS_LABELS } from './frontend/types'
+import { useEffect, useRef, useState, type ReactNode } from "react";
+import {
+  ArrowLeft,
+  ArrowRight,
+  ArrowLeftRight,
+  Check,
+  Coins,
+  Compass,
+  Globe2,
+  Heart,
+  MapPin,
+  Search,
+  Sparkles,
+  Sun,
+  RotateCcw,
+  Shuffle,
+  X,
+} from "lucide-react";
+import { engine, catalog, accessColors, accessLabels } from "./frontend/engine";
+import { useAppStore } from "./store/appStore";
+import {
+  INITIAL_WORLD_STATE,
+  type AccessLevel,
+  type Result,
+  type Treaty,
+  type TravellerContext,
+  type WorldState,
+} from "./shared/contracts";
+import {
+  Landscape,
+  PostcardArt,
+  PassportBook,
+  DnaFlower,
+} from "./components/Artwork";
+import { WorldMap } from "./components/AccessMap";
+
+const routes = [
+  "explore",
+  "country",
+  "compare",
+  "dna",
+  "market",
+  "impact",
+  "optimizer",
+  "more",
+] as const;
+type Page = (typeof routes)[number];
+function readRoute(): Page {
+  const value = window.location.hash.slice(2);
+  return routes.includes(value as Page) ? (value as Page) : "explore";
+}
+function unwrap<T>(result: Result<T>): T {
+  if (!result.success) throw new Error(result.error.message);
+  return result.data;
+}
+function go(page: Page) {
+  window.location.hash = `/${page}`;
+}
+function country(id: string) {
+  return (
+    catalog.destinations.find((c) => c.id === id) ??
+    catalog.passports.find((c) => c.id === id)!
+  );
+}
+function Tag({ level }: { level: AccessLevel }) {
+  return (
+    <span className={`tag ${level}`}>
+      <i style={{ background: accessColors[level] }} />
+      {accessLabels[level]}
+    </span>
+  );
+}
+function PassportSelect({
+  value,
+  onChange,
+  label = "My passport",
+}: {
+  value: string;
+  onChange: (id: string) => void;
+  label?: string;
+}) {
+  return (
+    <label className="passport-select">
+      <span>{label}</span>
+      <select
+        aria-label={label}
+        value={value}
+        onChange={(e) => onChange(e.target.value)}
+      >
+        {catalog.passports.map((p) => (
+          <option key={p.id} value={p.id}>
+            {p.flagEmoji} {p.name}
+          </option>
+        ))}
+      </select>
+    </label>
+  );
+}
+function Legend() {
+  return (
+    <div className="legend">
+      {Object.entries(accessLabels).map(([key, label]) => (
+        <span key={key}>
+          <i style={{ background: accessColors[key as AccessLevel] }} />
+          {label}
+        </span>
+      ))}
+      <span>
+        <i className="unsupported-key" />
+        Outside coverage
+      </span>
+    </div>
+  );
+}
+function Heading({
+  eyebrow,
+  title,
+  children,
+  aside,
+}: {
+  eyebrow: string;
+  title: string;
+  children?: ReactNode;
+  aside?: ReactNode;
+}) {
+  return (
+    <div className="page-heading">
+      <div>
+        <span className="eyebrow">{eyebrow}</span>
+        <h1>{title}</h1>
+        {children && <p className="subtitle">{children}</p>}
+      </div>
+      {aside}
+    </div>
+  );
+}
+function Button({
+  children,
+  onClick,
+  secondary = false,
+  disabled = false,
+}: {
+  children: ReactNode;
+  onClick: () => void;
+  secondary?: boolean;
+  disabled?: boolean;
+}) {
+  return (
+    <button
+      className={secondary ? "pill" : "button"}
+      onClick={onClick}
+      disabled={disabled}
+    >
+      {children}
+    </button>
+  );
+}
+function ModeSwitch({
+  simulated,
+  setSimulated,
+}: {
+  simulated: boolean;
+  setSimulated: (b: boolean) => void;
+}) {
+  return (
+    <div className="segmented" aria-label="Map data mode">
+      <button aria-pressed={!simulated} onClick={() => setSimulated(false)}>
+        Baseline
+      </button>
+      <button aria-pressed={simulated} onClick={() => setSimulated(true)}>
+        My simulation
+      </button>
+    </div>
+  );
+}
+
+function Explore() {
+  const { passport, setPassport, destination, setDestination, world } =
+    useAppStore();
+  const [search, setSearch] = useState("");
+  const [list, setList] = useState(false);
+  const [simulated, setSimulated] = useState(false);
+  const view = unwrap(
+    engine.getPassportView(passport, simulated ? world : INITIAL_WORLD_STATE),
+  );
+  const destinations = view.destinations.filter((d) =>
+    d.destinationName.toLowerCase().includes(search.toLowerCase()),
+  );
+  const selected = view.destinations.find(
+    (d) => d.destinationId === destination,
+  )!;
+  const searchRef = useRef<HTMLInputElement>(null);
+  return (
+    <>
+      <Heading
+        eyebrow="01 / EXPLORE"
+        title="Where could you go?"
+        aside={
+          <div className="hand-note">
+            Good people.
+            <br />
+            New perspectives.
+            <Sun size={32} />
+          </div>
+        }
+      >
+        Same passport. A world of possibilities.
+      </Heading>
+      <div className="toolbar">
+        <PassportSelect value={passport} onChange={setPassport} />
+        <label className="search">
+          <Search size={18} />
+          <input
+            ref={searchRef}
+            value={search}
+            onChange={(e) => setSearch(e.target.value)}
+            placeholder="Find a country"
+            aria-label="Find a country"
+          />
+          {search && (
+            <button aria-label="Clear search" onClick={() => setSearch("")}>
+              <X size={16} />
+            </button>
+          )}
+        </label>
+        <ModeSwitch simulated={simulated} setSimulated={setSimulated} />
+      </div>
+      <div className="explore-layout">
+        <section className="map-stage" aria-label="Destinations">
+          <div className="view-toggle segmented">
+            <button aria-pressed={!list} onClick={() => setList(false)}>
+              Map
+            </button>
+            <button aria-pressed={list} onClick={() => setList(true)}>
+              List
+            </button>
+          </div>
+          {list || search ? (
+            <div className="destination-list">
+              {destinations.length ? (
+                destinations.map((d) => (
+                  <button
+                    key={d.destinationId}
+                    className={
+                      destination === d.destinationId ? "selected" : ""
+                    }
+                    onClick={() => {
+                      setDestination(d.destinationId);
+                      setSearch("");
+                    }}
+                  >
+                    <span>
+                      {country(d.destinationId).flagEmoji} {d.destinationName}
+                    </span>
+                    <Tag level={d.accessLevel} />
+                    <ArrowRight size={16} />
+                  </button>
+                ))
+              ) : (
+                <div className="empty-state">
+                  <Compass />
+                  <h2>No places found</h2>
+                  <p>Try another country name.</p>
+                  <Button secondary onClick={() => setSearch("")}>
+                    Clear search
+                  </Button>
+                </div>
+              )}
+            </div>
+          ) : (
+            <WorldMap
+              view={view}
+              selected={destination}
+              onSelect={setDestination}
+            />
+          )}
+          <Legend />
+          <p className="map-caption">
+            30 destinations · prototype classifications
+            {simulated ? " · fictional treaty effects" : ""}
+          </p>
+        </section>
+        <aside className="postcard">
+          <div className="postcard-image">
+            <PostcardArt
+              variant={
+                destination === "JP"
+                  ? 0
+                  : destination === "FJ"
+                    ? 1
+                    : destination === "DE"
+                      ? 2
+                      : 3
+              }
+            />
+            <span className="stamp">LET’S EXPLORE</span>
+          </div>
+          <span className="eyebrow">YOUR NEXT CHAPTER?</span>
+          <h2>Hello, {country(destination).name}!</h2>
+          <div className="postcard-details">
+            <span>Sample access</span>
+            <Tag level={selected.accessLevel} />
+            <span>Purpose</span>
+            <b>Tourism</b>
+            <span>Verified stay</span>
+            <b>Not available</b>
+          </div>
+          {selected.isSimulated && (
+            <p className="simulation-label">Changed in your fictional world</p>
+          )}
+          <Button onClick={() => go("country")}>
+            View requirements <ArrowRight size={17} />
+          </Button>
+        </aside>
+      </div>
+      <div className="explore-bottom">
+        <div className="travel-seal">
+          <Compass size={32} />
+          <span>
+            STAY CURIOUS
+            <br />
+            GO FURTHER
+          </span>
+        </div>
+        <p className="hand-note">
+          Different passports.
+          <br />
+          One shared planet. <Heart size={17} />
+        </p>
+      </div>
+    </>
+  );
+}
+
+function CountryPage() {
+  const { passport, setPassport, destination, setDestination, world } =
+    useAppStore();
+  const [purpose, setPurpose] =
+    useState<TravellerContext["purpose"]>("tourism");
+  const result = engine.getDestinationRequirements({
+    passportId: passport,
+    destinationId: destination,
+    travellerContext: { purpose, passportType: "ordinary" },
+  });
+  const requirements = unwrap(result);
+  const sample = unwrap(
+    engine.getPassportView(passport, INITIAL_WORLD_STATE),
+  ).destinations.find((d) => d.destinationId === destination)!;
+  const simulated = unwrap(
+    engine.getPassportView(passport, world),
+  ).destinations.find((d) => d.destinationId === destination)!;
+  return (
+    <>
+      <button className="text-button" onClick={() => go("explore")}>
+        <ArrowLeft size={17} />
+        Back to the world
+      </button>
+      <Heading
+        eyebrow="COUNTRY NOTEBOOK"
+        title={`A little closer to ${country(destination).name}.`}
+      />
+      <div className="toolbar">
+        <PassportSelect value={passport} onChange={setPassport} />
+        <label className="passport-select">
+          <span>Destination</span>
+          <select
+            value={destination}
+            onChange={(e) => setDestination(e.target.value)}
+          >
+            {catalog.destinations.map((d) => (
+              <option value={d.id} key={d.id}>
+                {d.name}
+              </option>
+            ))}
+          </select>
+        </label>
+        <label className="passport-select">
+          <span>Purpose</span>
+          <select
+            value={purpose}
+            onChange={(e) =>
+              setPurpose(e.target.value as TravellerContext["purpose"])
+            }
+          >
+            <option value="tourism">Tourism</option>
+            <option value="business">Business</option>
+            <option value="transit">Transit</option>
+            <option value="conference">Conference</option>
+          </select>
+        </label>
+      </div>
+      <div className="notebook">
+        <div className="notebook-main">
+          <div className="notebook-title">
+            <div>
+              <span className="eyebrow">
+                {country(passport).name} → {country(destination).name}
+              </span>
+              <h2>Before you set off</h2>
+              {requirements.verifiedAt ? (
+                <Tag level={requirements.accessLevel} />
+              ) : (
+                <span className="tag unknown">Requirements unverified</span>
+              )}
+            </div>
+            <MapPin size={42} />
+          </div>
+          <dl className="requirements">
+            {[
+              [
+                "Stay",
+                requirements.maxStayDays === null
+                  ? "Not verified"
+                  : requirements.maxStayDays + " days",
+              ],
+              [
+                "Documents",
+                requirements.documents.length
+                  ? requirements.documents
+                      .map(
+                        (d) =>
+                          d.title +
+                          (d.required ? " (required)" : " (conditional)"),
+                      )
+                      .join("; ")
+                  : "No verified checklist available",
+              ],
+              ["Application", requirements.applicationChannel.name],
+              [
+                "Fee",
+                requirements.fees
+                  ? requirements.fees.amount + " " + requirements.fees.currency
+                  : "Not verified",
+              ],
+              [
+                "Processing",
+                requirements.processingTime
+                  ? requirements.processingTime.estimateDaysMin +
+                    "–" +
+                    requirements.processingTime.estimateDaysMax +
+                    " " +
+                    requirements.processingTime.unit
+                  : "Not verified",
+              ],
+              ["Last verified", requirements.verifiedAt || "Not available"],
+            ].map(([name, value]) => (
+              <div key={name}>
+                <dt>{name}</dt>
+                <dd>{value}</dd>
+              </div>
+            ))}
+          </dl>
+          {!!requirements.unresolvedConditions?.length && <div className="notice-box">
+            <b>A few things are still unknown.</b>
+            <p>
+              {requirements.unresolvedConditions?.join(" ")}{" "}
+              {purpose !== "tourism"
+                ? "The sample map models tourism only."
+                : ""}
+            </p>
+          </div>}
+          <details>
+            <summary>Sources & traveller context</summary>
+            <p>
+              Ordinary passport · {purpose}. {requirements.sources.length ? 'Review the source and its applicability before planning travel.' : 'No verified source record is connected for this selection. Check the destination’s official immigration authority before planning travel.'}
+            </p>
+            {requirements.sources.map(source => <p key={source.id}><a href={source.url} target="_blank" rel="noreferrer">{source.title} ↗</a><br/>{source.issuingAuthority} · verified {source.verifiedAt || 'not available'}</p>)}
+            {requirements.applicationChannel.url && <p><a href={requirements.applicationChannel.url} target="_blank" rel="noreferrer">{requirements.applicationChannel.name} ↗</a></p>}
+          </details>
+        </div>
+        <aside className="notebook-side">
+          <PostcardArt variant={destination === "JP" ? 0 : 3} />
+          <h2>A place to imagine</h2>
+          <p>
+            The map is a mobility prototype. Its sample classification is
+            separate from verified entry requirements.
+          </p>
+          <Tag level={sample.accessLevel} />
+          <div className="simulation-box">
+            <span className="stamp inline">FICTIONAL SIMULATION</span>
+            <h3>Your world</h3>
+            <Tag level={simulated.accessLevel} />
+            <p>
+              {simulated.isSimulated
+                ? "Your treaties changed this sample route. Real requirements remain unchanged."
+                : "No treaty has changed this sample route."}
+            </p>
+            <button className="text-button" onClick={() => go("market")}>
+              Try the Border Market <ArrowRight size={16} />
+            </button>
+          </div>
+        </aside>
+      </div>
+    </>
+  );
+}
+
+function Compare() {
+  const { passport, comparison, setPassport, setComparison, world } =
+    useAppStore();
+  const [mode, setMode] = useState<"shared" | "a" | "b" | "changes">("shared");
+  const [simulated, setSimulated] = useState(false);
+  const data = unwrap(
+    engine.comparePassports(
+      passport,
+      comparison,
+      simulated ? world : INITIAL_WORLD_STATE,
+    ),
+  );
+  const ids =
+    mode === "shared"
+      ? data.sharedAccessible
+      : mode === "a"
+        ? data.onlyA
+        : mode === "b"
+          ? data.onlyB
+          : data.differences.map((d) => d.destinationId);
+  return (
+    <>
+      <Heading eyebrow="02 / COMPARE" title="Two passports. New possibilities.">
+        Different journeys. A shared world.
+      </Heading>
+      <div className="compare-controls">
+        <PassportSelect
+          value={passport}
+          onChange={setPassport}
+          label="First passport"
+        />
+        <button
+          className="round-button"
+          aria-label="Swap passports"
+          onClick={() => {
+            setPassport(comparison);
+            setComparison(passport);
+          }}
+        >
+          <ArrowLeftRight size={20} />
+        </button>
+        <PassportSelect
+          value={comparison}
+          onChange={setComparison}
+          label="Second passport"
+        />
+        <ModeSwitch simulated={simulated} setSimulated={setSimulated} />
+      </div>
+      <div className="comparison-hero">
+        <PassportBook name={country(passport).name} code={passport} />
+        <div className="venn">
+          <div className="venn-circle first">
+            <b>{data.onlyA.length}</b>
+            <span>Only {country(passport).name}</span>
+          </div>
+          <div className="venn-circle second">
+            <b>{data.onlyB.length}</b>
+            <span>Only {country(comparison).name}</span>
+          </div>
+          <div className="venn-shared">
+            <Globe2 />
+            <b>{data.sharedAccessible.length}</b>
+            <span>Shared places</span>
+          </div>
+        </div>
+        <PassportBook
+          name={country(comparison).name}
+          code={comparison}
+          alternate
+        />
+      </div>
+      <div className="compare-scores">
+        <span>
+          {country(passport).name} <b>{data.scoreA}</b>
+        </span>
+        <p>
+          Modeled mobility score / 100
+          <br />
+          <small>Visa-free, on arrival & eVisa count as accessible.</small>
+        </p>
+        <span>
+          <b>{data.scoreB}</b> {country(comparison).name}
+        </span>
+      </div>
+      <div className="results-panel">
+        <div className="segmented">
+          <button
+            aria-pressed={mode === "shared"}
+            onClick={() => setMode("shared")}
+          >
+            Shared ({data.sharedAccessible.length})
+          </button>
+          <button aria-pressed={mode === "a"} onClick={() => setMode("a")}>
+            Only {passport} ({data.onlyA.length})
+          </button>
+          <button aria-pressed={mode === "b"} onClick={() => setMode("b")}>
+            Only {comparison} ({data.onlyB.length})
+          </button>
+          <button
+            aria-pressed={mode === "changes"}
+            onClick={() => setMode("changes")}
+          >
+            Access differences ({data.differences.length})
+          </button>
+        </div>
+        <div className="compare-results">
+          {ids.length ? (
+            ids.map((id) => (
+              <div key={id}>
+                <span>
+                  {country(id).flagEmoji} {country(id).name}
+                </span>
+                {mode === "changes" && (
+                  <>
+                    <Tag
+                      level={
+                        data.differences.find((d) => d.destinationId === id)!
+                          .accessLevelA
+                      }
+                    />
+                    <ArrowRight size={14} />
+                    <Tag
+                      level={
+                        data.differences.find((d) => d.destinationId === id)!
+                          .accessLevelB
+                      }
+                    />
+                  </>
+                )}
+              </div>
+            ))
+          ) : (
+            <p>No destinations in this group. Try a different passport.</p>
+          )}
+        </div>
+      </div>
+      <Landscape />
+    </>
+  );
+}
+
+function Dna() {
+  const { passport, setPassport, world } = useAppStore();
+  const [simulated, setSimulated] = useState(false);
+  const baseline = unwrap(
+    engine.generateVisaDNA(passport, INITIAL_WORLD_STATE),
+  );
+  const after = unwrap(engine.generateVisaDNA(passport, world));
+  const dna = simulated ? after : baseline;
+  return (
+    <>
+      <Heading eyebrow="03 / VISA DNA" title="Your passport has a pattern.">
+        Every passport tells a story. Here’s a glimpse of yours.
+      </Heading>
+      <div className="dna-layout">
+        <div className="dna-copy">
+          <PassportSelect value={passport} onChange={setPassport} />
+          <h2>
+            A world of possibilities.
+            <br />
+            Uniquely yours.
+          </h2>
+          <p>
+            Each petal follows a destination’s modeled access. Together, they
+            create your passport’s fingerprint.
+          </p>
+          <ModeSwitch simulated={simulated} setSimulated={setSimulated} />
+          <div className="dna-stats">
+            <div>
+              <b>{dna.summary.visaFree}</b>
+              <span>Visa-free</span>
+            </div>
+            <div>
+              <b>{dna.summary.evisa}</b>
+              <span>eVisa</span>
+            </div>
+            <div>
+              <b>{dna.summary.total}</b>
+              <span>Places modeled</span>
+            </div>
+          </div>
+          <Button onClick={() => go("market")}>
+            Change your world <ArrowRight size={18} />
+          </Button>
+        </div>
+        <div className="dna-hero">
+          <DnaFlower dna={dna} />
+          <span className="round-stamp">
+            UNIQUELY
+            <br />
+            YOURS <Sparkles size={22} />
+          </span>
+        </div>
+      </div>
+      <Legend />
+      <details className="dna-details">
+        <summary>How your pattern is made</summary>
+        <p>
+          The engine provides a stable vector in catalog order. Petal lengths
+          and colors reflect modeled access weights; this illustration is not a
+          personal or biological fingerprint. Restricted and unknown both have
+          zero weight in the current engine.
+        </p>
+        <code>{dna.hash}</code>
+      </details>
+      <div className="dna-comparison">
+        <div>
+          <DnaFlower dna={baseline} small />
+          <span>Baseline</span>
+        </div>
+        <ArrowRight />
+        <div>
+          <DnaFlower dna={after} small />
+          <span>Your simulation</span>
+        </div>
+        <p>
+          {baseline.hash === after.hash
+            ? "Your pattern hasn’t changed yet. Try a treaty in the Border Market."
+            : "Your treaties have changed the pattern. Same passport, new possibilities."}
+        </p>
+      </div>
+    </>
+  );
+}
+
+function PlayHeader({ page }: { page: "market" | "impact" | "optimizer" }) {
+  const { world, reset } = useAppStore();
+  return (
+    <>
+      <div className="play-top">
+        <span className="eyebrow">04 / BORDER MARKET</span>
+        <span className="credit-balance">
+          <Coins size={21} />
+          <b>{world.creditsRemaining}</b> Influence Credits
+        </span>
+      </div>
+      <div className="play-nav">
+        <div className="segmented">
+          {(["market", "impact", "optimizer"] as const).map((p, i) => (
+            <button key={p} aria-pressed={page === p} onClick={() => go(p)}>
+              {["Treaties", "Your impact", "Optimizer"][i]}
+            </button>
+          ))}
+        </div>
+        <button
+          className="text-button"
+          disabled={!world.purchasedTreatyIds.length}
+          onClick={reset}
+        >
+          <RotateCcw size={15} />
+          Reset world
+        </button>
+      </div>
+    </>
+  );
+}
+function TreatyCard({
+  treaty,
+  index,
+  onPreview,
+}: {
+  treaty: Treaty;
+  index: number;
+  onPreview: (t: Treaty) => void;
+}) {
+  const { world, purchase } = useAppStore();
+  const purchased = world.purchasedTreatyIds.includes(treaty.id);
+  return (
+    <article className={`treaty-card ${purchased ? "purchased" : ""}`}>
+      <PostcardArt variant={(index % 3) + 1} />
+      <span className="eyebrow">{treaty.category} TREATY</span>
+      <h2>{treaty.name}</h2>
+      <p>{treaty.description}</p>
+      <div className="treaty-price">
+        <Coins size={18} />
+        <b>{treaty.cost} credits</b>
+        <button className="text-button" onClick={() => onPreview(treaty)}>
+          Preview <ArrowRight size={14} />
+        </button>
+      </div>
+      <Button
+        disabled={purchased || treaty.cost > world.creditsRemaining}
+        onClick={() => purchase(treaty.id)}
+      >
+        {purchased ? (
+          <>
+            <Check size={17} />
+            In your world
+          </>
+        ) : treaty.cost > world.creditsRemaining ? (
+          "Not enough credits"
+        ) : (
+          <>
+            Try this treaty <ArrowRight size={17} />
+          </>
+        )}
+      </Button>
+    </article>
+  );
+}
+function TreatyPreview({
+  treaty,
+  onClose,
+}: {
+  treaty: Treaty;
+  onClose: () => void;
+}) {
+  const { world, purchase } = useAppStore();
+  const dialog = useRef<HTMLDialogElement>(null);
+  const result = engine.purchaseTreaty(world, treaty.id);
+  useEffect(() => {
+    dialog.current?.showModal();
+  }, []);
+  return (
+    <dialog
+      ref={dialog}
+      onCancel={onClose}
+      onClick={(e) => {
+        if (e.target === e.currentTarget) onClose();
+      }}
+    >
+      <div className="dialog-content">
+        <button
+          className="round-button close"
+          onClick={onClose}
+          aria-label="Close treaty preview"
+        >
+          <X />
+        </button>
+        <PostcardArt variant={2} />
+        <span className="eyebrow">
+          FICTIONAL TREATY · {treaty.cost} CREDITS
+        </span>
+        <h2>{treaty.name}</h2>
+        <p>{treaty.description}</p>
+        {result.success ? (
+          <div className="notice-box">
+            <b>+{result.data.impact.scoreDelta.toFixed(1)} global score</b>
+            <p>
+              {result.data.impact.newlyAccessiblePairs.length} newly accessible
+              passport–destination pairs.
+            </p>
+          </div>
+        ) : (
+          <p role="status">{result.error.message}</p>
+        )}
+        <h3>What changes</h3>
+        <ul className="grant-list">
+          {treaty.grants.map((g, i) => (
+            <li key={i}>
+              {g.passportId === "*"
+                ? "All passports"
+                : country(g.passportId).name}{" "}
+              → {country(g.destinationId).name}
+              <Tag level={g.grantedAccessLevel} />
+            </li>
+          ))}
+        </ul>
+        <Button
+          disabled={!result.success}
+          onClick={() => {
+            purchase(treaty.id);
+            onClose();
+          }}
+        >
+          Add to my world <ArrowRight size={17} />
+        </Button>
+        <p className="fine-print">
+          Preview only. Credits change when you add the treaty.
+        </p>
+      </div>
+    </dialog>
+  );
+}
+function Market() {
+  const [category, setCategory] = useState("all");
+  const [preview, setPreview] = useState<Treaty | null>(null);
+  return (
+    <>
+      <PlayHeader page="market" />
+      <Heading
+        eyebrow="SMALL IDEAS. BIG POSSIBILITIES."
+        title="What if borders opened?"
+        aside={<span className="stamp inline">FICTIONAL SIMULATION</span>}
+      >
+        Build a friendlier world, one treaty at a time.
+      </Heading>
+      <div className="filter-row">
+        {["all", "bilateral", "multilateral", "regional", "special"].map(
+          (c) => (
+            <button
+              key={c}
+              className={category === c ? "filter active" : "filter"}
+              onClick={() => setCategory(c)}
+              aria-pressed={category === c}
+            >
+              {c === "all" ? "All treaties" : c}
+            </button>
+          ),
+        )}
+        <button className="text-button" onClick={() => go("optimizer")}>
+          <Sparkles size={16} />
+          Need a little inspiration?
+        </button>
+      </div>
+      <div className="treaty-grid">
+        {catalog.treaties
+          .filter((t) => category === "all" || t.category === category)
+          .map((t, i) => (
+            <TreatyCard
+              treaty={t}
+              index={i}
+              key={t.id}
+              onPreview={setPreview}
+            />
+          ))}
+      </div>
+      {preview && (
+        <TreatyPreview treaty={preview} onClose={() => setPreview(null)} />
+      )}
+      <Landscape />
+    </>
+  );
+}
+
+function Impact() {
+  const { passport, setPassport, world } = useAppStore();
+  const impact = unwrap(engine.calculateImpact(INITIAL_WORLD_STATE, world));
+  const baseline = unwrap(
+    engine.getPassportView(passport, INITIAL_WORLD_STATE),
+  );
+  const after = unwrap(engine.getPassportView(passport, world));
+  return (
+    <>
+      <PlayHeader page="impact" />
+      <Heading
+        eyebrow="A LITTLE CHANGE GOES A LONG WAY"
+        title="Look what you opened up."
+      >
+        Your fictional treaties. A different world.
+      </Heading>
+      <div className="toolbar">
+        <PassportSelect value={passport} onChange={setPassport} />
+        <span className="stamp inline">SIMULATION ONLY</span>
+      </div>
+      <div className="impact-maps">
+        <div>
+          <h2>Before</h2>
+          <WorldMap view={baseline} />
+          <span>
+            Passport score <b>{baseline.score}</b>
+          </span>
+        </div>
+        <ArrowRight className="impact-arrow" />
+        <div>
+          <h2>Your world</h2>
+          <WorldMap view={after} />
+          <span>
+            Passport score <b>{after.score}</b>
+          </span>
+        </div>
+      </div>
+      <Legend />
+      <div className="impact-numbers">
+        <div>
+          <b>+{impact.scoreDelta.toFixed(1)}</b>
+          <span>Global modeled score</span>
+        </div>
+        <div>
+          <b>{impact.newlyAccessiblePairs.length}</b>
+          <span>New accessible pairs · all passports</span>
+        </div>
+        <div>
+          <b>{world.purchasedTreatyIds.length}</b>
+          <span>Treaties in your world</span>
+        </div>
+      </div>
+      <div className="impact-bottom">
+        <section>
+          <h2>New doors for {country(passport).name}</h2>
+          {impact.newlyAccessiblePairs.filter((p) => p.passportId === passport)
+            .length ? (
+            <div className="new-places">
+              {impact.newlyAccessiblePairs
+                .filter((p) => p.passportId === passport)
+                .map((p) => (
+                  <span key={p.destinationId}>
+                    {country(p.destinationId).flagEmoji}{" "}
+                    {country(p.destinationId).name}
+                    <Tag level={p.newLevel} />
+                  </span>
+                ))}
+            </div>
+          ) : (
+            <p>
+              No newly accessible destinations for this passport yet. A treaty
+              can still improve an existing access category.
+            </p>
+          )}
+          <div className="purchased-list">
+            {world.purchasedTreatyIds.map((id) => (
+              <span key={id}>
+                <Check size={15} />
+                {catalog.treaties.find((t) => t.id === id)!.name}
+              </span>
+            ))}
+          </div>
+          <Button onClick={() => go("market")}>
+            Keep exploring treaties <ArrowRight size={17} />
+          </Button>
+        </section>
+        <section className="impact-dna">
+          <h2>A new pattern</h2>
+          <div>
+            <DnaFlower
+              dna={unwrap(
+                engine.generateVisaDNA(passport, INITIAL_WORLD_STATE),
+              )}
+              small
+            />
+            <ArrowRight />
+            <DnaFlower
+              dna={unwrap(engine.generateVisaDNA(passport, world))}
+              small
+            />
+          </div>
+        </section>
+      </div>
+      <Landscape />
+    </>
+  );
+}
+
+function Optimizer() {
+  const { world, passport } = useAppStore();
+  const [budget, setBudget] = useState(60);
+  const [preview, setPreview] = useState<Treaty | null>(null);
+  const effectiveBudget = Math.min(budget, world.creditsRemaining);
+  const result = engine.optimizeTreaties(world, effectiveBudget);
+  const recommended = result.success ? result.data : null;
+  let projected: WorldState = world;
+  for (const id of recommended?.recommendedTreatyIds ?? []) {
+    const purchase = engine.purchaseTreaty(projected, id);
+    if (purchase.success) projected = purchase.data.nextState;
+  }
+  return (
+    <>
+      <PlayHeader page="optimizer" />
+      <Heading
+        eyebrow="MAKE A LITTLE GO FURTHER"
+        title="Small budget. Bigger possibilities."
+      >
+        Find a starting point for your next move.
+      </Heading>
+      <div className="optimizer-layout">
+        <section className="budget-panel">
+          <span className="eyebrow">YOUR INFLUENCE BUDGET</span>
+          <div className="budget-value">
+            <Coins size={32} />
+            <b>{effectiveBudget}</b>
+            <span>credits</span>
+          </div>
+          <input
+            type="range"
+            aria-label="Influence budget"
+            min="0"
+            max={world.creditsRemaining}
+            value={effectiveBudget}
+            onChange={(e) => setBudget(Number(e.target.value))}
+          />
+          <div className="range-labels">
+            <span>0</span>
+            <span>{world.creditsRemaining} available</span>
+          </div>
+          <h3>The idea</h3>
+          <p>Grow the global modeled mobility score within your budget.</p>
+          <span className="tag evisa">
+            <Sparkles size={14} />
+            Greedy suggestion
+          </span>
+          <p className="fine-print">
+            A useful starting point, not a guaranteed best solution. The current
+            engine ranks initial score gain per credit.
+          </p>
+          {recommended && (
+            <div className="notice-box">
+              <b>{recommended.totalCost} credits suggested</b>
+              <p>
+                +{recommended.projectedImpact.scoreDelta.toFixed(1)} global
+                score ·{" "}
+                {recommended.projectedImpact.newlyAccessiblePairs.length} new
+                pairs
+              </p>
+            </div>
+          )}
+        </section>
+        <section className="suggestions">
+          <h2>A possible path</h2>
+          {recommended?.recommendedTreatyIds.length ? (
+            <>
+              {recommended.recommendedTreatyIds.map((id, i) => (
+                <div className="suggestion" key={id}>
+                  <span className="step-number">{i + 1}</span>
+                  <div>
+                    <h3>{catalog.treaties.find((t) => t.id === id)!.name}</h3>
+                    <span>
+                      {catalog.treaties.find((t) => t.id === id)!.cost} credits
+                    </span>
+                  </div>
+                  <Button
+                    secondary
+                    onClick={() =>
+                      setPreview(catalog.treaties.find((t) => t.id === id)!)
+                    }
+                  >
+                    Review <ArrowRight size={16} />
+                  </Button>
+                </div>
+              ))}
+              <p className="fine-print">
+                Review and purchase each treaty individually. Suggestions update
+                after every purchase.
+              </p>
+            </>
+          ) : (
+            <div className="empty-state">
+              <Compass size={36} />
+              <h3>
+                {world.creditsRemaining
+                  ? "A little more room?"
+                  : "Your credits are all in the world."}
+              </h3>
+              <p>
+                {world.creditsRemaining
+                  ? "Increase the budget to find an affordable treaty."
+                  : "Explore your impact or reset to try another approach."}
+              </p>
+            </div>
+          )}
+          <div className="projected-map">
+            <div>
+              <h3>Projected world</h3>
+              <span>{country(passport).name} · preview only</span>
+            </div>
+            <WorldMap
+              view={unwrap(engine.getPassportView(passport, projected))}
+            />
+          </div>
+        </section>
+      </div>
+      {preview && (
+        <TreatyPreview treaty={preview} onClose={() => setPreview(null)} />
+      )}
+      <Landscape />
+    </>
+  );
+}
+
+function More() {
+  const { passport, setPassport, world, setDestination } = useAppStore();
+  const [draw, setDraw] = useState<string | null>(null);
+  return (
+    <>
+      <Heading eyebrow="A LITTLE MORE WONDER" title="Let curiosity lead.">
+        One shared planet. So many ways to see it.
+      </Heading>
+      <div className="more-grid">
+        <section className="lottery-card">
+          <span className="eyebrow">PASSPORT LOTTERY</span>
+          <h2>A different starting point.</h2>
+          <p>
+            Draw one of the 12 supported passports and see the world through a
+            new lens.
+          </p>
+          <PassportBook
+            name={country(draw ?? passport).name}
+            code={draw ?? passport}
+          />
+          <Button
+            onClick={() => {
+              const bytes = new Uint32Array(1);
+              crypto.getRandomValues(bytes);
+              const id =
+                catalog.passports[bytes[0] % catalog.passports.length].id;
+              setDraw(id);
+              setPassport(id);
+            }}
+          >
+            <Shuffle size={18} />
+            Draw a passport
+          </Button>
+          {draw && (
+            <p role="status">
+              You drew {country(draw).name}.{" "}
+              <button className="text-button" onClick={() => go("explore")}>
+                Explore its world <ArrowRight size={16} />
+              </button>
+            </p>
+          )}
+        </section>
+        <section className="globe-card">
+          <span className="eyebrow">A FRESH PERSPECTIVE</span>
+          <h2>The world, a little rounder.</h2>
+          <WorldMap
+            globe
+            view={unwrap(engine.getPassportView(passport, world))}
+            onSelect={(id) => {
+              setDestination(id);
+              go("country");
+            }}
+          />
+          <p>Turn the globe. Pick a colored country.</p>
+        </section>
+      </div>
+      <div className="future-notes">
+        <div>
+          <Compass />
+          <h3>Journeys between places</h3>
+          <p>
+            Transit and route planning need additional data. They’re not
+            available yet.
+          </p>
+        </div>
+        <div>
+          <Sparkles />
+          <h3>A helping hand?</h3>
+          <p>
+            AI assistance is still a product proposal. No assistant is
+            connected.
+          </p>
+        </div>
+      </div>
+    </>
+  );
+}
 
 export default function App() {
-  const { passportId, destinationId, selectPassport, selectDestination, reset } = useExplorer()
-  const passports = frontendAdapter.getPassports()
-  const destinations = frontendAdapter.getDestinations()
-  const passport = passports.find(country => country.id === passportId)!
-  const destination = destinations.find(country => country.id === destinationId) ?? null
-  const access = frontendAdapter.getAccess(passportId)
-  const requirements = destinationId ? frontendAdapter.getRequirements(passportId, destinationId) : null
-  return <>
-    <a className="skip-link" href="#explorer">Skip to explorer</a>
-    <header className="app-header">
-      <a className="brand" href="#explorer" aria-label="aperiron explorer"><Globe2 size={25} /><span>aperiron<span className="brand-dot">.</span></span></a>
-      <nav aria-label="Main navigation"><a className="nav-active" href="#explorer">Explore</a><span className="nav-upcoming">Visa DNA <small>Coming next</small></span><span className="nav-upcoming">Border Market <small>Coming next</small></span></nav>
-      <span className="environment-badge"><span />Frontend preview</span>
-    </header>
-    <main id="explorer">
-      <section className="page-heading"><div><p className="eyebrow">THE PASSPORT PARADOX / 01</p><h1>One world.<br /><span>Different possibilities.</span></h1><p className="intro">Explore the world through a different passport.</p></div>
-        <div className="passport-control"><label htmlFor="passport">YOUR PASSPORT</label><div className="select-wrap"><ScanLine size={21} /><select id="passport" value={passportId} onChange={event => selectPassport(event.target.value)}>{passports.map(country => <option key={country.id} value={country.id}>{country.name}</option>)}</select><ArrowUpRight size={19} /></div><p>Change your passport. Keep your destination.</p></div>
-      </section>
-      <section className="workspace" aria-label="Passport mobility explorer">
-        <div className="map-panel"><div className="panel-toolbar"><div><span className="eyebrow">GLOBAL ACCESS</span><h2>{passport.name}<span> passport</span></h2></div><button className="icon-button" onClick={reset} aria-label="Reset exploration"><RotateCcw size={17} /></button></div>
-          <WorldMap destinations={destinations} access={access} selectedDestinationId={destinationId} onSelectDestination={selectDestination} />
-          <div className="access-legend" aria-label="Entry requirement legend">{Object.entries(ACCESS_LABELS).map(([key, label]) => <span key={key}><i className={`access-dot access-${key}`} />{label}</span>)}</div>
-        </div>
-        <DestinationPanel passport={passport} destination={destination} requirements={requirements} onClose={() => selectDestination(null)} />
-      </section>
-      <footer className="dataset-note"><span className="sample-tag">SAMPLE DATA</span><p>{frontendAdapter.datasetLabel}. Classifications are fictional UI fixtures, not travel guidance.</p></footer>
-    </main>
-    <footer className="app-footer"><span>aperiron / The Passport Paradox</span><span>Explore. Compare. Reimagine.</span></footer>
-  </>
+  const [page, setPage] = useState<Page>(readRoute);
+  const { notice, world } = useAppStore();
+  const main = useRef<HTMLElement>(null);
+  useEffect(() => {
+    const change = () => {
+      setPage(readRoute());
+      window.scrollTo({ top: 0, behavior: "instant" });
+      main.current?.focus();
+    };
+    window.addEventListener("hashchange", change);
+    return () => window.removeEventListener("hashchange", change);
+  }, []);
+  useEffect(() => {
+    document.title = `${{ explore: "Explore", country: "Country notebook", compare: "Compare", dna: "Visa DNA", market: "Border Market", impact: "Your impact", optimizer: "Optimizer", more: "More possibilities" }[page]} · aperiron`;
+  }, [page]);
+  const active =
+    page === "country"
+      ? "explore"
+      : ["market", "impact", "optimizer"].includes(page)
+        ? "market"
+        : page;
+  return (
+    <div className="app">
+      <a
+        href="#main"
+        className="skip-link"
+        onClick={(e) => {
+          e.preventDefault();
+          main.current?.focus();
+        }}
+      >
+        Skip to content
+      </a>
+      <header className="site-header">
+        <a href="#/explore" className="wordmark" aria-label="aperiron home">
+          aperiron<span>.</span>
+        </a>
+        <nav aria-label="Main navigation">
+          {(
+            [
+              ["explore", "Explore"],
+              ["compare", "Compare"],
+              ["dna", "Visa DNA"],
+              ["market", "Play"],
+              ["more", "More"],
+            ] as const
+          ).map(([route, label]) => (
+            <a
+              key={route}
+              href={`#/${route}`}
+              aria-current={active === route ? "page" : undefined}
+            >
+              {label}
+              {route === "market" && world.purchasedTreatyIds.length > 0 && (
+                <i />
+              )}
+            </a>
+          ))}
+        </nav>
+        <span className="header-motto">
+          A more open tomorrow <Sun size={25} />
+        </span>
+      </header>
+      <main ref={main} tabIndex={-1} id="main">
+        {page === "explore" ? (
+          <Explore />
+        ) : page === "country" ? (
+          <CountryPage />
+        ) : page === "compare" ? (
+          <Compare />
+        ) : page === "dna" ? (
+          <Dna />
+        ) : page === "market" ? (
+          <Market />
+        ) : page === "impact" ? (
+          <Impact />
+        ) : page === "optimizer" ? (
+          <Optimizer />
+        ) : (
+          <More />
+        )}
+      </main>
+      <footer className="site-footer">
+        <span>
+          Made for a world of possibilities <Heart size={13} />
+        </span>
+        <span>Prototype data · 12 passports · 30 destinations</span>
+      </footer>
+      <div className="toast" role="status" key={notice}>
+        {notice}
+      </div>
+    </div>
+  );
 }
