@@ -99,7 +99,7 @@ Retained app source consumes all eight engine methods; game pages are paused.
 integration tests, full CSV/runtime consistency and catalog/map coverage checks, and all five legacy
 verification scripts under `tests/verify-*.ts`. The runner counts each legacy
 script as one test containing several assertions.
-Browser acceptance includes every hash route at desktop and mobile widths,
+Browser acceptance includes every active hash route at desktop widths,
 keyboard activation of supported map countries, missing search results, preserved
 destination after passport switching, comparison groups, deterministic DNA,
 non-spending previews, successful purchases, reset, budget zero, lottery and globe.
@@ -111,6 +111,34 @@ provider auth/rate-limit failures, malformed responses and credential non-disclo
 Provider responses in automated tests are mocked; authenticated Groq requests need
 an account key and are a separate verification step.
 
+## Desktop frontend audit regression
+
+The [desktop audit resolution](FRONTEND_AUDIT_2026-10-11.md#resolution--2026-10-11)
+records the original 13 findings and fixes. Verify all five active pages at
+1366×768, 1440×900 and 1920×1080 with a long passport name. Compare document
+scroll width to client width, accounting for the vertical scrollbar. Mobile
+optimization is outside this audit's scope.
+
+Check picker active-descendant semantics, Enter/Escape focus, Tab dismissal and
+empty results. Each map/globe should have one Tab stop; arrows/Home/End browse
+visible countries and Enter/Space select. Reduced motion must have no SMIL or
+page-entry animations. Explore's legend and primary requirements action should
+be easy to locate at the smallest target desktop viewport.
+
+Search must truthfully select List, announce results and preserve the query after
+selection. Compare must expose both access categories and open either passport's
+notebook without losing the pair. Reload and browser back must preserve valid
+catalog IDs; malformed IDs fall back safely and paused routes show Explore.
+`tests/verify-frontend-navigation.ts` covers deep links, validation and safe research
+URL extraction. Check same-passport and zero-search-result explanations.
+
+Stub provider refreshes and research to avoid spending quota. Check distinct
+notebook action rows, tourism-only provider details, safe clickable unverified
+research leads and recovery after 503. Lottery draw must preview without changing
+the globe until adoption. DNA must show six counts and distinguish unknown from
+restricted without changing vector weights. Missing postcard photos must never
+be requested. Record screen-reader/actual-zoom checks separately when available.
+
 ## Assistant backend checks
 
 `npm test` includes `server/assistant.test.ts`: actual loopback HTTP coverage for
@@ -120,7 +148,7 @@ duplicate messages, revisions, busy conversations, cancellation, supersession,
 restart, queue/rate/budget limits, provider cooldown, map pagination, unknown stay,
 group intersection/deduplication/quota reserve, source grounding, transforms and
 immutable historical exports. Providers are mocked; these tests spend no quota.
-The integrated suite currently passes 65 tests plus typecheck/build.
+The integrated suite currently passes 68 tests plus typecheck/build.
 
 OpenAPI drift is checked against the authoritative runtime schemas and operation
 catalog in that suite. Also run `npm.cmd run assistant:openapi -- --check`.
