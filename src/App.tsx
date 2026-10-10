@@ -92,7 +92,7 @@ function PassportSelect({
         value={value}
         onChange={(e) => onChange(e.target.value)}
       >
-        {catalog.passports.map((p) => (
+        {[...catalog.passports].sort((a, b) => a.name.localeCompare(b.name)).map((p) => (
           <option key={p.id} value={p.id}>
             {p.flagEmoji} {p.name}
           </option>
@@ -426,7 +426,7 @@ function CountryPage() {
             value={destination}
             onChange={(e) => setDestination(e.target.value)}
           >
-            {catalog.destinations.map((d) => (
+            {[...catalog.destinations].sort((a, b) => a.name.localeCompare(b.name)).map((d) => (
               <option value={d.id} key={d.id}>
                 {d.name}
               </option>
@@ -1292,7 +1292,7 @@ function More() {
           <span className="eyebrow">PASSPORT LOTTERY</span>
           <h2>A different starting point.</h2>
           <p>
-            Draw one of the 12 supported passports and see the world through a
+            Draw one of the {catalog.passports.length} supported passports and see the world through a
             new lens.
           </p>
           <PassportBook
@@ -1456,7 +1456,7 @@ export default function App() {
         <span>
           Made for a world of possibilities <Heart size={13} />
         </span>
-        <span>Passport Index snapshot · {catalog.passports.length} passports · {catalog.destinations.length} destinations · unverified</span>
+        <span>Passport Index snapshot · {catalog.passports.length} passports · {catalog.destinations.length} destinations · unverified · <a href="https://github.com/mledoze/countries" target="_blank" rel="noreferrer">Country metadata (ODbL)</a></span>
       </footer>
       <div className="toast" role="status" key={notice}>
         {GAME_ENABLED ? notice : ""}
