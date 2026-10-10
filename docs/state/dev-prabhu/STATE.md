@@ -1,29 +1,30 @@
 # dev-prabhu — current state
 
-- Updated at: 2026-10-10T14:47:30Z
+- Updated at: 2026-10-10T15:30:45Z
 - Status: ready_for_review
-- Task: Phase 1: Shared contracts, engine API, synthetic fixtures, and mock engine
+- Task: Phase 2: Data Catalog, Baseline Access Matrix, Treaties, and Sourced Regulations
 - Branch: main
 - Baseline commit: db5f5d3eba79066299aca4bd2a06e24904520f43
-- Latest run: [20261010T144730Z-e4f81c9a](runs/20261010T144730Z-e4f81c9a.md)
+- Latest run: [20261010T153045Z-f7a30e12](runs/20261010T153045Z-f7a30e12.md)
 
 ## Completed
 
-Delivered Phase 1 foundations:
-1. `src/shared/contracts.ts`: Canonical types, error codes, and Result pattern helpers.
-2. `src/shared/engineApi.ts`: Complete `AperironEngine` interface with all 8 methods.
-3. `src/shared/fixtures.ts`: Synthetic test dataset with overlapping treaties, budget cases, and sourced requirement fixture.
-4. `src/mocks/mockEngine.ts`: High-fidelity, contract-compliant mock engine ready for UI development.
-5. `src/index.ts`: Re-exports shared definitions.
-6. `tests/verify-phase1.ts`: 10/10 automated tests passing for contracts, immutability, DNA determinism, error codes, and optimizer bounds.
+Delivered Phase 1 and Phase 2:
+1. `src/shared/`: Shared contracts, engine API interface, and synthetic fixtures.
+2. `src/mocks/mockEngine.ts`: Contract-compliant mock engine.
+3. `src/data/catalog.ts`: 12 diverse passports and 30 destinations spanning 5 continents.
+4. `src/data/baselineMatrix.ts`: Complete 12x30 (360 entries) baseline mobility access matrix.
+5. `src/data/treaties.ts`: 16 strategic Border Market treaties with balanced costs (15-60 credits).
+6. `src/data/regulations.ts`: Authentic sourced destination regulations with official consular authorities and resolver.
+7. Verification test suites: `tests/verify-phase1.ts` (10/10 passing) and `tests/verify-phase2.ts` (6/6 passing).
 
 ## In progress
 
-Phase 1 completed. Ready for Phase 2 (`src/data/`: 12-passport catalog, baseline access matrix, sourced regulations, treaties).
+Phase 2 completed. Ready for Phase 3 (`src/engine/`: Pure TypeScript calculation engine algorithms).
 
 ## Verification
 
-Passed 10/10 Phase 1 verification tests via `tests/verify-phase1.ts`. Passed documentation link and skill verification via `scripts/check-docs.ps1`.
+Passed all tests via `tests/verify-phase1.ts` and `tests/verify-phase2.ts`. Verified Markdown links via `scripts/check-docs.ps1`.
 
 ## Blockers
 
@@ -31,13 +32,17 @@ None.
 
 ## Next actions
 
-Proceed to Phase 2:
-- Author `src/data/catalog.ts` (~12 passports, ~30 destinations).
-- Author `src/data/regulations.ts` (authentic baseline access matrix + sourced consular requirements).
-- Author `src/data/treaties.ts` (15–20 Border Market fictional treaties).
+Proceed to Phase 3:
+- Build `src/engine/access.ts` (effective access resolution).
+- Build `src/engine/scoring.ts` (mobility scoring function).
+- Build `src/engine/compare.ts` (comparison set operations).
+- Build `src/engine/dna.ts` (deterministic Visa DNA generator).
+- Build `src/engine/treaties.ts` (immutable purchases & impact calculations).
+- Build `src/engine/optimizer.ts` (greedy treaty optimizer).
+- Build `src/engine/index.ts` (`RealAperironEngine`).
 
 ## Coordination
 
-- Contracts and mock engine are available for `dev-adithyaa` in `src/shared/` and `src/mocks/`.
-- Per user instruction, no Git commits were performed. All changes remain local uncommitted in working tree.
+- Full catalog, baseline matrix, and treaties in `src/data/` are ready for engine integration and UI map rendering.
+- Per user instruction, no Git commits were performed. All changes remain local uncommitted.
 - No changes made to `dev-adithyaa` state files.
