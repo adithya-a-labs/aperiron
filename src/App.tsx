@@ -4,7 +4,6 @@ import {
   ArrowRight,
   ArrowLeftRight,
   Check,
-  ChevronDown,
   Coins,
   Compass,
   Globe2,
@@ -40,6 +39,7 @@ import { useTravelDetails } from "./store/travelDetailsStore";
 import { composeExploration } from "./engine/exploration";
 import { primaryAccess } from "./shared/travelDetails";
 import { TravelBrief } from "./components/TravelBrief";
+import { PassportSelect } from "./components/PassportSelect";
 
 const routes = [
   "explore",
@@ -78,142 +78,6 @@ function Tag({ level }: { level: AccessLevel }) {
       <i style={{ background: accessColors[level] }} />
       {accessLabels[level]}
     </span>
-  );
-}
-function PassportSelect({
-  value,
-  onChange,
-  label = "My passport",
-}: {
-  value: string;
-  onChange: (id: string) => void;
-  label?: string;
-}) {
-  const [open, setOpen] = useState(false);
-  const [query, setQuery] = useState("");
-  const [activeIndex, setActiveIndex] = useState(0);
-  const selectorRef = useRef<HTMLDivElement>(null);
-  const searchRef = useRef<HTMLInputElement>(null);
-  const listRef = useRef<HTMLDivElement>(null);
-  const passports = [...catalog.passports].sort((a, b) =>
-    a.name.localeCompare(b.name),
-  );
-  const matchingPassports = passports.filter((passport) =>
-    `${passport.name} ${passport.id}`.toLowerCase().includes(query.toLowerCase()),
-  );
-  const selectedPassport = passports.find((passport) => passport.id === value)!;
-
-  useEffect(() => {
-    if (!open) return;
-    const closeOnOutsideClick = (event: MouseEvent) => {
-      if (!selectorRef.current?.contains(event.target as Node)) setOpen(false);
-    };
-    document.addEventListener("mousedown", closeOnOutsideClick);
-    searchRef.current?.focus();
-    return () => document.removeEventListener("mousedown", closeOnOutsideClick);
-  }, [open]);
-
-  useEffect(() => {
-    const list = listRef.current;
-    const activeOption = list?.querySelector<HTMLElement>('[data-active="true"]');
-    if (!list || !activeOption) return;
-    const listBounds = list.getBoundingClientRect();
-    const optionBounds = activeOption.getBoundingClientRect();
-    if (optionBounds.top < listBounds.top) {
-      list.scrollTop -= listBounds.top - optionBounds.top;
-    } else if (optionBounds.bottom > listBounds.bottom) {
-      list.scrollTop += optionBounds.bottom - listBounds.bottom;
-    }
-  }, [activeIndex, open, query]);
-
-  function selectPassport(id: string) {
-    onChange(id);
-    setQuery("");
-    setOpen(false);
-  }
-
-  function openDropdown() {
-    setQuery("");
-    setActiveIndex(Math.max(0, passports.findIndex((passport) => passport.id === value)));
-    setOpen(true);
-  }
-
-  function moveActive(direction: 1 | -1) {
-    if (!open) {
-      openDropdown();
-      return;
-    }
-    setActiveIndex((index) =>
-      Math.min(Math.max(index + direction, 0), Math.max(0, matchingPassports.length - 1)),
-    );
-  }
-
-  return (
-    <div className="passport-select passport-combobox" ref={selectorRef}>
-      <span>{label}</span>
-      <button
-        type="button"
-        className="passport-combobox-trigger"
-        aria-label={label}
-        aria-expanded={open}
-        aria-haspopup="listbox"
-        onClick={() => (open ? setOpen(false) : openDropdown())}
-        onKeyDown={(event) => {
-          if (event.key === "ArrowDown" || event.key === "ArrowUp") {
-            event.preventDefault();
-            moveActive(event.key === "ArrowDown" ? 1 : -1);
-          }
-        }}
-      >
-        {selectedPassport.flagEmoji} {selectedPassport.name}
-        <ChevronDown size={16} aria-hidden="true" />
-      </button>
-      {open && (
-        <div className="passport-combobox-menu">
-          <input
-            ref={searchRef}
-            type="search"
-            value={query}
-            onChange={(event) => {
-              setQuery(event.target.value);
-              setActiveIndex(0);
-            }}
-            onKeyDown={(event) => {
-              if (event.key === "ArrowDown" || event.key === "ArrowUp") {
-                event.preventDefault();
-                moveActive(event.key === "ArrowDown" ? 1 : -1);
-              }
-              if (event.key === "Enter") {
-                event.preventDefault();
-                const activePassport = matchingPassports[activeIndex];
-                if (activePassport) selectPassport(activePassport.id);
-              }
-              if (event.key === "Escape") setOpen(false);
-            }}
-            placeholder="Type a passport"
-            aria-label="Search passports"
-          />
-          <div ref={listRef} role="listbox" aria-label={`${label} options`}>
-            {matchingPassports.length ? (
-              matchingPassports.map((passport, index) => (
-                <button
-                  type="button"
-                  role="option"
-                  aria-selected={passport.id === value}
-                  data-active={index === activeIndex}
-                  key={passport.id}
-                  onClick={() => selectPassport(passport.id)}
-                >
-                  {passport.flagEmoji} {passport.name}
-                </button>
-              ))
-            ) : (
-              <p>No passports found.</p>
-            )}
-          </div>
-        </div>
-      )}
-    </div>
   );
 }
 function Legend() {
