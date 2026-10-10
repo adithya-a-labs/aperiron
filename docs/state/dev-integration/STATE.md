@@ -2,10 +2,10 @@
 
 - Updated at: 2026-10-10T20:43:18Z
 - Status: ready_for_review
-- Task: Draft detailed Travel Buddy pull request description
+- Task: Explain local application startup commands
 - Branch: dev-integration
 - Baseline commit: c1376e5
-- Latest run: [Travel Buddy PR description](runs/20261010T204318Z-pr-description-c928ef.md)
+- Latest run: [Local startup instructions](runs/20261010T204500Z-run-instructions-2a87cf.md)
 
 ## Completed
 
