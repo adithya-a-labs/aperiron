@@ -1246,7 +1246,7 @@ function More() {
           <h2>A different starting point.</h2>
           <p>
             Draw one of the {catalog.passports.length} supported passports and see the world through a
-            new lens.
+            new lens. Drawing previews a passport; your active selection changes only when you choose to explore it.
           </p>
           <PassportBook
             name={country(draw ?? passport).name}
@@ -1259,7 +1259,6 @@ function More() {
               const id =
                 catalog.passports[bytes[0] % catalog.passports.length].id;
               setDraw(id);
-              setPassport(id);
             }}
           >
             <Shuffle size={18} />
@@ -1268,8 +1267,8 @@ function More() {
           {draw && (
             <p role="status">
               You drew {country(draw).name}.{" "}
-              <button className="text-button" onClick={() => go("explore")}>
-                Explore its world <ArrowRight size={16} />
+              <button className="text-button" onClick={() => { setPassport(draw); go("explore"); }}>
+                Use this passport & explore <ArrowRight size={16} />
               </button>
             </p>
           )}
