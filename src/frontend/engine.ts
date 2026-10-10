@@ -1,34 +1,9 @@
-import { getFullCatalog } from "../data/catalog";
-import { BASELINE_ACCESS_MATRIX } from "../data/baselineMatrix";
-import { MockAperironEngine } from "../mocks/mockEngine";
-import { success, type AccessLevel } from "../shared/contracts";
+import { realEngine } from "../engine/realEngine";
+import type { AperironEngine } from "../shared/engineApi";
+import type { AccessLevel } from "../shared/contracts";
 
-// The current matrix is a prototype, not verified travel advice. Do not expose
-// the data module's fabricated generic fees, application URLs or stay limits.
-export const engine = new MockAperironEngine(getFullCatalog(), {
-  baselineMatrix: BASELINE_ACCESS_MATRIX,
-  requirementsResolver: ({ passportId, destinationId, travellerContext }) =>
-    success({
-      recordId: `unverified-${passportId}-${destinationId}`,
-      passportId,
-      destinationId,
-      purpose: travellerContext?.purpose ?? "tourism",
-      accessLevel: "unknown",
-      maxStayDays: null,
-      documents: [],
-      applicationChannel: {
-        type: "none",
-        name: "Not verified",
-        notes: "Application information is unavailable.",
-      },
-      sources: [],
-      verifiedAt: "",
-      isSimulated: false,
-      unresolvedConditions: [
-        "Verified passport-specific requirements are not available in this prototype.",
-      ],
-    }),
-});
+// One authoritative engine powers every active page and the UI store.
+export const engine: AperironEngine = realEngine;
 export const catalog = engine.getCatalog();
 export const accessLabels: Record<AccessLevel, string> = {
   visa_free: "Visa-free",

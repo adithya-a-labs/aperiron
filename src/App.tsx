@@ -285,7 +285,7 @@ function Explore() {
           )}
           <Legend />
           <p className="map-caption">
-            30 destinations · prototype classifications
+            {catalog.destinations.length} destinations · bundled Passport Index snapshot
             {simulated ? " · fictional treaty effects" : ""}
           </p>
         </section>
@@ -307,7 +307,7 @@ function Explore() {
           <span className="eyebrow">YOUR NEXT CHAPTER?</span>
           <h2>Hello, {country(destination).name}!</h2>
           <div className="postcard-details">
-            <span>Sample access</span>
+            <span>Snapshot access</span>
             <Tag level={selected.accessLevel} />
             <span>Purpose</span>
             <b>Tourism</b>
@@ -456,9 +456,8 @@ function CountryPage() {
                 {country(passport).name} → {country(destination).name}
               </span>
               <h2>Before you set off</h2>
-              {requirements.verifiedAt ? (
-                <Tag level={requirements.accessLevel} />
-              ) : (
+              <Tag level={requirements.accessLevel} />
+              {!requirements.verifiedAt && (
                 <span className="tag unknown">Requirements unverified</span>
               )}
             </div>
@@ -467,10 +466,10 @@ function CountryPage() {
           <dl className="requirements">
             {[
               [
-                "Stay",
+                "Stay in snapshot",
                 requirements.maxStayDays === null
                   ? "Not verified"
-                  : requirements.maxStayDays + " days",
+                  : requirements.maxStayDays + " days (unverified)",
               ],
               [
                 "Documents",
@@ -515,7 +514,7 @@ function CountryPage() {
               <p>
                 {requirements.unresolvedConditions?.join(" ")}{" "}
                 {purpose !== "tourism"
-                  ? "The sample map models tourism only."
+                  ? "The map baseline models tourism only."
                   : ""}
               </p>
             </div>
@@ -558,6 +557,7 @@ function CountryPage() {
                 <br />
                 {source.issuingAuthority} · verified{" "}
                 {source.verifiedAt || "not available"}
+                {source.notes && <><br />{source.notes}</>}
               </p>
             ))}
             {requirements.applicationChannel.url && (
@@ -577,8 +577,9 @@ function CountryPage() {
           <PostcardArt variant={destination === "JP" ? 0 : 3} />
           <h2>A place to imagine</h2>
           <p>
-            The map is a mobility prototype. Its sample classification is
-            separate from verified entry requirements.
+            The map uses a bundled third-party Passport Index snapshot for
+            ordinary-passport tourism. Its classifications are unverified and
+            may differ from current official entry requirements.
           </p>
           <Tag level={sample.accessLevel} />
           {GAME_ENABLED && (
@@ -1455,7 +1456,7 @@ export default function App() {
         <span>
           Made for a world of possibilities <Heart size={13} />
         </span>
-        <span>Prototype data · 12 passports · 30 destinations</span>
+        <span>Passport Index snapshot · {catalog.passports.length} passports · {catalog.destinations.length} destinations · unverified</span>
       </footer>
       <div className="toast" role="status" key={notice}>
         {GAME_ENABLED ? notice : ""}

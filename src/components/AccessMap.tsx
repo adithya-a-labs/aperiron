@@ -84,7 +84,7 @@ export function WorldMap({
       <svg
         viewBox="0 0 800 450"
         role="group"
-        aria-label={`Prototype access map for ${view.passportName}`}
+        aria-label={`Snapshot access map for ${view.passportName}`}
       >
         <defs>
           <pattern
@@ -136,7 +136,7 @@ export function WorldMap({
                 <title>
                   {access
                     ? `${access.destinationName}: ${accessLabels[access.accessLevel]}`
-                    : `${(f.properties as { name?: string })?.name}: outside prototype coverage`}
+                    : `${(f.properties as { name?: string })?.name}: outside catalog coverage`}
                 </title>
               </path>
             );
