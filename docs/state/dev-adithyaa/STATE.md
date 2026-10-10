@@ -1,11 +1,11 @@
 # dev-adithyaa state
 
-- Updated at: 2026-10-10T17:11:00Z
+- Updated at: 2026-10-10T17:36:28Z
 - Status: ready_for_review
-- Task: Group and commit research and AI proposal documentation
+- Task: Expand infographic with group planning and proposed AI features
 - Branch: dev-adithyaa
-- Baseline commit: 097ac17
-- Latest run: [grouped research commits](runs/20261010T171024Z-group-research-commits-a83f92.md)
+- Baseline commit: 6045f9a
+- Latest run: [expanded infographic](runs/20261010T173628Z-expanded-infographic-b7a54d.md)
 
 ## Completed
 
@@ -30,9 +30,17 @@ Reviewed built-in Groq browser search and backend tool alternatives. Proposed
 targeted official-source retrieval with separate validation and evidence caching;
 no web retrieval implemented.
 
+The user rejected conversation-first navigation and reaffirmed map-first exploration
+with optional contextual AI. Generated a product vision infographic in the accepted
+palette covering traveller purposes, country information, sources, AI assistance,
+comparison and Visa DNA. Saved the image and prompt in
+output/design-concepts/product-infographic. Proposed features are not implemented.
+Expanded v2 includes group trip planning, all ten proposed map-context LLM features
+and a later route/timing section. Original v1 preserved; v2 prompt saved alongside.
+
 ## In progress
 
-No implementation in progress; product direction awaits selection and validation.
+No implementation in progress; map-first direction confirmed by the user.
 
 ## Verification
 
@@ -55,6 +63,6 @@ Restore the game feature flag only when requested. Commit/push only when authori
 
 Game code retained; shared contracts and engine semantics unchanged. Other developer
 records untouched. Main checkout only. Pause is in baseline 097ac17. Research and
-AI proposal records grouped for user-authorized local commits; check Git history
-for resulting hashes. Previous frontend commits remain in branch history. No push
-requested or performed in this run.
+AI proposal records were committed as 669b4a2 and c4562ac; prior pause is in
+097ac17. Current planning record is local and uncommitted. New untracked pnpm
+workspace files are preserved as unrelated changes. No push requested or performed.
