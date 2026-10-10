@@ -52,6 +52,9 @@ The user assigned `dev-adithyaa` to frontend experience. Follow the scope in
 The user assigned `dev-prabhu` to the core engine: data, regulation lookup,
 simulation calculations, DNA values, treaty logic, scoring, and optimization.
 Both developers coordinate shared contracts, fixtures, and integration.
+The user assigned `dev-integration` to coordinate the unified application on
+`dev-integration`; it maintains its own state/run records without overwriting the
+two module owners’ history.
 
 ## Start of every run
 
@@ -59,7 +62,7 @@ Both developers coordinate shared contracts, fixtures, and integration.
 2. Inspect the current branch, working-tree changes, and relevant recent commits.
    Verify recorded claims against the code; state files can be stale.
 3. Establish your developer identity from an explicit user instruction or an
-   explicitly assigned task: `dev-adithyaa` or `dev-prabhu`. Do not infer identity
+   explicitly assigned task: `dev-adithyaa`, `dev-prabhu`, or explicitly assigned `dev-integration`. Do not infer identity
    from a computer username, Git author, or files you happen to edit. If it is
    unknown, ask which developer you represent before writing an attributed log.
    Independent read-only investigation may continue while awaiting the answer.

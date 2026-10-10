@@ -114,12 +114,30 @@ sample record into a sourced baseline.
 
 ## Current frontend data boundary
 
-The playful frontend uses the full prototype matrix for modeled access and fictional
-treaty calculations, with a visible prototype label. It does not expose the generic
-fallback in `src/data/regulations.ts`: that function constructs unsupported stay
-limits, document requirements, fees, processing estimates, URLs and verification dates.
-The explicit records also require claim-level source/applicability review before
-being presented as guidance. `src/frontend/engine.ts` therefore injects an unknown
-requirements resolver. This preserves baseline/simulation isolation and prevents a
-sample classification from implying verified traveller requirements. The underlying
-data is left for its owner to review; this is not a claim that it has been corrected.
+The app uses a bundled third-party Passport Index snapshot for ordinary-passport
+tourism across 12 passports and 30 destinations (360 pairs, including modeled
+domestic entry). The full source CSV has 39,601 entries across 199 origins; that
+is audit coverage, not worldwide UI coverage. The bundled README reports a source
+update of 17 February 2026; this does not establish record-level verification.
+No current official guidance was reviewed in the integration run.
+
+The compiler preserves rawRequirement and maps numeric CSV values to visa-free
+stay days. Text categories supply no stay duration. Both e-visa and eta map to the
+shared evisa category; the raw source value remains visible in citation notes.
+Self-entry is modeled as visa-free with no international stay duration. Missing
+or unrecognized values stay unknown. The parser no longer infers generic stays.
+Run npm run data:build after changing raw CSV or catalog; it generates the full
+audit module and a smaller supportedPassportIndexData.ts used by the browser.
+
+Runtime regulation lookup returns the same classification as the map only for
+ordinary tourism, with numeric snapshot stays and an explicitly unverified
+third-party source. Other purposes/passport types return unknown. Requested stay
+duration, residency and visa exceptions are not validated. Fees, documents,
+processing estimates and application URLs are missing; verifiedAt and unknown
+source dates remain empty. Retrieval is not verification.
+
+The older SOURCED_REGULATIONS records remain unreviewed drafts for their owner to
+review. They are not used by the runtime resolver; generated official-looking
+fallback details were removed. Synthetic fixture-engine responses remain separate
+from the active provider. Fictional purchases cannot change baseline requirements;
+use getPassportView for a separate simulation overlay.

@@ -1,6 +1,6 @@
 # Run <run-id>
 
-- Developer: <dev-adithyaa or dev-prabhu>
+- Developer: <dev-adithyaa, dev-prabhu, or dev-integration>
 - Started at: <ISO 8601 UTC timestamp>
 - Finished at: <ISO 8601 UTC timestamp, or in progress>
 - Task: <concrete request>

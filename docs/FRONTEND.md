@@ -13,8 +13,8 @@ npm run check
 Vite binds to loopback on strict port 5173. If occupied, use an explicit free port,
 for example `npm run dev -- --port 5175`. On Windows use `npm.cmd` if PowerShell
 blocks the npm shim. No secrets, remote map service, database or backend server
-are required. The current user requested implementation in the main checkout on
-`dev-adithyaa`; sibling worktrees are not involved.
+are required. Integration uses the current checkout on `dev-integration`;
+sibling worktrees are not involved.
 
 `check` runs TypeScript, Node tests through tsx, and a production build. `npm run
 preview` serves the build. No lint configuration exists.
@@ -65,11 +65,11 @@ implementation. No new runtime dependencies were needed.
 ## Engine integration
 
 `src/frontend/engine.ts` selects the implementation of the authoritative
-`src/shared/engineApi.ts` interface. It currently configures `MockAperironEngine`
-with the 12-passport, 30-destination baseline matrix and 16 fictional treaties.
-This is a functional local prototype, not the planned production engine.
-The optional mock constructor dependencies are additive; default shared fixtures
-and public method signatures remain unchanged.
+`src/shared/engineApi.ts` interface. It selects `RealAperironEngine` with the
+12-passport, 30-destination Passport Index snapshot and 16 fictional treaties.
+Access, scores, comparison, DNA, purchases and optimization use the real pure
+TypeScript implementation. The mock remains available for synthetic fixture
+checks; active pages do not use it. No calculation server is required.
 
 `src/store/appStore.ts` holds passport/comparison/destination, world state and
 purchase feedback. Pages derive calculations from the engine. Navigation uses
@@ -77,11 +77,14 @@ hash routes; selection and simulation survive page changes but reset on reload.
 Preview and optimizer calls never mutate the active world. Reset preserves UI
 selection. Engine failures on purchase become visible status messages.
 
-The country notebook deliberately returns unknown requirements from the adapter.
-Existing generic data fallbacks invent fees, stay limits and URLs; curated records
-also lack claim-level verification evidence. These are not displayed as verified
-travel information. Missing details are rendered explicitly. The notebook renders
-contract fields and sources when a reviewed resolver supplies them.
+The country notebook uses the same snapshot classification as the map for ordinary
+passport tourism and shows only numeric stay values actually present in the CSV.
+Other purposes or passport types return unknown. Fees, documents, processing times
+and application links remain missing; verification dates remain empty. Legacy
+curated records are retained for review but are not returned by runtime lookup.
+The snapshot citation is third-party and explicitly unverified. Run `npm run
+data:build` after changing the CSV or catalog to regenerate full and browser-subset
+modules; only the supported subset is bundled into the app.
 See [DATA_POLICY.md](DATA_POLICY.md) for the review gate.
 
 The old `frontend/types.ts`, `mocks/frontendAdapter.ts`, `store/explorerStore.ts`
@@ -93,7 +96,7 @@ component work, but are no longer wired into `App.tsx`.
 `src/store/appStore.test.ts` covers all 360 matrix entries, destination preservation,
 invalid IDs, immutable previews, purchases, duplicates, insufficient credits,
 reset, DNA changes, optimizer bounds/projected impact, and honest missing data.
-Browser QA covers all eight routes, desktop/mobile layouts, search misses,
+Browser acceptance covers active routes, paused-route fallback, desktop/mobile layouts, search misses,
 passport changes, purchase/preview/reset, budget edges, lottery and globe controls.
 Local evidence is written to ignored `output/playwright/`.
 

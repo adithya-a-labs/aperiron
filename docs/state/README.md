@@ -1,13 +1,17 @@
 # Developer state map
 
 This directory is the shared, versioned memory for agents working on aperiron.
-The two developer records are independent so routine logging does not require
+The developer records are independent so routine logging does not require
 both developers to edit the same document.
 
 | Developer | Current state | Run history |
 | --- | --- | --- |
 | dev-adithyaa | [STATE.md](dev-adithyaa/STATE.md) | [runs/](dev-adithyaa/runs/) |
 | dev-prabhu | [STATE.md](dev-prabhu/STATE.md) | [runs/](dev-prabhu/runs/) |
+| dev-integration | [STATE.md](dev-integration/STATE.md) | [runs/](dev-integration/runs/) |
+
+The user explicitly assigned dev-integration to integrate both layers on the
+dev-integration branch. Its records preserve the two module owners’ history.
 
 This table is an index, not a duplicate progress summary. The linked state files
 contain the current summaries. The user assigned dev-adithyaa to frontend
