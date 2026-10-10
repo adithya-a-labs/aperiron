@@ -1,0 +1,447 @@
+/**
+ * aperiron: The Passport Paradox
+ * Baseline Access Matrix
+ *
+ * 12 Passports x 30 Destinations = 360 baseline access records.
+ * Models realistic international mobility classifications under standard
+ * tourism assumptions (ordinary passport, 30-90 days stay).
+ *
+ * @see docs/DATA_POLICY.md
+ * @see docs/PRODUCT.md
+ */
+
+import { AccessLevel, CountryId } from '../shared/contracts';
+
+export const BASELINE_ACCESS_MATRIX: Record<CountryId, Record<CountryId, AccessLevel>> = {
+  // ==========================================================================
+  // 1. SINGAPORE (SG) — Very High Mobility
+  // ==========================================================================
+  SG: {
+    SG: 'visa_free',
+    JP: 'visa_free',
+    IN: 'evisa',
+    TH: 'visa_free',
+    ID: 'visa_free',
+    KR: 'visa_free',
+    VN: 'visa_free',
+    AE: 'visa_free',
+    QA: 'visa_free',
+    DE: 'visa_free',
+    GB: 'visa_free',
+    FR: 'visa_free',
+    IT: 'visa_free',
+    ES: 'visa_free',
+    CH: 'visa_free',
+    TR: 'visa_free',
+    GE: 'visa_free',
+    US: 'visa_free',
+    CA: 'visa_free',
+    BR: 'visa_free',
+    MX: 'visa_free',
+    AR: 'visa_free',
+    ZA: 'visa_free',
+    EG: 'visa_on_arrival',
+    KE: 'evisa',
+    MA: 'visa_free',
+    NG: 'evisa',
+    AU: 'evisa',
+    NZ: 'visa_free',
+    FJ: 'visa_free'
+  },
+
+  // ==========================================================================
+  // 2. GERMANY (DE) — Schengen Powerhouse
+  // ==========================================================================
+  DE: {
+    SG: 'visa_free',
+    JP: 'visa_free',
+    IN: 'evisa',
+    TH: 'visa_free',
+    ID: 'visa_free',
+    KR: 'visa_free',
+    VN: 'visa_free',
+    AE: 'visa_free',
+    QA: 'visa_free',
+    DE: 'visa_free',
+    GB: 'visa_free',
+    FR: 'visa_free',
+    IT: 'visa_free',
+    ES: 'visa_free',
+    CH: 'visa_free',
+    TR: 'visa_free',
+    GE: 'visa_free',
+    US: 'visa_free',
+    CA: 'visa_free',
+    BR: 'visa_free',
+    MX: 'visa_free',
+    AR: 'visa_free',
+    ZA: 'visa_free',
+    EG: 'visa_on_arrival',
+    KE: 'evisa',
+    MA: 'visa_free',
+    NG: 'visa_required',
+    AU: 'evisa',
+    NZ: 'visa_free',
+    FJ: 'visa_free'
+  },
+
+  // ==========================================================================
+  // 3. JAPAN (JP) — Tier 1 East Asian Mobility
+  // ==========================================================================
+  JP: {
+    SG: 'visa_free',
+    JP: 'visa_free',
+    IN: 'visa_on_arrival',
+    TH: 'visa_free',
+    ID: 'visa_free',
+    KR: 'visa_free',
+    VN: 'visa_free',
+    AE: 'visa_free',
+    QA: 'visa_free',
+    DE: 'visa_free',
+    GB: 'visa_free',
+    FR: 'visa_free',
+    IT: 'visa_free',
+    ES: 'visa_free',
+    CH: 'visa_free',
+    TR: 'visa_free',
+    GE: 'visa_free',
+    US: 'visa_free',
+    CA: 'visa_free',
+    BR: 'visa_free',
+    MX: 'visa_free',
+    AR: 'visa_free',
+    ZA: 'visa_free',
+    EG: 'visa_on_arrival',
+    KE: 'evisa',
+    MA: 'visa_free',
+    NG: 'visa_required',
+    AU: 'evisa',
+    NZ: 'visa_free',
+    FJ: 'visa_free'
+  },
+
+  // ==========================================================================
+  // 4. UNITED STATES (US) — North American Global Reach
+  // ==========================================================================
+  US: {
+    SG: 'visa_free',
+    JP: 'visa_free',
+    IN: 'evisa',
+    TH: 'visa_free',
+    ID: 'visa_free',
+    KR: 'visa_free',
+    VN: 'evisa',
+    AE: 'visa_free',
+    QA: 'visa_free',
+    DE: 'visa_free',
+    GB: 'visa_free',
+    FR: 'visa_free',
+    IT: 'visa_free',
+    ES: 'visa_free',
+    CH: 'visa_free',
+    TR: 'visa_free',
+    GE: 'visa_free',
+    US: 'visa_free',
+    CA: 'visa_free',
+    BR: 'evisa',
+    MX: 'visa_free',
+    AR: 'visa_free',
+    ZA: 'visa_free',
+    EG: 'visa_on_arrival',
+    KE: 'evisa',
+    MA: 'visa_free',
+    NG: 'visa_required',
+    AU: 'evisa',
+    NZ: 'visa_free',
+    FJ: 'visa_free'
+  },
+
+  // ==========================================================================
+  // 5. UNITED KINGDOM (GB) — Western European Mobility
+  // ==========================================================================
+  GB: {
+    SG: 'visa_free',
+    JP: 'visa_free',
+    IN: 'evisa',
+    TH: 'visa_free',
+    ID: 'visa_free',
+    KR: 'visa_free',
+    VN: 'visa_free',
+    AE: 'visa_free',
+    QA: 'visa_free',
+    DE: 'visa_free',
+    GB: 'visa_free',
+    FR: 'visa_free',
+    IT: 'visa_free',
+    ES: 'visa_free',
+    CH: 'visa_free',
+    TR: 'visa_free',
+    GE: 'visa_free',
+    US: 'visa_free',
+    CA: 'visa_free',
+    BR: 'visa_free',
+    MX: 'visa_free',
+    AR: 'visa_free',
+    ZA: 'visa_free',
+    EG: 'visa_on_arrival',
+    KE: 'evisa',
+    MA: 'visa_free',
+    NG: 'visa_required',
+    AU: 'evisa',
+    NZ: 'visa_free',
+    FJ: 'visa_free'
+  },
+
+  // ==========================================================================
+  // 6. UNITED ARAB EMIRATES (AE) — Middle Eastern Gateway
+  // ==========================================================================
+  AE: {
+    SG: 'visa_free',
+    JP: 'visa_free',
+    IN: 'evisa',
+    TH: 'visa_free',
+    ID: 'visa_free',
+    KR: 'visa_free',
+    VN: 'visa_free',
+    AE: 'visa_free',
+    QA: 'visa_free',
+    DE: 'visa_free',
+    GB: 'visa_free',
+    FR: 'visa_free',
+    IT: 'visa_free',
+    ES: 'visa_free',
+    CH: 'visa_free',
+    TR: 'visa_free',
+    GE: 'visa_free',
+    US: 'visa_required',
+    CA: 'visa_free',
+    BR: 'visa_free',
+    MX: 'visa_free',
+    AR: 'visa_free',
+    ZA: 'visa_free',
+    EG: 'visa_free',
+    KE: 'evisa',
+    MA: 'visa_free',
+    NG: 'evisa',
+    AU: 'evisa',
+    NZ: 'visa_free',
+    FJ: 'visa_free'
+  },
+
+  // ==========================================================================
+  // 7. BRAZIL (BR) — South American Regional Leader
+  // ==========================================================================
+  BR: {
+    SG: 'visa_free',
+    JP: 'visa_free',
+    IN: 'evisa',
+    TH: 'visa_free',
+    ID: 'visa_free',
+    KR: 'visa_free',
+    VN: 'evisa',
+    AE: 'visa_free',
+    QA: 'visa_free',
+    DE: 'visa_free',
+    GB: 'visa_free',
+    FR: 'visa_free',
+    IT: 'visa_free',
+    ES: 'visa_free',
+    CH: 'visa_free',
+    TR: 'visa_free',
+    GE: 'visa_free',
+    US: 'visa_required',
+    CA: 'visa_required',
+    BR: 'visa_free',
+    MX: 'evisa',
+    AR: 'visa_free',
+    ZA: 'visa_free',
+    EG: 'visa_on_arrival',
+    KE: 'evisa',
+    MA: 'visa_free',
+    NG: 'visa_required',
+    AU: 'evisa',
+    NZ: 'visa_free',
+    FJ: 'visa_free'
+  },
+
+  // ==========================================================================
+  // 8. SOUTH AFRICA (ZA) — African Continental Hub
+  // ==========================================================================
+  ZA: {
+    SG: 'visa_free',
+    JP: 'visa_required',
+    IN: 'evisa',
+    TH: 'visa_free',
+    ID: 'visa_on_arrival',
+    KR: 'visa_free',
+    VN: 'evisa',
+    AE: 'evisa',
+    QA: 'visa_free',
+    DE: 'visa_required',
+    GB: 'visa_required',
+    FR: 'visa_required',
+    IT: 'visa_required',
+    ES: 'visa_required',
+    CH: 'visa_required',
+    TR: 'visa_free',
+    GE: 'visa_free',
+    US: 'visa_required',
+    CA: 'visa_required',
+    BR: 'visa_free',
+    MX: 'visa_required',
+    AR: 'visa_free',
+    ZA: 'visa_free',
+    EG: 'visa_on_arrival',
+    KE: 'visa_free',
+    MA: 'visa_required',
+    NG: 'visa_on_arrival',
+    AU: 'visa_required',
+    NZ: 'visa_required',
+    FJ: 'visa_free'
+  },
+
+  // ==========================================================================
+  // 9. INDIA (IN) — South Asian Powerhouse (Selective Mobility)
+  // ==========================================================================
+  IN: {
+    SG: 'evisa',
+    JP: 'visa_required',
+    IN: 'visa_free',
+    TH: 'visa_free',
+    ID: 'visa_on_arrival',
+    KR: 'visa_required',
+    VN: 'evisa',
+    AE: 'evisa',
+    QA: 'visa_free',
+    DE: 'visa_required',
+    GB: 'visa_required',
+    FR: 'visa_required',
+    IT: 'visa_required',
+    ES: 'visa_required',
+    CH: 'visa_required',
+    TR: 'visa_required',
+    GE: 'evisa',
+    US: 'visa_required',
+    CA: 'visa_required',
+    BR: 'visa_required',
+    MX: 'visa_required',
+    AR: 'visa_required',
+    ZA: 'evisa',
+    EG: 'visa_on_arrival',
+    KE: 'evisa',
+    MA: 'evisa',
+    NG: 'visa_required',
+    AU: 'evisa',
+    NZ: 'visa_required',
+    FJ: 'visa_free'
+  },
+
+  // ==========================================================================
+  // 10. TURKEY (TR) — Eurasian Bridge
+  // ==========================================================================
+  TR: {
+    SG: 'visa_free',
+    JP: 'visa_free',
+    IN: 'evisa',
+    TH: 'visa_free',
+    ID: 'visa_free',
+    KR: 'visa_free',
+    VN: 'evisa',
+    AE: 'evisa',
+    QA: 'visa_free',
+    DE: 'visa_required',
+    GB: 'visa_required',
+    FR: 'visa_required',
+    IT: 'visa_required',
+    ES: 'visa_required',
+    CH: 'visa_required',
+    TR: 'visa_free',
+    GE: 'visa_free',
+    US: 'visa_required',
+    CA: 'visa_required',
+    BR: 'visa_free',
+    MX: 'evisa',
+    AR: 'visa_free',
+    ZA: 'visa_free',
+    EG: 'visa_on_arrival',
+    KE: 'evisa',
+    MA: 'visa_free',
+    NG: 'visa_required',
+    AU: 'evisa',
+    NZ: 'visa_required',
+    FJ: 'visa_free'
+  },
+
+  // ==========================================================================
+  // 11. PHILIPPINES (PH) — ASEAN Member State
+  // ==========================================================================
+  PH: {
+    SG: 'visa_free',
+    JP: 'visa_required',
+    IN: 'evisa',
+    TH: 'visa_free',
+    ID: 'visa_free',
+    KR: 'visa_required',
+    VN: 'visa_free',
+    AE: 'evisa',
+    QA: 'evisa',
+    DE: 'visa_required',
+    GB: 'visa_required',
+    FR: 'visa_required',
+    IT: 'visa_required',
+    ES: 'visa_required',
+    CH: 'visa_required',
+    TR: 'evisa',
+    GE: 'evisa',
+    US: 'visa_required',
+    CA: 'visa_required',
+    BR: 'visa_free',
+    MX: 'visa_required',
+    AR: 'visa_required',
+    ZA: 'evisa',
+    EG: 'visa_on_arrival',
+    KE: 'evisa',
+    MA: 'visa_free',
+    NG: 'visa_required',
+    AU: 'evisa',
+    NZ: 'visa_required',
+    FJ: 'visa_free'
+  },
+
+  // ==========================================================================
+  // 12. NIGERIA (NG) — West African Regional Leader
+  // ==========================================================================
+  NG: {
+    SG: 'evisa',
+    JP: 'visa_required',
+    IN: 'evisa',
+    TH: 'visa_required',
+    ID: 'visa_required',
+    KR: 'visa_required',
+    VN: 'evisa',
+    AE: 'visa_required',
+    QA: 'evisa',
+    DE: 'visa_required',
+    GB: 'visa_required',
+    FR: 'visa_required',
+    IT: 'visa_required',
+    ES: 'visa_required',
+    CH: 'visa_required',
+    TR: 'evisa',
+    GE: 'evisa',
+    US: 'visa_required',
+    CA: 'visa_required',
+    BR: 'visa_required',
+    MX: 'visa_required',
+    AR: 'visa_required',
+    ZA: 'visa_required',
+    EG: 'visa_on_arrival',
+    KE: 'evisa',
+    MA: 'visa_required',
+    NG: 'visa_free',
+    AU: 'visa_required',
+    NZ: 'visa_required',
+    FJ: 'visa_free'
+  }
+};
