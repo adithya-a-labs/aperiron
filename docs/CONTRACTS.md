@@ -145,3 +145,18 @@ When changing the contract:
 
 No HTTP endpoint is required for the initial engine. The optional AI service has
 a separate network contract if adopted.
+
+## Groq research network contract
+
+`src/shared/research.ts` defines the separate research request and response.
+`POST /api/groq-research` accepts supported catalog `passportId`, `destinationId`
+and purpose (`tourism`, `business`, `transit`, `conference`). It assumes an ordinary
+passport. The backend ignores extra client fields and creates its own prompt.
+Responses contain unreviewed answer text, model ID, retrieval timestamp and a
+research disclaimer. Retrieval time is not a verification date; this output is
+never a `DestinationRequirements` record.
+
+Malformed or oversized requests return 400; unavailable configuration/provider
+access returns 503; quota/rate limiting returns 429; other upstream failures return
+502. Errors use a JSON `error` string. Responses disable caching. Baseline engine,
+mock, data and simulation contracts remain unchanged.

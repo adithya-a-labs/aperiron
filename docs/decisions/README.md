@@ -15,6 +15,7 @@ why a choice was made.
 | [0004](0004-adithyaa-frontend-ownership.md) | Accepted | dev-adithyaa owns frontend experience. |
 | [0005](0005-prabhu-core-engine-ownership.md) | Accepted | dev-prabhu owns the core engine. |
 | [0006](0006-frontend-foundation-and-worktree-boundaries.md) | Accepted | Runnable frontend scaffold, provisional adapter, and isolated component worktrees. |
+| [0007](0007-local-groq-research.md) | Accepted | Local Groq Browser Search through a server endpoint and optional Country Notebook action. |
 
 ## Adding or superseding a record
 
@@ -33,5 +34,5 @@ rationale and mark it superseded; do not erase inconvenient history. Update the
 relevant explanation docs as part of the same change.
 
 Open topics include final scoring/precedence,
-regulation lookup types, dataset selection, and whether to adopt an LLM service.
+regulation lookup types, dataset selection, and broader AI explanation workflows.
 Do not create accepted records for these without an actual decision.
