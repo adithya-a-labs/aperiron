@@ -1,11 +1,11 @@
 # dev-adithyaa state
 
-- Updated at: 2026-10-10T18:02:00Z
+- Updated at: 2026-10-10T18:04:05Z
 - Status: ready_for_review
-- Task: Group and commit Groq backend, UI integration and documentation
+- Task: Draft accurate PR title and description for current branch
 - Branch: dev-adithyaa
-- Baseline commit: 09f383e
-- Latest run: [Grouped Groq commits](runs/20261010T180013Z-grouped-groq-commits-f6c91d.md)
+- Baseline commit: f690a63
+- Latest run: [PR copy](runs/20261010T180405Z-pr-copy-3c71a8.md)
 
 ## Completed
 
@@ -95,4 +95,6 @@ its detailed regulation fallback remains isolated from the active frontend resol
 Pause is in baseline 097ac17. Research and AI proposal records were committed as
 669b4a2 and c4562ac. Groq backend and UI are now committed as `92b9273` and
 `84a0e47`. Analysis, integration records and current state are included with the
-documentation commit. All commits remain local; no push requested or performed.
+documentation commit f690a63, which matches the recorded origin/dev-adithyaa ref.
+Drafted PR copy against origin/main. Current run records local and uncommitted;
+no PR created or push performed this run.
