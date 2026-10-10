@@ -25,6 +25,27 @@ Catalog results and purchased treaty objects are deep copies to protect engine d
 
 ## Core vocabulary
 
+The additive `src/shared/travelDetails.ts` contract supplies unverified provider
+details without changing the eight synchronous engine methods. It preserves raw
+primary/secondary/exception names, textual durations, registration, validity and
+HTTPS links. `fetchedAt` is retrieval time; `generatedAt` is provider generation,
+neither establishes `verifiedAt`. `expiresAt` limits operational cache display.
+Tourism and ordinary passports are the supported provider context. Unrecognized
+primary rules remain unmapped, exceptions do not grant access, and self pairs
+are excluded. Existing eVisa/eTA engine grouping is retained alongside raw labels.
+
+Cache GET `/api/travel-details?passportId=IN[&destinationId=JP]` returns entries
+without upstream calls. POST `/api/travel-details/refresh` accepts passportId,
+destinationId, optional purpose/passportType, and optional force. It rechecks cache
+and quota even when force is true. Responses expose entries, freshness, typed
+outcome, and optional remaining/retryAt/message; fallback can be HTTP 200 with an
+unavailable/quota outcome and saved entries. Unsupported context returns no provider
+entries. Invalid requests return 400; cross-origin browser refreshes return 403.
+
+Exploration category counts follow composed cells; its stored score remains the
+snapshot score. Model consumers must use the original engine result. No provider
+response changes comparison, DNA, treaty effects or regulation verification.
+
 | Term | Meaning |
 | --- | --- |
 | CountryId | Uppercase ISO alpha-2 identifier used consistently by data and UI. |

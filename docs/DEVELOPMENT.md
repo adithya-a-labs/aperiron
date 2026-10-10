@@ -181,6 +181,46 @@ branch contains the work rather than claiming the whole project is synchronized.
 
 ## Documentation ownership and update triggers
 
+### Travel Buddy destination enrichment
+
+`npm run dev` and `npm run preview` serve the local details routes alongside the
+frontend. `npm run server` serves both Travel Buddy and Groq routes only, on
+API_SERVER_PORT or GROQ_SERVER_PORT (default 8787); an independently hosted frontend
+needs a same-origin API proxy. No API key is needed for the bundled experience.
+
+Set TRAVEL_BUDDY_API_KEY in ignored .env (RAPIDAPI_KEY is also accepted). All
+provider requests are server-side. Saved details live in ignored
+.cache/travel-buddy/cache.json by default; TRAVEL_BUDDY_CACHE_DIR overrides it.
+Use only one server process per cache directory.
+
+Import existing ignored trial reports without making any API requests:
+
+```powershell
+npm.cmd run travel:import -- output/travel-buddy/extended-trial.json output/travel-buddy/doc-links-trial.json
+```
+
+The importer validates only successful detail responses, retains report retrieval
+dates, skips bulk/demo/invalid entries and seeds an uninitialized quota ledger from
+observed request headers. Reimporting cannot reopen a previously consumed ledger.
+For a new cache without trial reports, set TRAVEL_BUDDY_INITIAL_REMAINING to the
+actual remaining subscription balance; default zero disables upstream calls until
+accounting is configured. This value only seeds a new ledger, not an existing one.
+Unknown/corrupt accounting fails closed. If repairing a ledger, stop its server and
+reconcile the actual subscription balance and reset before restarting; do not use
+cache deletion as an automatic reset.
+
+Defaults: TRAVEL_BUDDY_REFRESH_DAYS=7, TRAVEL_BUDDY_RETENTION_DAYS=30,
+TRAVEL_BUDDY_QUOTA_RESERVE=20 and TRAVEL_BUDDY_CONCURRENCY=2. A refresh has a
+30-second timeout, no automatic retry, shared in-flight requests and at least a
+five-minute failure cooldown. Rate-limit Retry-After can extend that cooldown.
+Authentication rejection stays blocked across restarts until key correction;
+request allowance resets only using observed provider reset information. Manual
+refresh respects these controls. Retrieval age is not a freshness guarantee.
+
+Provider records are purged at retention expiry during server operation; no timer
+runs while the server is stopped. Cache, .env and ignored trial artifacts do not
+travel through Git. Keep the API key out of frontend VITE variables.
+
 | Document | Update when |
 | --- | --- |
 | PRODUCT | The user accepts a change to scope, journey, or priority. |

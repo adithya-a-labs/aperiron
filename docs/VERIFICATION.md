@@ -110,3 +110,41 @@ HTTP tests for successful research, invalid/oversized inputs, missing configurat
 provider auth/rate-limit failures, malformed responses and credential non-disclosure.
 Provider responses in automated tests are mocked; authenticated Groq requests need
 an account key and are a separate verification step.
+
+## Manual Travel Buddy trial
+
+The implemented service is covered by mocked provider tests for normalizing rules,
+persistent fresh-cache reads, context/self exclusions, pair deduplication, global
+concurrency, quota reserve/restart/reset, authentication correction, timeout fallback,
+malformed/oversized output and HTTP boundaries. Frontend store tests cover late
+responses and older cache reads; exploration tests preserve snapshot/DNA/simulation.
+These tests run with npm test. They make no authenticated provider requests.
+
+Browser acceptance: initial map/search/passport switching use zero upstream calls;
+cached destination visits and reloads preserve quota. Deliberate uncached/stale
+selection performs at most one shared call. Check tourism-only details, conditions,
+links, source/fetch labels, quiet precise map/list updates and mobile overflow.
+Verify fallback when no key/server/quota is available. Refreshing local cache routes
+does not necessarily mean an upstream call: inspect the persistent quota ledger.
+
+No application data source switches during this trial. Run the dry-run command:
+
+```powershell
+.\node_modules\.bin\tsx.cmd scripts/test-travel-buddy.ts
+```
+
+After subscribing to the free Basic plan, set TRAVEL_BUDDY_API_KEY in ignored .env.
+Append --live to send at most three sequential visa-check requests (IN/JP, IN/SG,
+CN/ID), with no retries and a ten-second timeout per request. Any HTTP, network or
+schema failure stops the trial. Every manual rerun can consume three more requests;
+this standalone diagnostic bypasses the implemented persistent quota service.
+Prefer the application's refresh route for normal verification.
+
+The report under ignored output/travel-buddy/ includes provider response fields,
+snapshot values, latency and available quota headers. Review missing fields,
+primary/secondary rules, conditions and link destinations before deciding on a
+source migration. Successful retrieval does not verify travel requirements.
+
+Consumer authentication follows [RapidAPI Auth](https://docs.rapidapi.com/docs/configuring-api-security);
+response expectations follow [Travel Buddy v2](https://travel-buddy.ai/api/).
+The script is excluded from the automatic test glob and the browser bundle.

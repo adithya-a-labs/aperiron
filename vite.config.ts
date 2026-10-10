@@ -1,18 +1,18 @@
 import { defineConfig, type Plugin, type ViteDevServer } from 'vite'
-import { createResearchHandler } from './server/groq-browser-search'
+import { createApiHandler } from './server/api-server'
 import react from '@vitejs/plugin-react'
 import tailwindcss from '@tailwindcss/vite'
 
 function groqResearch(): Plugin {
   const install = (server: Pick<ViteDevServer, 'middlewares'>) => {
-    const handler = createResearchHandler();
+    const handler = createApiHandler();
     server.middlewares.use((request, response, next) => {
-      if (request.url?.split('?')[0] === '/api/groq-research') {
-        void handler(request, response);
+      if (['/api/groq-research', '/api/travel-details', '/api/travel-details/refresh'].includes(request.url?.split('?')[0] ?? '')) {
+        handler(request, response);
       } else next();
     });
   };
-  return { name: 'groq-research', configureServer: install, configurePreviewServer: install };
+  return { name: 'local-api', configureServer: install, configurePreviewServer: install };
 }
 
 export default defineConfig({

@@ -35,6 +35,10 @@ import {
 import { WorldMap } from "./components/AccessMap";
 import { GAME_ENABLED } from "./frontend/features";
 import { isResearchResponse, type ResearchResponse } from "./shared/research";
+import { useTravelDetails } from "./store/travelDetailsStore";
+import { composeExploration } from "./engine/exploration";
+import { primaryAccess } from "./shared/travelDetails";
+import { TravelBrief } from "./components/TravelBrief";
 
 const routes = [
   "explore",
@@ -181,17 +185,19 @@ function ModeSwitch({
 }
 
 function Explore() {
-  const { passport, setPassport, destination, setDestination, world } =
+  const { passport, setPassport, destination, setDestination, world, selectionRevision, selectionKey } =
     useAppStore();
   const [search, setSearch] = useState("");
   const [list, setList] = useState(false);
   const [simulated, setSimulated] = useState(false);
-  const view = unwrap(
+  const travel = useTravelDetails(passport, destination, selectionKey === `${passport}:${destination}` ? selectionRevision : null);
+  const snapshot = unwrap(
     engine.getPassportView(
       passport,
       GAME_ENABLED && simulated ? world : INITIAL_WORLD_STATE,
     ),
   );
+  const view = GAME_ENABLED && simulated ? snapshot : composeExploration(snapshot, travel.entries);
   const destinations = view.destinations.filter((d) =>
     d.destinationName.toLowerCase().includes(search.toLowerCase()),
   );
@@ -286,6 +292,7 @@ function Explore() {
           <Legend />
           <p className="map-caption">
             {catalog.destinations.length} destinations · bundled Passport Index snapshot
+            {travel.entries.length > 0 && !simulated ? " + cached Travel Buddy destination updates (unverified)" : ""}
             {simulated ? " · fictional treaty effects" : ""}
           </p>
         </section>
@@ -307,13 +314,15 @@ function Explore() {
           <span className="eyebrow">YOUR NEXT CHAPTER?</span>
           <h2>Hello, {country(destination).name}!</h2>
           <div className="postcard-details">
-            <span>Snapshot access</span>
+            <span>{selected.notes?.startsWith('Travel Buddy') ? 'Provider access' : 'Snapshot access'}</span>
             <Tag level={selected.accessLevel} />
             <span>Purpose</span>
             <b>Tourism</b>
             <span>Verified stay</span>
             <b>Not available</b>
           </div>
+          {travel.detail && <p className="travel-status">Travel Buddy · checked {new Date(travel.detail.fetchedAt).toLocaleDateString()} · unverified</p>}
+          {travel.detail && primaryAccess(travel.detail) && primaryAccess(travel.detail) !== snapshot.destinations.find(d => d.destinationId === destination)?.accessLevel && <p className="travel-status" role="status">Requirements updated</p>}
           {selected.isSimulated && (
             <p className="simulation-label">Changed in your fictional world</p>
           )}
@@ -342,10 +351,14 @@ function Explore() {
 }
 
 function CountryPage() {
-  const { passport, setPassport, destination, setDestination, world } =
+  const { passport, setPassport, destination, setDestination, world, selectionRevision, selectionKey } =
     useAppStore();
   const [purpose, setPurpose] =
     useState<TravellerContext["purpose"]>("tourism");
+  const openedPassport = useRef(passport);
+  if (openedPassport.current !== passport) openedPassport.current = '';
+  const travel = useTravelDetails(passport, destination,
+    selectionKey === `${passport}:${destination}` || openedPassport.current === passport ? `country:${selectionRevision}` : null, purpose);
   const [research, setResearch] = useState<GroqResearch | null>(null);
   const [researchError, setResearchError] = useState("");
   const [isResearching, setIsResearching] = useState(false);
@@ -456,7 +469,7 @@ function CountryPage() {
                 {country(passport).name} → {country(destination).name}
               </span>
               <h2>Before you set off</h2>
-              <Tag level={requirements.accessLevel} />
+              <Tag level={(travel.detail && primaryAccess(travel.detail)) || requirements.accessLevel} />
               {!requirements.verifiedAt && (
                 <span className="tag unknown">Requirements unverified</span>
               )}
@@ -466,8 +479,8 @@ function CountryPage() {
           <dl className="requirements">
             {[
               [
-                "Stay in snapshot",
-                requirements.maxStayDays === null
+                travel.detail ? "Stay reported by provider" : "Stay in snapshot",
+                travel.detail ? travel.detail.primary.duration ?? "Not provided" : requirements.maxStayDays === null
                   ? "Not verified"
                   : requirements.maxStayDays + " days (unverified)",
               ],
@@ -483,7 +496,7 @@ function CountryPage() {
                       .join("; ")
                   : "No verified checklist available",
               ],
-              ["Application", requirements.applicationChannel.name],
+              ["Application", travel.detail ? travel.detail.primary.name : requirements.applicationChannel.name],
               [
                 "Fee",
                 requirements.fees
@@ -508,6 +521,10 @@ function CountryPage() {
               </div>
             ))}
           </dl>
+          {purpose === 'tourism' && passport !== destination && <TravelBrief
+            detail={travel.detail} message={travel.message} refreshing={travel.refreshing} onRefresh={() => void travel.refresh()}
+            changed={Boolean(travel.detail && primaryAccess(travel.detail) && primaryAccess(travel.detail) !== sample.accessLevel)}
+          />}
           {!!requirements.unresolvedConditions?.length && (
             <div className="notice-box">
               <b>A few things are still unknown.</b>
@@ -626,7 +643,7 @@ function Compare() {
   return (
     <>
       <Heading eyebrow="02 / COMPARE" title="Two passports. New possibilities.">
-        Different journeys. A shared world.
+        Different journeys. A shared world. Calculated from the bundled Passport Index snapshot.
       </Heading>
       <div className="compare-controls">
         <PassportSelect
@@ -760,7 +777,7 @@ function Dna() {
   return (
     <>
       <Heading eyebrow="03 / VISA DNA" title="Your passport has a pattern.">
-        Every passport tells a story. Here’s a glimpse of yours.
+        Every passport tells a story. Calculated from the bundled Passport Index snapshot.
       </Heading>
       <div className="dna-layout">
         <div className="dna-copy">
