@@ -1,3 +1,4 @@
+import type { AccessLevel } from '../shared/contracts';
 /**
  * aperiron: The Passport Paradox
  * Engine: Visa DNA Generator

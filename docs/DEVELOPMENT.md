@@ -14,6 +14,10 @@ The intended responsibility split is:
 | Experience developer (dev-adithyaa) | UI shell, map, country panel, DNA rendering, market, interaction, and UI state. |
 | Both | Shared contract review, regulation assumptions, fixtures, integration, and demo readiness. |
 
+For the user-assigned integration task, `dev-integration` coordinates both layers
+on the exact `dev-integration` branch and writes its own state/run records. This
+does not reassign either developer’s module ownership.
+
 Ownership reduces conflicting work; it does not prohibit agreed collaboration.
 Record role assignments when the users decide them. Coordinate changes across
 the boundary before changing another developer's expected interface.

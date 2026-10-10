@@ -3,17 +3,26 @@
 ## Status and source of truth
 
 `src/shared/contracts.ts` and `src/shared/engineApi.ts` are now the authoritative
-executable definitions. `MockAperironEngine` implements all eight methods,
-including `getDestinationRequirements`; the frontend consumes these through
+executable definitions. `RealAperironEngine` implements all eight methods and is
+selected by the frontend. The mock remains a synthetic verification implementation.
+The frontend consumes the shared interface through
 `src/frontend/engine.ts`. The earlier `src/frontend/types.ts` adapter is retained
 only for starter-component compatibility. Semantic freeze questions below remain
 coordination items rather than being accepted implicitly by a mock implementation.
 
 The mock accepts optional constructor dependencies for the baseline matrix and
 requirements resolver. This additive frontend integration seam leaves its default
-fixtures and public interface unchanged. The app resolver returns honest unknown
-requirements until sourced claims have been reviewed. Country validation still
-runs before the injected resolver. No frontend score or treaty algorithm is copied.
+fixtures and public interface unchanged. The real resolver exposes unverified
+snapshot classifications for ordinary tourism and explicit unknowns for unsupported
+traveller contexts. Detailed official fields remain unavailable pending review.
+Country validation runs before lookup. No frontend calculation algorithm is copied.
+
+The real implementation no longer accepts its former concrete-only optional state
+argument in getDestinationRequirements. That argument was absent from the shared
+interface and unused by active UI. Requirements stay baseline-only; callers wanting
+fictional effects use getPassportView. Phase-3 regression checks cover this migration.
+Catalog results and purchased treaty objects are deep copies to protect engine data.
+
 ## Core vocabulary
 
 | Term | Meaning |
@@ -79,6 +88,14 @@ mock fixtures is part of the same contract change.
 
 ### Scoring
 
+Current implementation (provisional, not a newly accepted formula): weights are
+1 / 0.8 / 0.6 / 0.2 / 0 / 0 for visa-free / arrival / evisa / required /
+restricted / unknown. All catalog destinations, including modeled domestic entries
+and unknowns, count in the denominator. Passport scores round to integers; global
+score averages those rounded passport scores and rounds to one decimal. DNA uses
+these weights in catalog destination order. Integration preserves this behavior;
+final scoring and precedence decisions remain open.
+
 The initial direction requires scores in 0-100 and global impact across supported
 passport-destination pairs. Exact weights and denominator policy remain open.
 An initial candidate is weighted access, with visa-free = 1, visa on arrival = 0.8,
@@ -109,6 +126,12 @@ persistence or external inputs. Options include a separate validated state facto
 or additional typed errors. Do not silently mutate or repair caller state.
 
 ### DNA
+
+Dataset version 1.1.0-passport-index-full expands the active catalog to all 199
+snapshot origins and destinations. Destination order is ascending ISO alpha-2,
+with 199 DNA values. Scores, comparison sets and DNA fingerprints therefore differ
+from the prior 30-destination catalog. Synthetic shared fixtures remain unchanged;
+no public method signature changed. The UI sorts selector labels independently.
 
 Choose and version the destination ordering, category encoding, vector length,
 and handling of self/unknown destinations. Determinism must not depend on random

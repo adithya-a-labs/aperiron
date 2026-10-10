@@ -19,11 +19,14 @@ and the Border Market let users experiment with changing policy rules.
 | [Verification](docs/VERIFICATION.md) | Available checks and meaningful validation scenarios. |
 | [Decisions](docs/decisions/README.md) | Accepted choices, rationale, and unresolved topics. |
 
-The frontend preview now has a React/Vite foundation and fictional sample data.
-The core engine and verified visa dataset remain unimplemented. See the state map
-for current progress. The
-LLM integration remains proposed. `dev-adithyaa` owns frontend experience; the
-`dev-prabhu` owns the core engine. See development guidance for role boundaries.
+The React/Vite frontend consumes the real TypeScript engine through one shared
+interface. Explore, Compare and Visa DNA use a bundled Passport Index snapshot
+covering all 199 passport origins and 199 destinations in the bundled snapshot. Detailed official requirements remain
+unverified. The game is temporarily hidden. Optional Groq source research runs
+through a local server endpoint; set `GROQ_API_KEY` in ignored root `.env` to enable
+it. See the state map for current progress and verification limits.
+`dev-adithyaa` owns frontend experience; `dev-prabhu` owns the core engine;
+`dev-integration` coordinates this integration.
 
 ## Run the frontend
 
@@ -36,7 +39,7 @@ npm run dev
 
 Open `http://127.0.0.1:5173`. Use `npm run check` to typecheck, test, and build.
 See [frontend setup](docs/FRONTEND.md) and [parallel tasks](docs/PARALLEL_FRONTEND.md).
-Sample classifications are fictional and must not be used as travel guidance.
+Snapshot classifications are unverified and must not be used as current travel guidance.
 
 ## Agent development
 
@@ -44,6 +47,7 @@ Sample classifications are fictional and must not be used as travel guidance.
 - [Shared developer state map](docs/state/README.md)
 - [dev-adithyaa state](docs/state/dev-adithyaa/STATE.md)
 - [dev-prabhu state](docs/state/dev-prabhu/STATE.md)
+- [dev-integration state](docs/state/dev-integration/STATE.md)
 
 At the beginning of a task, tell the agent which developer it represents. Each
 agent maintains its own state and adds a run log before finishing. Commit and push

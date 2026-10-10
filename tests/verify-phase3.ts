@@ -15,10 +15,10 @@ function runPhase3Tests() {
 
   // Test 1: Real Engine Catalog
   const catalog = realEngine.getCatalog();
-  if (catalog.passports.length !== 12 || catalog.destinations.length !== 30 || catalog.treaties.length !== 16) {
+  if (catalog.passports.length !== 199 || catalog.destinations.length !== 199 || catalog.treaties.length !== 16) {
     throw new Error('realEngine getCatalog() mismatch');
   }
-  console.log('✓ realEngine instantiated successfully with 12 passports, 30 destinations, and 16 treaties');
+  console.log('✓ realEngine instantiated successfully with 199 passports, 199 destinations, and 16 treaties');
 
   // Test 2: Passport View & Realistic Scoring Tiers
   const sgView = realEngine.getPassportView('SG', INITIAL_WORLD_STATE);
@@ -38,7 +38,7 @@ function runPhase3Tests() {
   if (brView.data.score <= inView.data.score || inView.data.score <= ngView.data.score) {
     throw new Error('Score hierarchy mismatch across tiers (SG > BR > IN > NG)');
   }
-  if (sgView.data.destinations.length !== 30 || sgView.data.accessBreakdown.total !== 30) {
+  if (sgView.data.destinations.length !== 199 || sgView.data.accessBreakdown.total !== 199) {
     throw new Error('Breakdown or destination count mismatch');
   }
   console.log('✓ Scoring hierarchy adheres to realistic passport mobility tiers (Singapore > Brazil > India > Nigeria)');
@@ -108,10 +108,10 @@ function runPhase3Tests() {
   if (dna1.data.hash !== dna2.data.hash || dna1.data.vector.join(',') !== dna2.data.vector.join(',')) {
     throw new Error('Visa DNA non-deterministic across identical effective states!');
   }
-  if (dna1.data.vector.length !== 30) {
-    throw new Error(`Visa DNA vector length must be 30, got ${dna1.data.vector.length}`);
+  if (dna1.data.vector.length !== 199) {
+    throw new Error(`Visa DNA vector length must be 199, got ${dna1.data.vector.length}`);
   }
-  console.log(`✓ Invariant: Visa DNA produces strictly deterministic 30-dim vector and hash: ${dna1.data.hash}`);
+  console.log(`✓ Invariant: Visa DNA produces strictly deterministic 199-dim vector and hash: ${dna1.data.hash}`);
 
   // Test 7: Passport Comparison Logic
   const comparison = realEngine.comparePassports('SG', 'IN', INITIAL_WORLD_STATE);
@@ -139,23 +139,19 @@ function runPhase3Tests() {
   }
   console.log(`✓ Optimizer recommended ${optResult.data.recommendedTreatyIds.length} treaties for ${optResult.data.totalCost} credits (Budget: 50): +${optResult.data.projectedImpact.scoreDelta} global score`);
 
-  // Test 9: Destination Requirements with Simulation Isolation
-  const reqBefore = realEngine.getDestinationRequirements({ passportId: 'IN', destinationId: 'JP', state: INITIAL_WORLD_STATE });
-  const reqAfter = realEngine.getDestinationRequirements({ passportId: 'IN', destinationId: 'JP', state: stateAfterTreaty });
-
-  if (!reqBefore.success || !reqAfter.success) {
-    throw new Error('getDestinationRequirements failed');
+  // Test 9: baseline-only requirements ignore extra simulation fields.
+  const selection = { passportId: 'IN', destinationId: 'JP' };
+  const reqBefore = realEngine.getDestinationRequirements(selection);
+  const reqAfter = realEngine.getDestinationRequirements({ ...selection, ...{ state: stateAfterTreaty } });
+  if (!reqBefore.success || !reqAfter.success) throw new Error('Requirements lookup failed');
+  if (reqBefore.data.isSimulated || reqAfter.data.isSimulated ||
+      JSON.stringify(reqBefore.data) !== JSON.stringify(reqAfter.data)) {
+    throw new Error('Treaties must not alter baseline requirements');
   }
-  if (reqBefore.data.isSimulated || reqBefore.data.accessLevel !== 'visa_required') {
-    throw new Error('reqBefore should not be simulated');
+  if (reqBefore.data.verifiedAt !== '' || reqBefore.data.fees !== undefined) {
+    throw new Error('Unreviewed requirements must not invent verification or fees');
   }
-  if (!reqAfter.data.isSimulated || reqAfter.data.accessLevel !== 'visa_on_arrival') {
-    throw new Error('reqAfter should have isSimulated: true and accessLevel: visa_on_arrival');
-  }
-  if (reqAfter.data.sources.length === 0 || !reqAfter.data.sources[0].url.startsWith('https://')) {
-    throw new Error('reqAfter lost official source citations during simulation overlay!');
-  }
-  console.log(`✓ Destination Requirements verified: Baseline visa_required -> Simulated VoA while preserving official sources`);
+  console.log('✓ Baseline requirements unchanged by fictional state; details remain unverified');
 
   console.log('\nAll 9 Phase 3 Core Engine verification tests PASSED successfully!');
 }

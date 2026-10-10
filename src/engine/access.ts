@@ -10,7 +10,9 @@
  * @see docs/ARCHITECTURE.md
  */
 
+import { DATASET_VERSION } from '../data/catalog';
 import { BASELINE_ACCESS_MATRIX } from '../data/baselineMatrix';
+import { getPassportIndexEntry } from '../data/runtimePassportIndexData';
 import type {
   AccessLevel,
   Catalog,
@@ -95,16 +97,12 @@ export function resolveEffectiveAccess(
     }
   }
 
-  const maxStay =
-    effectiveLevel === 'visa_free'
-      ? 90
-      : effectiveLevel === 'visa_on_arrival'
-      ? 30
-      : effectiveLevel === 'evisa'
-      ? 30
-      : effectiveLevel === 'visa_required'
-      ? 15
-      : null;
+  // A category alone cannot establish a stay limit. Treaty grants specify no
+  // stay duration; only numeric snapshot entries provide a baseline value.
+  const maxStay = !isSimulated && passportId !== destinationId &&
+    catalog.datasetVersion === DATASET_VERSION
+    ? getPassportIndexEntry(passportId, destinationId)?.maxStayDays ?? null
+    : null;
 
   return {
     accessLevel: effectiveLevel,

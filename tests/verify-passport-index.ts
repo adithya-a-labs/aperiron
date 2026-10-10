@@ -40,7 +40,7 @@ function runPassportIndexTests() {
   }
   console.log(`✓ PASSPORT_INDEX_DATA covers ${passportCount} sovereign countries and territories`);
 
-  // Test 3: Coverage for all 12 aperiron passports and 30 destinations
+  // Test 3: Coverage for all 199 aperiron passports and 199 destinations
   let checkedPairs = 0;
   for (const passport of PASSPORTS) {
     for (const destination of DESTINATIONS) {
@@ -54,10 +54,10 @@ function runPassportIndexTests() {
       checkedPairs++;
     }
   }
-  if (checkedPairs !== 12 * 30) {
-    throw new Error(`Expected 360 checked pairs, got ${checkedPairs}`);
+  if (checkedPairs !== 199 * 199) {
+    throw new Error(`Expected 39601 checked pairs, got ${checkedPairs}`);
   }
-  console.log('✓ 100% coverage verified: all 360 aperiron passport-destination pairs resolve to real Passport Index data');
+  console.log('✓ 100% coverage verified: all 39601 aperiron passport-destination pairs resolve to real Passport Index data');
 
   // Test 4: Real-world ground truth checks from the downloaded dataset
   const sgJp = getPassportIndexEntry('SG', 'JP');

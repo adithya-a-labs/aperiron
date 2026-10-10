@@ -1,0 +1,3002 @@
+[
+  {
+    "cca2": "AW",
+    "ccn3": "533",
+    "name": "Aruba",
+    "region": "Americas",
+    "subregion": "Caribbean",
+    "flag": "🇦🇼",
+    "latlng": [
+      12.5,
+      -69.96666666
+    ]
+  },
+  {
+    "cca2": "AF",
+    "ccn3": "004",
+    "name": "Afghanistan",
+    "region": "Asia",
+    "subregion": "Southern Asia",
+    "flag": "🇦🇫",
+    "latlng": [
+      33,
+      65
+    ]
+  },
+  {
+    "cca2": "AO",
+    "ccn3": "024",
+    "name": "Angola",
+    "region": "Africa",
+    "subregion": "Middle Africa",
+    "flag": "🇦🇴",
+    "latlng": [
+      -12.5,
+      18.5
+    ]
+  },
+  {
+    "cca2": "AI",
+    "ccn3": "660",
+    "name": "Anguilla",
+    "region": "Americas",
+    "subregion": "Caribbean",
+    "flag": "🇦🇮",
+    "latlng": [
+      18.25,
+      -63.16666666
+    ]
+  },
+  {
+    "cca2": "AX",
+    "ccn3": "248",
+    "name": "Åland Islands",
+    "region": "Europe",
+    "subregion": "Northern Europe",
+    "flag": "🇦🇽",
+    "latlng": [
+      60.116667,
+      19.9
+    ]
+  },
+  {
+    "cca2": "AL",
+    "ccn3": "008",
+    "name": "Albania",
+    "region": "Europe",
+    "subregion": "Southeast Europe",
+    "flag": "🇦🇱",
+    "latlng": [
+      41,
+      20
+    ]
+  },
+  {
+    "cca2": "AD",
+    "ccn3": "020",
+    "name": "Andorra",
+    "region": "Europe",
+    "subregion": "Southern Europe",
+    "flag": "🇦🇩",
+    "latlng": [
+      42.5,
+      1.5
+    ]
+  },
+  {
+    "cca2": "AE",
+    "ccn3": "784",
+    "name": "United Arab Emirates",
+    "region": "Asia",
+    "subregion": "Western Asia",
+    "flag": "🇦🇪",
+    "latlng": [
+      24,
+      54
+    ]
+  },
+  {
+    "cca2": "AR",
+    "ccn3": "032",
+    "name": "Argentina",
+    "region": "Americas",
+    "subregion": "South America",
+    "flag": "🇦🇷",
+    "latlng": [
+      -34,
+      -64
+    ]
+  },
+  {
+    "cca2": "AM",
+    "ccn3": "051",
+    "name": "Armenia",
+    "region": "Asia",
+    "subregion": "Western Asia",
+    "flag": "🇦🇲",
+    "latlng": [
+      40,
+      45
+    ]
+  },
+  {
+    "cca2": "AS",
+    "ccn3": "016",
+    "name": "American Samoa",
+    "region": "Oceania",
+    "subregion": "Polynesia",
+    "flag": "🇦🇸",
+    "latlng": [
+      -14.33333333,
+      -170
+    ]
+  },
+  {
+    "cca2": "AQ",
+    "ccn3": "010",
+    "name": "Antarctica",
+    "region": "Antarctic",
+    "subregion": "",
+    "flag": "🇦🇶",
+    "latlng": [
+      -90,
+      0
+    ]
+  },
+  {
+    "cca2": "TF",
+    "ccn3": "260",
+    "name": "French Southern and Antarctic Lands",
+    "region": "Antarctic",
+    "subregion": "",
+    "flag": "🇹🇫",
+    "latlng": [
+      -49.25,
+      69.167
+    ]
+  },
+  {
+    "cca2": "AG",
+    "ccn3": "028",
+    "name": "Antigua and Barbuda",
+    "region": "Americas",
+    "subregion": "Caribbean",
+    "flag": "🇦🇬",
+    "latlng": [
+      17.05,
+      -61.8
+    ]
+  },
+  {
+    "cca2": "AU",
+    "ccn3": "036",
+    "name": "Australia",
+    "region": "Oceania",
+    "subregion": "Australia and New Zealand",
+    "flag": "🇦🇺",
+    "latlng": [
+      -27,
+      133
+    ]
+  },
+  {
+    "cca2": "AT",
+    "ccn3": "040",
+    "name": "Austria",
+    "region": "Europe",
+    "subregion": "Central Europe",
+    "flag": "🇦🇹",
+    "latlng": [
+      47.33333333,
+      13.33333333
+    ]
+  },
+  {
+    "cca2": "AZ",
+    "ccn3": "031",
+    "name": "Azerbaijan",
+    "region": "Asia",
+    "subregion": "Western Asia",
+    "flag": "🇦🇿",
+    "latlng": [
+      40.5,
+      47.5
+    ]
+  },
+  {
+    "cca2": "BI",
+    "ccn3": "108",
+    "name": "Burundi",
+    "region": "Africa",
+    "subregion": "Eastern Africa",
+    "flag": "🇧🇮",
+    "latlng": [
+      -3.5,
+      30
+    ]
+  },
+  {
+    "cca2": "BE",
+    "ccn3": "056",
+    "name": "Belgium",
+    "region": "Europe",
+    "subregion": "Western Europe",
+    "flag": "🇧🇪",
+    "latlng": [
+      50.83333333,
+      4
+    ]
+  },
+  {
+    "cca2": "BJ",
+    "ccn3": "204",
+    "name": "Benin",
+    "region": "Africa",
+    "subregion": "Western Africa",
+    "flag": "🇧🇯",
+    "latlng": [
+      9.5,
+      2.25
+    ]
+  },
+  {
+    "cca2": "BF",
+    "ccn3": "854",
+    "name": "Burkina Faso",
+    "region": "Africa",
+    "subregion": "Western Africa",
+    "flag": "🇧🇫",
+    "latlng": [
+      13,
+      -2
+    ]
+  },
+  {
+    "cca2": "BD",
+    "ccn3": "050",
+    "name": "Bangladesh",
+    "region": "Asia",
+    "subregion": "Southern Asia",
+    "flag": "🇧🇩",
+    "latlng": [
+      24,
+      90
+    ]
+  },
+  {
+    "cca2": "BG",
+    "ccn3": "100",
+    "name": "Bulgaria",
+    "region": "Europe",
+    "subregion": "Southeast Europe",
+    "flag": "🇧🇬",
+    "latlng": [
+      43,
+      25
+    ]
+  },
+  {
+    "cca2": "BH",
+    "ccn3": "048",
+    "name": "Bahrain",
+    "region": "Asia",
+    "subregion": "Western Asia",
+    "flag": "🇧🇭",
+    "latlng": [
+      26,
+      50.55
+    ]
+  },
+  {
+    "cca2": "BS",
+    "ccn3": "044",
+    "name": "Bahamas",
+    "region": "Americas",
+    "subregion": "Caribbean",
+    "flag": "🇧🇸",
+    "latlng": [
+      24.25,
+      -76
+    ]
+  },
+  {
+    "cca2": "BA",
+    "ccn3": "070",
+    "name": "Bosnia and Herzegovina",
+    "region": "Europe",
+    "subregion": "Southeast Europe",
+    "flag": "🇧🇦",
+    "latlng": [
+      44,
+      18
+    ]
+  },
+  {
+    "cca2": "BL",
+    "ccn3": "652",
+    "name": "Saint Barthélemy",
+    "region": "Americas",
+    "subregion": "Caribbean",
+    "flag": "🇧🇱",
+    "latlng": [
+      18.5,
+      -63.41666666
+    ]
+  },
+  {
+    "cca2": "SH",
+    "ccn3": "654",
+    "name": "Saint Helena, Ascension and Tristan da Cunha",
+    "region": "Africa",
+    "subregion": "Western Africa",
+    "flag": "🇸🇭",
+    "latlng": [
+      -15.95,
+      -5.72
+    ]
+  },
+  {
+    "cca2": "BY",
+    "ccn3": "112",
+    "name": "Belarus",
+    "region": "Europe",
+    "subregion": "Eastern Europe",
+    "flag": "🇧🇾",
+    "latlng": [
+      53,
+      28
+    ]
+  },
+  {
+    "cca2": "BZ",
+    "ccn3": "084",
+    "name": "Belize",
+    "region": "Americas",
+    "subregion": "Central America",
+    "flag": "🇧🇿",
+    "latlng": [
+      17.25,
+      -88.75
+    ]
+  },
+  {
+    "cca2": "BM",
+    "ccn3": "060",
+    "name": "Bermuda",
+    "region": "Americas",
+    "subregion": "North America",
+    "flag": "🇧🇲",
+    "latlng": [
+      32.33333333,
+      -64.75
+    ]
+  },
+  {
+    "cca2": "BO",
+    "ccn3": "068",
+    "name": "Bolivia",
+    "region": "Americas",
+    "subregion": "South America",
+    "flag": "🇧🇴",
+    "latlng": [
+      -17,
+      -65
+    ]
+  },
+  {
+    "cca2": "BQ",
+    "ccn3": "535",
+    "name": "Caribbean Netherlands",
+    "region": "Americas",
+    "subregion": "Caribbean",
+    "flag": "",
+    "latlng": [
+      12.18,
+      -68.25
+    ]
+  },
+  {
+    "cca2": "BR",
+    "ccn3": "076",
+    "name": "Brazil",
+    "region": "Americas",
+    "subregion": "South America",
+    "flag": "🇧🇷",
+    "latlng": [
+      -10,
+      -55
+    ]
+  },
+  {
+    "cca2": "BB",
+    "ccn3": "052",
+    "name": "Barbados",
+    "region": "Americas",
+    "subregion": "Caribbean",
+    "flag": "🇧🇧",
+    "latlng": [
+      13.16666666,
+      -59.53333333
+    ]
+  },
+  {
+    "cca2": "BN",
+    "ccn3": "096",
+    "name": "Brunei",
+    "region": "Asia",
+    "subregion": "South-Eastern Asia",
+    "flag": "🇧🇳",
+    "latlng": [
+      4.5,
+      114.66666666
+    ]
+  },
+  {
+    "cca2": "BT",
+    "ccn3": "064",
+    "name": "Bhutan",
+    "region": "Asia",
+    "subregion": "Southern Asia",
+    "flag": "🇧🇹",
+    "latlng": [
+      27.5,
+      90.5
+    ]
+  },
+  {
+    "cca2": "BV",
+    "ccn3": "074",
+    "name": "Bouvet Island",
+    "region": "Antarctic",
+    "subregion": "",
+    "flag": "🇧🇻",
+    "latlng": [
+      -54.43333333,
+      3.4
+    ]
+  },
+  {
+    "cca2": "BW",
+    "ccn3": "072",
+    "name": "Botswana",
+    "region": "Africa",
+    "subregion": "Southern Africa",
+    "flag": "🇧🇼",
+    "latlng": [
+      -22,
+      24
+    ]
+  },
+  {
+    "cca2": "CF",
+    "ccn3": "140",
+    "name": "Central African Republic",
+    "region": "Africa",
+    "subregion": "Middle Africa",
+    "flag": "🇨🇫",
+    "latlng": [
+      7,
+      21
+    ]
+  },
+  {
+    "cca2": "CA",
+    "ccn3": "124",
+    "name": "Canada",
+    "region": "Americas",
+    "subregion": "North America",
+    "flag": "🇨🇦",
+    "latlng": [
+      60,
+      -95
+    ]
+  },
+  {
+    "cca2": "CC",
+    "ccn3": "166",
+    "name": "Cocos (Keeling) Islands",
+    "region": "Oceania",
+    "subregion": "Australia and New Zealand",
+    "flag": "🇨🇨",
+    "latlng": [
+      -12.5,
+      96.83333333
+    ]
+  },
+  {
+    "cca2": "CH",
+    "ccn3": "756",
+    "name": "Switzerland",
+    "region": "Europe",
+    "subregion": "Western Europe",
+    "flag": "🇨🇭",
+    "latlng": [
+      47,
+      8
+    ]
+  },
+  {
+    "cca2": "CL",
+    "ccn3": "152",
+    "name": "Chile",
+    "region": "Americas",
+    "subregion": "South America",
+    "flag": "🇨🇱",
+    "latlng": [
+      -30,
+      -71
+    ]
+  },
+  {
+    "cca2": "CN",
+    "ccn3": "156",
+    "name": "China",
+    "region": "Asia",
+    "subregion": "Eastern Asia",
+    "flag": "🇨🇳",
+    "latlng": [
+      35,
+      105
+    ]
+  },
+  {
+    "cca2": "CI",
+    "ccn3": "384",
+    "name": "Ivory Coast",
+    "region": "Africa",
+    "subregion": "Western Africa",
+    "flag": "🇨🇮",
+    "latlng": [
+      8,
+      -5
+    ]
+  },
+  {
+    "cca2": "CM",
+    "ccn3": "120",
+    "name": "Cameroon",
+    "region": "Africa",
+    "subregion": "Middle Africa",
+    "flag": "🇨🇲",
+    "latlng": [
+      6,
+      12
+    ]
+  },
+  {
+    "cca2": "CD",
+    "ccn3": "180",
+    "name": "DR Congo",
+    "region": "Africa",
+    "subregion": "Middle Africa",
+    "flag": "🇨🇩",
+    "latlng": [
+      0,
+      25
+    ]
+  },
+  {
+    "cca2": "CG",
+    "ccn3": "178",
+    "name": "Congo",
+    "region": "Africa",
+    "subregion": "Middle Africa",
+    "flag": "🇨🇬",
+    "latlng": [
+      -1,
+      15
+    ]
+  },
+  {
+    "cca2": "CK",
+    "ccn3": "184",
+    "name": "Cook Islands",
+    "region": "Oceania",
+    "subregion": "Polynesia",
+    "flag": "🇨🇰",
+    "latlng": [
+      -21.23333333,
+      -159.76666666
+    ]
+  },
+  {
+    "cca2": "CO",
+    "ccn3": "170",
+    "name": "Colombia",
+    "region": "Americas",
+    "subregion": "South America",
+    "flag": "🇨🇴",
+    "latlng": [
+      4,
+      -72
+    ]
+  },
+  {
+    "cca2": "KM",
+    "ccn3": "174",
+    "name": "Comoros",
+    "region": "Africa",
+    "subregion": "Eastern Africa",
+    "flag": "🇰🇲",
+    "latlng": [
+      -12.16666666,
+      44.25
+    ]
+  },
+  {
+    "cca2": "CV",
+    "ccn3": "132",
+    "name": "Cape Verde",
+    "region": "Africa",
+    "subregion": "Western Africa",
+    "flag": "🇨🇻",
+    "latlng": [
+      16,
+      -24
+    ]
+  },
+  {
+    "cca2": "CR",
+    "ccn3": "188",
+    "name": "Costa Rica",
+    "region": "Americas",
+    "subregion": "Central America",
+    "flag": "🇨🇷",
+    "latlng": [
+      10,
+      -84
+    ]
+  },
+  {
+    "cca2": "CU",
+    "ccn3": "192",
+    "name": "Cuba",
+    "region": "Americas",
+    "subregion": "Caribbean",
+    "flag": "🇨🇺",
+    "latlng": [
+      21.5,
+      -80
+    ]
+  },
+  {
+    "cca2": "CW",
+    "ccn3": "531",
+    "name": "Curaçao",
+    "region": "Americas",
+    "subregion": "Caribbean",
+    "flag": "🇨🇼",
+    "latlng": [
+      12.116667,
+      -68.933333
+    ]
+  },
+  {
+    "cca2": "CX",
+    "ccn3": "162",
+    "name": "Christmas Island",
+    "region": "Oceania",
+    "subregion": "Australia and New Zealand",
+    "flag": "🇨🇽",
+    "latlng": [
+      -10.5,
+      105.66666666
+    ]
+  },
+  {
+    "cca2": "KY",
+    "ccn3": "136",
+    "name": "Cayman Islands",
+    "region": "Americas",
+    "subregion": "Caribbean",
+    "flag": "🇰🇾",
+    "latlng": [
+      19.5,
+      -80.5
+    ]
+  },
+  {
+    "cca2": "CY",
+    "ccn3": "196",
+    "name": "Cyprus",
+    "region": "Europe",
+    "subregion": "Southern Europe",
+    "flag": "🇨🇾",
+    "latlng": [
+      35,
+      33
+    ]
+  },
+  {
+    "cca2": "CZ",
+    "ccn3": "203",
+    "name": "Czechia",
+    "region": "Europe",
+    "subregion": "Central Europe",
+    "flag": "🇨🇿",
+    "latlng": [
+      49.75,
+      15.5
+    ]
+  },
+  {
+    "cca2": "DE",
+    "ccn3": "276",
+    "name": "Germany",
+    "region": "Europe",
+    "subregion": "Western Europe",
+    "flag": "🇩🇪",
+    "latlng": [
+      51,
+      9
+    ]
+  },
+  {
+    "cca2": "DJ",
+    "ccn3": "262",
+    "name": "Djibouti",
+    "region": "Africa",
+    "subregion": "Eastern Africa",
+    "flag": "🇩🇯",
+    "latlng": [
+      11.5,
+      43
+    ]
+  },
+  {
+    "cca2": "DM",
+    "ccn3": "212",
+    "name": "Dominica",
+    "region": "Americas",
+    "subregion": "Caribbean",
+    "flag": "🇩🇲",
+    "latlng": [
+      15.41666666,
+      -61.33333333
+    ]
+  },
+  {
+    "cca2": "DK",
+    "ccn3": "208",
+    "name": "Denmark",
+    "region": "Europe",
+    "subregion": "Northern Europe",
+    "flag": "🇩🇰",
+    "latlng": [
+      56,
+      10
+    ]
+  },
+  {
+    "cca2": "DO",
+    "ccn3": "214",
+    "name": "Dominican Republic",
+    "region": "Americas",
+    "subregion": "Caribbean",
+    "flag": "🇩🇴",
+    "latlng": [
+      19,
+      -70.66666666
+    ]
+  },
+  {
+    "cca2": "DZ",
+    "ccn3": "012",
+    "name": "Algeria",
+    "region": "Africa",
+    "subregion": "Northern Africa",
+    "flag": "🇩🇿",
+    "latlng": [
+      28,
+      3
+    ]
+  },
+  {
+    "cca2": "EC",
+    "ccn3": "218",
+    "name": "Ecuador",
+    "region": "Americas",
+    "subregion": "South America",
+    "flag": "🇪🇨",
+    "latlng": [
+      -2,
+      -77.5
+    ]
+  },
+  {
+    "cca2": "EG",
+    "ccn3": "818",
+    "name": "Egypt",
+    "region": "Africa",
+    "subregion": "Northern Africa",
+    "flag": "🇪🇬",
+    "latlng": [
+      27,
+      30
+    ]
+  },
+  {
+    "cca2": "ER",
+    "ccn3": "232",
+    "name": "Eritrea",
+    "region": "Africa",
+    "subregion": "Eastern Africa",
+    "flag": "🇪🇷",
+    "latlng": [
+      15,
+      39
+    ]
+  },
+  {
+    "cca2": "EH",
+    "ccn3": "732",
+    "name": "Western Sahara",
+    "region": "Africa",
+    "subregion": "Northern Africa",
+    "flag": "🇪🇭",
+    "latlng": [
+      24.5,
+      -13
+    ]
+  },
+  {
+    "cca2": "ES",
+    "ccn3": "724",
+    "name": "Spain",
+    "region": "Europe",
+    "subregion": "Southern Europe",
+    "flag": "🇪🇸",
+    "latlng": [
+      40,
+      -4
+    ]
+  },
+  {
+    "cca2": "EE",
+    "ccn3": "233",
+    "name": "Estonia",
+    "region": "Europe",
+    "subregion": "Northern Europe",
+    "flag": "🇪🇪",
+    "latlng": [
+      59,
+      26
+    ]
+  },
+  {
+    "cca2": "ET",
+    "ccn3": "231",
+    "name": "Ethiopia",
+    "region": "Africa",
+    "subregion": "Eastern Africa",
+    "flag": "🇪🇹",
+    "latlng": [
+      8,
+      38
+    ]
+  },
+  {
+    "cca2": "FI",
+    "ccn3": "246",
+    "name": "Finland",
+    "region": "Europe",
+    "subregion": "Northern Europe",
+    "flag": "🇫🇮",
+    "latlng": [
+      64,
+      26
+    ]
+  },
+  {
+    "cca2": "FJ",
+    "ccn3": "242",
+    "name": "Fiji",
+    "region": "Oceania",
+    "subregion": "Melanesia",
+    "flag": "🇫🇯",
+    "latlng": [
+      -18,
+      175
+    ]
+  },
+  {
+    "cca2": "FK",
+    "ccn3": "238",
+    "name": "Falkland Islands",
+    "region": "Americas",
+    "subregion": "South America",
+    "flag": "🇫🇰",
+    "latlng": [
+      -51.75,
+      -59
+    ]
+  },
+  {
+    "cca2": "FR",
+    "ccn3": "250",
+    "name": "France",
+    "region": "Europe",
+    "subregion": "Western Europe",
+    "flag": "🇫🇷",
+    "latlng": [
+      46,
+      2
+    ]
+  },
+  {
+    "cca2": "FO",
+    "ccn3": "234",
+    "name": "Faroe Islands",
+    "region": "Europe",
+    "subregion": "Northern Europe",
+    "flag": "🇫🇴",
+    "latlng": [
+      62,
+      -7
+    ]
+  },
+  {
+    "cca2": "FM",
+    "ccn3": "583",
+    "name": "Micronesia",
+    "region": "Oceania",
+    "subregion": "Micronesia",
+    "flag": "🇫🇲",
+    "latlng": [
+      6.91666666,
+      158.25
+    ]
+  },
+  {
+    "cca2": "GA",
+    "ccn3": "266",
+    "name": "Gabon",
+    "region": "Africa",
+    "subregion": "Middle Africa",
+    "flag": "🇬🇦",
+    "latlng": [
+      -1,
+      11.75
+    ]
+  },
+  {
+    "cca2": "GB",
+    "ccn3": "826",
+    "name": "United Kingdom",
+    "region": "Europe",
+    "subregion": "Northern Europe",
+    "flag": "🇬🇧",
+    "latlng": [
+      54,
+      -2
+    ]
+  },
+  {
+    "cca2": "GE",
+    "ccn3": "268",
+    "name": "Georgia",
+    "region": "Asia",
+    "subregion": "Western Asia",
+    "flag": "🇬🇪",
+    "latlng": [
+      42,
+      43.5
+    ]
+  },
+  {
+    "cca2": "GG",
+    "ccn3": "831",
+    "name": "Guernsey",
+    "region": "Europe",
+    "subregion": "Northern Europe",
+    "flag": "🇬🇬",
+    "latlng": [
+      49.46666666,
+      -2.58333333
+    ]
+  },
+  {
+    "cca2": "GH",
+    "ccn3": "288",
+    "name": "Ghana",
+    "region": "Africa",
+    "subregion": "Western Africa",
+    "flag": "🇬🇭",
+    "latlng": [
+      8,
+      -2
+    ]
+  },
+  {
+    "cca2": "GI",
+    "ccn3": "292",
+    "name": "Gibraltar",
+    "region": "Europe",
+    "subregion": "Southern Europe",
+    "flag": "🇬🇮",
+    "latlng": [
+      36.13333333,
+      -5.35
+    ]
+  },
+  {
+    "cca2": "GN",
+    "ccn3": "324",
+    "name": "Guinea",
+    "region": "Africa",
+    "subregion": "Western Africa",
+    "flag": "🇬🇳",
+    "latlng": [
+      11,
+      -10
+    ]
+  },
+  {
+    "cca2": "GP",
+    "ccn3": "312",
+    "name": "Guadeloupe",
+    "region": "Americas",
+    "subregion": "Caribbean",
+    "flag": "🇬🇵",
+    "latlng": [
+      16.25,
+      -61.583333
+    ]
+  },
+  {
+    "cca2": "GM",
+    "ccn3": "270",
+    "name": "Gambia",
+    "region": "Africa",
+    "subregion": "Western Africa",
+    "flag": "🇬🇲",
+    "latlng": [
+      13.46666666,
+      -16.56666666
+    ]
+  },
+  {
+    "cca2": "GW",
+    "ccn3": "624",
+    "name": "Guinea-Bissau",
+    "region": "Africa",
+    "subregion": "Western Africa",
+    "flag": "🇬🇼",
+    "latlng": [
+      12,
+      -15
+    ]
+  },
+  {
+    "cca2": "GQ",
+    "ccn3": "226",
+    "name": "Equatorial Guinea",
+    "region": "Africa",
+    "subregion": "Middle Africa",
+    "flag": "🇬🇶",
+    "latlng": [
+      2,
+      10
+    ]
+  },
+  {
+    "cca2": "GR",
+    "ccn3": "300",
+    "name": "Greece",
+    "region": "Europe",
+    "subregion": "Southern Europe",
+    "flag": "🇬🇷",
+    "latlng": [
+      39,
+      22
+    ]
+  },
+  {
+    "cca2": "GD",
+    "ccn3": "308",
+    "name": "Grenada",
+    "region": "Americas",
+    "subregion": "Caribbean",
+    "flag": "🇬🇩",
+    "latlng": [
+      12.11666666,
+      -61.66666666
+    ]
+  },
+  {
+    "cca2": "GL",
+    "ccn3": "304",
+    "name": "Greenland",
+    "region": "Americas",
+    "subregion": "North America",
+    "flag": "🇬🇱",
+    "latlng": [
+      72,
+      -40
+    ]
+  },
+  {
+    "cca2": "GT",
+    "ccn3": "320",
+    "name": "Guatemala",
+    "region": "Americas",
+    "subregion": "Central America",
+    "flag": "🇬🇹",
+    "latlng": [
+      15.5,
+      -90.25
+    ]
+  },
+  {
+    "cca2": "GF",
+    "ccn3": "254",
+    "name": "French Guiana",
+    "region": "Americas",
+    "subregion": "South America",
+    "flag": "🇬🇫",
+    "latlng": [
+      4,
+      -53
+    ]
+  },
+  {
+    "cca2": "GU",
+    "ccn3": "316",
+    "name": "Guam",
+    "region": "Oceania",
+    "subregion": "Micronesia",
+    "flag": "🇬🇺",
+    "latlng": [
+      13.46666666,
+      144.78333333
+    ]
+  },
+  {
+    "cca2": "GY",
+    "ccn3": "328",
+    "name": "Guyana",
+    "region": "Americas",
+    "subregion": "South America",
+    "flag": "🇬🇾",
+    "latlng": [
+      5,
+      -59
+    ]
+  },
+  {
+    "cca2": "HK",
+    "ccn3": "344",
+    "name": "Hong Kong",
+    "region": "Asia",
+    "subregion": "Eastern Asia",
+    "flag": "🇭🇰",
+    "latlng": [
+      22.267,
+      114.188
+    ]
+  },
+  {
+    "cca2": "HM",
+    "ccn3": "334",
+    "name": "Heard Island and McDonald Islands",
+    "region": "Antarctic",
+    "subregion": "",
+    "flag": "🇭🇲",
+    "latlng": [
+      -53.1,
+      72.51666666
+    ]
+  },
+  {
+    "cca2": "HN",
+    "ccn3": "340",
+    "name": "Honduras",
+    "region": "Americas",
+    "subregion": "Central America",
+    "flag": "🇭🇳",
+    "latlng": [
+      15,
+      -86.5
+    ]
+  },
+  {
+    "cca2": "HR",
+    "ccn3": "191",
+    "name": "Croatia",
+    "region": "Europe",
+    "subregion": "Southeast Europe",
+    "flag": "🇭🇷",
+    "latlng": [
+      45.16666666,
+      15.5
+    ]
+  },
+  {
+    "cca2": "HT",
+    "ccn3": "332",
+    "name": "Haiti",
+    "region": "Americas",
+    "subregion": "Caribbean",
+    "flag": "🇭🇹",
+    "latlng": [
+      19,
+      -72.41666666
+    ]
+  },
+  {
+    "cca2": "HU",
+    "ccn3": "348",
+    "name": "Hungary",
+    "region": "Europe",
+    "subregion": "Central Europe",
+    "flag": "🇭🇺",
+    "latlng": [
+      47,
+      20
+    ]
+  },
+  {
+    "cca2": "ID",
+    "ccn3": "360",
+    "name": "Indonesia",
+    "region": "Asia",
+    "subregion": "South-Eastern Asia",
+    "flag": "🇮🇩",
+    "latlng": [
+      -5,
+      120
+    ]
+  },
+  {
+    "cca2": "IM",
+    "ccn3": "833",
+    "name": "Isle of Man",
+    "region": "Europe",
+    "subregion": "Northern Europe",
+    "flag": "🇮🇲",
+    "latlng": [
+      54.25,
+      -4.5
+    ]
+  },
+  {
+    "cca2": "IN",
+    "ccn3": "356",
+    "name": "India",
+    "region": "Asia",
+    "subregion": "Southern Asia",
+    "flag": "🇮🇳",
+    "latlng": [
+      20,
+      77
+    ]
+  },
+  {
+    "cca2": "IO",
+    "ccn3": "086",
+    "name": "British Indian Ocean Territory",
+    "region": "Africa",
+    "subregion": "Eastern Africa",
+    "flag": "🇮🇴",
+    "latlng": [
+      -6,
+      71.5
+    ]
+  },
+  {
+    "cca2": "IE",
+    "ccn3": "372",
+    "name": "Ireland",
+    "region": "Europe",
+    "subregion": "Northern Europe",
+    "flag": "🇮🇪",
+    "latlng": [
+      53,
+      -8
+    ]
+  },
+  {
+    "cca2": "IR",
+    "ccn3": "364",
+    "name": "Iran",
+    "region": "Asia",
+    "subregion": "Southern Asia",
+    "flag": "🇮🇷",
+    "latlng": [
+      32,
+      53
+    ]
+  },
+  {
+    "cca2": "IQ",
+    "ccn3": "368",
+    "name": "Iraq",
+    "region": "Asia",
+    "subregion": "Western Asia",
+    "flag": "🇮🇶",
+    "latlng": [
+      33,
+      44
+    ]
+  },
+  {
+    "cca2": "IS",
+    "ccn3": "352",
+    "name": "Iceland",
+    "region": "Europe",
+    "subregion": "Northern Europe",
+    "flag": "🇮🇸",
+    "latlng": [
+      65,
+      -18
+    ]
+  },
+  {
+    "cca2": "IL",
+    "ccn3": "376",
+    "name": "Israel",
+    "region": "Asia",
+    "subregion": "Western Asia",
+    "flag": "🇮🇱",
+    "latlng": [
+      31.47,
+      35.13
+    ]
+  },
+  {
+    "cca2": "IT",
+    "ccn3": "380",
+    "name": "Italy",
+    "region": "Europe",
+    "subregion": "Southern Europe",
+    "flag": "🇮🇹",
+    "latlng": [
+      42.83333333,
+      12.83333333
+    ]
+  },
+  {
+    "cca2": "JM",
+    "ccn3": "388",
+    "name": "Jamaica",
+    "region": "Americas",
+    "subregion": "Caribbean",
+    "flag": "🇯🇲",
+    "latlng": [
+      18.25,
+      -77.5
+    ]
+  },
+  {
+    "cca2": "JE",
+    "ccn3": "832",
+    "name": "Jersey",
+    "region": "Europe",
+    "subregion": "Northern Europe",
+    "flag": "🇯🇪",
+    "latlng": [
+      49.25,
+      -2.16666666
+    ]
+  },
+  {
+    "cca2": "JO",
+    "ccn3": "400",
+    "name": "Jordan",
+    "region": "Asia",
+    "subregion": "Western Asia",
+    "flag": "🇯🇴",
+    "latlng": [
+      31,
+      36
+    ]
+  },
+  {
+    "cca2": "JP",
+    "ccn3": "392",
+    "name": "Japan",
+    "region": "Asia",
+    "subregion": "Eastern Asia",
+    "flag": "🇯🇵",
+    "latlng": [
+      36,
+      138
+    ]
+  },
+  {
+    "cca2": "KZ",
+    "ccn3": "398",
+    "name": "Kazakhstan",
+    "region": "Asia",
+    "subregion": "Central Asia",
+    "flag": "🇰🇿",
+    "latlng": [
+      48,
+      68
+    ]
+  },
+  {
+    "cca2": "KE",
+    "ccn3": "404",
+    "name": "Kenya",
+    "region": "Africa",
+    "subregion": "Eastern Africa",
+    "flag": "🇰🇪",
+    "latlng": [
+      1,
+      38
+    ]
+  },
+  {
+    "cca2": "KG",
+    "ccn3": "417",
+    "name": "Kyrgyzstan",
+    "region": "Asia",
+    "subregion": "Central Asia",
+    "flag": "🇰🇬",
+    "latlng": [
+      41,
+      75
+    ]
+  },
+  {
+    "cca2": "KH",
+    "ccn3": "116",
+    "name": "Cambodia",
+    "region": "Asia",
+    "subregion": "South-Eastern Asia",
+    "flag": "🇰🇭",
+    "latlng": [
+      13,
+      105
+    ]
+  },
+  {
+    "cca2": "KI",
+    "ccn3": "296",
+    "name": "Kiribati",
+    "region": "Oceania",
+    "subregion": "Micronesia",
+    "flag": "🇰🇮",
+    "latlng": [
+      1.41666666,
+      173
+    ]
+  },
+  {
+    "cca2": "KN",
+    "ccn3": "659",
+    "name": "Saint Kitts and Nevis",
+    "region": "Americas",
+    "subregion": "Caribbean",
+    "flag": "🇰🇳",
+    "latlng": [
+      17.33333333,
+      -62.75
+    ]
+  },
+  {
+    "cca2": "KR",
+    "ccn3": "410",
+    "name": "South Korea",
+    "region": "Asia",
+    "subregion": "Eastern Asia",
+    "flag": "🇰🇷",
+    "latlng": [
+      37,
+      127.5
+    ]
+  },
+  {
+    "cca2": "XK",
+    "ccn3": "",
+    "name": "Kosovo",
+    "region": "Europe",
+    "subregion": "Southeast Europe",
+    "flag": "🇽🇰",
+    "latlng": [
+      42.666667,
+      21.166667
+    ]
+  },
+  {
+    "cca2": "KW",
+    "ccn3": "414",
+    "name": "Kuwait",
+    "region": "Asia",
+    "subregion": "Western Asia",
+    "flag": "🇰🇼",
+    "latlng": [
+      29.5,
+      45.75
+    ]
+  },
+  {
+    "cca2": "LA",
+    "ccn3": "418",
+    "name": "Laos",
+    "region": "Asia",
+    "subregion": "South-Eastern Asia",
+    "flag": "🇱🇦",
+    "latlng": [
+      18,
+      105
+    ]
+  },
+  {
+    "cca2": "LB",
+    "ccn3": "422",
+    "name": "Lebanon",
+    "region": "Asia",
+    "subregion": "Western Asia",
+    "flag": "🇱🇧",
+    "latlng": [
+      33.83333333,
+      35.83333333
+    ]
+  },
+  {
+    "cca2": "LR",
+    "ccn3": "430",
+    "name": "Liberia",
+    "region": "Africa",
+    "subregion": "Western Africa",
+    "flag": "🇱🇷",
+    "latlng": [
+      6.5,
+      -9.5
+    ]
+  },
+  {
+    "cca2": "LY",
+    "ccn3": "434",
+    "name": "Libya",
+    "region": "Africa",
+    "subregion": "Northern Africa",
+    "flag": "🇱🇾",
+    "latlng": [
+      25,
+      17
+    ]
+  },
+  {
+    "cca2": "LC",
+    "ccn3": "662",
+    "name": "Saint Lucia",
+    "region": "Americas",
+    "subregion": "Caribbean",
+    "flag": "🇱🇨",
+    "latlng": [
+      13.88333333,
+      -60.96666666
+    ]
+  },
+  {
+    "cca2": "LI",
+    "ccn3": "438",
+    "name": "Liechtenstein",
+    "region": "Europe",
+    "subregion": "Western Europe",
+    "flag": "🇱🇮",
+    "latlng": [
+      47.26666666,
+      9.53333333
+    ]
+  },
+  {
+    "cca2": "LK",
+    "ccn3": "144",
+    "name": "Sri Lanka",
+    "region": "Asia",
+    "subregion": "Southern Asia",
+    "flag": "🇱🇰",
+    "latlng": [
+      7,
+      81
+    ]
+  },
+  {
+    "cca2": "LS",
+    "ccn3": "426",
+    "name": "Lesotho",
+    "region": "Africa",
+    "subregion": "Southern Africa",
+    "flag": "🇱🇸",
+    "latlng": [
+      -29.5,
+      28.5
+    ]
+  },
+  {
+    "cca2": "LT",
+    "ccn3": "440",
+    "name": "Lithuania",
+    "region": "Europe",
+    "subregion": "Northern Europe",
+    "flag": "🇱🇹",
+    "latlng": [
+      56,
+      24
+    ]
+  },
+  {
+    "cca2": "LU",
+    "ccn3": "442",
+    "name": "Luxembourg",
+    "region": "Europe",
+    "subregion": "Western Europe",
+    "flag": "🇱🇺",
+    "latlng": [
+      49.75,
+      6.16666666
+    ]
+  },
+  {
+    "cca2": "LV",
+    "ccn3": "428",
+    "name": "Latvia",
+    "region": "Europe",
+    "subregion": "Northern Europe",
+    "flag": "🇱🇻",
+    "latlng": [
+      57,
+      25
+    ]
+  },
+  {
+    "cca2": "MO",
+    "ccn3": "446",
+    "name": "Macau",
+    "region": "Asia",
+    "subregion": "Eastern Asia",
+    "flag": "🇲🇴",
+    "latlng": [
+      22.16666666,
+      113.55
+    ]
+  },
+  {
+    "cca2": "MF",
+    "ccn3": "663",
+    "name": "Saint Martin",
+    "region": "Americas",
+    "subregion": "Caribbean",
+    "flag": "🇲🇫",
+    "latlng": [
+      18.08333333,
+      -63.95
+    ]
+  },
+  {
+    "cca2": "MA",
+    "ccn3": "504",
+    "name": "Morocco",
+    "region": "Africa",
+    "subregion": "Northern Africa",
+    "flag": "🇲🇦",
+    "latlng": [
+      32,
+      -5
+    ]
+  },
+  {
+    "cca2": "MC",
+    "ccn3": "492",
+    "name": "Monaco",
+    "region": "Europe",
+    "subregion": "Western Europe",
+    "flag": "🇲🇨",
+    "latlng": [
+      43.73333333,
+      7.4
+    ]
+  },
+  {
+    "cca2": "MD",
+    "ccn3": "498",
+    "name": "Moldova",
+    "region": "Europe",
+    "subregion": "Eastern Europe",
+    "flag": "🇲🇩",
+    "latlng": [
+      47,
+      29
+    ]
+  },
+  {
+    "cca2": "MG",
+    "ccn3": "450",
+    "name": "Madagascar",
+    "region": "Africa",
+    "subregion": "Eastern Africa",
+    "flag": "🇲🇬",
+    "latlng": [
+      -20,
+      47
+    ]
+  },
+  {
+    "cca2": "MV",
+    "ccn3": "462",
+    "name": "Maldives",
+    "region": "Asia",
+    "subregion": "Southern Asia",
+    "flag": "🇲🇻",
+    "latlng": [
+      3.25,
+      73
+    ]
+  },
+  {
+    "cca2": "MX",
+    "ccn3": "484",
+    "name": "Mexico",
+    "region": "Americas",
+    "subregion": "North America",
+    "flag": "🇲🇽",
+    "latlng": [
+      23,
+      -102
+    ]
+  },
+  {
+    "cca2": "MH",
+    "ccn3": "584",
+    "name": "Marshall Islands",
+    "region": "Oceania",
+    "subregion": "Micronesia",
+    "flag": "🇲🇭",
+    "latlng": [
+      9,
+      168
+    ]
+  },
+  {
+    "cca2": "MK",
+    "ccn3": "807",
+    "name": "North Macedonia",
+    "region": "Europe",
+    "subregion": "Southeast Europe",
+    "flag": "🇲🇰",
+    "latlng": [
+      41.83333333,
+      22
+    ]
+  },
+  {
+    "cca2": "ML",
+    "ccn3": "466",
+    "name": "Mali",
+    "region": "Africa",
+    "subregion": "Western Africa",
+    "flag": "🇲🇱",
+    "latlng": [
+      17,
+      -4
+    ]
+  },
+  {
+    "cca2": "MT",
+    "ccn3": "470",
+    "name": "Malta",
+    "region": "Europe",
+    "subregion": "Southern Europe",
+    "flag": "🇲🇹",
+    "latlng": [
+      35.83333333,
+      14.58333333
+    ]
+  },
+  {
+    "cca2": "MM",
+    "ccn3": "104",
+    "name": "Myanmar",
+    "region": "Asia",
+    "subregion": "South-Eastern Asia",
+    "flag": "🇲🇲",
+    "latlng": [
+      22,
+      98
+    ]
+  },
+  {
+    "cca2": "ME",
+    "ccn3": "499",
+    "name": "Montenegro",
+    "region": "Europe",
+    "subregion": "Southeast Europe",
+    "flag": "🇲🇪",
+    "latlng": [
+      42.5,
+      19.3
+    ]
+  },
+  {
+    "cca2": "MN",
+    "ccn3": "496",
+    "name": "Mongolia",
+    "region": "Asia",
+    "subregion": "Eastern Asia",
+    "flag": "🇲🇳",
+    "latlng": [
+      46,
+      105
+    ]
+  },
+  {
+    "cca2": "MP",
+    "ccn3": "580",
+    "name": "Northern Mariana Islands",
+    "region": "Oceania",
+    "subregion": "Micronesia",
+    "flag": "🇲🇵",
+    "latlng": [
+      15.2,
+      145.75
+    ]
+  },
+  {
+    "cca2": "MZ",
+    "ccn3": "508",
+    "name": "Mozambique",
+    "region": "Africa",
+    "subregion": "Eastern Africa",
+    "flag": "🇲🇿",
+    "latlng": [
+      -18.25,
+      35
+    ]
+  },
+  {
+    "cca2": "MR",
+    "ccn3": "478",
+    "name": "Mauritania",
+    "region": "Africa",
+    "subregion": "Western Africa",
+    "flag": "🇲🇷",
+    "latlng": [
+      20,
+      -12
+    ]
+  },
+  {
+    "cca2": "MS",
+    "ccn3": "500",
+    "name": "Montserrat",
+    "region": "Americas",
+    "subregion": "Caribbean",
+    "flag": "🇲🇸",
+    "latlng": [
+      16.75,
+      -62.2
+    ]
+  },
+  {
+    "cca2": "MQ",
+    "ccn3": "474",
+    "name": "Martinique",
+    "region": "Americas",
+    "subregion": "Caribbean",
+    "flag": "🇲🇶",
+    "latlng": [
+      14.666667,
+      -61
+    ]
+  },
+  {
+    "cca2": "MU",
+    "ccn3": "480",
+    "name": "Mauritius",
+    "region": "Africa",
+    "subregion": "Eastern Africa",
+    "flag": "🇲🇺",
+    "latlng": [
+      -20.28333333,
+      57.55
+    ]
+  },
+  {
+    "cca2": "MW",
+    "ccn3": "454",
+    "name": "Malawi",
+    "region": "Africa",
+    "subregion": "Eastern Africa",
+    "flag": "🇲🇼",
+    "latlng": [
+      -13.5,
+      34
+    ]
+  },
+  {
+    "cca2": "MY",
+    "ccn3": "458",
+    "name": "Malaysia",
+    "region": "Asia",
+    "subregion": "South-Eastern Asia",
+    "flag": "🇲🇾",
+    "latlng": [
+      2.5,
+      112.5
+    ]
+  },
+  {
+    "cca2": "YT",
+    "ccn3": "175",
+    "name": "Mayotte",
+    "region": "Africa",
+    "subregion": "Eastern Africa",
+    "flag": "🇾🇹",
+    "latlng": [
+      -12.83333333,
+      45.16666666
+    ]
+  },
+  {
+    "cca2": "NA",
+    "ccn3": "516",
+    "name": "Namibia",
+    "region": "Africa",
+    "subregion": "Southern Africa",
+    "flag": "🇳🇦",
+    "latlng": [
+      -22,
+      17
+    ]
+  },
+  {
+    "cca2": "NC",
+    "ccn3": "540",
+    "name": "New Caledonia",
+    "region": "Oceania",
+    "subregion": "Melanesia",
+    "flag": "🇳🇨",
+    "latlng": [
+      -21.5,
+      165.5
+    ]
+  },
+  {
+    "cca2": "NE",
+    "ccn3": "562",
+    "name": "Niger",
+    "region": "Africa",
+    "subregion": "Western Africa",
+    "flag": "🇳🇪",
+    "latlng": [
+      16,
+      8
+    ]
+  },
+  {
+    "cca2": "NF",
+    "ccn3": "574",
+    "name": "Norfolk Island",
+    "region": "Oceania",
+    "subregion": "Australia and New Zealand",
+    "flag": "🇳🇫",
+    "latlng": [
+      -29.03333333,
+      167.95
+    ]
+  },
+  {
+    "cca2": "NG",
+    "ccn3": "566",
+    "name": "Nigeria",
+    "region": "Africa",
+    "subregion": "Western Africa",
+    "flag": "🇳🇬",
+    "latlng": [
+      10,
+      8
+    ]
+  },
+  {
+    "cca2": "NI",
+    "ccn3": "558",
+    "name": "Nicaragua",
+    "region": "Americas",
+    "subregion": "Central America",
+    "flag": "🇳🇮",
+    "latlng": [
+      13,
+      -85
+    ]
+  },
+  {
+    "cca2": "NU",
+    "ccn3": "570",
+    "name": "Niue",
+    "region": "Oceania",
+    "subregion": "Polynesia",
+    "flag": "🇳🇺",
+    "latlng": [
+      -19.03333333,
+      -169.86666666
+    ]
+  },
+  {
+    "cca2": "NL",
+    "ccn3": "528",
+    "name": "Netherlands",
+    "region": "Europe",
+    "subregion": "Western Europe",
+    "flag": "🇳🇱",
+    "latlng": [
+      52.5,
+      5.75
+    ]
+  },
+  {
+    "cca2": "NO",
+    "ccn3": "578",
+    "name": "Norway",
+    "region": "Europe",
+    "subregion": "Northern Europe",
+    "flag": "🇳🇴",
+    "latlng": [
+      62,
+      10
+    ]
+  },
+  {
+    "cca2": "NP",
+    "ccn3": "524",
+    "name": "Nepal",
+    "region": "Asia",
+    "subregion": "Southern Asia",
+    "flag": "🇳🇵",
+    "latlng": [
+      28,
+      84
+    ]
+  },
+  {
+    "cca2": "NR",
+    "ccn3": "520",
+    "name": "Nauru",
+    "region": "Oceania",
+    "subregion": "Micronesia",
+    "flag": "🇳🇷",
+    "latlng": [
+      -0.53333333,
+      166.91666666
+    ]
+  },
+  {
+    "cca2": "NZ",
+    "ccn3": "554",
+    "name": "New Zealand",
+    "region": "Oceania",
+    "subregion": "Australia and New Zealand",
+    "flag": "🇳🇿",
+    "latlng": [
+      -41,
+      174
+    ]
+  },
+  {
+    "cca2": "OM",
+    "ccn3": "512",
+    "name": "Oman",
+    "region": "Asia",
+    "subregion": "Western Asia",
+    "flag": "🇴🇲",
+    "latlng": [
+      21,
+      57
+    ]
+  },
+  {
+    "cca2": "PK",
+    "ccn3": "586",
+    "name": "Pakistan",
+    "region": "Asia",
+    "subregion": "Southern Asia",
+    "flag": "🇵🇰",
+    "latlng": [
+      30,
+      70
+    ]
+  },
+  {
+    "cca2": "PA",
+    "ccn3": "591",
+    "name": "Panama",
+    "region": "Americas",
+    "subregion": "Central America",
+    "flag": "🇵🇦",
+    "latlng": [
+      9,
+      -80
+    ]
+  },
+  {
+    "cca2": "PN",
+    "ccn3": "612",
+    "name": "Pitcairn Islands",
+    "region": "Oceania",
+    "subregion": "Polynesia",
+    "flag": "🇵🇳",
+    "latlng": [
+      -25.06666666,
+      -130.1
+    ]
+  },
+  {
+    "cca2": "PE",
+    "ccn3": "604",
+    "name": "Peru",
+    "region": "Americas",
+    "subregion": "South America",
+    "flag": "🇵🇪",
+    "latlng": [
+      -10,
+      -76
+    ]
+  },
+  {
+    "cca2": "PH",
+    "ccn3": "608",
+    "name": "Philippines",
+    "region": "Asia",
+    "subregion": "South-Eastern Asia",
+    "flag": "🇵🇭",
+    "latlng": [
+      13,
+      122
+    ]
+  },
+  {
+    "cca2": "PW",
+    "ccn3": "585",
+    "name": "Palau",
+    "region": "Oceania",
+    "subregion": "Micronesia",
+    "flag": "🇵🇼",
+    "latlng": [
+      7.5,
+      134.5
+    ]
+  },
+  {
+    "cca2": "PG",
+    "ccn3": "598",
+    "name": "Papua New Guinea",
+    "region": "Oceania",
+    "subregion": "Melanesia",
+    "flag": "🇵🇬",
+    "latlng": [
+      -6,
+      147
+    ]
+  },
+  {
+    "cca2": "PL",
+    "ccn3": "616",
+    "name": "Poland",
+    "region": "Europe",
+    "subregion": "Central Europe",
+    "flag": "🇵🇱",
+    "latlng": [
+      52,
+      20
+    ]
+  },
+  {
+    "cca2": "PR",
+    "ccn3": "630",
+    "name": "Puerto Rico",
+    "region": "Americas",
+    "subregion": "Caribbean",
+    "flag": "🇵🇷",
+    "latlng": [
+      18.25,
+      -66.5
+    ]
+  },
+  {
+    "cca2": "KP",
+    "ccn3": "408",
+    "name": "North Korea",
+    "region": "Asia",
+    "subregion": "Eastern Asia",
+    "flag": "🇰🇵",
+    "latlng": [
+      40,
+      127
+    ]
+  },
+  {
+    "cca2": "PT",
+    "ccn3": "620",
+    "name": "Portugal",
+    "region": "Europe",
+    "subregion": "Southern Europe",
+    "flag": "🇵🇹",
+    "latlng": [
+      39.5,
+      -8
+    ]
+  },
+  {
+    "cca2": "PY",
+    "ccn3": "600",
+    "name": "Paraguay",
+    "region": "Americas",
+    "subregion": "South America",
+    "flag": "🇵🇾",
+    "latlng": [
+      -23,
+      -58
+    ]
+  },
+  {
+    "cca2": "PS",
+    "ccn3": "275",
+    "name": "Palestine",
+    "region": "Asia",
+    "subregion": "Western Asia",
+    "flag": "🇵🇸",
+    "latlng": [
+      31.9,
+      35.2
+    ]
+  },
+  {
+    "cca2": "PF",
+    "ccn3": "258",
+    "name": "French Polynesia",
+    "region": "Oceania",
+    "subregion": "Polynesia",
+    "flag": "🇵🇫",
+    "latlng": [
+      -15,
+      -140
+    ]
+  },
+  {
+    "cca2": "QA",
+    "ccn3": "634",
+    "name": "Qatar",
+    "region": "Asia",
+    "subregion": "Western Asia",
+    "flag": "🇶🇦",
+    "latlng": [
+      25.5,
+      51.25
+    ]
+  },
+  {
+    "cca2": "RE",
+    "ccn3": "638",
+    "name": "Réunion",
+    "region": "Africa",
+    "subregion": "Eastern Africa",
+    "flag": "🇷🇪",
+    "latlng": [
+      -21.15,
+      55.5
+    ]
+  },
+  {
+    "cca2": "RO",
+    "ccn3": "642",
+    "name": "Romania",
+    "region": "Europe",
+    "subregion": "Southeast Europe",
+    "flag": "🇷🇴",
+    "latlng": [
+      46,
+      25
+    ]
+  },
+  {
+    "cca2": "RU",
+    "ccn3": "643",
+    "name": "Russia",
+    "region": "Europe",
+    "subregion": "Eastern Europe",
+    "flag": "🇷🇺",
+    "latlng": [
+      60,
+      100
+    ]
+  },
+  {
+    "cca2": "RW",
+    "ccn3": "646",
+    "name": "Rwanda",
+    "region": "Africa",
+    "subregion": "Eastern Africa",
+    "flag": "🇷🇼",
+    "latlng": [
+      -2,
+      30
+    ]
+  },
+  {
+    "cca2": "SA",
+    "ccn3": "682",
+    "name": "Saudi Arabia",
+    "region": "Asia",
+    "subregion": "Western Asia",
+    "flag": "🇸🇦",
+    "latlng": [
+      25,
+      45
+    ]
+  },
+  {
+    "cca2": "SD",
+    "ccn3": "729",
+    "name": "Sudan",
+    "region": "Africa",
+    "subregion": "Northern Africa",
+    "flag": "🇸🇩",
+    "latlng": [
+      15,
+      30
+    ]
+  },
+  {
+    "cca2": "SN",
+    "ccn3": "686",
+    "name": "Senegal",
+    "region": "Africa",
+    "subregion": "Western Africa",
+    "flag": "🇸🇳",
+    "latlng": [
+      14,
+      -14
+    ]
+  },
+  {
+    "cca2": "SG",
+    "ccn3": "702",
+    "name": "Singapore",
+    "region": "Asia",
+    "subregion": "South-Eastern Asia",
+    "flag": "🇸🇬",
+    "latlng": [
+      1.36666666,
+      103.8
+    ]
+  },
+  {
+    "cca2": "GS",
+    "ccn3": "239",
+    "name": "South Georgia",
+    "region": "Antarctic",
+    "subregion": "",
+    "flag": "🇬🇸",
+    "latlng": [
+      -54.5,
+      -37
+    ]
+  },
+  {
+    "cca2": "SJ",
+    "ccn3": "744",
+    "name": "Svalbard and Jan Mayen",
+    "region": "Europe",
+    "subregion": "Northern Europe",
+    "flag": "🇸🇯",
+    "latlng": [
+      78,
+      20
+    ]
+  },
+  {
+    "cca2": "SB",
+    "ccn3": "090",
+    "name": "Solomon Islands",
+    "region": "Oceania",
+    "subregion": "Melanesia",
+    "flag": "🇸🇧",
+    "latlng": [
+      -8,
+      159
+    ]
+  },
+  {
+    "cca2": "SL",
+    "ccn3": "694",
+    "name": "Sierra Leone",
+    "region": "Africa",
+    "subregion": "Western Africa",
+    "flag": "🇸🇱",
+    "latlng": [
+      8.5,
+      -11.5
+    ]
+  },
+  {
+    "cca2": "SV",
+    "ccn3": "222",
+    "name": "El Salvador",
+    "region": "Americas",
+    "subregion": "Central America",
+    "flag": "🇸🇻",
+    "latlng": [
+      13.83333333,
+      -88.91666666
+    ]
+  },
+  {
+    "cca2": "SM",
+    "ccn3": "674",
+    "name": "San Marino",
+    "region": "Europe",
+    "subregion": "Southern Europe",
+    "flag": "🇸🇲",
+    "latlng": [
+      43.76666666,
+      12.41666666
+    ]
+  },
+  {
+    "cca2": "SO",
+    "ccn3": "706",
+    "name": "Somalia",
+    "region": "Africa",
+    "subregion": "Eastern Africa",
+    "flag": "🇸🇴",
+    "latlng": [
+      10,
+      49
+    ]
+  },
+  {
+    "cca2": "PM",
+    "ccn3": "666",
+    "name": "Saint Pierre and Miquelon",
+    "region": "Americas",
+    "subregion": "North America",
+    "flag": "🇵🇲",
+    "latlng": [
+      46.83333333,
+      -56.33333333
+    ]
+  },
+  {
+    "cca2": "RS",
+    "ccn3": "688",
+    "name": "Serbia",
+    "region": "Europe",
+    "subregion": "Southeast Europe",
+    "flag": "🇷🇸",
+    "latlng": [
+      44,
+      21
+    ]
+  },
+  {
+    "cca2": "SS",
+    "ccn3": "728",
+    "name": "South Sudan",
+    "region": "Africa",
+    "subregion": "Middle Africa",
+    "flag": "🇸🇸",
+    "latlng": [
+      7,
+      30
+    ]
+  },
+  {
+    "cca2": "ST",
+    "ccn3": "678",
+    "name": "São Tomé and Príncipe",
+    "region": "Africa",
+    "subregion": "Middle Africa",
+    "flag": "🇸🇹",
+    "latlng": [
+      1,
+      7
+    ]
+  },
+  {
+    "cca2": "SR",
+    "ccn3": "740",
+    "name": "Suriname",
+    "region": "Americas",
+    "subregion": "South America",
+    "flag": "🇸🇷",
+    "latlng": [
+      4,
+      -56
+    ]
+  },
+  {
+    "cca2": "SK",
+    "ccn3": "703",
+    "name": "Slovakia",
+    "region": "Europe",
+    "subregion": "Central Europe",
+    "flag": "🇸🇰",
+    "latlng": [
+      48.66666666,
+      19.5
+    ]
+  },
+  {
+    "cca2": "SI",
+    "ccn3": "705",
+    "name": "Slovenia",
+    "region": "Europe",
+    "subregion": "Central Europe",
+    "flag": "🇸🇮",
+    "latlng": [
+      46.11666666,
+      14.81666666
+    ]
+  },
+  {
+    "cca2": "SE",
+    "ccn3": "752",
+    "name": "Sweden",
+    "region": "Europe",
+    "subregion": "Northern Europe",
+    "flag": "🇸🇪",
+    "latlng": [
+      62,
+      15
+    ]
+  },
+  {
+    "cca2": "SZ",
+    "ccn3": "748",
+    "name": "Eswatini",
+    "region": "Africa",
+    "subregion": "Southern Africa",
+    "flag": "🇸🇿",
+    "latlng": [
+      -26.5,
+      31.5
+    ]
+  },
+  {
+    "cca2": "SX",
+    "ccn3": "534",
+    "name": "Sint Maarten",
+    "region": "Americas",
+    "subregion": "Caribbean",
+    "flag": "🇸🇽",
+    "latlng": [
+      18.033333,
+      -63.05
+    ]
+  },
+  {
+    "cca2": "SC",
+    "ccn3": "690",
+    "name": "Seychelles",
+    "region": "Africa",
+    "subregion": "Eastern Africa",
+    "flag": "🇸🇨",
+    "latlng": [
+      -4.58333333,
+      55.66666666
+    ]
+  },
+  {
+    "cca2": "SY",
+    "ccn3": "760",
+    "name": "Syria",
+    "region": "Asia",
+    "subregion": "Western Asia",
+    "flag": "🇸🇾",
+    "latlng": [
+      35,
+      38
+    ]
+  },
+  {
+    "cca2": "TC",
+    "ccn3": "796",
+    "name": "Turks and Caicos Islands",
+    "region": "Americas",
+    "subregion": "Caribbean",
+    "flag": "🇹🇨",
+    "latlng": [
+      21.75,
+      -71.58333333
+    ]
+  },
+  {
+    "cca2": "TD",
+    "ccn3": "148",
+    "name": "Chad",
+    "region": "Africa",
+    "subregion": "Middle Africa",
+    "flag": "🇹🇩",
+    "latlng": [
+      15,
+      19
+    ]
+  },
+  {
+    "cca2": "TG",
+    "ccn3": "768",
+    "name": "Togo",
+    "region": "Africa",
+    "subregion": "Western Africa",
+    "flag": "🇹🇬",
+    "latlng": [
+      8,
+      1.16666666
+    ]
+  },
+  {
+    "cca2": "TH",
+    "ccn3": "764",
+    "name": "Thailand",
+    "region": "Asia",
+    "subregion": "South-Eastern Asia",
+    "flag": "🇹🇭",
+    "latlng": [
+      15,
+      100
+    ]
+  },
+  {
+    "cca2": "TJ",
+    "ccn3": "762",
+    "name": "Tajikistan",
+    "region": "Asia",
+    "subregion": "Central Asia",
+    "flag": "🇹🇯",
+    "latlng": [
+      39,
+      71
+    ]
+  },
+  {
+    "cca2": "TK",
+    "ccn3": "772",
+    "name": "Tokelau",
+    "region": "Oceania",
+    "subregion": "Polynesia",
+    "flag": "🇹🇰",
+    "latlng": [
+      -9,
+      -172
+    ]
+  },
+  {
+    "cca2": "TM",
+    "ccn3": "795",
+    "name": "Turkmenistan",
+    "region": "Asia",
+    "subregion": "Central Asia",
+    "flag": "🇹🇲",
+    "latlng": [
+      40,
+      60
+    ]
+  },
+  {
+    "cca2": "TL",
+    "ccn3": "626",
+    "name": "Timor-Leste",
+    "region": "Asia",
+    "subregion": "South-Eastern Asia",
+    "flag": "🇹🇱",
+    "latlng": [
+      -8.83333333,
+      125.91666666
+    ]
+  },
+  {
+    "cca2": "TO",
+    "ccn3": "776",
+    "name": "Tonga",
+    "region": "Oceania",
+    "subregion": "Polynesia",
+    "flag": "🇹🇴",
+    "latlng": [
+      -20,
+      -175
+    ]
+  },
+  {
+    "cca2": "TT",
+    "ccn3": "780",
+    "name": "Trinidad and Tobago",
+    "region": "Americas",
+    "subregion": "Caribbean",
+    "flag": "🇹🇹",
+    "latlng": [
+      11,
+      -61
+    ]
+  },
+  {
+    "cca2": "TN",
+    "ccn3": "788",
+    "name": "Tunisia",
+    "region": "Africa",
+    "subregion": "Northern Africa",
+    "flag": "🇹🇳",
+    "latlng": [
+      34,
+      9
+    ]
+  },
+  {
+    "cca2": "TR",
+    "ccn3": "792",
+    "name": "Türkiye",
+    "region": "Asia",
+    "subregion": "Western Asia",
+    "flag": "🇹🇷",
+    "latlng": [
+      39,
+      35
+    ]
+  },
+  {
+    "cca2": "TV",
+    "ccn3": "798",
+    "name": "Tuvalu",
+    "region": "Oceania",
+    "subregion": "Polynesia",
+    "flag": "🇹🇻",
+    "latlng": [
+      -8,
+      178
+    ]
+  },
+  {
+    "cca2": "TW",
+    "ccn3": "158",
+    "name": "Taiwan",
+    "region": "Asia",
+    "subregion": "Eastern Asia",
+    "flag": "🇹🇼",
+    "latlng": [
+      23.5,
+      121
+    ]
+  },
+  {
+    "cca2": "TZ",
+    "ccn3": "834",
+    "name": "Tanzania",
+    "region": "Africa",
+    "subregion": "Eastern Africa",
+    "flag": "🇹🇿",
+    "latlng": [
+      -6,
+      35
+    ]
+  },
+  {
+    "cca2": "UG",
+    "ccn3": "800",
+    "name": "Uganda",
+    "region": "Africa",
+    "subregion": "Eastern Africa",
+    "flag": "🇺🇬",
+    "latlng": [
+      1,
+      32
+    ]
+  },
+  {
+    "cca2": "UA",
+    "ccn3": "804",
+    "name": "Ukraine",
+    "region": "Europe",
+    "subregion": "Eastern Europe",
+    "flag": "🇺🇦",
+    "latlng": [
+      49,
+      32
+    ]
+  },
+  {
+    "cca2": "UM",
+    "ccn3": "581",
+    "name": "United States Minor Outlying Islands",
+    "region": "Americas",
+    "subregion": "North America",
+    "flag": "🇺🇲",
+    "latlng": [
+      19.3,
+      166.633333
+    ]
+  },
+  {
+    "cca2": "UY",
+    "ccn3": "858",
+    "name": "Uruguay",
+    "region": "Americas",
+    "subregion": "South America",
+    "flag": "🇺🇾",
+    "latlng": [
+      -33,
+      -56
+    ]
+  },
+  {
+    "cca2": "US",
+    "ccn3": "840",
+    "name": "United States",
+    "region": "Americas",
+    "subregion": "North America",
+    "flag": "🇺🇸",
+    "latlng": [
+      38,
+      -97
+    ]
+  },
+  {
+    "cca2": "UZ",
+    "ccn3": "860",
+    "name": "Uzbekistan",
+    "region": "Asia",
+    "subregion": "Central Asia",
+    "flag": "🇺🇿",
+    "latlng": [
+      41,
+      64
+    ]
+  },
+  {
+    "cca2": "VA",
+    "ccn3": "336",
+    "name": "Vatican City",
+    "region": "Europe",
+    "subregion": "Southern Europe",
+    "flag": "🇻🇦",
+    "latlng": [
+      41.9,
+      12.45
+    ]
+  },
+  {
+    "cca2": "VC",
+    "ccn3": "670",
+    "name": "Saint Vincent and the Grenadines",
+    "region": "Americas",
+    "subregion": "Caribbean",
+    "flag": "🇻🇨",
+    "latlng": [
+      13.25,
+      -61.2
+    ]
+  },
+  {
+    "cca2": "VE",
+    "ccn3": "862",
+    "name": "Venezuela",
+    "region": "Americas",
+    "subregion": "South America",
+    "flag": "🇻🇪",
+    "latlng": [
+      8,
+      -66
+    ]
+  },
+  {
+    "cca2": "VG",
+    "ccn3": "092",
+    "name": "British Virgin Islands",
+    "region": "Americas",
+    "subregion": "Caribbean",
+    "flag": "🇻🇬",
+    "latlng": [
+      18.431383,
+      -64.62305
+    ]
+  },
+  {
+    "cca2": "VI",
+    "ccn3": "850",
+    "name": "United States Virgin Islands",
+    "region": "Americas",
+    "subregion": "Caribbean",
+    "flag": "🇻🇮",
+    "latlng": [
+      18.35,
+      -64.933333
+    ]
+  },
+  {
+    "cca2": "VN",
+    "ccn3": "704",
+    "name": "Vietnam",
+    "region": "Asia",
+    "subregion": "South-Eastern Asia",
+    "flag": "🇻🇳",
+    "latlng": [
+      16.16666666,
+      107.83333333
+    ]
+  },
+  {
+    "cca2": "VU",
+    "ccn3": "548",
+    "name": "Vanuatu",
+    "region": "Oceania",
+    "subregion": "Melanesia",
+    "flag": "🇻🇺",
+    "latlng": [
+      -16,
+      167
+    ]
+  },
+  {
+    "cca2": "WF",
+    "ccn3": "876",
+    "name": "Wallis and Futuna",
+    "region": "Oceania",
+    "subregion": "Polynesia",
+    "flag": "🇼🇫",
+    "latlng": [
+      -13.3,
+      -176.2
+    ]
+  },
+  {
+    "cca2": "WS",
+    "ccn3": "882",
+    "name": "Samoa",
+    "region": "Oceania",
+    "subregion": "Polynesia",
+    "flag": "🇼🇸",
+    "latlng": [
+      -13.58333333,
+      -172.33333333
+    ]
+  },
+  {
+    "cca2": "YE",
+    "ccn3": "887",
+    "name": "Yemen",
+    "region": "Asia",
+    "subregion": "Western Asia",
+    "flag": "🇾🇪",
+    "latlng": [
+      15,
+      48
+    ]
+  },
+  {
+    "cca2": "ZA",
+    "ccn3": "710",
+    "name": "South Africa",
+    "region": "Africa",
+    "subregion": "Southern Africa",
+    "flag": "🇿🇦",
+    "latlng": [
+      -29,
+      24
+    ]
+  },
+  {
+    "cca2": "ZM",
+    "ccn3": "894",
+    "name": "Zambia",
+    "region": "Africa",
+    "subregion": "Eastern Africa",
+    "flag": "🇿🇲",
+    "latlng": [
+      -15,
+      30
+    ]
+  },
+  {
+    "cca2": "ZW",
+    "ccn3": "716",
+    "name": "Zimbabwe",
+    "region": "Africa",
+    "subregion": "Eastern Africa",
+    "flag": "🇿🇼",
+    "latlng": [
+      -20,
+      30
+    ]
+  }
+]

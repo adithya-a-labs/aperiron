@@ -1,9 +1,10 @@
+import type { AccessLevel } from '../shared/contracts';
 /**
  * aperiron: The Passport Paradox
- * Official Sourced Destination Regulations
+ * Legacy Regulation Drafts and Baseline Snapshot Lookup
  *
- * Sourced baseline regulation records backed by official consular authorities,
- * immigration portals, and diplomatic guidance.
+ * Legacy records below are unreviewed drafts, excluded from runtime lookup.
+ * Snapshot classifications retain missing details pending claim-level review.
  *
  * @see docs/DATA_POLICY.md
  * @see docs/CONTRACTS.md
@@ -14,8 +15,8 @@ import type {
   DestinationRequirementsParams
 } from '../shared/contracts';
 import { BASELINE_ACCESS_MATRIX } from './baselineMatrix';
-import { DESTINATIONS } from './catalog';
-import { getPassportIndexEntry } from './passportIndexData';
+
+import { getPassportIndexEntry } from './runtimePassportIndexData';
 
 export const SOURCED_REGULATIONS: readonly DestinationRequirements[] = [
   // ==========================================================================
@@ -428,110 +429,49 @@ export const SOURCED_REGULATIONS: readonly DestinationRequirements[] = [
 
 /**
  * Resolves destination requirements for any passport-destination pair.
- * Uses exact sourced records when available, or constructs an honest,
- * baseline-compliant record adhering to DATA_POLICY.md.
+ * Returns unreviewed snapshot classifications with honest missing fields;
+ * the legacy SOURCED_REGULATIONS above are pending claim-level review.
  */
 export function resolveDestinationRequirements(
-  params: DestinationRequirementsParams
+  params: DestinationRequirementsParams,
+  baselineAccess?: AccessLevel,
+  usePassportIndex = true
 ): DestinationRequirements {
   const { passportId, destinationId, travellerContext } = params;
-
-  // 1. Check if an exact curated sourced record exists
-  const exact = SOURCED_REGULATIONS.find(
-    (r) => r.passportId === passportId && r.destinationId === destinationId
-  );
-  if (exact) {
-    return exact;
-  }
-
-  // 2. Resolve baseline access classification from the 12x30 matrix
-  const matrixAccess = BASELINE_ACCESS_MATRIX[passportId]?.[destinationId] ?? 'unknown';
-  const destSummary = DESTINATIONS.find((d) => d.id === destinationId);
-  const destName = destSummary?.name ?? destinationId;
-
-  // Determine realistic baseline parameters based on AccessLevel
-  const isVisaFree = matrixAccess === 'visa_free';
-  const isVoA = matrixAccess === 'visa_on_arrival';
-  const isEVisa = matrixAccess === 'evisa';
-  const isRequired = matrixAccess === 'visa_required';
-
-  const piEntry = getPassportIndexEntry(passportId, destinationId);
-  const maxStay = piEntry?.maxStayDays ?? (isVisaFree ? 90 : isVoA ? 30 : isEVisa ? 30 : isRequired ? 15 : null);
-
+  const purpose = travellerContext?.purpose ?? 'tourism';
+  const applicable = purpose === 'tourism' &&
+    (!travellerContext?.passportType || travellerContext.passportType === 'ordinary');
+  const accessLevel = applicable
+    ? baselineAccess ?? BASELINE_ACCESS_MATRIX[passportId]?.[destinationId] ?? 'unknown'
+    : 'unknown';
+  const entry = applicable && usePassportIndex && passportId !== destinationId
+    ? getPassportIndexEntry(passportId, destinationId) : undefined;
   return {
-    recordId: `reg-${passportId}-${destinationId}-baseline`,
+    recordId: `unreviewed-${passportId}-${destinationId}-${purpose}`,
     passportId,
     destinationId,
-    accessLevel: matrixAccess,
-    purpose: travellerContext?.purpose ?? 'tourism',
-    maxStayDays: maxStay,
-    validityPeriod: isVisaFree ? 'Short-stay entry exemption' : 'Standard visitor entry',
-    documents: [
-      {
-        title: 'Valid Passport',
-        required: true,
-        description: 'Machine-readable passport with at least 6 months validity.'
-      },
-      ...(isRequired || isEVisa
-        ? [
-            {
-              title: 'Confirmed Return/Onward Travel Ticket',
-              required: true,
-              description: 'Proof of confirmed departure from destination.'
-            },
-            {
-              title: 'Proof of Accommodation',
-              required: true,
-              description: 'Hotel reservation or official invitation letter.'
-            }
-          ]
-        : [])
+    purpose,
+    accessLevel,
+    maxStayDays: entry?.maxStayDays ?? null,
+    documents: [],
+    applicationChannel: { type: 'none', name: 'Not verified', notes: 'Application information is unavailable.' },
+    sources: entry ? [{
+      id: 'src-passport-index-snapshot',
+      title: 'Bundled Passport Index snapshot (third-party)',
+      issuingAuthority: 'imorte/passport-index-data contributors',
+      url: 'https://github.com/imorte/passport-index-data',
+      retrievedAt: '',
+      verifiedAt: '',
+      notes: `Bundled classification: ${entry.rawRequirement}. Snapshot dates and official applicability have not been verified.`
+    }] : [],
+    verifiedAt: '',
+    unresolvedConditions: [
+      'Detailed passport-specific requirements have not been verified against official guidance.',
+      ...(applicable ? ['The baseline models ordinary-passport tourism; residency, existing visas and other exceptions are not resolved.']
+        : ['The tourism baseline does not establish requirements for this purpose or passport type.']),
+      ...(travellerContext?.durationDays !== undefined ? ['The requested duration has not been validated against entry conditions.'] : []),
+      ...(passportId === destinationId ? ['Domestic entry is modeled as visa-free for scoring; this is not an international visa requirement.'] : [])
     ],
-    applicationChannel: {
-      type: isVisaFree ? 'none' : isEVisa ? 'online_portal' : isVoA ? 'port_of_entry' : 'consulate',
-      name: isVisaFree
-        ? 'No advance visa application required'
-        : isEVisa
-        ? `${destName} Official e-Visa Portal`
-        : isVoA
-        ? 'Designated international airport or port of entry'
-        : `Embassy or Consulate of ${destName}`,
-      url: `https://www.immigration.${destinationId.toLowerCase()}.gov`
-    },
-    fees: {
-      amount: isVisaFree ? 0 : isVoA ? 35 : isEVisa ? 50 : 80,
-      currency: 'USD',
-      notes: isVisaFree ? 'No consular application fee' : 'Standard government tourist visa processing fee'
-    },
-    processingTime: {
-      estimateDaysMin: isVisaFree ? 0 : isVoA ? 0 : isEVisa ? 2 : 10,
-      estimateDaysMax: isVisaFree ? 0 : isVoA ? 0 : isEVisa ? 5 : 20,
-      unit: isVisaFree || isVoA ? 'hours' : 'days',
-      notes: 'Estimated working days under ordinary non-peak processing'
-    },
-    sources: [
-      {
-        id: `src-official-${destinationId.toLowerCase()}`,
-        title: `${destName} Entry and Visa Information`,
-        issuingAuthority: `Ministry of Foreign Affairs / Immigration Department of ${destName}`,
-        url: `https://www.official-visas.example.gov/${destinationId.toLowerCase()}`,
-        retrievedAt: '2026-10-10T12:00:00Z',
-        verifiedAt: '2026-10-10T12:00:00Z',
-        notes: 'National immigration policy baseline'
-      },
-      {
-        id: `src-passport-index-${destinationId.toLowerCase()}`,
-        title: `${destName} Entry Mobility Data (Passport Index)`,
-        issuingAuthority: 'Passport Index (imorte/passport-index-data)',
-        url: 'https://github.com/imorte/passport-index-data',
-        retrievedAt: '2026-10-10T12:00:00Z',
-        verifiedAt: '2026-10-10T12:00:00Z',
-        notes: `Official Passport Index record: ${piEntry?.rawRequirement ?? matrixAccess}`
-      }
-    ],
-    verifiedAt: '2026-10-10T12:00:00Z',
-    unresolvedConditions: [],
-    isSimulated: false,
-    baselineAccessLevel: matrixAccess
+    isSimulated: false
   };
 }

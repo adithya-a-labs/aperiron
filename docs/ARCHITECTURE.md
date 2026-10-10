@@ -4,9 +4,10 @@
 
 The React/Vite/TypeScript frontend uses the executable eight-method
 `AperironEngine` interface in `src/shared/engineApi.ts`. The provider in
-`src/frontend/engine.ts` selects a mock engine over the prototype data catalog;
-`src/store/appStore.ts` owns selection and fictional world state. The production
-engine and verified regulation coverage remain future work. See
+`src/frontend/engine.ts` selects `RealAperironEngine` over the bundled Passport Index catalog;
+`src/store/appStore.ts` owns selection and fictional world state. The pure
+TypeScript engine runs in the browser across 199 passport origins and 199 destinations;
+detailed official regulation coverage remains future work. See
 [FRONTEND.md](FRONTEND.md) for implemented routes, dependency details and integration.
 Progress and verification belong in the [state map](state/README.md).
 ## Dependency direction
@@ -98,7 +99,7 @@ Do not imply atomicity if only sequential purchases exist.
 The original seven-method simulation interface returns access classifications,
 not document checklists, fees, conditions, or provenance. The country panel needs
 a structured lookup contract in addition to that interface. See
-[CONTRACTS.md](CONTRACTS.md) for the proposed extension and unresolved semantics.
+[CONTRACTS.md](CONTRACTS.md) for the executable extension and remaining semantic questions.
 
 Do not force regulation details into `VisaDNA`, `WorldState`, or a generic string
 that loses source information. Simulation score and real entry guidance answer

@@ -93,13 +93,17 @@ relevant checks against the integrated code.
 
 ## Playful frontend regression coverage
 
-The current app uses all eight engine methods. `npm test` includes the new
-`src/store/appStore.test.ts` integration suite as well as starter adapter tests.
+Retained app source consumes all eight engine methods; game pages are paused.
+`npm test` includes the
+`src/store/appStore.test.ts` integration suite, starter adapter tests, real-engine
+integration tests, full CSV/runtime consistency and catalog/map coverage checks, and all five legacy
+verification scripts under `tests/verify-*.ts`. The runner counts each legacy
+script as one test containing several assertions.
 Browser acceptance includes every hash route at desktop and mobile widths,
 keyboard activation of supported map countries, missing search results, preserved
 destination after passport switching, comparison groups, deterministic DNA,
 non-spending previews, successful purchases, reset, budget zero, lottery and globe.
-Prototype classifications are not verified visa advice. Browser/source checks do
+Bundled snapshot classifications are not verified visa advice. Browser/source checks do
 not validate travel guidance. Transit planning remains unavailable. Optional Groq
 research is available in the Country Notebook. `npm test` includes actual loopback
 HTTP tests for successful research, invalid/oversized inputs, missing configuration,

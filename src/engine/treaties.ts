@@ -1,3 +1,4 @@
+import type { AccessLevel, CountryId } from '../shared/contracts';
 /**
  * aperiron: The Passport Paradox
  * Engine: Treaty Simulation & Purchases
@@ -107,6 +108,6 @@ export function purchaseTreaty(
   return success({
     nextState,
     impact: impactResult.data,
-    purchasedTreaty: treaty
+    purchasedTreaty: structuredClone(treaty)
   });
 }

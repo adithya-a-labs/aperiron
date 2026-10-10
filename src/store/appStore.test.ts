@@ -20,8 +20,8 @@ beforeEach(() =>
 );
 
 test("full catalog maps every passport/destination to the supplied matrix", () => {
-  assert.equal(catalog.passports.length, 12);
-  assert.equal(catalog.destinations.length, 30);
+  assert.equal(catalog.passports.length, 199);
+  assert.equal(catalog.destinations.length, 199);
   for (const passport of catalog.passports) {
     const view = value(
       engine.getPassportView(passport.id, INITIAL_WORLD_STATE),
@@ -115,14 +115,15 @@ test("regulation lookup never fabricates fees, documents, verification or portal
       }),
     );
     assert.equal(data.purpose, purpose);
-    assert.equal(data.accessLevel, "unknown");
+    assert.equal(data.accessLevel, purpose === "tourism" ? BASELINE_ACCESS_MATRIX.IN.JP : "unknown");
     assert.equal(data.maxStayDays, null);
     assert.equal(data.fees, undefined);
     assert.equal(data.processingTime, undefined);
     assert.equal(data.applicationChannel.url, undefined);
     assert.equal(data.verifiedAt, "");
     assert.deepEqual(data.documents, []);
-    assert.deepEqual(data.sources, []);
+    assert.equal(data.sources.length, purpose === "tourism" ? 1 : 0);
+    assert.ok(data.sources.every((source) => source.verifiedAt === ""));
   }
   assert.equal(
     engine.getDestinationRequirements({

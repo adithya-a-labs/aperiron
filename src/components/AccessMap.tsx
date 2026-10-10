@@ -11,43 +11,17 @@ import topology from "world-atlas/countries-110m.json";
 import type { PassportView } from "../shared/contracts";
 import { accessColors, accessLabels, catalog } from "../frontend/engine";
 
-const iso: Record<string, string> = {
-  "702": "SG",
-  "392": "JP",
-  "356": "IN",
-  "764": "TH",
-  "360": "ID",
-  "410": "KR",
-  "704": "VN",
-  "784": "AE",
-  "634": "QA",
-  "276": "DE",
-  "826": "GB",
-  "250": "FR",
-  "380": "IT",
-  "724": "ES",
-  "756": "CH",
-  "792": "TR",
-  "268": "GE",
-  "840": "US",
-  "124": "CA",
-  "076": "BR",
-  "484": "MX",
-  "032": "AR",
-  "710": "ZA",
-  "818": "EG",
-  "404": "KE",
-  "504": "MA",
-  "566": "NG",
-  "036": "AU",
-  "554": "NZ",
-  "242": "FJ",
-};
+import { COUNTRIES } from '../data/countryCatalog';
+import { getMapCountryId } from '../data/mapCountries';
+
 const world = feature(
   topology as unknown as Topology<{ countries: GeometryCollection }>,
   (topology as unknown as Topology<{ countries: GeometryCollection }>).objects
     .countries,
 );
+// Small islands and microstates omitted by 110m geography remain selectable.
+const mappedIds = new Set(world.features.map(f => getMapCountryId(f.id, (f.properties as { name?: string })?.name)));
+const pointCountries = COUNTRIES.filter(c => c.isDestinationSupported && !mappedIds.has(c.id));
 const pins: Record<string, [number, number]> = {
   JP: [138, 36],
   CA: [-108, 58],
@@ -84,7 +58,7 @@ export function WorldMap({
       <svg
         viewBox="0 0 800 450"
         role="group"
-        aria-label={`Prototype access map for ${view.passportName}`}
+        aria-label={`Snapshot access map for ${view.passportName}`}
       >
         <defs>
           <pattern
@@ -101,7 +75,7 @@ export function WorldMap({
         {world.features
           .filter((f) => String(f.id) !== "010")
           .map((f, index) => {
-            const code = iso[String(f.id).padStart(3, "0")];
+            const code = getMapCountryId(f.id, (f.properties as { name?: string })?.name);
             const access = view.destinations.find(
               (d) => d.destinationId === code,
             );
@@ -125,22 +99,40 @@ export function WorldMap({
                     ? `${access.destinationName}: ${accessLabels[access.accessLevel]}`
                     : undefined
                 }
-                onClick={() => access && onSelect?.(code)}
+                onClick={() => access && onSelect?.(code!)}
                 onKeyDown={(e) => {
                   if (access && (e.key === "Enter" || e.key === " ")) {
                     e.preventDefault();
-                    onSelect?.(code);
+                    onSelect?.(code!);
                   }
                 }}
               >
                 <title>
                   {access
                     ? `${access.destinationName}: ${accessLabels[access.accessLevel]}`
-                    : `${(f.properties as { name?: string })?.name}: outside prototype coverage`}
+                    : `${(f.properties as { name?: string })?.name}: outside catalog coverage`}
                 </title>
               </path>
             );
           })}
+        {pointCountries.map(country => {
+          const access = view.destinations.find(d => d.destinationId === country.id);
+          const point = path({ type: 'Point', coordinates: country.coordinates });
+          if (!access || !point) return null;
+          const label = country.name + ': ' + accessLabels[access.accessLevel];
+          return <path key={country.id} d={point}
+            fill={accessColors[access.accessLevel]}
+            stroke={selected === country.id ? '#032B43' : '#fffdf7'}
+            strokeWidth={selected === country.id ? 2 : 0.8}
+            className="map-country" role={onSelect ? 'button' : undefined}
+            tabIndex={onSelect ? 0 : undefined} aria-label={label}
+            onClick={() => onSelect?.(country.id)}
+            onKeyDown={e => {
+              if (onSelect && (e.key === 'Enter' || e.key === ' ')) {
+                e.preventDefault(); onSelect(country.id);
+              }
+            }}><title>{label}</title></path>;
+        })}
         {!globe &&
           Object.entries(pins).map(([code, coordinates]) => {
             const xy = projection(coordinates);

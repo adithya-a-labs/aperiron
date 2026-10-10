@@ -75,8 +75,9 @@ export interface AperironEngine {
   optimizeTreaties(state: WorldState, budget: number): Result<OptimizationResult>;
 
   /**
-   * Resolves detailed, official entry requirements for a specific passport
-   * and destination pair, including documents, stay limits, fees, and provenance.
+   * Resolves baseline requirements for a specific passport, destination and
+   * traveller context. Unreviewed snapshot data must retain missing details and
+   * empty verification dates. Simulation state cannot change this response.
    */
   getDestinationRequirements(
     params: DestinationRequirementsParams
