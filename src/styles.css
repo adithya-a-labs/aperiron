@@ -2408,3 +2408,15 @@ main { overflow: visible; }
   .button, .pill, .round-button { transition: transform 140ms cubic-bezier(.23, 1, .32, 1), background-color 140ms; }
   .button:active:not(:focus-visible), .pill:active:not(:focus-visible), .round-button:active:not(:focus-visible) { transform: scale(.97); }
 }
+@media (max-width: 1000px) {
+  .notebook { grid-template-columns: minmax(0, 1fr) 240px; }
+  .notebook-main { padding: 24px; }
+  .comparison-table th, .comparison-table td { padding: 12px; }
+}
+@media (max-width: 760px) {
+  .notebook { grid-template-columns: minmax(0, 1fr); }
+  .comparison-table th, .comparison-table td { padding: 10px 8px; }
+  .comparison-table .tag { white-space: normal; }
+  .page-explore .world-map > svg { max-height: none; }
+  .requirements > div { grid-template-columns: 110px minmax(0, 1fr); }
+}
