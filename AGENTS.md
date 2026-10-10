@@ -44,7 +44,8 @@ Select relevant skills; do not load every workflow for a simple task. Skills do
 not install tools, create schedules, or authorize extra external actions. Per-run
 logging applies even if a skill was not automatically selected.
 
-Developer branch names are exactly `dev-adithyaa` and `dev-prabhu`. Do not add
+Assigned branch names are exactly `dev-adithyaa`, `dev-prabhu`, `dev-frontend`,
+and `dev-integration`. Do not add
 slash prefixes or task suffixes to these names. Developer identity and module
 ownership remain separate concerns.
 The user assigned `dev-adithyaa` to frontend experience. Follow the scope in
@@ -55,6 +56,11 @@ Both developers coordinate shared contracts, fixtures, and integration.
 The user assigned `dev-integration` to coordinate the unified application on
 `dev-integration`; it maintains its own state/run records without overwriting the
 two module owners’ history.
+The user assigned `dev-frontend` as a dedicated frontend collaboration branch for
+a friend. Follow its scope in `docs/DEVELOPMENT.md` and maintain its own
+`docs/state/dev-frontend/` state/run records. This branch-scoped work lane does not
+reassign either module owner's role. Coordinate shared UI files with dev-adithyaa;
+consume existing engine contracts and coordinate engine/data changes with dev-prabhu.
 
 ## Start of every run
 
@@ -62,7 +68,10 @@ two module owners’ history.
 2. Inspect the current branch, working-tree changes, and relevant recent commits.
    Verify recorded claims against the code; state files can be stale.
 3. Establish your developer identity from an explicit user instruction or an
-   explicitly assigned task: `dev-adithyaa`, `dev-prabhu`, or explicitly assigned `dev-integration`. Do not infer identity
+   explicitly assigned task: `dev-adithyaa`, `dev-prabhu`, explicitly assigned
+   `dev-integration`, or the explicitly assigned `dev-frontend` work lane. The latter
+   records branch-scoped work without assigning a personal developer identity. Read
+   the assigned lane's state and latest run as well. Do not infer identity
    from a computer username, Git author, or files you happen to edit. If it is
    unknown, ask which developer you represent before writing an attributed log.
    Independent read-only investigation may continue while awaiting the answer.

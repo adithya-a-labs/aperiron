@@ -2,16 +2,22 @@
 
 This directory is the shared, versioned memory for agents working on aperiron.
 The developer records are independent so routine logging does not require
-both developers to edit the same document.
+multiple work lanes to edit the same document.
 
 | Developer | Current state | Run history |
 | --- | --- | --- |
 | dev-adithyaa | [STATE.md](dev-adithyaa/STATE.md) | [runs/](dev-adithyaa/runs/) |
 | dev-prabhu | [STATE.md](dev-prabhu/STATE.md) | [runs/](dev-prabhu/runs/) |
 | dev-integration | [STATE.md](dev-integration/STATE.md) | [runs/](dev-integration/runs/) |
+| dev-frontend (branch-scoped frontend collaborator) | [STATE.md](dev-frontend/STATE.md) | [runs/](dev-frontend/runs/) |
 
 The user explicitly assigned dev-integration to integrate both layers on the
 dev-integration branch. Its records preserve the two module owners’ history.
+The user also created dev-frontend as a dedicated frontend-only branch for a
+friend. Its records track that explicitly assigned work lane without assigning
+a personal identity or replacing dev-adithyaa's history. See
+[development guidance](../DEVELOPMENT.md#dev-frontend-dedicated-frontend-branch)
+for allowed work, exclusions and coordination boundaries.
 
 This table is an index, not a duplicate progress summary. The linked state files
 contain the current summaries. The user assigned dev-adithyaa to frontend
@@ -26,7 +32,8 @@ If a run stops unexpectedly, the next run records recovery from the interruption
 
 ## Write procedure
 
-1. Confirm which developer you represent; never guess attribution.
+1. Confirm which developer or explicitly assigned work lane you represent; never
+   guess attribution. Tasks explicitly assigned to dev-frontend use its own records.
 2. Choose an ID using UTC time and a unique suffix, for example
    `20261010T143000Z-a7c9d2f1`. The example is a format, not an existing run.
 3. Create `docs/state/<developer>/runs/<run-id>.md` using [RUN_TEMPLATE.md](RUN_TEMPLATE.md).

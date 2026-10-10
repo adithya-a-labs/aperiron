@@ -1,6 +1,6 @@
 # Run <run-id>
 
-- Developer: <dev-adithyaa, dev-prabhu, or dev-integration>
+- Developer/work lane: <dev-adithyaa, dev-prabhu, dev-integration, or dev-frontend>
 - Started at: <ISO 8601 UTC timestamp>
 - Finished at: <ISO 8601 UTC timestamp, or in progress>
 - Task: <concrete request>
