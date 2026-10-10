@@ -11,6 +11,8 @@ Preserve these exact colours as the reference for future visual work.
 | Deep navy | `#032B43` |
 | Teal | `#136F63` |
 
-The user requested storage only: **do not apply this palette to the UI now**.
-Specific colour roles, contrast treatments, and access-category mappings have
-not been approved. The existing UI remains unchanged by this record.
+The later user request explicitly authorized applying this palette to every page,
+using the playful-v3 reference boards. Navy is the text color, yellow is the main
+action color, teal/blue encode mobility categories, and red marks fictional stamps.
+Warm ivory neutrals and lighter tints support the illustrated travel style. Access
+labels accompany color; unknown and out-of-coverage states remain distinct.

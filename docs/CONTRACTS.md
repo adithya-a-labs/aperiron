@@ -2,17 +2,18 @@
 
 ## Status and source of truth
 
-The pasted project context supplies a draft TypeScript API. No core implementation
-exists yet. `src/frontend/types.ts` is a provisional view adapter for sample-only
-UI development, not the frozen core API. This document preserves direction and
-identifies decisions needed before freezing the first executable contract.
+`src/shared/contracts.ts` and `src/shared/engineApi.ts` are now the authoritative
+executable definitions. `MockAperironEngine` implements all eight methods,
+including `getDestinationRequirements`; the frontend consumes these through
+`src/frontend/engine.ts`. The earlier `src/frontend/types.ts` adapter is retained
+only for starter-component compatibility. Semantic freeze questions below remain
+coordination items rather than being accepted implicitly by a mock implementation.
 
-Once created, `src/shared/contracts.ts` and `src/shared/engineApi.ts` are the
-authoritative executable definitions. This document explains their semantics and
-compatibility rules; do not maintain a second copied set of complete type bodies.
-Any implementation that differs from the docs is drift to investigate, not
-automatic proof that either side expresses the intended behavior.
-
+The mock accepts optional constructor dependencies for the baseline matrix and
+requirements resolver. This additive frontend integration seam leaves its default
+fixtures and public interface unchanged. The app resolver returns honest unknown
+requirements until sourced claims have been reviewed. Country validation still
+runs before the injected resolver. No frontend score or treaty algorithm is copied.
 ## Core vocabulary
 
 | Term | Meaning |
@@ -42,7 +43,7 @@ at zero.
 | `calculateImpact()` | Before state, after state | Global before/after score, delta, and newly accessible passport-destination pairs. Uses one frozen dataset. |
 | `optimizeTreaties()` | State, budget | Result with recommended IDs, cost, and projected impact. Does not purchase anything. |
 
-The draft typed errors are `INVALID_PASSPORT`, `INVALID_TREATY`,
+The originally proposed typed errors were `INVALID_PASSPORT`, `INVALID_TREATY`,
 `INSUFFICIENT_CREDITS`, `ALREADY_PURCHASED`, and `INVALID_BUDGET`.
 Validation failures should use stable codes; message wording may improve without
 breaking consumers. Never branch UI logic on an English error message.
@@ -51,7 +52,7 @@ breaking consumers. Never branch UI logic on an English error message.
 
 The user explicitly requires passport-specific regulation details on country
 click. The original interface is insufficient for this feature. Add a coordinated
-lookup interface; the following shape is proposed rather than frozen:
+lookup interface. That extension now exists in `src/shared/engineApi.ts`; the original proposal below is historical context, not an alternative runtime signature:
 
 ```text
 getDestinationRequirements({ passportId, destinationId, travellerContext })
