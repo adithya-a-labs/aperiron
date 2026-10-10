@@ -79,21 +79,26 @@ export function WorldMap({
             const access = view.destinations.find(
               (d) => d.destinationId === code,
             );
+            const isPassportCountry = code === view.passportId;
+            const isSelected = Boolean(selected && selected === code);
             return (
               <path
                 key={`${f.id ?? "country"}-${index}`}
                 d={path(f) ?? ""}
                 fill={
-                  access
-                    ? accessColors[access.accessLevel]
-                    : `url(#${globe ? "globe-unsupported" : "unsupported"})`
+                  isPassportCountry
+                    ? "#fc2b86"
+                    : access
+                      ? accessColors[access.accessLevel]
+                      : `url(#${globe ? "globe-unsupported" : "unsupported"})`
                 }
-                opacity={access ? 0.8 : 1}
-                stroke={selected && selected === code ? "#032B43" : "#fffdf7"}
-                strokeWidth={selected && selected === code ? 2 : 0.6}
+                opacity={isPassportCountry || isSelected ? 1 : access ? 0.8 : 1}
+                stroke={isSelected ? "#032B43" : isPassportCountry ? "#032B43" : "#fffdf7"}
+                strokeWidth={isSelected ? 2 : isPassportCountry ? 1.2 : 0.6}
                 className={access ? "map-country" : ""}
                 tabIndex={access && onSelect ? 0 : undefined}
                 role={access && onSelect ? "button" : undefined}
+                style={{ outline: "none" }}
                 aria-label={
                   access
                     ? `${access.destinationName}: ${accessLabels[access.accessLevel]}`
@@ -119,13 +124,16 @@ export function WorldMap({
           const access = view.destinations.find(d => d.destinationId === country.id);
           const point = path({ type: 'Point', coordinates: country.coordinates });
           if (!access || !point) return null;
+          const isPassportCountry = country.id === view.passportId;
+          const isSelected = selected === country.id;
           const label = country.name + ': ' + accessLabels[access.accessLevel];
           return <path key={country.id} d={point}
-            fill={accessColors[access.accessLevel]}
-            stroke={selected === country.id ? '#032B43' : '#fffdf7'}
-            strokeWidth={selected === country.id ? 2 : 0.8}
+            fill={isPassportCountry ? '#fc2b86' : accessColors[access.accessLevel]}
+            stroke={isSelected ? '#032B43' : isPassportCountry ? '#032B43' : '#fffdf7'}
+            strokeWidth={isSelected ? 2.5 : isPassportCountry ? 1.5 : 0.8}
             className="map-country" role={onSelect ? 'button' : undefined}
             tabIndex={onSelect ? 0 : undefined} aria-label={label}
+            style={{ outline: "none" }}
             onClick={() => onSelect?.(country.id)}
             onKeyDown={e => {
               if (onSelect && (e.key === 'Enter' || e.key === ' ')) {
@@ -133,6 +141,43 @@ export function WorldMap({
               }
             }}><title>{label}</title></path>;
         })}
+        {selected && (() => {
+          const selectedFeature = world.features.find(
+            (f) =>
+              String(f.id) !== "010" &&
+              getMapCountryId(f.id, (f.properties as { name?: string })?.name) ===
+                selected,
+          );
+          if (selectedFeature) {
+            return (
+              <path
+                d={path(selectedFeature) ?? ""}
+                fill="none"
+                stroke="#032B43"
+                strokeWidth={2}
+                style={{ outline: "none", pointerEvents: "none" }}
+                aria-hidden="true"
+              />
+            );
+          }
+          const selectedPoint = pointCountries.find((c) => c.id === selected);
+          if (selectedPoint) {
+            const pt = path({ type: "Point", coordinates: selectedPoint.coordinates });
+            if (pt) {
+              return (
+                <path
+                  d={pt}
+                  fill="none"
+                  stroke="#032B43"
+                  strokeWidth={2.5}
+                  style={{ outline: "none", pointerEvents: "none" }}
+                  aria-hidden="true"
+                />
+              );
+            }
+          }
+          return null;
+        })()}
         {!globe &&
           Object.entries(pins).map(([code, coordinates]) => {
             const xy = projection(coordinates);

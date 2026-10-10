@@ -387,15 +387,24 @@ main {
   width: 100%;
   height: auto;
   overflow: visible;
+  outline: none !important;
+}
+.world-map > svg:focus,
+.world-map > svg:focus-visible {
+  outline: none !important;
 }
 .map-country {
   cursor: pointer;
+  outline: none !important;
+  -webkit-tap-highlight-color: transparent;
   transition:
     opacity 0.15s,
     stroke-width 0.15s;
 }
 .map-country:hover,
-.map-country:focus {
+.map-country:focus,
+.map-country:focus-visible {
+  outline: none !important;
   opacity: 1;
   stroke: var(--navy);
   stroke-width: 1.5;
@@ -448,12 +457,89 @@ main {
 .postcard-image {
   position: relative;
 }
-.postcard-art {
-  display: block;
+.postcard-art-wrap {
+  position: relative;
   width: 100%;
-  height: auto;
+  aspect-ratio: 16 / 9;
   border-radius: 13px;
   overflow: hidden;
+  background: #f6f4df;
+}
+.postcard-art-wrap svg.postcard-art {
+  width: 100%;
+  height: 100%;
+  display: block;
+}
+.postcard-photo {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+  transition: opacity 0.35s ease-in-out, transform 0.4s ease;
+}
+.postcard-photo.loading {
+  opacity: 0;
+  transform: scale(1.02);
+}
+.postcard-photo.loaded {
+  opacity: 1;
+  transform: scale(1);
+}
+.postcard-shimmer {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    90deg,
+    #f2efdf 0%,
+    #faf8ed 50%,
+    #f2efdf 100%
+  );
+  background-size: 200% 100%;
+  animation: postcard-shimmer 1.8s infinite ease-in-out;
+  z-index: 1;
+}
+@keyframes postcard-shimmer {
+  0% { background-position: 200% 0; }
+  100% { background-position: -200% 0; }
+}
+.postcard-landmark-badge {
+  position: absolute;
+  bottom: 8px;
+  left: 8px;
+  right: 8px;
+  background: rgba(3, 43, 67, 0.82);
+  backdrop-filter: blur(5px);
+  -webkit-backdrop-filter: blur(5px);
+  color: #fffdf7;
+  padding: 6px 10px;
+  border-radius: 8px;
+  font-size: 11px;
+  line-height: 1.25;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 8px;
+  pointer-events: none;
+  z-index: 2;
+  box-shadow: 0 2px 6px rgba(3, 43, 67, 0.25);
+}
+.postcard-landmark-badge .landmark-title {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  font-weight: 700;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+.postcard-landmark-badge .landmark-title b {
+  font-weight: 700;
+}
+.postcard-landmark-badge .landmark-loc {
+  font-size: 10px;
+  opacity: 0.88;
+  white-space: nowrap;
+  color: #ffba08;
 }
 .stamp {
   display: inline-block;

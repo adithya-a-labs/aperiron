@@ -1,6 +1,7 @@
-import { useId } from "react";
+import { useId, useState, useEffect } from "react";
 import type { VisaDNA } from "../shared/contracts";
 import { accessColors } from "../frontend/engine";
+import { getCountryLandmark } from "../data/countryLandmarks";
 
 export function Landscape({ compact = false }: { compact?: boolean }) {
   const id = useId();
@@ -71,109 +72,155 @@ export function Landscape({ compact = false }: { compact?: boolean }) {
   );
 }
 
-export function PostcardArt({ variant = 0 }: { variant?: number }) {
+export function PostcardArt({
+  variant = 0,
+  countryId,
+}: {
+  variant?: number;
+  countryId?: string;
+}) {
   const id = useId();
+  const landmark = countryId ? getCountryLandmark(countryId) : null;
+  const [imgStatus, setImgStatus] = useState<"idle" | "loading" | "loaded" | "error">(
+    landmark?.imagePath ? "loading" : "idle",
+  );
+
+  useEffect(() => {
+    if (landmark?.imagePath) {
+      setImgStatus("loading");
+    } else {
+      setImgStatus("idle");
+    }
+  }, [countryId, landmark?.imagePath]);
+
+  const hasImage = Boolean(landmark?.imagePath && imgStatus !== "error");
+
   return (
-    <svg
-      className="postcard-art"
-      viewBox="0 0 420 230"
-      preserveAspectRatio="xMidYMid slice"
-      role="img"
-      aria-label={
-        [
-          "A mountain and a Japanese garden",
-          "An island in a turquoise sea",
-          "A bridge between two shores",
-          "An open garden gate",
-        ][variant % 4]
-      }
-    >
-      <defs>
-        <linearGradient id={id} x2="0" y2="1">
-          <stop stopColor="#a9d7eb" />
-          <stop offset="1" stopColor="#f6f4df" />
-        </linearGradient>
-      </defs>
-      <rect width="420" height="230" fill={`url(#${id})`} />
-      <circle cx="318" cy="45" r="24" fill="#FFBA08" opacity=".85" />
-      <path d="M15 175 149 42 286 175Z" fill="#3F88C5" />
-      <path d="m115 76 34-34 42 41-24-8-17 9-16-12Z" fill="#fffdf7" />
-      <path d="m191 172 110-89 119 94v53H0v-46Z" fill="#136F63" opacity=".35" />
-      <path d="M0 174q115-25 214 13t206-6v49H0Z" fill="#3F88C5" opacity=".65" />
-      {variant % 4 === 0 ? (
-        <g>
-          <path d="M281 230V93m85 137V93" stroke="#D00000" strokeWidth="15" />
+    <div className="postcard-art-wrap">
+      {hasImage ? (
+        <>
+          {imgStatus === "loading" && <div className="postcard-shimmer" />}
+          <img
+            src={landmark!.imagePath}
+            alt={landmark ? `${landmark.landmarkName}, ${landmark.countryName}` : "Iconic landmark"}
+            className={`postcard-photo ${imgStatus === "loaded" ? "loaded" : "loading"}`}
+            onLoad={() => setImgStatus("loaded")}
+            onError={() => setImgStatus("error")}
+          />
+        </>
+      ) : (
+        <svg
+          className="postcard-art"
+          viewBox="0 0 420 236"
+          preserveAspectRatio="xMidYMid slice"
+          role="img"
+          aria-label={
+            landmark
+              ? `${landmark.landmarkName}, ${landmark.countryName}`
+              : [
+                  "A mountain and a Japanese garden",
+                  "An island in a turquoise sea",
+                  "A bridge between two shores",
+                  "An open garden gate",
+                ][variant % 4]
+          }
+        >
+          <defs>
+            <linearGradient id={id} x2="0" y2="1">
+              <stop stopColor="#a9d7eb" />
+              <stop offset="1" stopColor="#f6f4df" />
+            </linearGradient>
+          </defs>
+          <rect width="420" height="236" fill={`url(#${id})`} />
+          <circle cx="318" cy="45" r="24" fill="#FFBA08" opacity=".85" />
+          <path d="M15 175 149 42 286 175Z" fill="#3F88C5" />
+          <path d="m115 76 34-34 42 41-24-8-17 9-16-12Z" fill="#fffdf7" />
+          <path d="m191 172 110-89 119 94v53H0v-46Z" fill="#136F63" opacity=".35" />
+          <path d="M0 174q115-25 214 13t206-6v49H0Z" fill="#3F88C5" opacity=".65" />
+          {variant % 4 === 0 ? (
+            <g>
+              <path d="M281 236V93m85 143V93" stroke="#D00000" strokeWidth="15" />
+              <path
+                d="M266 91q60 12 117-1M274 112h103"
+                stroke="#D00000"
+                strokeWidth="12"
+              />
+              <path
+                d="M0 236V94m0 48 62-28M0 172l90-30"
+                stroke="#032B43"
+                strokeWidth="7"
+              />
+              {[10, 36, 61, 83, 104, 14, 48, 83].map((x, i) => (
+                <circle
+                  key={i}
+                  cx={x}
+                  cy={100 + (i % 3) * 23}
+                  r="19"
+                  fill={i % 2 ? "#ecd5c3" : "#f8e4d5"}
+                />
+              ))}
+            </g>
+          ) : variant % 4 === 1 ? (
+            <g>
+              <ellipse cx="177" cy="210" rx="118" ry="23" fill="#f9dfa0" />
+              <path
+                d="m148 210 7-107m0 6q-53-49-72-3 49-14 72 3-12-65 22-56 15 19-22 56 65-33 77 10-35-18-77-10"
+                fill="#136F63"
+                stroke="#136F63"
+                strokeWidth="8"
+              />
+            </g>
+          ) : variant % 4 === 2 ? (
+            <g>
+              <path
+                d="M17 213q193-161 387 0"
+                fill="none"
+                stroke="#fff8df"
+                strokeWidth="25"
+              />
+              <path
+                d="M17 190q193-161 387 0"
+                fill="none"
+                stroke="#FFBA08"
+                strokeWidth="5"
+              />
+              {[60, 110, 160, 210, 260, 310, 360].map((x) => (
+                <path
+                  key={x}
+                  d={`M${x} ${122 + Math.abs(210 - x) * 0.3}v30`}
+                  stroke="#FFBA08"
+                  strokeWidth="4"
+                />
+              ))}
+            </g>
+          ) : (
+            <g>
+              <path
+                d="M115 236V108a95 95 0 0 1 190 0v128"
+                fill="none"
+                stroke="#eac685"
+                strokeWidth="31"
+              />
+              <path d="M121 236V108l59 25v103m119 0V108l-58 25v103" fill="#136F63" />
+              <path d="M155 146v73m113-73v73" stroke="#FFBA08" strokeWidth="3" />
+            </g>
+          )}
           <path
-            d="M266 91q60 12 117-1M274 112h103"
-            stroke="#D00000"
+            d="M0 234q48-28 99-1m233 1q49-29 88-5"
+            stroke="#136F63"
             strokeWidth="12"
           />
-          <path
-            d="M0 230V94m0 48 62-28M0 172l90-30"
-            stroke="#032B43"
-            strokeWidth="7"
-          />
-          {[10, 36, 61, 83, 104, 14, 48, 83].map((x, i) => (
-            <circle
-              key={i}
-              cx={x}
-              cy={100 + (i % 3) * 23}
-              r="19"
-              fill={i % 2 ? "#ecd5c3" : "#f8e4d5"}
-            />
-          ))}
-        </g>
-      ) : variant % 4 === 1 ? (
-        <g>
-          <ellipse cx="177" cy="210" rx="118" ry="23" fill="#f9dfa0" />
-          <path
-            d="m148 210 7-107m0 6q-53-49-72-3 49-14 72 3-12-65 22-56 15 19-22 56 65-33 77 10-35-18-77-10"
-            fill="#136F63"
-            stroke="#136F63"
-            strokeWidth="8"
-          />
-        </g>
-      ) : variant % 4 === 2 ? (
-        <g>
-          <path
-            d="M17 213q193-161 387 0"
-            fill="none"
-            stroke="#fff8df"
-            strokeWidth="25"
-          />
-          <path
-            d="M17 190q193-161 387 0"
-            fill="none"
-            stroke="#FFBA08"
-            strokeWidth="5"
-          />
-          {[60, 110, 160, 210, 260, 310, 360].map((x) => (
-            <path
-              key={x}
-              d={`M${x} ${122 + Math.abs(210 - x) * 0.3}v30`}
-              stroke="#FFBA08"
-              strokeWidth="4"
-            />
-          ))}
-        </g>
-      ) : (
-        <g>
-          <path
-            d="M115 230V108a95 95 0 0 1 190 0v122"
-            fill="none"
-            stroke="#eac685"
-            strokeWidth="31"
-          />
-          <path d="M121 230V108l59 25v97m119 0V108l-58 25v97" fill="#136F63" />
-          <path d="M155 146v73m113-73v73" stroke="#FFBA08" strokeWidth="3" />
-        </g>
+        </svg>
       )}
-      <path
-        d="M0 228q48-28 99-1m233 1q49-29 88-5"
-        stroke="#136F63"
-        strokeWidth="12"
-      />
-    </svg>
+      {landmark && (
+        <div className="postcard-landmark-badge" title={`${landmark.landmarkName} (${landmark.location})`}>
+          <span className="landmark-title">
+            📍 <b>{landmark.landmarkName}</b>
+          </span>
+          <span className="landmark-loc">{landmark.location}</span>
+        </div>
+      )}
+    </div>
   );
 }
 

@@ -299,6 +299,7 @@ function Explore() {
         <aside className="postcard">
           <div className="postcard-image">
             <PostcardArt
+              countryId={destination}
               variant={
                 destination === "JP"
                   ? 0
@@ -591,7 +592,10 @@ function CountryPage() {
           </details>
         </div>
         <aside className="notebook-side">
-          <PostcardArt variant={destination === "JP" ? 0 : 3} />
+          <PostcardArt
+            countryId={destination}
+            variant={destination === "JP" ? 0 : 3}
+          />
           <h2>A place to imagine</h2>
           <p>
             The map uses a bundled third-party Passport Index snapshot for
