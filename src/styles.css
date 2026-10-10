@@ -73,9 +73,6 @@ input:focus-visible,
   outline: 3px solid var(--blue);
   outline-offset: 4px;
 }
-button:hover:not(:disabled) {
-  transform: translateY(-1px);
-}
 h1,
 h2,
 h3,
@@ -461,44 +458,6 @@ main {
   opacity: 1;
   stroke: var(--navy);
   stroke-width: 1.5;
-}
-.map-pin {
-  cursor: pointer;
-  filter: drop-shadow(0px 2px 2px #032b4317);
-}
-@keyframes mapPinPop {
-  0% {
-    opacity: 0;
-    transform: scale(0);
-  }
-  65% {
-    opacity: 1;
-    transform: scale(1.35);
-  }
-  85% {
-    transform: scale(0.92);
-  }
-  100% {
-    opacity: 1;
-    transform: scale(1);
-  }
-}
-.map-pin-pop {
-  transform-origin: 0 8px;
-  animation: mapPinPop 0.45s cubic-bezier(0.175, 0.885, 0.32, 1.275) 1.15s both;
-}
-@keyframes routeMaskReveal {
-  0% {
-    stroke-dashoffset: 100;
-  }
-  100% {
-    stroke-dashoffset: 0;
-  }
-}
-.route-mask-line {
-  stroke-dasharray: 100;
-  stroke-dashoffset: 100;
-  animation: routeMaskReveal 1.2s cubic-bezier(0.25, 0.1, 0.25, 1) forwards;
 }
 .legend {
   display: flex;
@@ -2357,27 +2316,6 @@ dialog::backdrop {
   clip-path: inset(50%);
   white-space: nowrap;
 }
-@media (prefers-reduced-motion: no-preference) {
-  .page-heading,
-  .explore-layout,
-  .dna-layout,
-  .comparison-hero,
-  .notebook,
-  .optimizer-layout,
-  .more-grid {
-    animation: arrive 0.3s ease-out both;
-  }
-  @keyframes arrive {
-    from {
-      opacity: 0;
-      transform: translateY(6px);
-    }
-    to {
-      opacity: 1;
-      transform: translateY(0);
-    }
-  }
-}
 /* Provider details preserve the notebook's existing typography and spacing. */
 .travel-brief { margin: 1.5rem 0; padding: 1.25rem; border: 1px solid var(--line, #deded3); border-radius: 18px; }
 .travel-heading { display: flex; align-items: center; justify-content: space-between; gap: 1rem; flex-wrap: wrap; }
@@ -2385,3 +2323,100 @@ dialog::backdrop {
 .travel-status { font-size: .82rem; line-height: 1.5; color: #536a70; }
 .travel-rule p { margin: .4rem 0; }
 .travel-rule a { display: inline-block; margin-top: .4rem; }
+/* Desktop audit fixes: shared controls and readable interpretation context. */
+.sr-only {
+  position: absolute; width: 1px; height: 1px; padding: 0; margin: -1px;
+  overflow: hidden; clip-path: inset(50%); white-space: nowrap; border: 0;
+}
+main { overflow: visible; }
+.passport-combobox { max-width: 100%; }
+.passport-combobox-trigger { min-width: 0; text-align: left; }
+.passport-combobox-trigger > span { white-space: normal; overflow-wrap: anywhere; }
+.passport-combobox-menu { max-width: calc(100vw - 48px); }
+.passport-combobox-menu [role="listbox"] { position: relative; }
+.passport-combobox-menu [role="option"] { cursor: pointer; }
+.legend { font-size: 12px; gap: 10px 16px; }
+.map-caption, .result-count, .map-keyboard-help { font-size: 12px; line-height: 1.5; color: #45616f; }
+.map-caption { margin: 8px 0 12px; }
+.map-keyboard-help { margin-bottom: 6px; }
+.page-explore .map-stage { min-width: 0; }
+.page-explore .view-toggle { position: static; margin-bottom: 14px; width: fit-content; }
+.page-explore .legend { justify-content: flex-start; }
+.page-explore .map-caption { text-align: left; }
+.page-explore .result-count { margin-bottom: 10px; }
+.page-explore .explore-layout { align-items: start; }
+.page-explore .postcard { margin-top: 0; }
+.page-explore .world-map > svg { max-height: max(240px, calc(100dvh - 380px)); min-height: 0; }
+.page-explore .destination-list { max-height: max(240px, calc(100dvh - 390px)); overflow-y: auto; }
+.map-country { transition: opacity 120ms; }
+.map-country:focus-visible { stroke: #032b43; stroke-width: 3; filter: drop-shadow(0 0 2px #fffdf7); transition: none; }
+.comparison-return { margin-left: 24px; }
+.notebook { grid-template-columns: minmax(0, 1fr) minmax(240px, .45fr); }
+.notebook-main, .notebook-side { min-width: 0; }
+.notebook-side { padding: 24px; }
+.notebook .requirements { margin: 16px 0; }
+.notebook .preparation-details { margin: 20px 0; }
+.notebook .preparation-details summary { font-size: 15px; }
+.requirements > div { grid-template-columns: minmax(100px, 150px) minmax(0, 1fr); gap: 16px; }
+.requirements dd { overflow-wrap: anywhere; }
+.notebook a:not(.button), .research-leads a { text-decoration: underline; text-underline-offset: 3px; color: #155779; }
+.travel-brief { margin: 20px 0; }
+.travel-rule .rule-action { display: block; width: fit-content; margin-top: 10px; }
+.travel-heading .text-button { font-size: 13px; }
+.research-result { white-space: normal; }
+.research-result > p { white-space: pre-wrap; overflow-wrap: anywhere; }
+.research-leads { display: grid; gap: 8px; }
+.research-leads h4 { font-size: 14px; margin: 0; }
+.research-leads ul { margin: 0; padding-left: 20px; }
+.research-leads li + li { margin-top: 12px; }
+.source-url { display: block; overflow-wrap: anywhere; font-size: 12px; margin-top: 4px; }
+.compare-search { display: flex; width: min(100%, 380px); max-width: none; margin: 24px 0 12px; }
+.compare-search input { width: 100%; min-width: 0; }
+.results-panel > .segmented { flex-wrap: wrap; justify-content: center; }
+.comparison-table-wrap { border: 1px solid var(--line); border-radius: 18px; overflow: hidden; background: var(--paper); margin-top: 12px; }
+.comparison-table { width: 100%; table-layout: fixed; border-collapse: collapse; text-align: left; font-size: 14px; }
+.comparison-table th, .comparison-table td { padding: 14px 18px; border-bottom: 1px solid var(--line); overflow-wrap: anywhere; }
+.comparison-table thead { background: #edf2e8; }
+.comparison-table tbody tr:last-child > * { border-bottom: 0; }
+.comparison-table td a { display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 8px; border-radius: 5px; }
+.comparison-table td a > span:last-child { display: inline-flex; align-items: center; gap: 5px; font-size: 12px; color: #155779; text-decoration: underline; text-underline-offset: 3px; }
+.comparison-table .tag { font-size: 12px; }
+.comparison-table tbody tr:hover { background: #f4f5ec; }
+.landscape { width: 100%; margin-left: 0; margin-right: 0; overflow: hidden; }
+.dna-copy .dna-encoding-note { font-size: 13px; margin: 14px 0; }
+.dna-stats { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 18px; margin: 24px 0 12px; }
+.dna-stats dd { margin: 0; font-size: 26px; font-weight: 800; font-variant-numeric: tabular-nums; }
+.dna-stats dt { font-size: 12px; margin-top: 5px; }
+.dna-copy > .result-count { margin-bottom: 20px; }
+.globe-card > .passport-select { margin: 18px 0; text-align: left; }
+.globe-card > .legend { max-width: 520px; margin: 0 auto 12px; }
+.globe-map .map-keyboard-help { max-width: 400px; margin: 0 auto 8px; }
+.postcard-landmark-badge { gap: 12px; }
+.postcard-landmark-badge .landmark-loc { color: #fffdf7; }
+@media (min-width: 1101px) {
+  .page-explore { padding-top: 24px; }
+  .page-explore .page-heading { margin-bottom: 20px; }
+  .page-explore .page-heading h1 { font-size: clamp(34px, 3vw, 46px); }
+  .page-explore .page-heading .subtitle { margin-top: 8px; font-size: 16px; }
+  .page-explore .toolbar { margin-bottom: 18px; }
+  .page-explore .explore-bottom { margin: 18px 0; }
+  .page-explore .postcard-image { max-height: 145px; }
+  .page-explore .postcard-image .postcard-art-wrap { max-height: 145px; }
+  .page-explore .postcard > .eyebrow { margin-top: 16px; }
+}
+@media (hover: hover) and (pointer: fine) and (prefers-reduced-motion: no-preference) {
+  .button, .pill, .round-button { transition: transform 140ms cubic-bezier(.23, 1, .32, 1), background-color 140ms; }
+  .button:active:not(:focus-visible), .pill:active:not(:focus-visible), .round-button:active:not(:focus-visible) { transform: scale(.97); }
+}
+@media (max-width: 1000px) {
+  .notebook { grid-template-columns: minmax(0, 1fr) 240px; }
+  .notebook-main { padding: 24px; }
+  .comparison-table th, .comparison-table td { padding: 12px; }
+}
+@media (max-width: 760px) {
+  .notebook { grid-template-columns: minmax(0, 1fr); }
+  .comparison-table th, .comparison-table td { padding: 10px 8px; }
+  .comparison-table .tag { white-space: normal; }
+  .page-explore .world-map > svg { max-height: none; }
+  .requirements > div { grid-template-columns: 110px minmax(0, 1fr); }
+}

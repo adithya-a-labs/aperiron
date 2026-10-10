@@ -1,7 +1,6 @@
-import { useId, useState, useEffect } from "react";
-import type { VisaDNA } from "../shared/contracts";
-import { accessColors } from "../frontend/engine";
-import { getCountryLandmark } from "../data/countryLandmarks";
+import { useId } from "react";
+import type { AccessLevel, VisaDNA } from "../shared/contracts";
+import { accessColors, catalog } from "../frontend/engine";
 
 export function Landscape({ compact = false }: { compact?: boolean }) {
   const id = useId();
@@ -80,50 +79,16 @@ export function PostcardArt({
   countryId?: string;
 }) {
   const id = useId();
-  const landmark = countryId ? getCountryLandmark(countryId) : null;
-  const [imgStatus, setImgStatus] = useState<"idle" | "loading" | "loaded" | "error">(
-    landmark?.imagePath ? "loading" : "idle",
-  );
-
-  useEffect(() => {
-    if (landmark?.imagePath) {
-      setImgStatus("loading");
-    } else {
-      setImgStatus("idle");
-    }
-  }, [countryId, landmark?.imagePath]);
-
-  const hasImage = Boolean(landmark?.imagePath && imgStatus !== "error");
-
+  const countryName = catalog.destinations.find(c => c.id === countryId)?.name;
+  const description = ["A mountain and a garden", "An island in a turquoise sea", "A bridge between two shores", "An open garden gate"][variant % 4];
   return (
     <div className="postcard-art-wrap">
-      {hasImage ? (
-        <>
-          {imgStatus === "loading" && <div className="postcard-shimmer" />}
-          <img
-            src={landmark!.imagePath}
-            alt={landmark ? `${landmark.landmarkName}, ${landmark.countryName}` : "Iconic landmark"}
-            className={`postcard-photo ${imgStatus === "loaded" ? "loaded" : "loading"}`}
-            onLoad={() => setImgStatus("loaded")}
-            onError={() => setImgStatus("error")}
-          />
-        </>
-      ) : (
         <svg
           className="postcard-art"
           viewBox="0 0 420 236"
           preserveAspectRatio="xMidYMid slice"
           role="img"
-          aria-label={
-            landmark
-              ? `${landmark.landmarkName}, ${landmark.countryName}`
-              : [
-                  "A mountain and a Japanese garden",
-                  "An island in a turquoise sea",
-                  "A bridge between two shores",
-                  "An open garden gate",
-                ][variant % 4]
-          }
+          aria-label={`${description} — illustration${countryName ? ` for ${countryName}` : ''}, not a photograph of a specific landmark`}
         >
           <defs>
             <linearGradient id={id} x2="0" y2="1">
@@ -211,15 +176,11 @@ export function PostcardArt({
             strokeWidth="12"
           />
         </svg>
-      )}
-      {landmark && (
-        <div className="postcard-landmark-badge" title={`${landmark.landmarkName} (${landmark.location})`}>
-          <span className="landmark-title">
-            📍 <b>{landmark.landmarkName}</b>
-          </span>
-          <span className="landmark-loc">{landmark.location}</span>
-        </div>
-      )}
+      {countryName && <div className="postcard-landmark-badge">
+        <span className="landmark-title"><b>{countryName}</b></span>
+        <span className="landmark-loc">Illustrated landscape</span>
+      </div>}
+
     </div>
   );
 }
@@ -251,8 +212,10 @@ export function PassportBook({
 export function DnaFlower({
   dna,
   small = false,
+  levels,
 }: {
   dna: VisaDNA;
+  levels?: readonly AccessLevel[];
   small?: boolean;
 }) {
   const colors = [
@@ -267,7 +230,7 @@ export function DnaFlower({
       className={`dna-flower ${small ? "small" : ""}`}
       viewBox="0 0 500 500"
       role="img"
-      aria-label={`Visa DNA for ${dna.passportId}; ${dna.vector.length} destination values. ${dna.summary.visaFree} visa-free, ${dna.summary.evisa} eVisa.`}
+      aria-label={`Visa DNA for ${dna.passportId}; ${dna.vector.length} destination values. ${dna.summary.visaFree} visa-free, ${dna.summary.visaOnArrival} on arrival, ${dna.summary.evisa} eVisa, ${dna.summary.visaRequired} visa required, ${dna.summary.restricted} restricted, ${dna.summary.unknown} unknown.`}
     >
       {dna.vector.map((value, i) => (
         <g
@@ -276,8 +239,7 @@ export function DnaFlower({
         >
           <path
             d={`M257 224 C${305 + value * 25} 182 ${320 + value * 90} 131 ${295 + value * 45} ${39 + (1 - value) * 47} C${280 + value * 36} ${19 + (1 - value) * 48} ${263 + value * 28} 31 ${279 + value * 32} ${65 + (1 - value) * 38} C${310 + value * 60} 138 286 188 257 224Z`}
-            fill={
-              colors[
+            fill={levels?.[i] ? accessColors[levels[i]] : colors[
                 value === 1
                   ? 4
                   : value >= 0.8

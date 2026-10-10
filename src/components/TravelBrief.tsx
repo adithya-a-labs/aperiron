@@ -5,7 +5,7 @@ function RuleLine({ label, rule }: { label: string; rule: TravelRule }) {
     <b>{rule.name}</b>{rule.duration && ` · ${rule.duration}`}
     {rule.condition && <p>{rule.condition}</p>}
     {rule.countryCodes.length > 0 && <p>Provider condition codes: {rule.countryCodes.join(', ')}. Check the linked guidance for eligibility.</p>}
-    {rule.link && <a href={rule.link} target="_blank" rel="noreferrer">{label === 'Arrival registration' ? 'Open registration form' : 'Open application / guidance'} ↗</a>}
+    {rule.link && <a className="rule-action" href={rule.link} target="_blank" rel="noreferrer">{label === 'Arrival registration' ? 'Open registration form' : 'Open application / guidance'} ↗</a>}
   </dd></div>;
 }
 export function TravelBrief({ detail, message, refreshing, onRefresh, changed }: {
@@ -13,10 +13,10 @@ export function TravelBrief({ detail, message, refreshing, onRefresh, changed }:
 }) {
   return <section className="travel-brief" aria-label="Travel Buddy details">
     <div className="travel-heading"><div><span className="eyebrow">DESTINATION DETAILS</span>
-      <h3>Travel Buddy</h3></div>
+      <h3>Entry & arrival information</h3></div>
       <button className="text-button" onClick={onRefresh} disabled={refreshing}>{refreshing ? 'Checking…' : 'Refresh details'}</button>
     </div>
-    <p className="travel-status" role="status">{detail ? `Last checked ${new Date(detail.fetchedAt).toLocaleString()} · unverified provider information` : 'Saved snapshot shown. Additional details appear when available.'}
+    <p className="travel-status" role="status">{detail ? `Travel Buddy · last checked ${new Date(detail.fetchedAt).toLocaleString()} · unverified provider information` : 'Saved snapshot shown. Additional details appear when available.'}
       {changed && <span> · Requirements updated from the snapshot</span>}</p>
     {message && <p className="travel-status">{message}</p>}
     {detail && <>

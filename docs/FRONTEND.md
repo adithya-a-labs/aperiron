@@ -46,8 +46,10 @@ The user authorized applying the [colour palette](COLOUR_PALETTE.md) and the
 navy typography, yellow pill actions, teal and blue map/DNA accents, and red stamps.
 Locally authored SVG postcard art, passport booklets and landscapes reflect the
 references without embedding a screenshot as a page. System fonts and bundled
-world-atlas geography work offline. Layouts adapt from 360px to desktop, with
-keyboard focus, native controls/dialogs and reduced-motion support.
+world-atlas geography work offline. The app is desktop first; current audit fixes
+target 1366×768, 1440×900 and 1920×1080. Existing narrow-width reflow remains,
+but mobile optimization is outside this work. Keyboard focus and reduced-motion
+support apply across the active screens.
 
 React, TypeScript, Vite, Zustand, Lucide and Tailwind's Vite plugin remain the stack.
 Most visual styling is semantic CSS. D3 and TopoJSON render the map and rotating
@@ -78,7 +80,11 @@ checks; active pages do not use it. No calculation server is required.
 
 `src/store/appStore.ts` holds passport/comparison/destination, world state and
 purchase feedback. Pages derive calculations from the engine. Navigation uses
-hash routes; selection and simulation survive page changes but reset on reload.
+hash routes with validated `passport`, `destination` and `comparison` catalog IDs
+in the query portion of the hash. Selections survive reload and browser history;
+simulation remains in memory and resets on reload. A comparison cell opens the
+Country Notebook with the original pair preserved; `inspect=second` chooses its
+second passport without swapping the pair. No traveller documents enter the URL.
 Preview and optimizer calls never mutate the active world. Reset preserves UI
 selection. Engine failures on purchase become visible status messages.
 
@@ -96,6 +102,28 @@ The map uses ISO numeric IDs plus point markers for countries omitted by its
 coarse geography. Unsupported areas stay hatched.
 See [DATA_POLICY.md](DATA_POLICY.md) for the review gate.
 
+The searchable passport picker exposes its active option and restores trigger
+focus on Enter/Escape. Interactive maps have one Tab stop: arrows browse visible
+countries alphabetically, Home/End jump, and Enter/Space selects. Clipped globe
+countries are omitted. Map connections and selection markers are static; repeated
+keyboard use does not animate. Pointer press feedback uses a short 140ms scale
+only when reduced motion is not requested. No page-entry animation runs.
+
+Explore search explicitly enters List view and preserves results after selection.
+The legend sits above the map. Compare provides name/code search, name sorting,
+both snapshot access categories and notebook links. DNA shows all six category
+counts and uses engine category colors, distinguishing unknown from restricted
+even though both have zero modeled weight. Lottery draws preview a passport;
+the separate explore action adopts it. Postcards use bundled SVG illustrations
+with general illustration captions; no missing photograph paths are requested.
+
+Country Notebook prioritizes provider entry/arrival rules and separates each
+action link from its value. Documents, fees and processing retain explicit unknown
+states. Research prose remains escaped text with a separate list of validated,
+credential-free HTTPS leads, labeled unverified. Provider/research failures leave
+the notebook usable. The [desktop audit](FRONTEND_AUDIT_2026-10-11.md) retains
+original findings and a resolution table.
+
 The old `frontend/types.ts`, `mocks/frontendAdapter.ts`, `store/explorerStore.ts`
 and starter map/panel components are retained for compatibility with earlier
 component work, but are no longer wired into `App.tsx`.
@@ -105,7 +133,7 @@ component work, but are no longer wired into `App.tsx`.
 `src/store/appStore.test.ts` covers all 39,601 matrix entries, destination preservation,
 invalid IDs, immutable previews, purchases, duplicates, insufficient credits,
 reset, DNA changes, optimizer bounds/projected impact, and honest missing data.
-Browser acceptance covers active routes, paused-route fallback, desktop/mobile layouts, search misses,
+Browser acceptance covers active routes, paused-route fallback, desktop layouts, search misses,
 passport changes, purchase/preview/reset, budget edges, lottery and globe controls.
 Local evidence is written to ignored `output/playwright/`.
 
