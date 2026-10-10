@@ -1,9 +1,9 @@
 # Desktop frontend audit — 2026-10-11
 
 Audit baseline: `dev-integration`, `11bc22adab3efbf52fab7ed6dce0d86dc4d5a541`.
-Read-only implementation review; recommendations below are not implemented or
-accepted redesign decisions. User explicitly prioritized desktop and excluded
-mobile optimization from this audit.
+Original read-only implementation review. The original findings below describe
+that baseline; the resolution section records the subsequent fixes requested by
+the user. Desktop remains the priority; mobile optimization is excluded.
 
 ## Assessment
 
@@ -125,5 +125,43 @@ needs competing layouts, use `prototype` in a later implementation task.
 | Build | not run | No implementation changed; typecheck/tests and running app used for this audit. |
 | Full accessibility/actual 200% zoom/performance | not run | Follow-up validation required; viewport equivalent is explicitly limited. |
 
-No implementation files changed. No commits or push performed. Integration run
-records carry the documentation checks and final local handoff status.
+The original audit changed no implementation files and performed no commit/push.
+Integration run records carry each run's actual local handoff status.
+
+## Resolution — 2026-10-11
+
+All 13 findings have implementation fixes on `dev-integration`, based on
+`ac38c6d0a0857aabe21819b4b0423fabef3b5c57`. This section supersedes the unresolved
+status above, while preserving the original observations. No engine contract,
+regulation, scoring or DNA-vector semantics changed. The game remains paused.
+
+| Finding | Before | After | Why / evidence |
+| --- | --- | --- | --- |
+| F01 | Picker dropped focus and lacked an active option/name | Extracted `PassportSelect` exposes active descendant, selected passport, options and result status; Enter/Escape restore trigger focus | Browser keyboard checks passed, including empty results and long catalog names; active option ID resolves. |
+| F02 | Hundreds of Tab stops and clipped globe targets | One roving Tab stop per interactive map, visible alphabetical arrow navigation, Home/End, Enter/Space selection; clipped paths omitted | Browser measured one Tab stop on map/globe and zero empty globe paths; arrows changed focus, Enter selected. |
+| F03 | Replayed CSS/SMIL route and pin animation | Static dashed pair connection and markers; no animation timers or SMIL | Zero `animate`, `animateMotion` or `animateTransform` elements across five active pages under reduced motion. |
+| F04 | Below-fold legend and tiny interpretation text | Legend above map, 12px supporting text, reduced Explore spacing and bounded map/list height | 1366×768 screenshot: legend y=370, requirements CTA visible; desktop screenshots at three target sizes. |
+| F05 | Static, unsorted chip wall without inspection | Name/code search, name sorting, explicit A/B snapshot-category table and inspect links | Japan found; second passport notebook opened, reloaded and returned with IN/DE pair preserved. |
+| F06 | Repeated primary stay/rule and cramped inline links | Provider summary first, secondary preparation fields grouped, smaller art column, separate underlined action rows | Cached IN→JP screenshot shows distinct application/registration actions; business purpose remains unknown and hides tourism provider rules. |
+| F07 | Plain source URLs | Escaped answer plus deduplicated, validated HTTPS lead list with full URL and unverified label | Synthetic browser success produced two clickable leads; unit test rejects credentials and non-HTTPS leads. |
+| F08 | Contradictory Map state and selection reset | Search explicitly opens List, announces count and preserves query/results on selection; Map deliberately clears search | Browser found Japan, selected it with List still pressed and query preserved; Map reset worked. |
+| F09 | Globe lacked context; lottery immediately changed selection | Globe passport control and legend; lottery preview plus explicit adoption action | URL stayed IN after draw and changed only after adoption; rotation remains available. |
+| F10 | Unknown and restricted shared red rendering; incomplete counts | Flower colors use engine access categories; six counts and accessible summary; zero-weight distinction explained | IN summary totals 199 (27/25/59/88/0/0); category rendering reads `AccessLevel`, while engine vector/hash stay unchanged. |
+| F11 | Reload discarded catalog selections | Validated hash query stores passport, destination, comparison and second-passport inspection | Browser reload and back retained pair/context; automated deep-link and invalid-ID/paused-route tests pass. |
+| F12 | Missing photograph paths and false landmark labels | Bundled SVG only, country + Illustrated landscape caption, descriptive illustration alternative text; removed missing paths from registry | Source no longer requests `/images/postcards/`; browser screenshots show local illustrations. |
+| F13 | Broad hover lift and keyboard page entrances | Removed lifts/entrances; pointer press scale .97 for 140ms only with fine pointer and no reduced-motion preference | Source gates press feedback; keyboard navigation and reduced-motion browser checks have no page-entry animation. |
+
+Final verification: typecheck, 68/68 tests and production build passed. Build emits
+the existing future Vite native-config-loader advisory. All five active pages were
+checked at 1366×768, 1440×900 and 1920×1080 with long passport names; document
+scroll width equals client width in all 15 combinations. Decorative landscape
+overflow found during verification was corrected without clipping shared controls.
+Same-passport comparison has a precise empty explanation. Synthetic research 503
+leaves the notebook usable. Browser provider refreshes and research were stubbed;
+no authenticated provider calls were made for this verification.
+
+Screenshots are local/ignored under `output/playwright/frontend-audit/fixed-*`.
+Screen-reader software, actual browser zoom, exhaustive contrast measurement and
+frame profiling were not run; keyboard/DOM checks are not accessibility certification.
+Mobile optimization was intentionally not performed. Implementation and records
+are local and uncommitted; no push performed.
