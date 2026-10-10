@@ -81,3 +81,13 @@ reset, DNA changes, optimizer bounds/projected impact, and honest missing data.
 Browser QA covers all eight routes, desktop/mobile layouts, search misses,
 passport changes, purchase/preview/reset, budget edges, lottery and globe controls.
 Local evidence is written to ignored `output/playwright/`.
+
+## Game temporarily disabled
+
+`src/frontend/features.ts` sets `GAME_ENABLED` to false at the user's request.
+The game implementations above remain in source for later restoration. Play is
+hidden from navigation; market/impact/optimizer URLs display Explore. Simulation
+switches, the country simulation section and DNA before/after comparison are hidden.
+Explore, Compare, DNA and the globe use baseline data even if a prior session held
+a purchased treaty. DNA's primary action now opens Explore. Re-enable the flag to
+restore the retained game UI. Verified country data remains a separate dependency.

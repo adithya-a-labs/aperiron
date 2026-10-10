@@ -125,3 +125,11 @@ require their own data and validation.
 
 See [architecture](ARCHITECTURE.md), [contracts](CONTRACTS.md), and
 [data policy](DATA_POLICY.md) before implementing these journeys.
+
+## Temporary game pause
+
+The user deferred the Border Market game on 2026-10-10 to focus on passport
+exploration, country information, comparison and Visa DNA. Keep the game code
+available for later, but hide its navigation, routes, simulation switches, treaty
+prompts and impact comparisons. Active experiences use baseline data. This does
+not promote the prototype matrix into verified travel guidance.

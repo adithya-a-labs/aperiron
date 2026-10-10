@@ -33,6 +33,7 @@ import {
   DnaFlower,
 } from "./components/Artwork";
 import { WorldMap } from "./components/AccessMap";
+import { GAME_ENABLED } from "./frontend/features";
 
 const routes = [
   "explore",
@@ -47,6 +48,8 @@ const routes = [
 type Page = (typeof routes)[number];
 function readRoute(): Page {
   const value = window.location.hash.slice(2);
+  if (!GAME_ENABLED && ["market", "impact", "optimizer"].includes(value))
+    return "explore";
   return routes.includes(value as Page) ? (value as Page) : "explore";
 }
 function unwrap<T>(result: Result<T>): T {
@@ -162,6 +165,7 @@ function ModeSwitch({
   simulated: boolean;
   setSimulated: (b: boolean) => void;
 }) {
+  if (!GAME_ENABLED) return null;
   return (
     <div className="segmented" aria-label="Map data mode">
       <button aria-pressed={!simulated} onClick={() => setSimulated(false)}>
@@ -181,7 +185,10 @@ function Explore() {
   const [list, setList] = useState(false);
   const [simulated, setSimulated] = useState(false);
   const view = unwrap(
-    engine.getPassportView(passport, simulated ? world : INITIAL_WORLD_STATE),
+    engine.getPassportView(
+      passport,
+      GAME_ENABLED && simulated ? world : INITIAL_WORLD_STATE,
+    ),
   );
   const destinations = view.destinations.filter((d) =>
     d.destinationName.toLowerCase().includes(search.toLowerCase()),
@@ -347,7 +354,10 @@ function CountryPage() {
     engine.getPassportView(passport, INITIAL_WORLD_STATE),
   ).destinations.find((d) => d.destinationId === destination)!;
   const simulated = unwrap(
-    engine.getPassportView(passport, world),
+    engine.getPassportView(
+      passport,
+      GAME_ENABLED ? world : INITIAL_WORLD_STATE,
+    ),
   ).destinations.find((d) => d.destinationId === destination)!;
   return (
     <>
@@ -450,22 +460,46 @@ function CountryPage() {
               </div>
             ))}
           </dl>
-          {!!requirements.unresolvedConditions?.length && <div className="notice-box">
-            <b>A few things are still unknown.</b>
-            <p>
-              {requirements.unresolvedConditions?.join(" ")}{" "}
-              {purpose !== "tourism"
-                ? "The sample map models tourism only."
-                : ""}
-            </p>
-          </div>}
+          {!!requirements.unresolvedConditions?.length && (
+            <div className="notice-box">
+              <b>A few things are still unknown.</b>
+              <p>
+                {requirements.unresolvedConditions?.join(" ")}{" "}
+                {purpose !== "tourism"
+                  ? "The sample map models tourism only."
+                  : ""}
+              </p>
+            </div>
+          )}
           <details>
             <summary>Sources & traveller context</summary>
             <p>
-              Ordinary passport · {purpose}. {requirements.sources.length ? 'Review the source and its applicability before planning travel.' : 'No verified source record is connected for this selection. Check the destination’s official immigration authority before planning travel.'}
+              Ordinary passport · {purpose}.{" "}
+              {requirements.sources.length
+                ? "Review the source and its applicability before planning travel."
+                : "No verified source record is connected for this selection. Check the destination’s official immigration authority before planning travel."}
             </p>
-            {requirements.sources.map(source => <p key={source.id}><a href={source.url} target="_blank" rel="noreferrer">{source.title} ↗</a><br/>{source.issuingAuthority} · verified {source.verifiedAt || 'not available'}</p>)}
-            {requirements.applicationChannel.url && <p><a href={requirements.applicationChannel.url} target="_blank" rel="noreferrer">{requirements.applicationChannel.name} ↗</a></p>}
+            {requirements.sources.map((source) => (
+              <p key={source.id}>
+                <a href={source.url} target="_blank" rel="noreferrer">
+                  {source.title} ↗
+                </a>
+                <br />
+                {source.issuingAuthority} · verified{" "}
+                {source.verifiedAt || "not available"}
+              </p>
+            ))}
+            {requirements.applicationChannel.url && (
+              <p>
+                <a
+                  href={requirements.applicationChannel.url}
+                  target="_blank"
+                  rel="noreferrer"
+                >
+                  {requirements.applicationChannel.name} ↗
+                </a>
+              </p>
+            )}
           </details>
         </div>
         <aside className="notebook-side">
@@ -476,19 +510,21 @@ function CountryPage() {
             separate from verified entry requirements.
           </p>
           <Tag level={sample.accessLevel} />
-          <div className="simulation-box">
-            <span className="stamp inline">FICTIONAL SIMULATION</span>
-            <h3>Your world</h3>
-            <Tag level={simulated.accessLevel} />
-            <p>
-              {simulated.isSimulated
-                ? "Your treaties changed this sample route. Real requirements remain unchanged."
-                : "No treaty has changed this sample route."}
-            </p>
-            <button className="text-button" onClick={() => go("market")}>
-              Try the Border Market <ArrowRight size={16} />
-            </button>
-          </div>
+          {GAME_ENABLED && (
+            <div className="simulation-box">
+              <span className="stamp inline">FICTIONAL SIMULATION</span>
+              <h3>Your world</h3>
+              <Tag level={simulated.accessLevel} />
+              <p>
+                {simulated.isSimulated
+                  ? "Your treaties changed this sample route. Real requirements remain unchanged."
+                  : "No treaty has changed this sample route."}
+              </p>
+              <button className="text-button" onClick={() => go("market")}>
+                Try the Border Market <ArrowRight size={16} />
+              </button>
+            </div>
+          )}
         </aside>
       </div>
     </>
@@ -504,7 +540,7 @@ function Compare() {
     engine.comparePassports(
       passport,
       comparison,
-      simulated ? world : INITIAL_WORLD_STATE,
+      GAME_ENABLED && simulated ? world : INITIAL_WORLD_STATE,
     ),
   );
   const ids =
@@ -642,7 +678,12 @@ function Dna() {
   const baseline = unwrap(
     engine.generateVisaDNA(passport, INITIAL_WORLD_STATE),
   );
-  const after = unwrap(engine.generateVisaDNA(passport, world));
+  const after = unwrap(
+    engine.generateVisaDNA(
+      passport,
+      GAME_ENABLED ? world : INITIAL_WORLD_STATE,
+    ),
+  );
   const dna = simulated ? after : baseline;
   return (
     <>
@@ -676,8 +717,9 @@ function Dna() {
               <span>Places modeled</span>
             </div>
           </div>
-          <Button onClick={() => go("market")}>
-            Change your world <ArrowRight size={18} />
+          <Button onClick={() => go(GAME_ENABLED ? "market" : "explore")}>
+            {GAME_ENABLED ? "Change your world" : "Explore destinations"}{" "}
+            <ArrowRight size={18} />
           </Button>
         </div>
         <div className="dna-hero">
@@ -700,22 +742,24 @@ function Dna() {
         </p>
         <code>{dna.hash}</code>
       </details>
-      <div className="dna-comparison">
-        <div>
-          <DnaFlower dna={baseline} small />
-          <span>Baseline</span>
+      {GAME_ENABLED && (
+        <div className="dna-comparison">
+          <div>
+            <DnaFlower dna={baseline} small />
+            <span>Baseline</span>
+          </div>
+          <ArrowRight />
+          <div>
+            <DnaFlower dna={after} small />
+            <span>Your simulation</span>
+          </div>
+          <p>
+            {baseline.hash === after.hash
+              ? "Your pattern hasn’t changed yet. Try a treaty in the Border Market."
+              : "Your treaties have changed the pattern. Same passport, new possibilities."}
+          </p>
         </div>
-        <ArrowRight />
-        <div>
-          <DnaFlower dna={after} small />
-          <span>Your simulation</span>
-        </div>
-        <p>
-          {baseline.hash === after.hash
-            ? "Your pattern hasn’t changed yet. Try a treaty in the Border Market."
-            : "Your treaties have changed the pattern. Same passport, new possibilities."}
-        </p>
-      </div>
+      )}
     </>
   );
 }
@@ -926,7 +970,12 @@ function Impact() {
   const baseline = unwrap(
     engine.getPassportView(passport, INITIAL_WORLD_STATE),
   );
-  const after = unwrap(engine.getPassportView(passport, world));
+  const after = unwrap(
+    engine.getPassportView(
+      passport,
+      GAME_ENABLED ? world : INITIAL_WORLD_STATE,
+    ),
+  );
   return (
     <>
       <PlayHeader page="impact" />
@@ -1002,7 +1051,7 @@ function Impact() {
               </span>
             ))}
           </div>
-          <Button onClick={() => go("market")}>
+          <Button onClick={() => go(GAME_ENABLED ? "market" : "explore")}>
             Keep exploring treaties <ArrowRight size={17} />
           </Button>
         </section>
@@ -1017,7 +1066,12 @@ function Impact() {
             />
             <ArrowRight />
             <DnaFlower
-              dna={unwrap(engine.generateVisaDNA(passport, world))}
+              dna={unwrap(
+                engine.generateVisaDNA(
+                  passport,
+                  GAME_ENABLED ? world : INITIAL_WORLD_STATE,
+                ),
+              )}
               small
             />
           </div>
@@ -1200,7 +1254,12 @@ function More() {
           <h2>The world, a little rounder.</h2>
           <WorldMap
             globe
-            view={unwrap(engine.getPassportView(passport, world))}
+            view={unwrap(
+              engine.getPassportView(
+                passport,
+                GAME_ENABLED ? world : INITIAL_WORLD_STATE,
+              ),
+            )}
             onSelect={(id) => {
               setDestination(id);
               go("country");
@@ -1232,7 +1291,12 @@ function More() {
 }
 
 export default function App() {
-  const [page, setPage] = useState<Page>(readRoute);
+  const [requestedPage, setPage] = useState<Page>(readRoute);
+  // Also guard existing sessions whose route was selected before the game pause.
+  const page =
+    !GAME_ENABLED && ["market", "impact", "optimizer"].includes(requestedPage)
+      ? "explore"
+      : requestedPage;
   const { notice, world } = useAppStore();
   const main = useRef<HTMLElement>(null);
   useEffect(() => {
@@ -1278,18 +1342,20 @@ export default function App() {
               ["market", "Play"],
               ["more", "More"],
             ] as const
-          ).map(([route, label]) => (
-            <a
-              key={route}
-              href={`#/${route}`}
-              aria-current={active === route ? "page" : undefined}
-            >
-              {label}
-              {route === "market" && world.purchasedTreatyIds.length > 0 && (
-                <i />
-              )}
-            </a>
-          ))}
+          )
+            .filter(([route]) => GAME_ENABLED || route !== "market")
+            .map(([route, label]) => (
+              <a
+                key={route}
+                href={`#/${route}`}
+                aria-current={active === route ? "page" : undefined}
+              >
+                {label}
+                {route === "market" && world.purchasedTreatyIds.length > 0 && (
+                  <i />
+                )}
+              </a>
+            ))}
         </nav>
         <span className="header-motto">
           A more open tomorrow <Sun size={25} />
@@ -1304,11 +1370,11 @@ export default function App() {
           <Compare />
         ) : page === "dna" ? (
           <Dna />
-        ) : page === "market" ? (
+        ) : GAME_ENABLED && page === "market" ? (
           <Market />
-        ) : page === "impact" ? (
+        ) : GAME_ENABLED && page === "impact" ? (
           <Impact />
-        ) : page === "optimizer" ? (
+        ) : GAME_ENABLED && page === "optimizer" ? (
           <Optimizer />
         ) : (
           <More />
@@ -1321,7 +1387,7 @@ export default function App() {
         <span>Prototype data · 12 passports · 30 destinations</span>
       </footer>
       <div className="toast" role="status" key={notice}>
-        {notice}
+        {GAME_ENABLED ? notice : ""}
       </div>
     </div>
   );
