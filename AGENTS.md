@@ -44,6 +44,10 @@ Select relevant skills; do not load every workflow for a simple task. Skills do
 not install tools, create schedules, or authorize extra external actions. Per-run
 logging applies even if a skill was not automatically selected.
 
+Developer branch names are exactly `dev-adithyaa` and `dev-prabhu`. Do not add
+slash prefixes or task suffixes to these names. Developer identity and module
+ownership remain separate concerns.
+
 ## Start of every run
 
 1. Read `docs/state/README.md` and both developer state files.

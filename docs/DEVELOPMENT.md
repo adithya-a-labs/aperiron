@@ -61,9 +61,9 @@ added skills do not appear. A skill's instructions do not install its external t
 
 ### Work
 
-Use a branch such as `codex/dev-adithyaa-country-panel` or
-`codex/dev-prabhu-treaty-engine` once task ownership is known. Examples do not assign
-roles. Respect a user-requested branch name. Avoid mixing independent tasks into
+Use the exact developer branch names `dev-adithyaa` and `dev-prabhu`, without
+slash prefixes or task suffixes. These names do not assign module ownership.
+Respect a user-requested branch name. Avoid mixing independent tasks into
 the same branch and never reset another task's local changes to get a clean tree.
 
 Review diffs as you work. Choose checks from [VERIFICATION.md](VERIFICATION.md).

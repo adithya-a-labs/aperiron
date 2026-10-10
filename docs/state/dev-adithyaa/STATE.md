@@ -1,11 +1,11 @@
 # dev-adithyaa — current state
 
-- Updated at: 2026-10-10T14:00:05Z
+- Updated at: 2026-10-10T14:07:49Z
 - Status: idle
-- Task: Group and commit accumulated project setup changes
+- Task: Correct developer branch naming to exact hyphenated names
 - Branch: main
-- Baseline commit: 3a0e1def02595041216aa9d89d584727b2813d03
-- Latest run: [20261010T140005Z-b291e8c4](runs/20261010T140005Z-b291e8c4.md)
+- Baseline commit: db5f5d3eba79066299aca4bd2a06e24904520f43
+- Latest run: [20261010T140749Z-d8721a06](runs/20261010T140749Z-d8721a06.md)
 
 ## Completed
 
@@ -17,6 +17,7 @@ updated the validation script and recorded the accepted naming decision.
 Grouped setup into product/technical docs, agent workflows/checks, and developer
 state/history commits. First two commits are b15f465 and 25388c0; this summary is
 included in the final state/history commit.
+Corrected branch naming to exactly dev-adithyaa and dev-prabhu without prefixes.
 
 ## In progress
 
@@ -44,5 +45,6 @@ the exploration flow. Push under user authorization to share the commits.
 
 Module ownership has not been assigned. Read `../dev-prabhu/STATE.md` and check
 actual repository changes before editing shared files.
-Commits are local on main and have not been pushed. Separate task branches should be
-used once concurrent implementation begins. No changes made to dev-prabhu's state.
+Setup commits are local on main and have not been pushed. The branch-naming
+correction is uncommitted. Use the exact developer branches for concurrent work.
+No changes made to dev-prabhu's state.
