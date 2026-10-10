@@ -9,3 +9,4 @@ output/
 !.env.example
 *.tsbuildinfo
 .playwright-cli/
+.cache/
