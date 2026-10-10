@@ -16,7 +16,9 @@
     "preview": "vite preview --host 127.0.0.1",
     "check": "npm run typecheck && npm test && npm run build",
     "data:build": "tsx scripts/build-passport-index.ts",
-    "travel:import": "tsx scripts/import-travel-buddy.ts"
+    "travel:import": "tsx scripts/import-travel-buddy.ts",
+    "assistant:openapi": "tsx scripts/generate-assistant-openapi.ts",
+    "assistant:live": "tsx scripts/test-assistant-live.ts"
   },
   "dependencies": {
     "d3-geo": "3.1.1",
