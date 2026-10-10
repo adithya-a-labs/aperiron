@@ -253,6 +253,59 @@ main {
   font-size: 12px;
   white-space: nowrap;
 }
+.passport-combobox {
+  position: relative;
+}
+.passport-combobox-trigger {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  color: var(--navy);
+  white-space: nowrap;
+}
+.passport-combobox-menu {
+  position: absolute;
+  z-index: 20;
+  top: calc(100% + 8px);
+  left: 0;
+  width: min(290px, calc(100vw - 32px));
+  padding: 10px;
+  border: 1px solid var(--line);
+  border-radius: 16px;
+  background: #fffefa;
+  box-shadow: 0 12px 28px #032b4326;
+}
+.passport-combobox-menu input {
+  width: 100%;
+  padding: 9px 11px;
+  border: 1px solid var(--line);
+  border-radius: 10px;
+  color: var(--navy);
+  background: #fff;
+}
+.passport-combobox-menu [role="listbox"] {
+  display: grid;
+  gap: 2px;
+  max-height: 220px;
+  margin-top: 8px;
+  overflow-y: auto;
+}
+.passport-combobox-menu [role="option"] {
+  padding: 8px 10px;
+  border-radius: 8px;
+  color: var(--navy);
+  text-align: left;
+}
+.passport-combobox-menu [role="option"]:hover,
+.passport-combobox-menu [role="option"][aria-selected="true"],
+.passport-combobox-menu [role="option"][data-active="true"] {
+  background: #efeee6;
+}
+.passport-combobox-menu p {
+  margin: 8px 10px;
+  color: #536a70;
+  font-size: 12px;
+}
 .search {
   max-width: 290px;
 }
@@ -412,6 +465,40 @@ main {
 .map-pin {
   cursor: pointer;
   filter: drop-shadow(0px 2px 2px #032b4317);
+}
+@keyframes mapPinPop {
+  0% {
+    opacity: 0;
+    transform: scale(0);
+  }
+  65% {
+    opacity: 1;
+    transform: scale(1.35);
+  }
+  85% {
+    transform: scale(0.92);
+  }
+  100% {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+.map-pin-pop {
+  transform-origin: 0 8px;
+  animation: mapPinPop 0.45s cubic-bezier(0.175, 0.885, 0.32, 1.275) 1.15s both;
+}
+@keyframes routeMaskReveal {
+  0% {
+    stroke-dashoffset: 100;
+  }
+  100% {
+    stroke-dashoffset: 0;
+  }
+}
+.route-mask-line {
+  stroke-dasharray: 100;
+  stroke-dashoffset: 100;
+  animation: routeMaskReveal 1.2s cubic-bezier(0.25, 0.1, 0.25, 1) forwards;
 }
 .legend {
   display: flex;

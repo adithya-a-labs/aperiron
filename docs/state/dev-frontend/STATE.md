@@ -1,29 +1,32 @@
 # dev-frontend state
 
-- Updated at: 2026-10-10T21:20:00Z
+- Updated at: 2026-10-10T23:06:35Z
 - Status: ready_for_review
-- Task: Build Phase 1 & Phase 2 for country iconic landmark postcards (landmarks catalog + 16:9 container with smooth loading & fallback support)
+- Task: Keep the active passport option visible during keyboard navigation
 - Branch: dev-frontend
-- Baseline commit: 1785bd1f7051f67fbb16bf7df38d2f0d986b208b
-- Latest run: [Postcard landmarks Phase 1 & 2](runs/20261010T212000Z-postcard-landmarks-phase1-phase2-9e81b2.md)
+- Baseline commit: 9259c96f6157aa4449ee0ee80dba693a8bcd5bdb
+- Latest run: [Passport selector scrolling](runs/20261010T230635Z-passport-selector-scroll-2a7f6e.md)
 
 ## Completed
 
-1. Created `src/data/countryLandmarks.ts` mapping countries to iconic landmarks, locations, and captions, with automatic fallback for all 199 countries.
-2. Created `public/images/postcards/` for storing 16:9 cartoonish landmark artwork.
-3. Upgraded `PostcardArt` in `src/components/Artwork.tsx` to accept `countryId?: string`, render a 16:9 aspect-ratio container (`.postcard-art-wrap`), display smooth image loading with shimmer animation, gracefully fall back to 16:9 cartoonish SVG illustrations, and overlay an informative landmark badge (`.postcard-landmark-badge`).
-4. Wired `countryId={destination}` in `src/App.tsx` across the Explore and Country Notebook views.
-5. Styled the 16:9 layout, shimmer animation, image fade-in, and frosted landmark badge in `src/styles.css`.
+- Converted route line stroke and endpoint anchor dots to solid black (`#000000`).
+- Fixed animation replaying when changing clicked countries by adding SVG timeline reset (`setCurrentTime(0)`), `.beginElement()` triggers on all SMIL animation nodes, and CSS animation classes for persistent replay on every destination change.
+- Replaced the reusable passport selector with a click-open, searchable dropdown. It filters by passport name or ISO code and retains the existing selection callback.
+- Added a visible downward chevron beside the selected passport in the selector trigger.
+- Added Arrow-key navigation, Enter selection and a visible active-option state to the passport dropdown.
+- Kept the active passport option in view while Arrow-key navigation moves through the scrollable dropdown list.
+- All changes are local and uncommitted (0 commits).
 
 ## In progress
 
-None. Ready for Phase 3 (generating/sourcing 16:9 cartoonish landmark images).
+None.
 
 ## Verification
 
-`npm run typecheck` passed (0 diagnostics).
-`npm test` passed (29 of 29 suites passed).
-`npm run build` passed (production bundle compiled cleanly).
+`npm run typecheck` passed (0 diagnostics) after the selector change.
+Prior `npm test` passed (44 of 44 suites passed).
+Prior `npm run build` passed (production bundle compiled cleanly).
+`git diff --check` passed for the selector change; an unrelated existing run record has a trailing-newline warning.
 Local uncommitted working tree preserved; 0 commits made.
 
 ## Blockers
@@ -32,12 +35,10 @@ None.
 
 ## Next actions
 
-Proceed to Phase 3 upon user instruction. Commit or push only when explicitly requested by the user.
+Await further user instructions. Commit or push only when explicitly requested by the user.
 
 ## Coordination
 
-Work performed strictly in the `dev-frontend` collaboration lane on UI and landmark data files
-(`src/data/countryLandmarks.ts`, `src/components/Artwork.tsx`, `src/App.tsx`, `src/styles.css`).
+Work performed strictly in the `dev-frontend` collaboration lane on `src/components/AccessMap.tsx`.
 Engine calculation contracts remain untouched. All changes are local and uncommitted.
-
 
