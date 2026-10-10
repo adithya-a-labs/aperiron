@@ -111,6 +111,29 @@ provider auth/rate-limit failures, malformed responses and credential non-disclo
 Provider responses in automated tests are mocked; authenticated Groq requests need
 an account key and are a separate verification step.
 
+## Assistant backend checks
+
+`npm test` includes `server/assistant.test.ts`: actual loopback HTTP coverage for
+all 30 operations and runtime request/response schemas. Tests cover Origin/CSRF,
+session isolation, malformed/oversized requests, calendar dates, idempotency,
+duplicate messages, revisions, busy conversations, cancellation, supersession,
+restart, queue/rate/budget limits, provider cooldown, map pagination, unknown stay,
+group intersection/deduplication/quota reserve, source grounding, transforms and
+immutable historical exports. Providers are mocked; these tests spend no quota.
+The integrated suite currently passes 65 tests plus typecheck/build.
+
+OpenAPI drift is checked against the authoritative runtime schemas and operation
+catalog in that suite. Also run `npm.cmd run assistant:openapi -- --check`.
+This is contract consistency verification, not an independent external OpenAPI
+linter. Read [backend handoff](ASSISTANT_BACKEND.md) for endpoint formats and known
+evidence limits.
+
+Explicit diagnostic commands in the guide authenticate real 120B strict output,
+map/chat HTTP jobs and browser search, with per-run call caps and ignored reports.
+Actual source metadata can have empty excerpts or mismatched jurisdictions. A
+successful API call validates entitlement and response format, not travel rules.
+Account rate limits and strict-schema failures are distinct from mocked success.
+
 ## Manual Travel Buddy trial
 
 The implemented service is covered by mocked provider tests for normalizing rules,
