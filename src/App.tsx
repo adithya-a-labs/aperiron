@@ -40,31 +40,15 @@ import { composeExploration } from "./engine/exploration";
 import { primaryAccess } from "./shared/travelDetails";
 import { TravelBrief } from "./components/TravelBrief";
 import { PassportSelect } from "./components/PassportSelect";
+import { pageHash, readPage, type Page } from "./frontend/navigation";
 
-const routes = [
-  "explore",
-  "country",
-  "compare",
-  "dna",
-  "market",
-  "impact",
-  "optimizer",
-  "more",
-] as const;
-type Page = (typeof routes)[number];
 type GroqResearch = ResearchResponse & { contextKey: string };
-function readRoute(): Page {
-  const value = window.location.hash.slice(2);
-  if (!GAME_ENABLED && ["market", "impact", "optimizer"].includes(value))
-    return "explore";
-  return routes.includes(value as Page) ? (value as Page) : "explore";
-}
 function unwrap<T>(result: Result<T>): T {
   if (!result.success) throw new Error(result.error.message);
   return result.data;
 }
 function go(page: Page) {
-  window.location.hash = `/${page}`;
+  window.location.hash = pageHash(page, useAppStore.getState());
 }
 function country(id: string) {
   return (
@@ -326,9 +310,10 @@ function Explore() {
   );
 }
 
-function CountryPage() {
-  const { passport, setPassport, destination, setDestination, world, selectionRevision, selectionKey } =
-    useAppStore();
+function CountryPage({ inspectSecond = false }: { inspectSecond?: boolean }) {
+  const { passport: firstPassport, comparison, setPassport: setFirstPassport, setComparison, destination, setDestination, world, selectionRevision, selectionKey } = useAppStore();
+  const passport = inspectSecond ? comparison : firstPassport;
+  const setPassport = inspectSecond ? setComparison : setFirstPassport;
   const [purpose, setPurpose] =
     useState<TravellerContext["purpose"]>("tourism");
   const openedPassport = useRef(passport);
@@ -1359,17 +1344,18 @@ function More() {
 }
 
 export default function App() {
-  const [requestedPage, setPage] = useState<Page>(readRoute);
+  const [routeHash, setRouteHash] = useState(window.location.hash);
+  const requestedPage = readPage(routeHash);
   // Also guard existing sessions whose route was selected before the game pause.
   const page =
     !GAME_ENABLED && ["market", "impact", "optimizer"].includes(requestedPage)
       ? "explore"
       : requestedPage;
-  const { notice, world } = useAppStore();
+  const { notice, world, passport, destination, comparison } = useAppStore();
   const main = useRef<HTMLElement>(null);
   useEffect(() => {
     const change = () => {
-      setPage(readRoute());
+      setRouteHash(window.location.hash);
       window.scrollTo({ top: 0, behavior: "instant" });
       main.current?.focus();
     };
@@ -1398,7 +1384,7 @@ export default function App() {
         Skip to content
       </a>
       <header className="site-header">
-        <a href="#/explore" className="wordmark" aria-label="aperiron home">
+        <a href={pageHash("explore", { passport, destination, comparison })} className="wordmark" aria-label="aperiron home">
           aperiron<span>.</span>
         </a>
         <nav aria-label="Main navigation">
@@ -1415,7 +1401,7 @@ export default function App() {
             .map(([route, label]) => (
               <a
                 key={route}
-                href={`#/${route}`}
+                href={pageHash(route, { passport, destination, comparison })}
                 aria-current={active === route ? "page" : undefined}
               >
                 {label}
@@ -1429,11 +1415,11 @@ export default function App() {
           A more open tomorrow <Sun size={25} />
         </span>
       </header>
-      <main ref={main} tabIndex={-1} id="main">
+      <main ref={main} tabIndex={-1} id="main" className={`page-${page}`}>
         {page === "explore" ? (
           <Explore />
         ) : page === "country" ? (
-          <CountryPage />
+          <CountryPage inspectSecond={new URLSearchParams(routeHash.split("?")[1]).get("inspect") === "second"} />
         ) : page === "compare" ? (
           <Compare />
         ) : page === "dna" ? (
