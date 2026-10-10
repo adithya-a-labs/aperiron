@@ -31,10 +31,14 @@ required for the local preview.
 
 ## Foundation
 
+Future visual work should consult the user-supplied [colour palette](COLOUR_PALETTE.md).
+It is stored as a reference only; applying it to the UI is deferred by the user.
+
 - React + TypeScript + Vite for the application and build.
 - Tailwind's Vite plugin plus semantic CSS tokens in `src/styles.css`.
 - Zustand for passport/destination UI selection.
 - Lucide for consistent interface icons.
+- React Simple Maps 5.0.5 is installed for map development; components do not yet import it.
 - D3 geographic projection and TopoJSON tooling with locally bundled world-atlas
   geometry for the map component. No runtime remote map request is required.
 - Node's test runner through tsx for frontend adapter/store invariants. The test

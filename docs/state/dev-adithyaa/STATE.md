@@ -1,58 +1,79 @@
 # dev-adithyaa — current state
 
-- Updated at: 2026-10-10T14:26:00Z
+- Updated at: 2026-10-10T15:15:09Z
 - Status: in_progress
-- Task: Frontend setup followed by isolated parallel component work
+- Task: Page worktree guidance delivered; common frontend baseline and integration pending
 - Branch: dev-adithyaa
 - Role: Frontend experience owner
-- Baseline commit: ba75bad9fff7dba85b69e0153a07ce524ba34f1d
-- Latest run: [20261010T142600Z-7391cba4](runs/20261010T142600Z-7391cba4.md)
+- Baseline commit: adb14d9
+- Latest run: [20261010T151509Z-worktree-guidance-85b611e7](runs/20261010T151509Z-worktree-guidance-85b611e7.md)
 
 ## Completed
 
-Added product, architecture, contract, data, development, and verification guides;
-decision records/templates; six agent skills; documentation checker; root guidance
-and navigation. The user explicitly established this session's developer identity.
-Renamed project branding and all six skill directories/metadata to aperiron;
-updated the validation script and recorded the accepted naming decision.
-Grouped setup into product/technical docs, agent workflows/checks, and developer
-state/history commits. First two commits are b15f465 and 25388c0; this summary is
-included in the final state/history commit.
-Corrected branch naming to exactly dev-adithyaa and dev-prabhu without prefixes.
-Recorded the user's frontend assignment, scope boundaries, and first milestones.
-Recorded the user's core-engine assignment for dev-prabhu and the shared boundaries.
-Explained isolated parallel frontend tasks and coordinator-owned integration;
-no worktrees or agents launched by this guidance run.
+Product/architecture/contracts/data/development/verification documentation, agent
+skills and documentation checker are established. Frontend foundation is committed
+at adb14d9: React, TypeScript, Vite, Tailwind, Zustand, selection shell, provisional
+adapter and fictional fixtures for three passports/six destinations.
+Separate commits implement offline map/search (76afb97) and destination brief
+(5227d93); neither is integrated into this checkout. Palette is saved in
+[COLOUR_PALETTE.md](../../COLOUR_PALETTE.md); UI application is explicitly deferred.
+This analysis-only review reconciled stale setup checkpoint claims with Git/source.
 
 ## In progress
 
-Frontend scaffold, provisional adapter, fictional fixtures, and selection tests
-written. Dependency setup, verification, and parallel worktree phase are in progress.
-No core engine, verified visa dataset, or AI service implemented.
+Integrating the map and panel remains outstanding. Current components are
+placeholders. No core engine, verified regulation dataset, DNA, comparison,
+treaty simulation or optimizer is implemented in this checkout.
 
 ## Verification
 
-Frontend typecheck, three behavior tests, and production build passed. Documentation
-links/metadata passed, and browser preview loaded. Combined map/panel browser
-verification follows parallel component work.
+Earlier foundation checkpoint records typecheck, three tests, production build,
+documentation check and browser preview passing. This review inspected source and
+component commit contents; application tests/build/browser checks were not rerun.
+Combined UI behavior remains unverified. Direct worktree status access was denied;
+uncommitted work in those checkouts was not assessed. Documentation checks follow
+this state write.
 
 ## Blockers
 
-No current blocker; dependency installation completed.
-Core contract semantics remain a separate coordination milestone.
+No foundation blocker. Core API semantics need coordination with Prabhu.
 
 ## Next actions
 
-Commit a common baseline; create
-detached worktrees and delegate map/panel components with nonoverlapping ownership;
-integrate and inspect the combined UI.
+Integrate map/panel changes while preserving run history and local palette edits;
+verify combined selection, switching and responsive/keyboard behavior. Coordinate
+engine contracts before actual engine integration.
 
 ## Coordination
 
-Frontend belongs to dev-adithyaa; core engine belongs to dev-prabhu.
-Read `../dev-prabhu/STATE.md` and check actual changes before shared-interface edits.
-Current branch is dev-adithyaa; frontend setup is currently local/uncommitted.
-No push/deployment performed. The adapter is a provisional frontend seam rather
-than a frozen core API; coordinate with Prabhu before actual engine integration.
-All parallel frontend agents represent dev-adithyaa; reconcile their state
-summaries after integrating unique run entries. dev-prabhu retains engine ownership.
+Frontend belongs to dev-adithyaa; engine belongs to dev-prabhu, whose record remains
+not_started. Provisional frontend types are not a frozen engine API. Foundation is
+committed; palette and this review's records remain local/uncommitted. No push or
+deployment performed in this review; remote freshness was not checked.
+
+## Latest dependency update
+
+React Simple Maps 5.0.5 installed and pinned; components do not yet import it.
+Current npm run check passed: typecheck, three tests and production build.
+Updated FRONTEND.md; installation and records are local/uncommitted. Existing
+palette deferral and map/panel integration work remain unchanged.
+## Latest design exploration
+
+Generated a preview board for Explore, Compare, Visa DNA and Border Market using
+warm backgrounds, sunny buttons, travel illustrations and palette accents.
+This is an illustrative proposal, not implemented UI or real regulation data.
+No application code changed. User requested playful, happy, minimal interaction.
+## Revised concepts
+
+Four boards saved under output/design-concepts cover eight screens, including
+separate optional/proposed concepts. Marketing prose removed; functional states
+and documented journeys included. Raster output has palette and sample-value
+inconsistencies; use exact hex values/docs as implementation authority. No UI code
+changed and no engine semantics were frozen. Records and images remain local.
+## Reference-led playful revision
+
+Saved four new boards under output/design-concepts/playful-v3, using supplied
+reference's warm backgrounds, illustrations, rounded controls and colorful accents.
+Eight screens retain core journeys and separate optional concepts. Generated
+labels/maps contain illustrative inconsistencies recorded in latest run; docs
+remain authoritative. No application code changed, committed or pushed.
