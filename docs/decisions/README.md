@@ -16,6 +16,7 @@ why a choice was made.
 | [0005](0005-prabhu-core-engine-ownership.md) | Accepted | dev-prabhu owns the core engine. |
 | [0006](0006-frontend-foundation-and-worktree-boundaries.md) | Accepted | Runnable frontend scaffold, provisional adapter, and isolated component worktrees. |
 | [0007](0007-local-groq-research.md) | Accepted | Local Groq Browser Search through a server endpoint and optional Country Notebook action. |
+| [0008](0008-travel-buddy-destination-enrichment.md) | Accepted direction; implementation pending | Local map and model calculations with cached Travel Buddy destination enrichment. |
 
 ## Adding or superseding a record
 

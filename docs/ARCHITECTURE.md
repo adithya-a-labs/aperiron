@@ -10,6 +10,11 @@ TypeScript engine runs in the browser across 199 passport origins and 199 destin
 detailed official regulation coverage remains future work. See
 [FRONTEND.md](FRONTEND.md) for implemented routes, dependency details and integration.
 Progress and verification belong in the [state map](state/README.md).
+
+Accepted next integration: [Travel Buddy destination enrichment](decisions/0008-travel-buddy-destination-enrichment.md).
+The local snapshot remains the map and model foundation; a server-side persistent
+cache will provide selected destination details and precise exploration overrides.
+This integration is planned, not implemented.
 ## Dependency direction
 
 | Layer | Owns | May depend on |

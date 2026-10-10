@@ -12,6 +12,11 @@ requirements, not delivered functionality. Consult the [developer state map](sta
 and actual source for implementation progress. Significant changes to this
 direction belong in a [decision record](decisions/README.md).
 
+The accepted [Travel Buddy integration direction](decisions/0008-travel-buddy-destination-enrichment.md)
+keeps the full local map, comparison and Visa DNA, while adding cached selected
+destination details, application links and arrival formalities. Implementation
+is pending; complete document checklists are not supplied by the tested API.
+
 ## Users and outcomes
 
 | User intent | Successful outcome |
