@@ -163,5 +163,5 @@ no authenticated provider calls were made for this verification.
 Screenshots are local/ignored under `output/playwright/frontend-audit/fixed-*`.
 Screen-reader software, actual browser zoom, exhaustive contrast measurement and
 frame profiling were not run; keyboard/DOM checks are not accessibility certification.
-Mobile optimization was intentionally not performed. Implementation and records
-are local and uncommitted; no push performed.
+Mobile optimization was intentionally not performed. Fixes and records are committed locally; no push performed. See the integration
+state for the current commit handoff.

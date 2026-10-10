@@ -1,11 +1,11 @@
 # dev-integration state
 
-- Updated at: 2026-10-10T23:45:30Z
+- Updated at: 2026-10-10T23:56:31Z
 - Status: ready_for_review
-- Task: Fix all 13 desktop frontend audit findings
+- Task: Group and commit the desktop audit fixes
 - Branch: dev-integration
 - Baseline commit: ac38c6d0a0857aabe21819b4b0423fabef3b5c57
-- Latest run: [Desktop audit fixes](runs/20261010T234530Z-frontend-audit-fixes-8e62c4.md)
+- Latest run: [Grouped commits](runs/20261010T235631Z-grouped-commits-d47b82.md)
 
 ## Completed
 
@@ -28,7 +28,7 @@ all travel provenance remains unverified and official document coverage is missi
 
 ## In progress
 
-No remaining original audit finding awaiting implementation. Local changes ready
+No remaining original audit finding awaiting implementation. Committed changes ready
 for review. Screen-reader/actual browser zoom checks remain unperformed validation.
 Frontend integration of the separate assistant backend and official evidence review
 remain distinct future work.
@@ -61,8 +61,8 @@ Screenshot evidence is ignored and does not sync through Git.
 
 ## Next actions
 
-Review local frontend changes and audit resolution. Perform screen-reader/actual
-browser-zoom validation when available. Commit/push only if authorized. Continue
+Review the focused commit history and audit resolution. Perform screen-reader/actual
+browser-zoom validation when available. Push only when authorized. Continue
 assistant frontend integration and evidence review as separate assigned work.
 
 ## Coordination
@@ -71,4 +71,8 @@ Explicit dev-integration assignment and user authorization to fix all audit find
 Shared UI edits overlap frontend owners; integration handoff records the work.
 Other lane states/runs untouched. Engine API, scoring, regulation data and DNA vector
 semantics unchanged. No new dependencies. This implementation and its records are
-local, uncommitted and unpushed; prior audit baseline is committed.
+committed locally and unpushed. Twenty-one focused commits follow the audit baseline;
+20 were created in this grouping run, including its final handoff. One concurrent
+state-only commit was preserved. Eleven intermediate source commits typecheck;
+three focused regressions pass. The previous full-suite/build/browser evidence
+remains applicable because implementation content was unchanged by grouping.
