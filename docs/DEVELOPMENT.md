@@ -232,6 +232,20 @@ travel through Git. Keep the API key out of frontend VITE variables.
 | Decision record | A significant accepted choice or explicit proposal needs rationale. |
 | Own state and run history | Every normally completed run and meaningful checkpoint. |
 
+### Assistant backend handoff
+
+The [backend guide](ASSISTANT_BACKEND.md) documents all versioned assistant
+operations, generated OpenAPI, sessions/CSRF, configuration, private persistence,
+limits and frontend request order. New services use server-only GROQ_API_KEY and
+GROQ_ASSISTANT_MODEL (default 120B). Legacy research remains 20B. Defaults and
+optional exact-origin configuration are in `.env.example`.
+
+Run `npm.cmd run assistant:openapi -- --check` after changing shared schemas.
+Generate changes with `npm.cmd run assistant:openapi`. Live diagnostic scripts
+are excluded from tests and spend real allowance only with explicit --live.
+Private assistant files and reports are ignored; use one local process per
+storage directory. No frontend implementation is included in this milestone.
+
 Link existing explanations instead of copying them. Proposed functionality stays
 proposed until accepted; planned functionality stays planned until implemented.
 
