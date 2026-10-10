@@ -157,9 +157,9 @@ function Explore() {
     ),
   );
   const view = GAME_ENABLED && simulated ? snapshot : composeExploration(snapshot, travel.entries);
-  const destinations = view.destinations.filter((d) =>
-    d.destinationName.toLowerCase().includes(search.toLowerCase()),
-  );
+  const destinations = view.destinations.filter(d =>
+    `${d.destinationName} ${d.destinationId}`.toLowerCase().includes(search.trim().toLowerCase())
+  ).sort((a, b) => a.destinationName.localeCompare(b.destinationName));
   const selected = view.destinations.find(
     (d) => d.destinationId === destination,
   )!;
@@ -187,7 +187,7 @@ function Explore() {
           <input
             ref={searchRef}
             value={search}
-            onChange={(e) => setSearch(e.target.value)}
+            onChange={(e) => { setSearch(e.target.value); if (e.target.value) setList(true); }}
             placeholder="Find a country"
             aria-label="Find a country"
           />
@@ -202,14 +202,23 @@ function Explore() {
       <div className="explore-layout">
         <section className="map-stage" aria-label="Destinations">
           <div className="view-toggle segmented">
-            <button aria-pressed={!list} onClick={() => setList(false)}>
+            <button aria-pressed={!list} onClick={() => { setList(false); setSearch(""); }}>
               Map
             </button>
             <button aria-pressed={list} onClick={() => setList(true)}>
               List
             </button>
           </div>
-          {list || search ? (
+          <Legend />
+          <p className="map-caption">
+            {catalog.destinations.length} destinations · Passport Index snapshot · unverified
+            {travel.entries.length > 0 && !simulated ? " + cached provider updates" : ""}
+            {simulated ? " · fictional treaty effects" : ""}
+          </p>
+          <p className={list ? "result-count" : "sr-only"} role="status" aria-live="polite">
+            {list ? `${destinations.length} destinations found. Select one to update the details alongside.` : "Map view. Use the List view to search destinations."}
+          </p>
+          {list ? (
             <div className="destination-list">
               {destinations.length ? (
                 destinations.map((d) => (
@@ -220,7 +229,6 @@ function Explore() {
                     }
                     onClick={() => {
                       setDestination(d.destinationId);
-                      setSearch("");
                     }}
                   >
                     <span>
@@ -248,14 +256,8 @@ function Explore() {
               onSelect={setDestination}
             />
           )}
-          <Legend />
-          <p className="map-caption">
-            {catalog.destinations.length} destinations · bundled Passport Index snapshot
-            {travel.entries.length > 0 && !simulated ? " + cached Travel Buddy destination updates (unverified)" : ""}
-            {simulated ? " · fictional treaty effects" : ""}
-          </p>
         </section>
-        <aside className="postcard">
+        <aside className="postcard" aria-label="Selected destination details">
           <div className="postcard-image">
             <PostcardArt
               countryId={destination}
@@ -272,14 +274,14 @@ function Explore() {
             <span className="stamp">LET’S EXPLORE</span>
           </div>
           <span className="eyebrow">YOUR NEXT CHAPTER?</span>
-          <h2>Hello, {country(destination).name}!</h2>
+          <h2 aria-live="polite">Hello, {country(destination).name}!</h2>
           <div className="postcard-details">
             <span>{selected.notes?.startsWith('Travel Buddy') ? 'Provider access' : 'Snapshot access'}</span>
             <Tag level={selected.accessLevel} />
             <span>Purpose</span>
             <b>Tourism</b>
-            <span>Verified stay</span>
-            <b>Not available</b>
+            <span>Stay information</span>
+            <b>{travel.detail?.primary.duration ? `${travel.detail.primary.duration} (unverified)` : 'Not verified'}</b>
           </div>
           {travel.detail && <p className="travel-status">Travel Buddy · checked {new Date(travel.detail.fetchedAt).toLocaleDateString()} · unverified</p>}
           {travel.detail && primaryAccess(travel.detail) && primaryAccess(travel.detail) !== snapshot.destinations.find(d => d.destinationId === destination)?.accessLevel && <p className="travel-status" role="status">Requirements updated</p>}
