@@ -1,11 +1,12 @@
 # dev-adithyaa — current state
 
-- Updated at: 2026-10-10T14:07:49Z
+- Updated at: 2026-10-10T14:14:14Z
 - Status: idle
-- Task: Correct developer branch naming to exact hyphenated names
-- Branch: main
-- Baseline commit: db5f5d3eba79066299aca4bd2a06e24904520f43
-- Latest run: [20261010T140749Z-d8721a06](runs/20261010T140749Z-d8721a06.md)
+- Task: Both developer roles confirmed; ready to begin frontend implementation
+- Branch: dev-adithyaa
+- Role: Frontend experience owner
+- Baseline commit: 6354515eaf7e2d5d62a7b2b806207de5165e09fc
+- Latest run: [20261010T141414Z-c0172b63](runs/20261010T141414Z-c0172b63.md)
 
 ## Completed
 
@@ -18,6 +19,8 @@ Grouped setup into product/technical docs, agent workflows/checks, and developer
 state/history commits. First two commits are b15f465 and 25388c0; this summary is
 included in the final state/history commit.
 Corrected branch naming to exactly dev-adithyaa and dev-prabhu without prefixes.
+Recorded the user's frontend assignment, scope boundaries, and first milestones.
+Recorded the user's core-engine assignment for dev-prabhu and the shared boundaries.
 
 ## In progress
 
@@ -26,25 +29,24 @@ dataset, mock engine, and optional AI service remain unimplemented.
 
 ## Verification
 
-Documentation links and six skill metadata entries passed; staged whitespace
-checks passed before commits. Final tree cleanliness is checked after the final
-commit. No application tests were run because no scaffold exists.
+Documentation links, six skill entries, and diff whitespace checked for the role
+update. No application tests run; no frontend code added in this run.
 
 ## Blockers
 
-None for the commit task. Runtime and contract decisions are needed before
+None for the assignment task. Runtime and contract decisions are needed before
 the corresponding implementation milestones.
 
 ## Next actions
 
-Confirm developer module assignments; settle scoring and treaty semantics; define
-shared contracts including regulation lookup; create fixtures and a mock; scaffold
-the exploration flow. Push under user authorization to share the commits.
+Coordinate shared types and mock responses including regulation lookup; scaffold
+React/Vite UI and styling; build passport selection, map, and country detail panel.
+Then add DNA rendering, treaty interactions, comparison, and optimizer presentation.
 
 ## Coordination
 
-Module ownership has not been assigned. Read `../dev-prabhu/STATE.md` and check
-actual repository changes before editing shared files.
-Setup commits are local on main and have not been pushed. The branch-naming
-correction is uncommitted. Use the exact developer branches for concurrent work.
-No changes made to dev-prabhu's state.
+Frontend belongs to dev-adithyaa; core engine belongs to dev-prabhu.
+Read `../dev-prabhu/STATE.md` and check actual changes before shared-interface edits.
+Current branch is dev-adithyaa; role-assignment edits are local/uncommitted. No push
+performed. dev-prabhu's role/task guidance updated under the user's assignment;
+no work attributed to them.

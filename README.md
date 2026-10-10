@@ -21,7 +21,8 @@ and the Border Market let users experiment with changing policy rules.
 
 At the 2026-10-10 documentation setup, application code and a verified visa
 dataset have not been implemented. See the state map for current progress. The
-LLM integration remains proposed. Neither developer has a named module assignment.
+LLM integration remains proposed. `dev-adithyaa` owns frontend experience; the
+`dev-prabhu` owns the core engine. See development guidance for role boundaries.
 
 ## Agent development
 
