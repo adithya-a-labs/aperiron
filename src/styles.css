@@ -462,44 +462,6 @@ main {
   stroke: var(--navy);
   stroke-width: 1.5;
 }
-.map-pin {
-  cursor: pointer;
-  filter: drop-shadow(0px 2px 2px #032b4317);
-}
-@keyframes mapPinPop {
-  0% {
-    opacity: 0;
-    transform: scale(0);
-  }
-  65% {
-    opacity: 1;
-    transform: scale(1.35);
-  }
-  85% {
-    transform: scale(0.92);
-  }
-  100% {
-    opacity: 1;
-    transform: scale(1);
-  }
-}
-.map-pin-pop {
-  transform-origin: 0 8px;
-  animation: mapPinPop 0.45s cubic-bezier(0.175, 0.885, 0.32, 1.275) 1.15s both;
-}
-@keyframes routeMaskReveal {
-  0% {
-    stroke-dashoffset: 100;
-  }
-  100% {
-    stroke-dashoffset: 0;
-  }
-}
-.route-mask-line {
-  stroke-dasharray: 100;
-  stroke-dashoffset: 100;
-  animation: routeMaskReveal 1.2s cubic-bezier(0.25, 0.1, 0.25, 1) forwards;
-}
 .legend {
   display: flex;
   justify-content: center;
@@ -2397,4 +2359,7 @@ main { overflow: visible; }
 .passport-combobox-menu { max-width: calc(100vw - 48px); }
 .passport-combobox-menu [role="listbox"] { position: relative; }
 .passport-combobox-menu [role="option"] { cursor: pointer; }
+.map-country { transition: opacity 120ms; }
+.map-country:focus-visible { stroke: #032b43; stroke-width: 3; filter: drop-shadow(0 0 2px #fffdf7); transition: none; }
 .landscape { width: 100%; margin-left: 0; margin-right: 0; overflow: hidden; }
+.globe-map .map-keyboard-help { max-width: 400px; margin: 0 auto 8px; }
