@@ -39,8 +39,11 @@ notice. Exact primary-rule changes may update the exploration cell, without
 rewriting the baseline matrix or model calculations. Conditional alternatives
 never become unconditional entry permissions.
 
-Implementation is pending. The sequence and operational defaults below are
-proposed implementation choices within this accepted direction.
+Implementation delivered on dev-integration: additive provider records, disk cache,
+quota control, active destination UI and precise exploration overlays. The sequence
+below records the implementation scope. Operational defaults are configurable;
+see [development setup](../DEVELOPMENT.md#travel-buddy-destination-enrichment).
+Thirty-day operational retention was added after inspecting provider cache terms.
 
 ## Implementation plan
 

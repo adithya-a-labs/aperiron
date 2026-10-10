@@ -21,6 +21,22 @@ Dataset labels should be available to the UI, not buried in comments.
 
 ## Source selection and evidence
 
+Travel Buddy detail responses are unverified third-party enrichment. Keep them
+outside the bundled permissions matrix and fictional simulation. Preserve actual
+fetch dates, optional alternatives and unresolved exceptions; never infer document
+checklists, fees or processing times. Application/registration URLs may be provider
+redirects, and embassy URLs may be third-party directories. A returned URL is not
+independent verification of the target page or traveller applicability.
+
+The [provider API terms](https://travel-buddy.ai/terms-of-use-api/) were inspected
+on 2026-10-10 UTC. Section 10 describes operational caching and restricts bulk
+redistribution, competing databases and unnecessary storage; it specifies no exact
+cache duration. This integration uses a configurable thirty-day operational
+retention limit and seven-day refresh age, without describing saved responses as
+current verified rules. Cache files are ignored and not shipped as a downloadable
+provider dataset. No bulk provider harvesting or automated official-page scraping
+is part of this integration.
+
 Prefer the destination's official immigration, foreign-affairs, embassy, or
 consular guidance. Officially designated application providers can support
 application-channel information; record who designates them. Third-party summaries

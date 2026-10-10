@@ -11,10 +11,29 @@ detailed official regulation coverage remains future work. See
 [FRONTEND.md](FRONTEND.md) for implemented routes, dependency details and integration.
 Progress and verification belong in the [state map](state/README.md).
 
-Accepted next integration: [Travel Buddy destination enrichment](decisions/0008-travel-buddy-destination-enrichment.md).
-The local snapshot remains the map and model foundation; a server-side persistent
-cache will provide selected destination details and precise exploration overrides.
-This integration is planned, not implemented.
+Implemented [Travel Buddy destination enrichment](decisions/0008-travel-buddy-destination-enrichment.md)
+adds selected destination details and precise exploration overrides through the
+local API and a persistent server cache. The local snapshot remains the map and
+model foundation. Comparison, scoring, DNA and simulation retain their versioned
+snapshot inputs; provider details are unverified and never mutate that matrix.
+
+`server/api-server.ts` routes both optional Groq research and Travel Buddy details
+in Vite development/preview and the API-only launcher. `server/travel-details.ts`
+owns deduplication, concurrency and quota reservations; `server/travel-cache.ts`
+serializes atomic disk writes for one local process. Saved entries restore via
+cache-only passport reads. `src/store/travelDetailsStore.ts` tracks results by pair
+and ignores older responses; `src/engine/exploration.ts` composes exact primary-rule
+updates and category counts outside rendering. Unmapped and conditional rules do
+not override access. Refresh triggers follow deliberate selection/opening rather
+than map render or passport-only changes.
+
+Cache age defaults to seven days, operational retention to thirty days, and quota
+reserve to twenty requests. Old records are purged on cache load/read/write; files
+are not purged while the application is stopped. Quota attempts persist before
+dispatch, and unknown/corrupt accounting prevents live calls. This is a single
+local-process service; multiple instances need shared coordination. Static-only
+hosting retains bundled exploration without provider enrichment.
+
 ## Dependency direction
 
 | Layer | Owns | May depend on |

@@ -113,6 +113,20 @@ an account key and are a separate verification step.
 
 ## Manual Travel Buddy trial
 
+The implemented service is covered by mocked provider tests for normalizing rules,
+persistent fresh-cache reads, context/self exclusions, pair deduplication, global
+concurrency, quota reserve/restart/reset, authentication correction, timeout fallback,
+malformed/oversized output and HTTP boundaries. Frontend store tests cover late
+responses and older cache reads; exploration tests preserve snapshot/DNA/simulation.
+These tests run with npm test. They make no authenticated provider requests.
+
+Browser acceptance: initial map/search/passport switching use zero upstream calls;
+cached destination visits and reloads preserve quota. Deliberate uncached/stale
+selection performs at most one shared call. Check tourism-only details, conditions,
+links, source/fetch labels, quiet precise map/list updates and mobile overflow.
+Verify fallback when no key/server/quota is available. Refreshing local cache routes
+does not necessarily mean an upstream call: inspect the persistent quota ledger.
+
 No application data source switches during this trial. Run the dry-run command:
 
 ```powershell
@@ -123,7 +137,8 @@ After subscribing to the free Basic plan, set TRAVEL_BUDDY_API_KEY in ignored .e
 Append --live to send at most three sequential visa-check requests (IN/JP, IN/SG,
 CN/ID), with no retries and a ten-second timeout per request. Any HTTP, network or
 schema failure stops the trial. Every manual rerun can consume three more requests;
-this is a bounded smoke tool, not the proposed persistent quota service.
+this standalone diagnostic bypasses the implemented persistent quota service.
+Prefer the application's refresh route for normal verification.
 
 The report under ignored output/travel-buddy/ includes provider response fields,
 snapshot values, latency and available quota headers. Review missing fields,

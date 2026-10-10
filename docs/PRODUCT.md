@@ -15,7 +15,9 @@ direction belong in a [decision record](decisions/README.md).
 The accepted [Travel Buddy integration direction](decisions/0008-travel-buddy-destination-enrichment.md)
 keeps the full local map, comparison and Visa DNA, while adding cached selected
 destination details, application links and arrival formalities. Implementation
-is pending; complete document checklists are not supplied by the tested API.
+is available through the local API; complete document checklists are not supplied
+by the tested API. Selected precise provider rules can update exploration cells;
+comparison, scores and Visa DNA remain explicitly based on the bundled snapshot.
 
 ## Users and outcomes
 
