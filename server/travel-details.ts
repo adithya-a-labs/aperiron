@@ -32,13 +32,13 @@ export class TravelService {
     const fresh = entries.length > 0 && entries.every(d => this.now() - Date.parse(d.fetchedAt) < (this.options.freshMs ?? 7 * 86_400_000));
     return { entries, fresh, outcome: entries.length ? 'cached' : 'miss' };
   }
-  refresh(r: DetailRequest, force = false): Promise<TravelResponse> {
+  refresh(r: DetailRequest, force = false, onDispatch?: () => void): Promise<TravelResponse> {
     const key = `${r.passportId}:${r.destinationId}:${r.purpose ?? 'tourism'}:${r.passportType ?? 'ordinary'}`;
     const existing = this.pending.get(key); if (existing) return existing;
-    const promise = this.run(r, force).finally(() => this.pending.delete(key));
+    const promise = this.run(r, force, onDispatch).finally(() => this.pending.delete(key));
     this.pending.set(key, promise); return promise;
   }
-  private async run(r: DetailRequest, force: boolean): Promise<TravelResponse> {
+  private async run(r: DetailRequest, force: boolean, onDispatch?: () => void): Promise<TravelResponse> {
     const cached = await this.read(r);
     if (!this.supported(r) || !r.destinationId) return { ...cached, outcome: 'unsupported' };
     if (cached.fresh && !force) return cached;
@@ -67,6 +67,7 @@ export class TravelService {
         return { ...cached, outcome: stop, remaining: q.remaining, retryAt: q.retryAt, message: 'Showing saved information; live refresh is temporarily paused.' };
       }
       try {
+        onDispatch?.();
         const entry = await fetchTravelDetails(r.passportId, r.destinationId, apiKey, this.options.fetchImpl, async headers => {
           await this.cache.mutate(d => {
             const remaining = headers.get('x-ratelimit-requests-remaining'), limit = headers.get('x-ratelimit-requests-limit'), reset = headers.get('x-ratelimit-requests-reset');
