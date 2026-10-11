@@ -2326,8 +2326,16 @@ dialog::backdrop {
 
 .notebook { grid-template-columns: minmax(0, 1fr) minmax(240px, .45fr); }
 .notebook-main, .notebook-side { min-width: 0; }
+.notebook-side { padding: 24px; }
+.notebook .requirements { margin: 16px 0; }
+.notebook .preparation-details { margin: 20px 0; }
+.notebook .preparation-details summary { font-size: 15px; }
+.requirements > div { grid-template-columns: minmax(100px, 150px) minmax(0, 1fr); gap: 16px; }
 .requirements dd { overflow-wrap: anywhere; }
 .notebook a:not(.button), .research-leads a { text-decoration: underline; text-underline-offset: 3px; color: #155779; }
+.travel-brief { margin: 20px 0; }
+.travel-rule .rule-action { display: block; width: fit-content; margin-top: 10px; }
+.travel-heading .text-button { font-size: 13px; }
 .research-result { white-space: normal; }
 .research-result > p { white-space: pre-wrap; overflow-wrap: anywhere; }
 .research-leads { display: grid; gap: 8px; }
