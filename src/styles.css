@@ -2324,6 +2324,17 @@ dialog::backdrop {
 .travel-rule p { margin: .4rem 0; }
 .travel-rule a { display: inline-block; margin-top: .4rem; }
 
+.notebook { grid-template-columns: minmax(0, 1fr) minmax(240px, .45fr); }
+.notebook-main, .notebook-side { min-width: 0; }
+.requirements dd { overflow-wrap: anywhere; }
+.notebook a:not(.button), .research-leads a { text-decoration: underline; text-underline-offset: 3px; color: #155779; }
+.research-result { white-space: normal; }
+.research-result > p { white-space: pre-wrap; overflow-wrap: anywhere; }
+.research-leads { display: grid; gap: 8px; }
+.research-leads h4 { font-size: 14px; margin: 0; }
+.research-leads ul { margin: 0; padding-left: 20px; }
+.research-leads li + li { margin-top: 12px; }
+.source-url { display: block; overflow-wrap: anywhere; font-size: 12px; margin-top: 4px; }
 /* Explorer companion bot */
 .explore-sidebar {
   display: flex;
