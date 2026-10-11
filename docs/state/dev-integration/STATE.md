@@ -1,68 +1,56 @@
 # dev-integration state
 
-- Updated at: 2026-10-11T01:26:38Z
+- Updated at: 2026-10-11T01:48:12Z
 - Status: ready_for_review
-- Task: Commit and push audited integration fixes and docs
+- Task: Stage and commit the nine frontend repairs in meaningful groups
 - Branch: dev-integration
-- Baseline commit: 1f224ca598363030f293da510f7259cbacf51107
-- Latest run: [Publish integration fixes](runs/20261011T012638Z-publish-fixes-4b9d72.md)
+- Baseline commit: 59333b420011c04814328e767827bcf0330060f6
+- Latest run: [Grouped commits](runs/20261011T014812Z-grouped-commits-c482a7.md)
 
 ## Completed
 
-Repaired merged JSX/typecheck failures and restored the explorer companion with
-keyboard, reduced-motion and cleanup support. Restored laptop Explore fit.
-Fixed live Groq nullable-schema rejection without changing shared schemas.
-Contained assistant storage failures that could stop the server; preserved
-reservations and prevented unsaved result publication or automatic replay.
-Added bounded Windows atomic-rename retries.
+All R01–R09 findings in the [re-audit](../../FRONTEND_REAUDIT_2026-10-11.md)
+are repaired. Map, companion and panel now use deliberate desktop sizing without
+the 900px height cliff. Restored readable interpretation text, comparison table,
+notebook actions, DNA count grid and contained research leads. Navigation keeps
+the companion static; optional pointer playback respects reduced motion and
+cancels on destination changes. Normal vertical scrolling preserves readability.
 
-Hardened legacy research with low reasoning effort, a 2400-token completion
-budget, explicit truncation errors, provider Retry-After and safe cooldown
-handling. Final 20B request returned a live answer. Made the manual assistant
-diagnostic exit nonzero on failed jobs and removed a timing-based test flake.
-Reconciled affected docs and added six regressions.
-
-Existing snapshot, Travel Buddy, assistant backend, Trips frontend and prior
-desktop audit implementation remain present. Historical handoff:
-[previous run](runs/20261010T235849Z-pr-draft-53fc71.md).
+Prior integration/backend/Trips milestones remain present at the baseline above;
+see the [previous audit run](runs/20261011T013735Z-desktop-reaudit-9c72e1.md)
+and earlier publication history. No engine/data or shared contract changes here.
 
 ## In progress
 
-Implementation commit 2f069c1 has been pushed; this publication record accompanies
-the authorized follow-up documentation commit.
+None. Repairs and supporting documentation are committed locally in twelve focused commits.
 
 ## Verification
 
-81/81 tests passed with loopback access, including all 30 assistant HTTP
-operations and engine/fixture checks. Final typecheck, production build,
-OpenAPI consistency, documentation links and whitespace passed.
+Typecheck, production build, 81/81 tests, documentation links and whitespace pass.
+Browser inspection used only port 5174: desktop viewports/boundary heights,
+comparison inspect/reload, cached notebook actions, long research URL/escaped
+text, all six DNA counts, keyboard/pointer/reduced motion, empty-search recovery,
+long destination names, single map/globe Tab stops and Trips entry passed.
+Screenshots and measured Before/After evidence are in the re-audit report.
+Existing Vite native-loader/chunk advisories remain non-fatal.
 
-Live 120B map/profile interpretation, country chat and research; legacy 20B
-research; and one quota-controlled Travel Buddy refresh all completed.
-Browser trip save, shortlist/context, preparation, brief/download, five routes
-across four viewports, passport switch/reload and companion keyboard/reduced
-motion passed. Dev/preview/API-only routing checked; final production browser
-Explore/Trips reported zero console errors or warnings.
-
-Formal screen-reader/actual zoom, exhaustive contrast and official visa-source
-review were not performed. Build retains non-fatal Vite loader/chunk advisories.
+Provider writes were intercepted; research success was synthetic. Formal
+screen-reader/actual zoom/exhaustive contrast, mobile optimization and authenticated
+Trips editing/export were not performed in this run.
 
 ## Blockers
 
-No known functional blocker in the tested scope. Provider account limits and
-single-process private storage remain operational constraints. Regulation and
-research evidence remain unreviewed.
+None for this task. Regulation/research source review and provider account/storage
+operational constraints remain separate from frontend layout verification.
 
 ## Next actions
 
-Review pushed commit 2f069c1. Respect provider
-cooldowns and reuse persistent accounting. Formal accessibility and official
-source review remain separate validation work.
+Review the twelve local commits and push only when requested. Preserve width-driven desktop
+sizing and restored shared styles in future integrations.
 
 ## Coordination
 
-Explicit integration assignment. Origin/dev-integration matched starting HEAD.
-Public interfaces, source data, scoring and DNA unchanged; additive Retry-After
-documented. Other lane records untouched. User authorized commit and push;
-2f069c1 successfully pushed to origin/dev-integration. No PR created.
-Audit-owned servers/browser stopped; pre-existing servers preserved.
+Explicit integration assignment; branch remained dev-integration, app inspection
+remained on 5174, no alternate server/worktree. Shared frontend CSS overlaps owners;
+other lanes' history and Trips source unchanged. Prior audit documents preserved.
+Repairs and records are committed locally; no push performed. Eight implementation commits and four documentation/handoff commits preserve the verified final source.
