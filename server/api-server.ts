@@ -1,13 +1,23 @@
 import { createServer } from 'node:http';
 import { createResearchHandler } from './groq-browser-search';
 import { createDefaultTravelService, createTravelHandler } from './travel-details';
+import { BASE, createAssistantHandler, type AssistantOptions } from './assistant/routes';
 
-export function createApiHandler() {
-  const research = createResearchHandler(), travel = createTravelHandler(createDefaultTravelService());
+export function createApiHandler(options: AssistantOptions = {}) {
+  const travelService = options.travel ?? createDefaultTravelService();
+  const research = createResearchHandler(), travel = createTravelHandler(travelService);
+  // Corrupt accounting fails closed without taking the existing map/provider routes down.
+  let assistant: ReturnType<typeof createAssistantHandler> | null = null;
+  let assistantFailed = false;
   return (req: import('node:http').IncomingMessage, res: import('node:http').ServerResponse) => {
     const path = req.url?.split('?')[0];
     if (path === '/api/groq-research') void research(req, res);
     else if (path === '/api/travel-details' || path === '/api/travel-details/refresh') void travel(req, res);
+    else if (path === BASE || path?.startsWith(`${BASE}/`)) {
+      if (!assistant && !assistantFailed) { try { assistant = createAssistantHandler({ ...options, travel: travelService }); } catch { assistantFailed = true; } }
+      if (assistant) void assistant.handler(req, res);
+      else { res.writeHead(503, { 'Content-Type': 'application/json', 'Cache-Control': 'no-store' }); res.end(JSON.stringify({ error: { code: 'SERVICE_UNAVAILABLE', message: 'Assistant storage needs recovery.', retryable: false, fieldErrors: [] }, meta: { schemaVersion: '1', requestId: 'unavailable' } })); }
+    }
     else { res.writeHead(404); res.end(); }
   };
 }

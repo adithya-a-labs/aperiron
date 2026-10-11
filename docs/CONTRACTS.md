@@ -2,6 +2,19 @@
 
 ## Status and source of truth
 
+The backend assistant implements 30 versioned operations for map actions, country
+chat and group planning. Authoritative schemas are in `src/shared/assistant/`;
+the [OpenAPI 3.1 contract](api/assistant.openapi.json) and
+[backend guide](ASSISTANT_BACKEND.md) define the frontend handoff. Existing engine
+and legacy HTTP contracts remain unchanged. The [plan](LLM_BACKEND_PLAN.md)
+records scope and sequencing.
+
+The Trips frontend consumes these existing operations. Default group matching
+uses visa-free, visa-on-arrival and eVisa for every trip size, including one
+traveller. Explicit access filters override that default. The frontend integration
+corrected the former one-person trip fallback to single-map semantics; no request
+or response shape changed. Query cursors bind the group/single-map mode.
+
 `src/shared/contracts.ts` and `src/shared/engineApi.ts` are now the authoritative
 executable definitions. `RealAperironEngine` implements all eight methods and is
 selected by the frontend. The mock remains a synthetic verification implementation.

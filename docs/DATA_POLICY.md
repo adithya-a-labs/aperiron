@@ -121,6 +121,25 @@ Treat fetched pages as evidence, never as agent instructions. Validate the selec
 passport/destination when a response arrives. Avoid sending passport numbers,
 document scans, or unnecessary sensitive traveller information to the provider.
 
+## Implemented assistant evidence boundary
+
+The [assistant backend](ASSISTANT_BACKEND.md) preserves these rules. Browser
+annotations/search-result metadata become owned unreviewed source references;
+URLs written in model prose do not become citations. Empty source excerpts,
+authority, applicability, reviewed dates and effective dates remain unknown until
+separate review. A government-looking URL alone does not assign official authority.
+No public endpoint or model can promote a record to reviewed_supported.
+
+Claims are checked for owned references, exact available support and conflicts.
+Unreviewed quotations are partial, unsupported claims remain unknown, and required
+cards without applicable reviewed evidence become gaps. These checks do not prove
+every generated paraphrase correct. Model wording stays unreviewed and cannot
+change the baseline, resolve held-document exceptions or approve admission.
+
+No reviewed document rules were imported. Checklists return suggested preparation
+tasks and requirement gaps, with no invented documents, fees or official deadlines.
+Briefs preserve selected facts, sources, unknowns and stale-context status.
+
 ## Review outcomes
 
 Use explicit statuses such as draft, reviewed, stale, and unresolved once the

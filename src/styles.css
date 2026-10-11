@@ -73,9 +73,6 @@ input:focus-visible,
   outline: 3px solid var(--blue);
   outline-offset: 4px;
 }
-button:hover:not(:disabled) {
-  transform: translateY(-1px);
-}
 h1,
 h2,
 h3,
@@ -461,44 +458,6 @@ main {
   opacity: 1;
   stroke: var(--navy);
   stroke-width: 1.5;
-}
-.map-pin {
-  cursor: pointer;
-  filter: drop-shadow(0px 2px 2px #032b4317);
-}
-@keyframes mapPinPop {
-  0% {
-    opacity: 0;
-    transform: scale(0);
-  }
-  65% {
-    opacity: 1;
-    transform: scale(1.35);
-  }
-  85% {
-    transform: scale(0.92);
-  }
-  100% {
-    opacity: 1;
-    transform: scale(1);
-  }
-}
-.map-pin-pop {
-  transform-origin: 0 8px;
-  animation: mapPinPop 0.45s cubic-bezier(0.175, 0.885, 0.32, 1.275) 1.15s both;
-}
-@keyframes routeMaskReveal {
-  0% {
-    stroke-dashoffset: 100;
-  }
-  100% {
-    stroke-dashoffset: 0;
-  }
-}
-.route-mask-line {
-  stroke-dasharray: 100;
-  stroke-dashoffset: 100;
-  animation: routeMaskReveal 1.2s cubic-bezier(0.25, 0.1, 0.25, 1) forwards;
 }
 .legend {
   display: flex;
@@ -2356,27 +2315,6 @@ dialog::backdrop {
   overflow: hidden;
   clip-path: inset(50%);
   white-space: nowrap;
-}
-@media (prefers-reduced-motion: no-preference) {
-  .page-heading,
-  .explore-layout,
-  .dna-layout,
-  .comparison-hero,
-  .notebook,
-  .optimizer-layout,
-  .more-grid {
-    animation: arrive 0.3s ease-out both;
-  }
-  @keyframes arrive {
-    from {
-      opacity: 0;
-      transform: translateY(6px);
-    }
-    to {
-      opacity: 1;
-      transform: translateY(0);
-    }
-  }
 }
 /* Provider details preserve the notebook's existing typography and spacing. */
 .travel-brief { margin: 1.5rem 0; padding: 1.25rem; border: 1px solid var(--line, #deded3); border-radius: 18px; }

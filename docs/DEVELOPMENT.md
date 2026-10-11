@@ -23,6 +23,15 @@ Ownership reduces conflicting work; it does not prohibit agreed collaboration.
 Record role assignments when the users decide them. Coordinate changes across
 the boundary before changing another developer's expected interface.
 
+### dev-tripplanner work lane
+
+The user assigned the exact `dev-tripplanner` branch and separate branch-scoped
+records in `docs/state/dev-tripplanner/`. It implements the
+[local group planner](TRIP_PLANNER.md) through existing assistant contracts.
+Coordinate shared navigation/styles with frontend owners and any backend contract
+extensions with core/integration owners. This assignment does not reassign either
+personal developer's module ownership.
+
 ### dev-adithyaa frontend scope and first milestones
 
 Own React/Vite setup, styling, responsive layout, accessibility, components/pages,
@@ -231,6 +240,20 @@ travel through Git. Keep the API key out of frontend VITE variables.
 | VERIFICATION | Actual check commands or meaningful test requirements change. |
 | Decision record | A significant accepted choice or explicit proposal needs rationale. |
 | Own state and run history | Every normally completed run and meaningful checkpoint. |
+
+### Assistant backend handoff
+
+The [backend guide](ASSISTANT_BACKEND.md) documents all versioned assistant
+operations, generated OpenAPI, sessions/CSRF, configuration, private persistence,
+limits and frontend request order. New services use server-only GROQ_API_KEY and
+GROQ_ASSISTANT_MODEL (default 120B). Legacy research remains 20B. Defaults and
+optional exact-origin configuration are in `.env.example`.
+
+Run `npm.cmd run assistant:openapi -- --check` after changing shared schemas.
+Generate changes with `npm.cmd run assistant:openapi`. Live diagnostic scripts
+are excluded from tests and spend real allowance only with explicit --live.
+Private assistant files and reports are ignored; use one local process per
+storage directory. No frontend implementation is included in this milestone.
 
 Link existing explanations instead of copying them. Proposed functionality stays
 proposed until accepted; planned functionality stays planned until implemented.

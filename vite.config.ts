@@ -7,7 +7,7 @@ function groqResearch(): Plugin {
   const install = (server: Pick<ViteDevServer, 'middlewares'>) => {
     const handler = createApiHandler();
     server.middlewares.use((request, response, next) => {
-      if (['/api/groq-research', '/api/travel-details', '/api/travel-details/refresh'].includes(request.url?.split('?')[0] ?? '')) {
+      if (request.url?.startsWith('/api/v1/assistant/') || ['/api/groq-research', '/api/travel-details', '/api/travel-details/refresh'].includes(request.url?.split('?')[0] ?? '')) {
         handler(request, response);
       } else next();
     });

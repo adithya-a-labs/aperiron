@@ -4,7 +4,6 @@ import {
   ArrowRight,
   ArrowLeftRight,
   Check,
-  ChevronDown,
   Coins,
   Compass,
   Globe2,
@@ -41,31 +40,18 @@ import { useTravelDetails } from "./store/travelDetailsStore";
 import { composeExploration } from "./engine/exploration";
 import { primaryAccess } from "./shared/travelDetails";
 import { TravelBrief } from "./components/TravelBrief";
+import { PassportSelect } from "./components/PassportSelect";
+import { ResearchAnswer } from "./components/ResearchAnswer";
+import { pageHash, readPage, type Page } from "./frontend/navigation";
+import { TripPlanner } from "./pages/TripPlanner";
 
-const routes = [
-  "explore",
-  "country",
-  "compare",
-  "dna",
-  "market",
-  "impact",
-  "optimizer",
-  "more",
-] as const;
-type Page = (typeof routes)[number];
 type GroqResearch = ResearchResponse & { contextKey: string };
-function readRoute(): Page {
-  const value = window.location.hash.slice(2);
-  if (!GAME_ENABLED && ["market", "impact", "optimizer"].includes(value))
-    return "explore";
-  return routes.includes(value as Page) ? (value as Page) : "explore";
-}
 function unwrap<T>(result: Result<T>): T {
   if (!result.success) throw new Error(result.error.message);
   return result.data;
 }
 function go(page: Page) {
-  window.location.hash = `/${page}`;
+  window.location.hash = pageHash(page, useAppStore.getState());
 }
 function country(id: string) {
   return (
@@ -81,143 +67,7 @@ function Tag({ level }: { level: AccessLevel }) {
     </span>
   );
 }
-function PassportSelect({
-  value,
-  onChange,
-  label = "My passport",
-}: {
-  value: string;
-  onChange: (id: string) => void;
-  label?: string;
-}) {
-  const [open, setOpen] = useState(false);
-  const [query, setQuery] = useState("");
-  const [activeIndex, setActiveIndex] = useState(0);
-  const selectorRef = useRef<HTMLDivElement>(null);
-  const searchRef = useRef<HTMLInputElement>(null);
-  const listRef = useRef<HTMLDivElement>(null);
-  const passports = [...catalog.passports].sort((a, b) =>
-    a.name.localeCompare(b.name),
-  );
-  const matchingPassports = passports.filter((passport) =>
-    `${passport.name} ${passport.id}`.toLowerCase().includes(query.toLowerCase()),
-  );
-  const selectedPassport = passports.find((passport) => passport.id === value)!;
-
-  useEffect(() => {
-    if (!open) return;
-    const closeOnOutsideClick = (event: MouseEvent) => {
-      if (!selectorRef.current?.contains(event.target as Node)) setOpen(false);
-    };
-    document.addEventListener("mousedown", closeOnOutsideClick);
-    searchRef.current?.focus();
-    return () => document.removeEventListener("mousedown", closeOnOutsideClick);
-  }, [open]);
-
-  useEffect(() => {
-    const list = listRef.current;
-    const activeOption = list?.querySelector<HTMLElement>('[data-active="true"]');
-    if (!list || !activeOption) return;
-    const listBounds = list.getBoundingClientRect();
-    const optionBounds = activeOption.getBoundingClientRect();
-    if (optionBounds.top < listBounds.top) {
-      list.scrollTop -= listBounds.top - optionBounds.top;
-    } else if (optionBounds.bottom > listBounds.bottom) {
-      list.scrollTop += optionBounds.bottom - listBounds.bottom;
-    }
-  }, [activeIndex, open, query]);
-
-  function selectPassport(id: string) {
-    onChange(id);
-    setQuery("");
-    setOpen(false);
-  }
-
-  function openDropdown() {
-    setQuery("");
-    setActiveIndex(Math.max(0, passports.findIndex((passport) => passport.id === value)));
-    setOpen(true);
-  }
-
-  function moveActive(direction: 1 | -1) {
-    if (!open) {
-      openDropdown();
-      return;
-    }
-    setActiveIndex((index) =>
-      Math.min(Math.max(index + direction, 0), Math.max(0, matchingPassports.length - 1)),
-    );
-  }
-
-  return (
-    <div className="passport-select passport-combobox" ref={selectorRef}>
-      <span>{label}</span>
-      <button
-        type="button"
-        className="passport-combobox-trigger"
-        aria-label={label}
-        aria-expanded={open}
-        aria-haspopup="listbox"
-        onClick={() => (open ? setOpen(false) : openDropdown())}
-        onKeyDown={(event) => {
-          if (event.key === "ArrowDown" || event.key === "ArrowUp") {
-            event.preventDefault();
-            moveActive(event.key === "ArrowDown" ? 1 : -1);
-          }
-        }}
-      >
-        {selectedPassport.flagEmoji} {selectedPassport.name}
-        <ChevronDown size={16} aria-hidden="true" />
-      </button>
-      {open && (
-        <div className="passport-combobox-menu">
-          <input
-            ref={searchRef}
-            type="search"
-            value={query}
-            onChange={(event) => {
-              setQuery(event.target.value);
-              setActiveIndex(0);
-            }}
-            onKeyDown={(event) => {
-              if (event.key === "ArrowDown" || event.key === "ArrowUp") {
-                event.preventDefault();
-                moveActive(event.key === "ArrowDown" ? 1 : -1);
-              }
-              if (event.key === "Enter") {
-                event.preventDefault();
-                const activePassport = matchingPassports[activeIndex];
-                if (activePassport) selectPassport(activePassport.id);
-              }
-              if (event.key === "Escape") setOpen(false);
-            }}
-            placeholder="Type a passport"
-            aria-label="Search passports"
-          />
-          <div ref={listRef} role="listbox" aria-label={`${label} options`}>
-            {matchingPassports.length ? (
-              matchingPassports.map((passport, index) => (
-                <button
-                  type="button"
-                  role="option"
-                  aria-selected={passport.id === value}
-                  data-active={index === activeIndex}
-                  key={passport.id}
-                  onClick={() => selectPassport(passport.id)}
-                >
-                  {passport.flagEmoji} {passport.name}
-                </button>
-              ))
-            ) : (
-              <p>No passports found.</p>
-            )}
-          </div>
-        </div>
-      )}
-    </div>
-  );
-}
-function Legend() {
+function Legend({ outside = true }: { outside?: boolean }) {
   return (
     <div className="legend">
       {Object.entries(accessLabels).map(([key, label]) => (
@@ -226,10 +76,7 @@ function Legend() {
           {label}
         </span>
       ))}
-      <span>
-        <i className="unsupported-key" />
-        Outside coverage
-      </span>
+      {outside && <span><i className="unsupported-key" />Outside coverage</span>}
     </div>
   );
 }
@@ -310,9 +157,9 @@ function Explore() {
     ),
   );
   const view = GAME_ENABLED && simulated ? snapshot : composeExploration(snapshot, travel.entries);
-  const destinations = view.destinations.filter((d) =>
-    d.destinationName.toLowerCase().includes(search.toLowerCase()),
-  );
+  const destinations = view.destinations.filter(d =>
+    `${d.destinationName} ${d.destinationId}`.toLowerCase().includes(search.trim().toLowerCase())
+  ).sort((a, b) => a.destinationName.localeCompare(b.destinationName));
   const selected = view.destinations.find(
     (d) => d.destinationId === destination,
   )!;
@@ -340,7 +187,7 @@ function Explore() {
           <input
             ref={searchRef}
             value={search}
-            onChange={(e) => setSearch(e.target.value)}
+            onChange={(e) => { setSearch(e.target.value); if (e.target.value) setList(true); }}
             placeholder="Find a country"
             aria-label="Find a country"
           />
@@ -355,14 +202,23 @@ function Explore() {
       <div className="explore-layout">
         <section className="map-stage" aria-label="Destinations">
           <div className="view-toggle segmented">
-            <button aria-pressed={!list} onClick={() => setList(false)}>
+            <button aria-pressed={!list} onClick={() => { setList(false); setSearch(""); }}>
               Map
             </button>
             <button aria-pressed={list} onClick={() => setList(true)}>
               List
             </button>
           </div>
-          {list || search ? (
+          <Legend />
+          <p className="map-caption">
+            {catalog.destinations.length} destinations · Passport Index snapshot · unverified
+            {travel.entries.length > 0 && !simulated ? " + cached provider updates" : ""}
+            {simulated ? " · fictional treaty effects" : ""}
+          </p>
+          <p className={list ? "result-count" : "sr-only"} role="status" aria-live="polite">
+            {list ? `${destinations.length} destinations found. Select one to update the details alongside.` : "Map view. Use the List view to search destinations."}
+          </p>
+          {list ? (
             <div className="destination-list">
               {destinations.length ? (
                 destinations.map((d) => (
@@ -373,7 +229,6 @@ function Explore() {
                     }
                     onClick={() => {
                       setDestination(d.destinationId);
-                      setSearch("");
                     }}
                   >
                     <span>
@@ -401,16 +256,8 @@ function Explore() {
               onSelect={setDestination}
             />
           )}
-          <Legend />
-          <p className="map-caption">
-            {catalog.destinations.length} destinations · bundled Passport Index snapshot
-            {travel.entries.length > 0 && !simulated ? " + cached Travel Buddy destination updates (unverified)" : ""}
-            {simulated ? " · fictional treaty effects" : ""}
-          </p>
         </section>
-        <div className="explore-sidebar">
-          <BotExplorer countryId={destination} />
-          <aside className="postcard">
+        <aside className="postcard" aria-label="Selected destination details">
           <div className="postcard-image">
             <PostcardArt
               countryId={destination}
@@ -428,14 +275,14 @@ function Explore() {
             <span className="stamp">LET’S EXPLORE</span>
           </div>
           <span className="eyebrow">YOUR NEXT CHAPTER?</span>
-          <h2>Hello, {country(destination).name}!</h2>
+          <h2 aria-live="polite">Hello, {country(destination).name}!</h2>
           <div className="postcard-details">
             <span>{selected.notes?.startsWith('Travel Buddy') ? 'Provider access' : 'Snapshot access'}</span>
             <Tag level={selected.accessLevel} />
             <span>Purpose</span>
             <b>Tourism</b>
-            <span>Verified stay</span>
-            <b>Not available</b>
+            <span>Stay information</span>
+            <b>{travel.detail?.primary.duration ? `${travel.detail.primary.duration} (unverified)` : 'Not verified'}</b>
           </div>
           {travel.detail && <p className="travel-status">Travel Buddy · checked {new Date(travel.detail.fetchedAt).toLocaleDateString()} · unverified</p>}
           {travel.detail && primaryAccess(travel.detail) && primaryAccess(travel.detail) !== snapshot.destinations.find(d => d.destinationId === destination)?.accessLevel && <p className="travel-status" role="status">Requirements updated</p>}
@@ -467,9 +314,10 @@ function Explore() {
   );
 }
 
-function CountryPage() {
-  const { passport, setPassport, destination, setDestination, world, selectionRevision, selectionKey } =
-    useAppStore();
+function CountryPage({ inspectSecond = false }: { inspectSecond?: boolean }) {
+  const { passport: firstPassport, comparison, setPassport: setFirstPassport, setComparison, destination, setDestination, world, selectionRevision, selectionKey } = useAppStore();
+  const passport = inspectSecond ? comparison : firstPassport;
+  const setPassport = inspectSecond ? setComparison : setFirstPassport;
   const [purpose, setPurpose] =
     useState<TravellerContext["purpose"]>("tourism");
   const openedPassport = useRef(passport);
@@ -544,6 +392,9 @@ function CountryPage() {
         <ArrowLeft size={17} />
         Back to the world
       </button>
+      <button className="text-button comparison-return" onClick={() => go("compare")}>
+        <ArrowLeftRight size={17} /> Back to comparison
+      </button>
       <Heading
         eyebrow="COUNTRY NOTEBOOK"
         title={`A little closer to ${country(destination).name}.`}
@@ -593,55 +444,28 @@ function CountryPage() {
             </div>
             <MapPin size={42} />
           </div>
-          <dl className="requirements">
-            {[
-              [
-                travel.detail ? "Stay reported by provider" : "Stay in snapshot",
-                travel.detail ? travel.detail.primary.duration ?? "Not provided" : requirements.maxStayDays === null
-                  ? "Not verified"
-                  : requirements.maxStayDays + " days (unverified)",
-              ],
-              [
-                "Documents",
-                requirements.documents.length
-                  ? requirements.documents
-                      .map(
-                        (d) =>
-                          d.title +
-                          (d.required ? " (required)" : " (conditional)"),
-                      )
-                      .join("; ")
-                  : "No verified checklist available",
-              ],
-              ["Application", travel.detail ? travel.detail.primary.name : requirements.applicationChannel.name],
-              [
-                "Fee",
-                requirements.fees
-                  ? requirements.fees.amount + " " + requirements.fees.currency
-                  : "Not verified",
-              ],
-              [
-                "Processing",
-                requirements.processingTime
-                  ? requirements.processingTime.estimateDaysMin +
-                    "–" +
-                    requirements.processingTime.estimateDaysMax +
-                    " " +
-                    requirements.processingTime.unit
-                  : "Not verified",
-              ],
-              ["Last verified", requirements.verifiedAt || "Not available"],
-            ].map(([name, value]) => (
-              <div key={name}>
-                <dt>{name}</dt>
-                <dd>{value}</dd>
-              </div>
-            ))}
-          </dl>
           {purpose === 'tourism' && passport !== destination && <TravelBrief
             detail={travel.detail} message={travel.message} refreshing={travel.refreshing} onRefresh={() => void travel.refresh()}
             changed={Boolean(travel.detail && primaryAccess(travel.detail) && primaryAccess(travel.detail) !== sample.accessLevel)}
           />}
+          {!travel.detail && <dl className="requirements rule-summary">
+            <div><dt>Stay in snapshot</dt><dd>{requirements.maxStayDays === null ? "Not verified" : `${requirements.maxStayDays} days (unverified)`}</dd></div>
+            <div><dt>Application</dt><dd>{requirements.applicationChannel.url
+              ? <a href={requirements.applicationChannel.url} target="_blank" rel="noreferrer">{requirements.applicationChannel.name} ↗</a>
+              : requirements.applicationChannel.name}</dd></div>
+          </dl>}
+          <details className="preparation-details" open>
+            <summary>Documents, fees & processing</summary>
+            <dl className="requirements">
+              <div><dt>Documents</dt><dd>{requirements.documents.length
+                ? requirements.documents.map(d => d.title + (d.required ? " (required)" : " (conditional)")).join("; ")
+                : "No verified checklist available"}</dd></div>
+              <div><dt>Fee</dt><dd>{requirements.fees ? `${requirements.fees.amount} ${requirements.fees.currency}` : "Not verified"}</dd></div>
+              <div><dt>Processing</dt><dd>{requirements.processingTime
+                ? `${requirements.processingTime.estimateDaysMin}–${requirements.processingTime.estimateDaysMax} ${requirements.processingTime.unit}` : "Not verified"}</dd></div>
+              <div><dt>Last verified</dt><dd>{requirements.verifiedAt || "Not available"}</dd></div>
+            </dl>
+          </details>
           {!!requirements.unresolvedConditions?.length && (
             <div className="notice-box">
               <b>A few things are still unknown.</b>
@@ -670,7 +494,7 @@ function CountryPage() {
             {research?.contextKey === contextKey && (
               <div className="research-result">
                 <b>Unverified research · {research.model}</b>
-                <p>{research.answer}</p>
+                <ResearchAnswer answer={research.answer} />
                 <small>{research.disclaimer} Retrieved {research.retrievedAt}.</small>
               </div>
             )}
@@ -744,6 +568,7 @@ function Compare() {
   const { passport, comparison, setPassport, setComparison, world } =
     useAppStore();
   const [mode, setMode] = useState<"shared" | "a" | "b" | "changes">("shared");
+  const [query, setQuery] = useState("");
   const [simulated, setSimulated] = useState(false);
   const data = unwrap(
     engine.comparePassports(
@@ -760,6 +585,14 @@ function Compare() {
         : mode === "b"
           ? data.onlyB
           : data.differences.map((d) => d.destinationId);
+  const state = GAME_ENABLED && simulated ? world : INITIAL_WORLD_STATE;
+  const viewA = unwrap(engine.getPassportView(passport, state));
+  const viewB = unwrap(engine.getPassportView(comparison, state));
+  const levelsA = new Map(viewA.destinations.map(d => [d.destinationId, d.accessLevel]));
+  const levelsB = new Map(viewB.destinations.map(d => [d.destinationId, d.accessLevel]));
+  const matchingIds = [...ids].filter(id => `${country(id).name} ${id}`.toLowerCase().includes(query.trim().toLowerCase()))
+    .sort((a, b) => country(a).name.localeCompare(country(b).name));
+  const inspectLink = (id: string, second = false) => pageHash('country', { passport, comparison, destination: id }, second ? 'second' : undefined);
   return (
     <>
       <Heading eyebrow="02 / COMPARE" title="Two passports. New possibilities.">
@@ -845,35 +678,24 @@ function Compare() {
             Access differences ({data.differences.length})
           </button>
         </div>
-        <div className="compare-results">
-          {ids.length ? (
-            ids.map((id) => (
-              <div key={id}>
-                <span>
-                  {country(id).flagEmoji} {country(id).name}
-                </span>
-                {mode === "changes" && (
-                  <>
-                    <Tag
-                      level={
-                        data.differences.find((d) => d.destinationId === id)!
-                          .accessLevelA
-                      }
-                    />
-                    <ArrowRight size={14} />
-                    <Tag
-                      level={
-                        data.differences.find((d) => d.destinationId === id)!
-                          .accessLevelB
-                      }
-                    />
-                  </>
-                )}
-              </div>
-            ))
-          ) : (
-            <p>No destinations in this group. Try a different passport.</p>
-          )}
+        <label className="search compare-search"><Search size={18} />
+          <input aria-label="Find a comparison destination" placeholder="Find a destination" value={query} onChange={event => setQuery(event.target.value)} />
+        </label>
+        <p className="result-count" role="status">{matchingIds.length} destinations · sorted by name</p>
+        <div className="comparison-table-wrap">
+          {matchingIds.length ? <table className="comparison-table">
+            <caption className="sr-only">Snapshot access by passport. Select an access category to open its country notebook.</caption>
+            <thead><tr><th scope="col">Destination</th><th scope="col">{country(passport).name}</th><th scope="col">{country(comparison).name}</th></tr></thead>
+            <tbody>{matchingIds.map(id => <tr key={id}>
+              <th scope="row">{country(id).flagEmoji} {country(id).name}</th>
+              <td><a href={inspectLink(id)} aria-label={`Inspect ${country(passport).name} passport requirements for ${country(id).name}`}>
+                <Tag level={levelsA.get(id)!} /><span>Inspect <ArrowRight size={14} /></span></a></td>
+              <td><a href={inspectLink(id, true)} aria-label={`Inspect ${country(comparison).name} passport requirements for ${country(id).name}`}>
+                <Tag level={levelsB.get(id)!} /><span>Inspect <ArrowRight size={14} /></span></a></td>
+            </tr>)}</tbody>
+          </table> : <div className="empty-state"><p>{query ? "No matching destinations. Try another name." : passport === comparison ? "These are the same passport, so there are no unique destinations or access differences." : "No destinations in this group. Try another group or passport."}</p>
+            {query && <Button secondary onClick={() => setQuery("")}>Clear search</Button>}
+          </div>}
         </div>
       </div>
       <Landscape />
@@ -894,6 +716,9 @@ function Dna() {
     ),
   );
   const dna = simulated ? after : baseline;
+  const baselineLevels = unwrap(engine.getPassportView(passport, INITIAL_WORLD_STATE)).destinations.map(d => d.accessLevel);
+  const afterLevels = unwrap(engine.getPassportView(passport, GAME_ENABLED ? world : INITIAL_WORLD_STATE)).destinations.map(d => d.accessLevel);
+  const levels = simulated ? afterLevels : baselineLevels;
   return (
     <>
       <Heading eyebrow="03 / VISA DNA" title="Your passport has a pattern.">
@@ -912,27 +737,22 @@ function Dna() {
             create your passport’s fingerprint.
           </p>
           <ModeSwitch simulated={simulated} setSimulated={setSimulated} />
-          <div className="dna-stats">
-            <div>
-              <b>{dna.summary.visaFree}</b>
-              <span>Visa-free</span>
-            </div>
-            <div>
-              <b>{dna.summary.evisa}</b>
-              <span>eVisa</span>
-            </div>
-            <div>
-              <b>{dna.summary.total}</b>
-              <span>Places modeled</span>
-            </div>
-          </div>
+          <p className="dna-encoding-note">Petal length follows the modeled weight. Color shows the access category; unknown data is gray, distinct from red restrictions, even though both have zero weight.</p>
+          <dl className="dna-stats">
+            {([
+              ['Visa-free', dna.summary.visaFree], ['On arrival', dna.summary.visaOnArrival],
+              ['eVisa', dna.summary.evisa], ['Visa required', dna.summary.visaRequired],
+              ['Restricted', dna.summary.restricted], ['Unknown', dna.summary.unknown],
+            ] as const).map(([label, count]) => <div key={label}><dd>{count}</dd><dt>{label}</dt></div>)}
+          </dl>
+          <p className="result-count">{dna.summary.total} destinations modeled</p>
           <Button onClick={() => go(GAME_ENABLED ? "market" : "explore")}>
             {GAME_ENABLED ? "Change your world" : "Explore destinations"}{" "}
             <ArrowRight size={18} />
           </Button>
         </div>
         <div className="dna-hero">
-          <DnaFlower dna={dna} />
+          <DnaFlower dna={dna} levels={levels} />
           <span className="round-stamp">
             UNIQUELY
             <br />
@@ -940,12 +760,12 @@ function Dna() {
           </span>
         </div>
       </div>
-      <Legend />
+      <Legend outside={false} />
       <details className="dna-details">
         <summary>How your pattern is made</summary>
         <p>
           The engine provides a stable vector in catalog order. Petal lengths
-          and colors reflect modeled access weights; this illustration is not a
+          reflect modeled access weights; colors use the snapshot categories; this illustration is not a
           personal or biological fingerprint. Restricted and unknown both have
           zero weight in the current engine.
         </p>
@@ -954,12 +774,12 @@ function Dna() {
       {GAME_ENABLED && (
         <div className="dna-comparison">
           <div>
-            <DnaFlower dna={baseline} small />
+            <DnaFlower dna={baseline} levels={baselineLevels} small />
             <span>Baseline</span>
           </div>
           <ArrowRight />
           <div>
-            <DnaFlower dna={after} small />
+            <DnaFlower dna={after} levels={afterLevels} small />
             <span>Your simulation</span>
           </div>
           <p>
@@ -1430,7 +1250,7 @@ function More() {
           <h2>A different starting point.</h2>
           <p>
             Draw one of the {catalog.passports.length} supported passports and see the world through a
-            new lens.
+            new lens. Drawing previews a passport; your active selection changes only when you choose to explore it.
           </p>
           <PassportBook
             name={country(draw ?? passport).name}
@@ -1443,7 +1263,6 @@ function More() {
               const id =
                 catalog.passports[bytes[0] % catalog.passports.length].id;
               setDraw(id);
-              setPassport(id);
             }}
           >
             <Shuffle size={18} />
@@ -1452,8 +1271,8 @@ function More() {
           {draw && (
             <p role="status">
               You drew {country(draw).name}.{" "}
-              <button className="text-button" onClick={() => go("explore")}>
-                Explore its world <ArrowRight size={16} />
+              <button className="text-button" onClick={() => { setPassport(draw); go("explore"); }}>
+                Use this passport & explore <ArrowRight size={16} />
               </button>
             </p>
           )}
@@ -1461,6 +1280,8 @@ function More() {
         <section className="globe-card">
           <span className="eyebrow">A FRESH PERSPECTIVE</span>
           <h2>The world, a little rounder.</h2>
+          <PassportSelect value={passport} onChange={setPassport} label="Globe passport" />
+          <Legend />
           <WorldMap
             globe
             view={unwrap(
@@ -1500,17 +1321,18 @@ function More() {
 }
 
 export default function App() {
-  const [requestedPage, setPage] = useState<Page>(readRoute);
+  const [routeHash, setRouteHash] = useState(window.location.hash);
+  const requestedPage = readPage(routeHash);
   // Also guard existing sessions whose route was selected before the game pause.
   const page =
     !GAME_ENABLED && ["market", "impact", "optimizer"].includes(requestedPage)
       ? "explore"
       : requestedPage;
-  const { notice, world } = useAppStore();
+  const { notice, world, passport, destination, comparison } = useAppStore();
   const main = useRef<HTMLElement>(null);
   useEffect(() => {
     const change = () => {
-      setPage(readRoute());
+      setRouteHash(window.location.hash);
       window.scrollTo({ top: 0, behavior: "instant" });
       main.current?.focus();
     };
@@ -1518,7 +1340,7 @@ export default function App() {
     return () => window.removeEventListener("hashchange", change);
   }, []);
   useEffect(() => {
-    document.title = `${{ explore: "Explore", country: "Country notebook", compare: "Compare", dna: "Visa DNA", market: "Border Market", impact: "Your impact", optimizer: "Optimizer", more: "More possibilities" }[page]} · aperiron`;
+    document.title = `${{ explore: "Explore", country: "Country notebook", compare: "Compare", dna: "Visa DNA", trips: "Plan a trip", market: "Border Market", impact: "Your impact", optimizer: "Optimizer", more: "More possibilities" }[page]} · aperiron`;
   }, [page]);
   const active =
     page === "country"
@@ -1539,7 +1361,7 @@ export default function App() {
         Skip to content
       </a>
       <header className="site-header">
-        <a href="#/explore" className="wordmark" aria-label="aperiron home">
+        <a href={pageHash("explore", { passport, destination, comparison })} className="wordmark" aria-label="aperiron home">
           aperiron<span>.</span>
         </a>
         <nav aria-label="Main navigation">
@@ -1548,6 +1370,7 @@ export default function App() {
               ["explore", "Explore"],
               ["compare", "Compare"],
               ["dna", "Visa DNA"],
+              ["trips", "Trips"],
               ["market", "Play"],
               ["more", "More"],
             ] as const
@@ -1556,7 +1379,7 @@ export default function App() {
             .map(([route, label]) => (
               <a
                 key={route}
-                href={`#/${route}`}
+                href={pageHash(route, { passport, destination, comparison })}
                 aria-current={active === route ? "page" : undefined}
               >
                 {label}
@@ -1570,15 +1393,17 @@ export default function App() {
           A more open tomorrow <Sun size={25} />
         </span>
       </header>
-      <main ref={main} tabIndex={-1} id="main">
+      <main ref={main} tabIndex={-1} id="main" className={`page-${page}`}>
         {page === "explore" ? (
           <Explore />
         ) : page === "country" ? (
-          <CountryPage />
+          <CountryPage inspectSecond={new URLSearchParams(routeHash.split("?")[1]).get("inspect") === "second"} />
         ) : page === "compare" ? (
           <Compare />
         ) : page === "dna" ? (
           <Dna />
+        ) : page === "trips" ? (
+          <TripPlanner />
         ) : GAME_ENABLED && page === "market" ? (
           <Market />
         ) : GAME_ENABLED && page === "impact" ? (
