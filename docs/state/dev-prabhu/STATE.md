@@ -1,39 +1,39 @@
 # dev-prabhu — current state
 
-- Updated at: 2026-10-10T17:40:25Z
+- Updated at: 2026-10-11T02:25:00Z
 - Status: ready_for_review
-- Task: Download Passport Index data from imorte/passport-index-data and integrate real data
-- Branch: main
-- Baseline commit: db5f5d3eba79066299aca4bd2a06e24904520f43
-- Latest run: [20261010T174025Z-b1f89c43](runs/20261010T174025Z-b1f89c43.md)
+- Task: Make the route line curvy with loops, red arrow animation at head, and popping destination map pin on dev-prabhu
+- Branch: dev-prabhu
+- Baseline commit: 23524ea
+- Latest run: [Curvy animated route with arrow and popping pin](runs/20261011T022500Z-curvy-animated-route-dev-prabhu.md)
 
 ## Completed
 
-Downloaded and integrated authentic global data from `https://github.com/imorte/passport-index-data`:
-1. Stored raw files in `src/data/passport-index/`:
-   - `passport-index-tidy-iso2.csv` (606 KB)
-   - `passport-index-matrix-iso2.csv` (370 KB)
-   - `README.md`
-2. Compiled into `src/data/passportIndexData.ts`: 39,601 records across 199 nations.
-3. Updated `src/data/baselineMatrix.ts` to be populated directly from the real Passport Index records.
-4. Integrated stay durations (e.g. 90 days, 30 days) and source citations into `src/data/regulations.ts`.
-5. Updated catalog attribution to `1.0.0-passport-index`.
-6. Verified with `tests/verify-passport-index.ts` (6/6 passing).
-7. Master test suite: **40 automated tests passing across 5 suites with zero failures**.
+1. Implemented `getCurvyPath` helper in `src/components/AccessMap.tsx`:
+   - Multi-bezier mathematical trajectory generator creating the double-loop whimsical path matching user illustration.
+   - Dynamic upward normal vector orientation ensuring the trajectory arches northwards.
+   - Smooth fallback arch for close destinations.
+2. Implemented animated route rendering in `src/components/AccessMap.tsx`:
+   - Curvy dashed path (`strokeDasharray="6 4"`, stroke `#000000`, strokeWidth `2.5`).
+   - Synchronized SVG draw-mask (`routeMaskReveal`) revealing the line progressively from origin to destination over 1.2s.
+   - Red flying arrow (`#D00000`) animated along the curve using hardware-accelerated `animateMotion` with `rotate="auto"`, leading at the head of the path.
+   - Origin map pin marked from start; destination map pin popping up with spring scale animation (`mapPinPop`) timed to trigger upon arrow arrival.
+   - Added SVG timeline reset (`setCurrentTime(0)`) and `.beginElement()` animation triggers on `[selected, view.passportId]` for reliable replay on each country change.
+3. Added animation keyframes and classes in `src/styles.css`:
+   - `@keyframes mapPinPop` and `.map-pin-pop`.
+   - `@keyframes routeMaskReveal` and `.route-mask-line`.
+4. Verified TypeScript typecheck (`tsc --noEmit`) and all 81 automated tests passed with zero failures.
+5. Complied with strict user constraints: zero git commits or commands executed.
 
 ## In progress
 
-None. Real-world dataset fully integrated and verified.
+None.
 
 ## Verification
 
-- `verify-phase1.ts`: 10/10 passed.
-- `verify-phase2.ts`: 6/6 passed.
-- `verify-phase3.ts`: 9/9 passed.
-- `verify-parity.ts`: 9/9 passed.
-- `verify-passport-index.ts`: 6/6 passed.
-- Master total: 40/40 automated tests passed.
-- Documentation links & skills verified via `scripts/check-docs.ps1` (60 Markdown files).
+- TypeScript check (`npm run typecheck`): passed with 0 errors.
+- Test suite (`npm test`): 81/81 automated tests passed across all suites with 0 failures.
+- Zero git commits or pushes performed.
 
 ## Blockers
 
@@ -41,11 +41,8 @@ None.
 
 ## Next actions
 
-Proceed with frontend integration (`dev-adithyaa`).
+Await further user instructions. Commit or push only when explicitly requested.
 
 ## Coordination
 
-- The engine now runs with authentic global data from Passport Index.
-- Strict physical file isolation guarantees zero merge conflicts with `dev-adithyaa`.
-- Per user instruction, no Git commits were performed. All changes remain local uncommitted.
-- No changes made to `dev-adithyaa` state files.
+All changes remain local and uncommitted per user instruction ("dont do any git commits"). Engine contracts remain untouched.
