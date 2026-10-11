@@ -1,11 +1,11 @@
 # dev-integration state
 
-- Updated at: 2026-10-10T23:56:31Z
+- Updated at: 2026-10-10T23:58:49Z
 - Status: ready_for_review
-- Task: Group and commit the desktop audit fixes
+- Task: Draft PR copy for the committed desktop audit fixes
 - Branch: dev-integration
-- Baseline commit: ac38c6d0a0857aabe21819b4b0423fabef3b5c57
-- Latest run: [Grouped commits](runs/20261010T235631Z-grouped-commits-d47b82.md)
+- Baseline commit: b5f9932
+- Latest run: [PR draft](runs/20261010T235849Z-pr-draft-53fc71.md)
 
 ## Completed
 
@@ -76,3 +76,7 @@ committed locally and unpushed. Twenty-one focused commits follow the audit base
 state-only commit was preserved. Eleven intermediate source commits typecheck;
 three focused regressions pass. The previous full-suite/build/browser evidence
 remains applicable because implementation content was unchanged by grouping.
+
+PR title/body drafted from the committed fixes; no external PR created. Current
+PR-draft state/run records are local and uncommitted; implementation commits remain
+unchanged at b5f9932 and unpushed.
