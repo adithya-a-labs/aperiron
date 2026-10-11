@@ -2323,100 +2323,36 @@ dialog::backdrop {
 .travel-status { font-size: .82rem; line-height: 1.5; color: #536a70; }
 .travel-rule p { margin: .4rem 0; }
 .travel-rule a { display: inline-block; margin-top: .4rem; }
-/* Desktop audit fixes: shared controls and readable interpretation context. */
-.sr-only {
-  position: absolute; width: 1px; height: 1px; padding: 0; margin: -1px;
-  overflow: hidden; clip-path: inset(50%); white-space: nowrap; border: 0;
+
+/* Explorer companion bot */
+.explore-sidebar {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 12px;
+  width: 100%;
 }
-main { overflow: visible; }
-.passport-combobox { max-width: 100%; }
-.passport-combobox-trigger { min-width: 0; text-align: left; }
-.passport-combobox-trigger > span { white-space: normal; overflow-wrap: anywhere; }
-.passport-combobox-menu { max-width: calc(100vw - 48px); }
-.passport-combobox-menu [role="listbox"] { position: relative; }
-.passport-combobox-menu [role="option"] { cursor: pointer; }
-.legend { font-size: 12px; gap: 10px 16px; }
-.map-caption, .result-count, .map-keyboard-help { font-size: 12px; line-height: 1.5; color: #45616f; }
-.map-caption { margin: 8px 0 12px; }
-.map-keyboard-help { margin-bottom: 6px; }
-.page-explore .map-stage { min-width: 0; }
-.page-explore .view-toggle { position: static; margin-bottom: 14px; width: fit-content; }
-.page-explore .legend { justify-content: flex-start; }
-.page-explore .map-caption { text-align: left; }
-.page-explore .result-count { margin-bottom: 10px; }
-.page-explore .explore-layout { align-items: start; }
-.page-explore .postcard { margin-top: 0; }
-.page-explore .world-map > svg { max-height: max(240px, calc(100dvh - 380px)); min-height: 0; }
-.page-explore .destination-list { max-height: max(240px, calc(100dvh - 390px)); overflow-y: auto; }
-.map-country { transition: opacity 120ms; }
-.map-country:focus-visible { stroke: #032b43; stroke-width: 3; filter: drop-shadow(0 0 2px #fffdf7); transition: none; }
-.comparison-return { margin-left: 24px; }
-.notebook { grid-template-columns: minmax(0, 1fr) minmax(240px, .45fr); }
-.notebook-main, .notebook-side { min-width: 0; }
-.notebook-side { padding: 24px; }
-.notebook .requirements { margin: 16px 0; }
-.notebook .preparation-details { margin: 20px 0; }
-.notebook .preparation-details summary { font-size: 15px; }
-.requirements > div { grid-template-columns: minmax(100px, 150px) minmax(0, 1fr); gap: 16px; }
-.requirements dd { overflow-wrap: anywhere; }
-.notebook a:not(.button), .research-leads a { text-decoration: underline; text-underline-offset: 3px; color: #155779; }
-.travel-brief { margin: 20px 0; }
-.travel-rule .rule-action { display: block; width: fit-content; margin-top: 10px; }
-.travel-heading .text-button { font-size: 13px; }
-.research-result { white-space: normal; }
-.research-result > p { white-space: pre-wrap; overflow-wrap: anywhere; }
-.research-leads { display: grid; gap: 8px; }
-.research-leads h4 { font-size: 14px; margin: 0; }
-.research-leads ul { margin: 0; padding-left: 20px; }
-.research-leads li + li { margin-top: 12px; }
-.source-url { display: block; overflow-wrap: anywhere; font-size: 12px; margin-top: 4px; }
-.compare-search { display: flex; width: min(100%, 380px); max-width: none; margin: 24px 0 12px; }
-.compare-search input { width: 100%; min-width: 0; }
-.results-panel > .segmented { flex-wrap: wrap; justify-content: center; }
-.comparison-table-wrap { border: 1px solid var(--line); border-radius: 18px; overflow: hidden; background: var(--paper); margin-top: 12px; }
-.comparison-table { width: 100%; table-layout: fixed; border-collapse: collapse; text-align: left; font-size: 14px; }
-.comparison-table th, .comparison-table td { padding: 14px 18px; border-bottom: 1px solid var(--line); overflow-wrap: anywhere; }
-.comparison-table thead { background: #edf2e8; }
-.comparison-table tbody tr:last-child > * { border-bottom: 0; }
-.comparison-table td a { display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 8px; border-radius: 5px; }
-.comparison-table td a > span:last-child { display: inline-flex; align-items: center; gap: 5px; font-size: 12px; color: #155779; text-decoration: underline; text-underline-offset: 3px; }
-.comparison-table .tag { font-size: 12px; }
-.comparison-table tbody tr:hover { background: #f4f5ec; }
-.landscape { width: 100%; margin-left: 0; margin-right: 0; overflow: hidden; }
-.dna-copy .dna-encoding-note { font-size: 13px; margin: 14px 0; }
-.dna-stats { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 18px; margin: 24px 0 12px; }
-.dna-stats dd { margin: 0; font-size: 26px; font-weight: 800; font-variant-numeric: tabular-nums; }
-.dna-stats dt { font-size: 12px; margin-top: 5px; }
-.dna-copy > .result-count { margin-bottom: 20px; }
-.globe-card > .passport-select { margin: 18px 0; text-align: left; }
-.globe-card > .legend { max-width: 520px; margin: 0 auto 12px; }
-.globe-map .map-keyboard-help { max-width: 400px; margin: 0 auto 8px; }
-.postcard-landmark-badge { gap: 12px; }
-.postcard-landmark-badge .landmark-loc { color: #fffdf7; }
-@media (min-width: 1101px) {
-  .page-explore { padding-top: 24px; }
-  .page-explore .page-heading { margin-bottom: 20px; }
-  .page-explore .page-heading h1 { font-size: clamp(34px, 3vw, 46px); }
-  .page-explore .page-heading .subtitle { margin-top: 8px; font-size: 16px; }
-  .page-explore .toolbar { margin-bottom: 18px; }
-  .page-explore .explore-bottom { margin: 18px 0; }
-  .page-explore .postcard-image { max-height: 145px; }
-  .page-explore .postcard-image .postcard-art-wrap { max-height: 145px; }
-  .page-explore .postcard > .eyebrow { margin-top: 16px; }
+.bot-explorer {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  user-select: none;
 }
-@media (hover: hover) and (pointer: fine) and (prefers-reduced-motion: no-preference) {
-  .button, .pill, .round-button { transition: transform 140ms cubic-bezier(.23, 1, .32, 1), background-color 140ms; }
-  .button:active:not(:focus-visible), .pill:active:not(:focus-visible), .round-button:active:not(:focus-visible) { transform: scale(.97); }
+.bot-explorer-img {
+  width: 180px;
+  max-width: 100%;
+  aspect-ratio: 16 / 9;
+  object-fit: contain;
+  display: block;
+  pointer-events: auto;
+  cursor: pointer;
+  filter: drop-shadow(0 4px 12px rgba(3, 43, 67, 0.12));
+  transition: transform 0.2s cubic-bezier(0.175, 0.885, 0.32, 1.275);
 }
-@media (max-width: 1000px) {
-  .notebook { grid-template-columns: minmax(0, 1fr) 240px; }
-  .notebook-main { padding: 24px; }
-  .comparison-table th, .comparison-table td { padding: 12px; }
+.bot-explorer-img:hover {
+  transform: scale(1.05);
 }
-@media (max-width: 760px) {
-  .notebook { grid-template-columns: minmax(0, 1fr); }
-  .comparison-table th, .comparison-table td { padding: 10px 8px; }
-  .comparison-table .tag { white-space: normal; }
-  .page-explore .world-map > svg { max-height: none; }
-  .requirements > div { grid-template-columns: 110px minmax(0, 1fr); }
+.bot-explorer-img:active {
+  transform: scale(0.96);
 }

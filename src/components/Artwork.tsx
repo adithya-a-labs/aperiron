@@ -74,9 +74,11 @@ export function Landscape({ compact = false }: { compact?: boolean }) {
 export function PostcardArt({
   variant = 0,
   countryId,
+  stableImage = false,
 }: {
   variant?: number;
   countryId?: string;
+  stableImage?: boolean;
 }) {
   const id = useId();
   const countryName = catalog.destinations.find(c => c.id === countryId)?.name;

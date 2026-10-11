@@ -1,21 +1,22 @@
 # dev-frontend state
 
-- Updated at: 2026-10-10T23:06:35Z
+- Updated at: 2026-10-11T00:49:00Z
 - Status: ready_for_review
-- Task: Keep the active passport option visible during keyboard navigation
+- Task: Convert all 52 bot animation frames to WebP format and reduce total size to under 1MB
 - Branch: dev-frontend
-- Baseline commit: 9259c96f6157aa4449ee0ee80dba693a8bcd5bdb
-- Latest run: [Passport selector scrolling](runs/20261010T230635Z-passport-selector-scroll-2a7f6e.md)
+- Baseline commit: 328692e
+- Latest run: [Bot frames WebP reduction](runs/20261011T004900Z-bot-frames-webp-reduction-8b2c41.md)
 
 ## Completed
 
-- Converted route line stroke and endpoint anchor dots to solid black (`#000000`).
-- Fixed animation replaying when changing clicked countries by adding SVG timeline reset (`setCurrentTime(0)`), `.beginElement()` triggers on all SMIL animation nodes, and CSS animation classes for persistent replay on every destination change.
-- Replaced the reusable passport selector with a click-open, searchable dropdown. It filters by passport name or ISO code and retains the existing selection callback.
-- Added a visible downward chevron beside the selected passport in the selector trigger.
-- Added Arrow-key navigation, Enter selection and a visible active-option state to the passport dropdown.
-- Kept the active passport option in view while Arrow-key navigation moves through the scrollable dropdown list.
-- All changes are local and uncommitted (0 commits).
+- Converted all 52 bot frames in `public/bot-frames/` to WebP (`ezgif-frame-001.webp` through `ezgif-frame-052.webp`).
+- Preserved transparent alpha channel and crisp resolution (512×288, >3× retina density).
+- Reduced total frame directory size from 57.1 MB down to 921 KB (943,414 bytes, strictly < 1MB total; 98.4% reduction).
+- Each individual frame is ~17–19 KB (well under 1MB each).
+- Cleaned up old 57MB PNG files.
+- Updated `src/components/BotExplorer.tsx` to reference `.webp`.
+- Verified TypeScript types (`npm run typecheck`) and full test suite (`npm test` 44/44 passed).
+- All changes are local and uncommitted (0 commits, zero git commands).
 
 ## In progress
 
@@ -23,11 +24,7 @@ None.
 
 ## Verification
 
-`npm run typecheck` passed (0 diagnostics) after the selector change.
-Prior `npm test` passed (44 of 44 suites passed).
-Prior `npm run build` passed (production bundle compiled cleanly).
-`git diff --check` passed for the selector change; an unrelated existing run record has a trailing-newline warning.
-Local uncommitted working tree preserved; 0 commits made.
+Passed directory size check (< 1MB total), TypeScript typecheck (`tsc --noEmit`), and all 44 test suites (`npm test`).
 
 ## Blockers
 
@@ -35,10 +32,8 @@ None.
 
 ## Next actions
 
-Await further user instructions. Commit or push only when explicitly requested by the user.
+Await user feedback on animation in active local dev server. Commit or push only when explicitly requested.
 
 ## Coordination
 
-Work performed strictly in the `dev-frontend` collaboration lane on `src/components/AccessMap.tsx`.
-Engine calculation contracts remain untouched. All changes are local and uncommitted.
-
+Work stayed within `dev-frontend` scope. Engine, data, and shared contracts remain untouched. No git commits or commands were run.
