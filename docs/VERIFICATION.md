@@ -214,3 +214,26 @@ source migration. Successful retrieval does not verify travel requirements.
 Consumer authentication follows [RapidAPI Auth](https://docs.rapidapi.com/docs/configuring-api-security);
 response expectations follow [Travel Buddy v2](https://travel-buddy.ai/api/).
 The script is excluded from the automatic test glob and the browser bundle.
+
+## Desktop re-audit regression acceptance
+
+Use the assigned running app origin. For this repair run it is
+http://127.0.0.1:5174 only. Compare Explore at 1366×768, 1440×899/900/901 and
+1920×1080. Map, character and destination panel must retain useful sizing; the
+three adjacent heights must not change their dimensions abruptly. Allow vertical
+scrolling instead of compressing content. Check a long country name and unknown
+stay fields. Supporting desktop text is at least 12px.
+
+Filter comparison to Japan and inspect the second passport; reload must preserve
+its context. Check full-width cells and separated actions. Check notebook block
+links, all six DNA counts and a synthetic research HTTPS URL with an unbroken
+240-character path. Compare the notebook's own client/scroll widths, since outer
+page overflow alone can miss internal clipping. Keep prose escaped and leads
+explicitly unverified. Intercept provider writes for these layout checks.
+
+Observe companion image source changes with no reduced-motion preference:
+keyboard destination selection must stay static, explicit pointer playback may
+run, destination changes must cancel it, and reduced motion must remain static.
+The companion is decoration and should add no keyboard control. Check one Tab
+stop per map/globe and empty-search recovery. Browser evidence for the repaired
+run is documented in the frontend re-audit report.
