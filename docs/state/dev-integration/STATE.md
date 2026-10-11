@@ -1,11 +1,11 @@
 # dev-integration state
 
-- Updated at: 2026-10-11T02:17:50Z
+- Updated at: 2026-10-11T02:18:40Z
 - Status: ready_for_review
-- Task: Publish postcard integration commits to origin/dev-integration
+- Task: Diagnose Trips local API origin rejection
 - Branch: dev-integration
-- Baseline commit: 46cc078
-- Latest run: [Publish postcards](runs/20261011T021750Z-publish-postcards-9c14ea.md)
+- Baseline commit: afb1a4c
+- Latest run: [Trips origin diagnosis](runs/20261011T021840Z-trips-origin-diagnosis-4f8ac2.md)
 
 ## Completed
 
@@ -58,3 +58,13 @@ checkout untouched. Shared Artwork changes preserve DNA categories and existing 
 Catalog, baseline matrix and shared engine contracts unchanged. Existing app on
 5174 reused for isolated browser verification. Origin/dev-integration advanced from
 23524ea to 46cc078 by a successful normal push. Publication handoff accompanies it.
+
+
+## Latest diagnosis
+
+Trips on 5174 is rejected by the API default origin allowlist, which includes
+5173, 4173, 5184 and 8787. Read-only capabilities probes confirmed 5173 Origin
+returns 200 and 5174 Origin returns 403 ORIGIN_REJECTED. No implementation or
+configuration changed. Add the exact trusted browser origin via
+ASSISTANT_ALLOWED_ORIGINS and restart, or use an allowed port. These diagnosis
+records are local and uncommitted; application commits remain published at afb1a4c.
