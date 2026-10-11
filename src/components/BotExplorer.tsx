@@ -8,7 +8,6 @@ const BOT_FRAMES: string[] = Array.from({ length: FRAME_COUNT }, (_, i) => {
 
 export function BotExplorer({ countryId }: { countryId: string }) {
   const [frameIndex, setFrameIndex] = useState(0);
-  const isFirstMount = useRef(true);
   const animRef = useRef<number | null>(null);
   const framesReadyRef = useRef(false);
   const preloadedFramesRef = useRef<HTMLImageElement[]>([]);
@@ -89,14 +88,11 @@ export function BotExplorer({ countryId }: { countryId: string }) {
     animRef.current = requestAnimationFrame(tick);
   };
 
-  // Trigger continuous 2-loop animation when user clicks a new country
+  // Destination navigation is frequent: keep it static and cancel any flourish.
   useEffect(() => {
-    if (isFirstMount.current) {
-      isFirstMount.current = false;
-      return;
-    }
-
-    playTwoLoops();
+    if (animRef.current !== null) cancelAnimationFrame(animRef.current);
+    animRef.current = null;
+    setFrameIndex(0);
 
     return () => {
       if (animRef.current !== null) {
@@ -107,13 +103,20 @@ export function BotExplorer({ countryId }: { countryId: string }) {
   }, [countryId]);
 
   return (
-    <button type="button" className="bot-explorer" aria-label="Animate explorer companion" onClick={playTwoLoops}>
+    <div
+      className="bot-explorer"
+      aria-hidden="true"
+      onPointerDown={(event) => {
+        // A decorative Easter egg, not a keyboard stop or navigation response.
+        if (event.isPrimary && event.button === 0) playTwoLoops();
+      }}
+    >
       <img
         src={BOT_FRAMES[frameIndex]}
         alt=""
         className="bot-explorer-img"
         draggable={false}
       />
-    </button>
+    </div>
   );
 }
