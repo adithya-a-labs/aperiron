@@ -157,3 +157,17 @@ switches, the country simulation section and DNA before/after comparison are hid
 Explore, Compare, DNA and the globe use baseline data even if a prior session held
 a purchased treaty. DNA's primary action now opens Explore. Re-enable the flag to
 restore the retained game UI. Verified country data remains a separate dependency.
+
+## Desktop re-audit repairs
+
+Explore uses width-driven map sizing (maximum SVG width 1120px), a 320–360px
+selected-destination column and natural vertical scrolling. There is no 900px
+height compact breakpoint. The companion uses a stable 160×144px viewport over
+aligned WebP frames. It is decorative and excluded from keyboard navigation;
+only an explicit pointer press starts playback. Destination changes cancel and
+reset playback, reduced motion remains static, and hover scale requires a fine
+pointer. Supporting map/provenance text is at least 12px on desktop.
+
+The [re-audit repair evidence](FRONTEND_REAUDIT_2026-10-11.md) covers restored
+comparison table, notebook actions, six-category DNA counts and wrapped research
+leads. Engine data and provider contracts are unchanged.
