@@ -2391,6 +2391,8 @@ main { overflow: visible; }
 .globe-card > .passport-select { margin: 18px 0; text-align: left; }
 .globe-card > .legend { max-width: 520px; margin: 0 auto 12px; }
 .globe-map .map-keyboard-help { max-width: 400px; margin: 0 auto 8px; }
+.postcard-landmark-badge { gap: 12px; }
+.postcard-landmark-badge .landmark-loc { color: #fffdf7; }
 @media (hover: hover) and (pointer: fine) and (prefers-reduced-motion: no-preference) {
   .button, .pill, .round-button { transition: transform 140ms cubic-bezier(.23, 1, .32, 1), background-color 140ms; }
   .button:active:not(:focus-visible), .pill:active:not(:focus-visible), .round-button:active:not(:focus-visible) { transform: scale(.97); }
@@ -2443,20 +2445,19 @@ main { overflow: visible; }
   transform: scale(0.96);
 }
 
-/* Keep the map and destination action within a typical laptop viewport. */
-@media (min-width: 901px) and (max-height: 900px) {
-  main.page-explore { padding-top: 24px; }
+@media (min-width: 901px) {
+  .page-explore .explore-layout { grid-template-columns: minmax(0, 1fr) clamp(320px, 24vw, 360px); gap: 28px; }
+  .page-explore { padding-top: 24px; }
   .page-explore .page-heading { margin-bottom: 20px; }
-  .page-explore .toolbar { margin-bottom: 20px; }
-  .page-explore .map-stage > .world-map > svg { max-height: 340px; }
-  .page-explore .map-stage > .legend { padding-left: 125px; }
-  .page-explore .map-keyboard-help { font-size: 11px; }
-  .page-explore .explore-sidebar { gap: 4px; }
-  .page-explore .bot-explorer-img { width: 100px; }
-  .page-explore .postcard-art-wrap { max-height: 125px; }
-  .page-explore .postcard > .eyebrow { margin: 12px 0 8px; }
-  .page-explore .postcard h2 { font-size: 22px; margin-bottom: 12px; }
-  .page-explore .postcard-details { margin-bottom: 12px; gap: 9px; }
-  .page-explore .postcard .travel-status { font-size: 10px; }
-  .page-explore .postcard > .button { margin-top: 10px; }
+  .page-explore .page-heading h1 { font-size: clamp(34px, 3vw, 46px); }
+  .page-explore .page-heading .subtitle { margin-top: 8px; font-size: 16px; }
+  .page-explore .toolbar { margin-bottom: 18px; }
+  .page-explore .explore-bottom { margin: 18px 0; }
+  .page-explore .postcard > .eyebrow { margin-top: 16px; }
+  .page-explore .world-map > svg { width: 100%; max-width: 1120px; max-height: none; min-height: 0; height: auto; margin: 0 auto; }
+  .page-explore .postcard { transform: none; padding: 16px; }
+  .page-explore .postcard-art-wrap { max-height: none; }
+  .page-explore .postcard h2 { font-size: 28px; margin-bottom: 16px; overflow-wrap: anywhere; }
+  .page-explore .postcard-details { gap: 12px; margin-bottom: 16px; overflow-wrap: anywhere; }
+  .page-explore .postcard .travel-status { font-size: 12px; line-height: 1.5; }
 }
