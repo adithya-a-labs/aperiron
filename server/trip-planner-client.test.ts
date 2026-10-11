@@ -15,6 +15,54 @@ import {
 import { exampleProfile } from "../src/shared/assistant/fixtures";
 import type { Trip } from "../src/shared/assistant/schemas";
 
+test("cancelling during job submission cancels the acknowledged server job", async () => {
+  let acknowledge!: (response: Response) => void;
+  const submission = new Promise<Response>((resolve) => { acknowledge = resolve; });
+  let submitted!: () => void;
+  const dispatched = new Promise<void>((resolve) => { submitted = resolve; });
+  const controller = new AbortController();
+  const calls: string[] = [];
+  const job = {
+    id: "job_cancel_test", type: "checklist", status: "queued", stage: "waiting",
+    contextRef: null, result: null, error: null,
+    createdAt: new Date().toISOString(), expiresAt: new Date(Date.now() + 60_000).toISOString(),
+  };
+  const fetcher: typeof fetch = async (input, init) => {
+    const path = String(input);
+    calls.push(`${init?.method} ${path}`);
+    if (path.endsWith("/sessions")) return Response.json({ data: {
+      sessionId: "session_cancel", csrfToken: "csrf_cancel", expiresAt: job.expiresAt,
+    } });
+    if (init?.method === "POST") {
+      submitted();
+      // Model a response that arrives after cancellation, with a valid job ID.
+      return new Promise<Response>((resolve, reject) => {
+        const abort = () => reject(init.signal?.reason);
+        init.signal?.addEventListener("abort", abort, { once: true });
+        submission.then(response => {
+          init.signal?.removeEventListener("abort", abort);
+          resolve(response);
+        });
+      });
+    }
+    if (init?.method === "DELETE") return new Response(null, { status: 204 });
+    throw new Error("Cancelled work must not be polled");
+  };
+  const client = new AssistantClient(fetcher);
+  const pending = client.job("/checklists", {}, controller.signal);
+  const rejected = assert.rejects(pending, { name: "AbortError" });
+  await dispatched;
+  controller.abort();
+  acknowledge(Response.json({ data: job }));
+  await rejected;
+  assert.equal(calls.filter(c => c === "DELETE /api/v1/assistant/jobs/job_cancel_test").length, 1);
+  assert.equal(calls.filter(c => c.startsWith("GET ")).length, 0);
+
+  const before = calls.length;
+  await assert.rejects(client.job("/checklists", {}, controller.signal), { name: "AbortError" });
+  assert.equal(calls.length, before, "Already cancelled work must never be submitted");
+});
+
 test("Trips browser client uses real session/CSRF, complete map pagination, revisions, tasks and export without provider calls", async (t) => {
   const dir = await mkdtemp(join(tmpdir(), "aperiron-trips-client-"));
   let providerCalls = 0;

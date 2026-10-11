@@ -122,7 +122,12 @@ export class Contexts {
       if (unknown) unassessedCount++;
       return { destinationId: d.id, destinationName: d.name, travellers, groupAssessment: unknown ? 'unassessed' : !matches ? 'does_not_match' : travellers.some(t => t.unknownConditions.length) ? 'needs_review' : 'baseline_match', matches };
     });
-    const filtered = rows.filter(r => r.matches || (!f.accessLevels.length && !('minimumStayDays' in f && f.minimumStayDays)));
+    // Category visibility is separate from eligibility: unknown or over-stay
+    // destinations must remain reviewable without becoming group matches.
+    const minimumStay = f.minimumStayDays;
+    const filtered = rows.filter(r => r.travellers.every(t =>
+      (!f.accessLevels.length || f.accessLevels.includes(t.accessLevel as Filters['accessLevels'][number])) &&
+      (!minimumStay || (t.maxStayDays !== null && t.maxStayDays >= minimumStay))));
     const accessBreakdown: Record<string, number> = {};
     for (const row of filtered) for (const t of row.travellers) accessBreakdown[t.accessLevel] = (accessBreakdown[t.accessLevel] ?? 0) + 1;
     const destinations = filtered.slice(offset, offset + size);

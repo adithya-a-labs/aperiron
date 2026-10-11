@@ -1,18 +1,28 @@
 # dev-adithyaa state
 
-- Updated at: 2026-10-11T03:58:40Z
+- Updated at: 2026-10-11T04:30:47Z
 - Status: ready_for_review
-- Task: Correct production JSON binding breaking Travel Buddy quota/cache persistence
+- Task: Fix trip planner category filtering and job-submission cancellation
 - Branch: main
-- Baseline commit: 40799252fe9e43594f3d973fd39d5046d549b9ec
-- Latest run: [Travel JSON storage correction](runs/20261011T035840Z-travel-json-storage-d42a19.md)
+- Baseline commit: e180add53d0ac01c6a8127d464ed1f923bd0c956
+- Latest run: [Trip planner logic fixes](runs/20261011T043047Z-trip-logic-fixes-f86a19.md)
 
-Production health now passes. Travel refresh fails during quota accounting; user
-confirmed the JSONB ledger contains an encoded string. Reproduced with the actual
+Latest implementation fixes both reviewed defects: category filters preserve
+unknown and over-stay destinations without granting eligibility; cancelling
+during job submission cancels the acknowledged server job. Full suite 91/91,
+typecheck, Vercel build/packaging and compiled HTTP smoke pass. Changes are local
+and uncommitted; no live deployment/provider or browser audit performed.
+
+Production health passes. User now confirms quota JSON type is object after repair,
+with zero remaining. New provider account has active 120-request plan and zero
+percent usage. Supplied locked SQL reconciliation; cloud execution pending.
+Previously reproduced encoded ledger failure with the actual
 postgres.js driver, corrected JSON text binding, added safe stored-data repair and
 real-driver regression coverage. All 89 tests, typecheck, Vercel build/packaging
 and HTTP smoke checks pass. Deploy/repair and actual provider allowance are still
-required. Changes are local and uncommitted; no commit, push or deployment by this run.
+required. Prior correction is now committed locally as e180add; remote publication
+and deployment were not verified. Hosted initial-remaining environment value is
+unused; changing reserve cannot unblock a zero stored balance.
 
 ## Completed
 
@@ -67,12 +77,12 @@ frontend integration `84a0e47`, and the accompanying documentation/state group.
 
 ## In progress
 
-JSON binding correction is ready for review. Publication, deployment, encoded-data
-repair and actual quota reconciliation remain. Real provider success is unverified.
+Trip planner corrections are ready for review/publication. Production key rollout
+and quota SQL execution remain unverified. Real provider success is unverified.
 
 ## Verification
 
-Current local main: all 89 tests passed, including direct embedded Postgres and
+Current local main: all 91 tests passed, including trip regression coverage, direct embedded Postgres and
 actual production-driver JSON/repair regression coverage.
 Typecheck, Vercel build, generated OpenAPI check, compiled Node API HTTP smoke
 checks, documentation links and whitespace passed. All 262 WebP assets are in
@@ -85,14 +95,15 @@ Workflow and real provider success remain unverified. See latest run for evidenc
 Verified detailed regulation data and a production requirements resolver remain pending.
 Prototype classifications or generated regulation details must not be represented as
 verified travel guidance.
-Production stored quota is encoded and zero; requires corrected deployment, repair
-and current RapidAPI allowance from user. Database secrets were not requested.
+User confirms production stored quota is now an object with zero remaining. New
+account allowance is confirmed as 120; production key deployment, allowance SQL
+execution and live provider success remain unverified. Secrets were not requested.
 The earlier core TypeScript build blocker is no longer present on this main baseline.
 
 ## Next actions
 
-Publish/deploy the new JSON binding fix, repair encoded records using the provided
-SQL, reconcile actual provider allowance and verify one refresh plus cache reuse.
+Publish/deploy the trip planner fixes. Confirm production new-account allowance
+SQL execution and verify one provider refresh plus cache reuse.
 Follow [deployment setup](../../DEPLOYMENT.md) and verify cloud Workflow execution.
 Research remains unverified and must not become requirements.
 
@@ -101,5 +112,6 @@ Research remains unverified and must not become requirements.
 Deployment changes internal storage/context/job methods to asynchronous operations
 and updates their consumers/tests; HTTP payload schemas and browser engine semantics
 remain unchanged. Legacy and assistant research share production budgets/cooldowns.
-Other developers' records are untouched. Current work and records are local and
-uncommitted on main; no PR or push performed.
+Other developers' records are untouched. Prior implementation is committed as
+e180add on main. This analysis run's records are local and uncommitted; no PR or
+push performed by this run.

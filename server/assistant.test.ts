@@ -18,7 +18,7 @@ import { exampleActions, exampleCards, exampleProfile } from '../src/shared/assi
 import { TravelCache } from './travel-cache';
 import { TravelService } from './travel-details';
 import type { Message, Brief } from './assistant/service';
-import type { Evidence } from './assistant/context';
+import { Contexts, type Evidence } from './assistant/context';
 
 class FakeModel implements Model {
   configured = true; model = 'test-120b'; calls = 0; searches = 0; delay = 0;
@@ -66,6 +66,27 @@ const countryRef: ContextRef = { kind: 'country', destinationId: 'JP', profileRe
 const mapRef: ContextRef = { kind: 'map', profileRevision: 1, selectedCountryIds: ['JP'], mapRevision: 'map_1' };
 const filters = { regionIds: [], accessLevels: [] }, page = { cursor: null, limit: 50 };
 const tripInput = { name: 'Synthetic group', travellers: [{ id: 'a', label: 'A', profile: exampleProfile }, { id: 'b', label: 'B', profile: { ...exampleProfile, passportId: 'DE' } }], departureDate: null, returnDate: null, durationDays: 5, budget: null, shortlistCountryIds: ['JP'] };
+
+test('category filtering preserves unknown and over-stay rows without granting group eligibility', () => {
+  const contexts = new Contexts(undefined as never, undefined as never);
+  const unsupported = [{ id: 'a', profile: { ...exampleProfile, purpose: 'business' as const } }];
+  const unknown = contexts.query(unsupported, { ...filters, accessLevels: ['unknown'], minimumStayDays: null }, [], null, true);
+  assert.equal(unknown.total, 199);
+  assert(unknown.destinations.every(row => !row.matches && row.groupAssessment === 'unassessed'));
+  assert(unknown.destinations.every(row => row.travellers.every(t => t.accessLevel === 'unknown')));
+  const minimum = contexts.query(unsupported, { ...filters, accessLevels: ['unknown'], minimumStayDays: 5 }, [], null, true);
+  assert.equal(minimum.total, 0, 'Unknown stays cannot satisfy a numeric minimum');
+
+  const profiles = [{ id: 'a', profile: { ...exampleProfile, durationDays: 3650 } }];
+  const all = contexts.query(profiles, { ...filters, minimumStayDays: null }, [], { cursor: null, limit: 50 }, true);
+  const exceeded = all.destinations.find(row => row.travellers[0].stayAssessment === 'exceeds_snapshot');
+  assert(exceeded, 'Fixture must contain a known numeric stay limit');
+  const category = exceeded.travellers[0].accessLevel;
+  const selected = contexts.query(profiles, { ...filters, accessLevels: [category], minimumStayDays: null }, [exceeded.destinationId], null, true);
+  assert.equal(selected.total, 1, 'Category filtering must not hide a stay warning');
+  assert.equal(selected.destinations[0].matches, false);
+  assert.equal(selected.destinations[0].groupAssessment, 'does_not_match');
+});
 const msg = (ref = countryRef, revision = 0) => ({ clientMessageId: randomUUID(), expectedConversationRevision: revision, contextRef: ref, text: 'Explain what is unknown', intent: 'ask', dataPolicy: { travelBuddy: 'cache_only', research: 'never' } });
 
 test('all 30 assistant HTTP operations return their documented success contracts', async t => {

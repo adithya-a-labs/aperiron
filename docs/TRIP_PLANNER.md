@@ -16,6 +16,9 @@ travel design. The generated concept is design input, not an embedded UI image.
   entry-category filters use the backend; the group-match toggle filters the
   returned `matches` flag. All query pages load before map results are published.
   Countries outside the current result set stay hatched.
+  Entry-category visibility is separate from group eligibility: the Unknown
+  filter includes unassessed destinations, and stay warnings do not hide a
+  matching category. A numeric minimum-stay filter still requires known capacity.
 - Save up to ten shortlisted destinations. Select a country to review each
   person's snapshot classification, numeric stay where known, unresolved
   conditions, source provenance and cached provider information.
@@ -59,6 +62,12 @@ Async submissions use UUID idempotency keys; mutations are not automatically
 replayed after failures. The server keeps its existing Origin allowlist and quota
 limits. Use normal port 5173, or explicitly configure a custom origin as described
 in the backend guide. Port 5184 is already in the local allowlist.
+
+Cancellation during job submission waits for the bounded acknowledgement, then
+cancels the returned job rather than losing its ID by aborting the POST. Already
+cancelled work is not submitted. A lost acknowledgement or failed cancellation
+request can still leave server work running until its existing deadline; the
+client does not retry mutations automatically.
 
 `src/store/tripPlannerStore.ts` keeps confirmed resources separate from form
 drafts. Query and context requests are cancelled and late results ignored when

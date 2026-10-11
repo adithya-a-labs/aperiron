@@ -190,24 +190,33 @@ export class AssistantClient {
     signal: AbortSignal,
     onJob?: (job: Job) => void,
   ): Promise<NonNullable<Job["result"]>> {
+    signal.throwIfAborted();
+    await this.connect();
+    signal.throwIfAborted();
+    // Receive the bounded acknowledgement even if cancelled during submission.
+    // Aborting POST can lose the ID of a job the server already accepted.
     let job = await this.request(path, responses.job, {
       method: "POST",
       body,
-      signal,
       key: crypto.randomUUID(),
     });
+    let cancellationSent = false;
     const cancel = () => {
+      if (cancellationSent) return;
+      cancellationSent = true;
       void this.request(`/jobs/${job.id}`, responses.job, {
         method: "DELETE",
       }).catch(() => {});
     };
     signal.addEventListener("abort", cancel, { once: true });
+    if (signal.aborted) cancel();
     const deadline = Date.now() + 240000;
     let pollInterval = 1000;
     try {
       for (;;) {
         signal.throwIfAborted();
         onJob?.(job);
+        signal.throwIfAborted();
         if (job.status === "completed" && job.result) return job.result;
         if (["failed", "cancelled", "superseded"].includes(job.status))
           throw new AssistantError(
