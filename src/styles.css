@@ -2356,6 +2356,11 @@ dialog::backdrop {
 .comparison-table td a > span:last-child { display: inline-flex; align-items: center; gap: 5px; font-size: 12px; color: #155779; text-decoration: underline; text-underline-offset: 3px; }
 .comparison-table .tag { font-size: 12px; }
 .comparison-table tbody tr:hover { background: #f4f5ec; }
+.dna-copy .dna-encoding-note { font-size: 13px; margin: 14px 0; }
+.dna-stats { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 18px; margin: 24px 0 12px; }
+.dna-stats dd { margin: 0; font-size: 26px; font-weight: 800; font-variant-numeric: tabular-nums; }
+.dna-stats dt { font-size: 12px; margin-top: 5px; }
+.dna-copy > .result-count { margin-bottom: 20px; }
 /* Explorer companion bot */
 .explore-sidebar {
   display: flex;
