@@ -6,18 +6,18 @@
     "landmarkName": "Casa de la Vall & Madriu-Perafita",
     "location": "Andorra la Vella",
     "caption": "Stone heritage parliament tucked in high Pyrenean valleys.",
-    "imagePath": "/images/postcards/ad-casa-de-la-vall-madriu-perafita.png",
-    "imageFilename": "ad-casa-de-la-vall-madriu-perafita.png"
+    "imagePath": "/images/postcards/ad-casa-de-la-vall.webp",
+    "imageFilename": "ad-casa-de-la-vall.webp"
   },
   {
     "id": "AE",
     "name": "United Arab Emirates",
     "continent": "Asia",
-    "landmarkName": "United Arab Emirates Heritage & Landscapes",
-    "location": "Asia",
-    "caption": "Discover the breathtaking sights and unique heritage of United Arab Emirates.",
-    "imagePath": "/images/postcards/ae-united-arab-emirates-heritage-landscapes.png",
-    "imageFilename": "ae-united-arab-emirates-heritage-landscapes.png"
+    "landmarkName": "Burj Khalifa & The Fountains",
+    "location": "Downtown Dubai",
+    "caption": "The world's tallest tower rising over illuminated desert fountains.",
+    "imagePath": "/images/postcards/ae-burj-khalifa.webp",
+    "imageFilename": "ae-burj-khalifa.webp"
   },
   {
     "id": "AF",
@@ -26,8 +26,8 @@
     "landmarkName": "Blue Mosque & Band-e Amir",
     "location": "Mazar-i-Sharif",
     "caption": "Turquoise-tiled minarets and lapis lazuli lakes.",
-    "imagePath": "/images/postcards/af-blue-mosque-band-e-amir.png",
-    "imageFilename": "af-blue-mosque-band-e-amir.png"
+    "imagePath": "/images/postcards/af-blue-mosque.webp",
+    "imageFilename": "af-blue-mosque.webp"
   },
   {
     "id": "AG",
@@ -36,8 +36,8 @@
     "landmarkName": "Nelson's Dockyard & Shirley Heights",
     "location": "English Harbour",
     "caption": "Historic Georgian naval dockyard overlooking panoramic turquoise bays.",
-    "imagePath": "/images/postcards/ag-nelson-s-dockyard-shirley-heights.png",
-    "imageFilename": "ag-nelson-s-dockyard-shirley-heights.png"
+    "imagePath": "/images/postcards/ag-nelsons-dockyard.webp",
+    "imageFilename": "ag-nelsons-dockyard.webp"
   },
   {
     "id": "AL",
@@ -46,8 +46,8 @@
     "landmarkName": "Berat Ottoman Castle & Ksamil",
     "location": "Berat & Vlorë",
     "caption": "The city of a thousand windows overlooking turquoise Ionian bays.",
-    "imagePath": "/images/postcards/al-berat-ottoman-castle-ksamil.png",
-    "imageFilename": "al-berat-ottoman-castle-ksamil.png"
+    "imagePath": "/images/postcards/al-berat-castle.webp",
+    "imageFilename": "al-berat-castle.webp"
   },
   {
     "id": "AM",
@@ -56,8 +56,8 @@
     "landmarkName": "Khor Virap & Mount Ararat",
     "location": "Ararat Plain",
     "caption": "Ancient stone monastery framing snow-capped Mount Ararat.",
-    "imagePath": "/images/postcards/am-khor-virap-mount-ararat.png",
-    "imageFilename": "am-khor-virap-mount-ararat.png"
+    "imagePath": "/images/postcards/am-khor-virap.webp",
+    "imageFilename": "am-khor-virap.webp"
   },
   {
     "id": "AO",
@@ -66,38 +66,38 @@
     "landmarkName": "Kalandula Falls & Miradouro da Lua",
     "location": "Malanje & Luanda",
     "caption": "Horseshoe waterfalls roaring over lush tropical greenery.",
-    "imagePath": "/images/postcards/ao-kalandula-falls-miradouro-da-lua.png",
-    "imageFilename": "ao-kalandula-falls-miradouro-da-lua.png"
+    "imagePath": "/images/postcards/ao-kalandula-falls.webp",
+    "imageFilename": "ao-kalandula-falls.webp"
   },
   {
     "id": "AR",
     "name": "Argentina",
     "continent": "South America",
-    "landmarkName": "Argentina Heritage & Landscapes",
-    "location": "South America",
-    "caption": "Discover the breathtaking sights and unique heritage of Argentina.",
-    "imagePath": "/images/postcards/ar-argentina-heritage-landscapes.png",
-    "imageFilename": "ar-argentina-heritage-landscapes.png"
+    "landmarkName": "Iguazu Falls",
+    "location": "Misiones Province",
+    "caption": "Roaring semicircular cascade through lush subtropical rainforest.",
+    "imagePath": "/images/postcards/ar-iguazu-falls.webp",
+    "imageFilename": "ar-iguazu-falls.webp"
   },
   {
     "id": "AT",
     "name": "Austria",
     "continent": "Europe",
-    "landmarkName": "Austria Heritage & Landscapes",
-    "location": "Europe",
-    "caption": "Discover the breathtaking sights and unique heritage of Austria.",
-    "imagePath": "/images/postcards/at-austria-heritage-landscapes.png",
-    "imageFilename": "at-austria-heritage-landscapes.png"
+    "landmarkName": "Hallstatt & Schönbrunn",
+    "location": "Salzkammergut & Vienna",
+    "caption": "Fairytale lakeside village tucked beneath soaring Dachstein peaks.",
+    "imagePath": "/images/postcards/at-hallstatt-schonbrunn.webp",
+    "imageFilename": "at-hallstatt-schonbrunn.webp"
   },
   {
     "id": "AU",
     "name": "Australia",
     "continent": "Oceania",
-    "landmarkName": "Australia Heritage & Landscapes",
-    "location": "Oceania",
-    "caption": "Discover the breathtaking sights and unique heritage of Australia.",
-    "imagePath": "/images/postcards/au-australia-heritage-landscapes.png",
-    "imageFilename": "au-australia-heritage-landscapes.png"
+    "landmarkName": "Sydney Opera House",
+    "location": "Sydney, New South Wales",
+    "caption": "Distinctive sail roofs gleaming against the blue Sydney harbour.",
+    "imagePath": "/images/postcards/au-opera-house.webp",
+    "imageFilename": "au-opera-house.webp"
   },
   {
     "id": "AZ",
@@ -106,8 +106,8 @@
     "landmarkName": "Flame Towers & Old City",
     "location": "Baku",
     "caption": "Futuristic illuminated towers rising over Caspian stone ramparts.",
-    "imagePath": "/images/postcards/az-flame-towers-old-city.png",
-    "imageFilename": "az-flame-towers-old-city.png"
+    "imagePath": "/images/postcards/az-flame-towers.webp",
+    "imageFilename": "az-flame-towers.webp"
   },
   {
     "id": "BA",
@@ -116,8 +116,8 @@
     "landmarkName": "Stari Most (Old Bridge)",
     "location": "Mostar",
     "caption": "Suleiman the Magnificent's arching stone bridge over the Neretva.",
-    "imagePath": "/images/postcards/ba-stari-most-old-bridge.png",
-    "imageFilename": "ba-stari-most-old-bridge.png"
+    "imagePath": "/images/postcards/ba-stari-most.webp",
+    "imageFilename": "ba-stari-most.webp"
   },
   {
     "id": "BB",
@@ -126,8 +126,8 @@
     "landmarkName": "Harrison's Cave & Bathsheba Beach",
     "location": "Saint Joseph",
     "caption": "Subterranean limestone crystal caverns and Atlantic surf boulders.",
-    "imagePath": "/images/postcards/bb-harrison-s-cave-bathsheba-beach.png",
-    "imageFilename": "bb-harrison-s-cave-bathsheba-beach.png"
+    "imagePath": "/images/postcards/bb-harrisons-cave.webp",
+    "imageFilename": "bb-harrisons-cave.webp"
   },
   {
     "id": "BD",
@@ -136,18 +136,18 @@
     "landmarkName": "Sundarbans Mangrove Forest",
     "location": "Khulna Division",
     "caption": "Emerald tidal mangrove rivers and Royal Bengal tigers.",
-    "imagePath": "/images/postcards/bd-sundarbans-mangrove-forest.png",
-    "imageFilename": "bd-sundarbans-mangrove-forest.png"
+    "imagePath": "/images/postcards/bd-sundarbans.webp",
+    "imageFilename": "bd-sundarbans.webp"
   },
   {
     "id": "BE",
     "name": "Belgium",
     "continent": "Europe",
-    "landmarkName": "Belgium Heritage & Landscapes",
-    "location": "Europe",
-    "caption": "Discover the breathtaking sights and unique heritage of Belgium.",
-    "imagePath": "/images/postcards/be-belgium-heritage-landscapes.png",
-    "imageFilename": "be-belgium-heritage-landscapes.png"
+    "landmarkName": "The Grand-Place",
+    "location": "Brussels",
+    "caption": "Ornate guildhalls with golden baroque facades and cobblestone squares.",
+    "imagePath": "/images/postcards/be-the-grand-place.webp",
+    "imageFilename": "be-the-grand-place.webp"
   },
   {
     "id": "BF",
@@ -156,8 +156,8 @@
     "landmarkName": "Sindou Peaks & Grand Mosque",
     "location": "Cascades & Bobo-Dioulasso",
     "caption": "Mystical eroded sandstone pinnacles sculpted by desert winds.",
-    "imagePath": "/images/postcards/bf-sindou-peaks-grand-mosque.png",
-    "imageFilename": "bf-sindou-peaks-grand-mosque.png"
+    "imagePath": "/images/postcards/bf-sindou-peaks.webp",
+    "imageFilename": "bf-sindou-peaks.webp"
   },
   {
     "id": "BG",
@@ -166,8 +166,8 @@
     "landmarkName": "Rila Monastery & Alexander Nevsky",
     "location": "Rila & Sofia",
     "caption": "Striped Byzantine arcades nestled in high pine mountains.",
-    "imagePath": "/images/postcards/bg-rila-monastery-alexander-nevsky.png",
-    "imageFilename": "bg-rila-monastery-alexander-nevsky.png"
+    "imagePath": "/images/postcards/bg-rila-monastery.webp",
+    "imageFilename": "bg-rila-monastery.webp"
   },
   {
     "id": "BH",
@@ -176,8 +176,8 @@
     "landmarkName": "Qal'at al-Bahrain",
     "location": "Northern Governorate",
     "caption": "Ancient Portuguese sandstone fortress along the Arabian Gulf.",
-    "imagePath": "/images/postcards/bh-qal-at-al-bahrain.png",
-    "imageFilename": "bh-qal-at-al-bahrain.png"
+    "imagePath": "/images/postcards/bh-bahrain-fort.webp",
+    "imageFilename": "bh-bahrain-fort.webp"
   },
   {
     "id": "BI",
@@ -186,8 +186,8 @@
     "landmarkName": "Lake Tanganyika & Karera Falls",
     "location": "Rutana",
     "caption": "Crystal African Great Lake flanked by green mountain ridges.",
-    "imagePath": "/images/postcards/bi-lake-tanganyika-karera-falls.png",
-    "imageFilename": "bi-lake-tanganyika-karera-falls.png"
+    "imagePath": "/images/postcards/bi-lake-tanganyika.webp",
+    "imageFilename": "bi-lake-tanganyika.webp"
   },
   {
     "id": "BJ",
@@ -196,8 +196,8 @@
     "landmarkName": "Ganvié Stilt Village & Abomey Palaces",
     "location": "Lake Nokoué",
     "caption": "The Venice of Africa thriving atop tranquil lake waters.",
-    "imagePath": "/images/postcards/bj-ganvie-stilt-village-abomey-palaces.png",
-    "imageFilename": "bj-ganvie-stilt-village-abomey-palaces.png"
+    "imagePath": "/images/postcards/bj-ganvie-village.webp",
+    "imageFilename": "bj-ganvie-village.webp"
   },
   {
     "id": "BN",
@@ -206,8 +206,8 @@
     "landmarkName": "Sultan Omar Ali Saifuddien Mosque",
     "location": "Bandar Seri Begawan",
     "caption": "Gleaming golden dome and lagoon ceremonial stone barge.",
-    "imagePath": "/images/postcards/bn-sultan-omar-ali-saifuddien-mosque.png",
-    "imageFilename": "bn-sultan-omar-ali-saifuddien-mosque.png"
+    "imagePath": "/images/postcards/bn-saifuddien-mosque.webp",
+    "imageFilename": "bn-saifuddien-mosque.webp"
   },
   {
     "id": "BO",
@@ -216,28 +216,28 @@
     "landmarkName": "Salar de Uyuni Salt Flats",
     "location": "Potosí",
     "caption": "Vast white hexagonal salt mirror reflecting boundless blue skies.",
-    "imagePath": "/images/postcards/bo-salar-de-uyuni-salt-flats.png",
-    "imageFilename": "bo-salar-de-uyuni-salt-flats.png"
+    "imagePath": "/images/postcards/bo-salar-de-uyuni.webp",
+    "imageFilename": "bo-salar-de-uyuni.webp"
   },
   {
     "id": "BR",
     "name": "Brazil",
     "continent": "South America",
-    "landmarkName": "Brazil Heritage & Landscapes",
-    "location": "South America",
-    "caption": "Discover the breathtaking sights and unique heritage of Brazil.",
-    "imagePath": "/images/postcards/br-brazil-heritage-landscapes.png",
-    "imageFilename": "br-brazil-heritage-landscapes.png"
+    "landmarkName": "Christ the Redeemer",
+    "location": "Rio de Janeiro",
+    "caption": "The open-armed icon atop Corcovado mountain overlooking Copacabana.",
+    "imagePath": "/images/postcards/br-christ-redeemer.webp",
+    "imageFilename": "br-christ-redeemer.webp"
   },
   {
     "id": "BS",
     "name": "Bahamas",
     "continent": "North America",
-    "landmarkName": "Bahamas Heritage & Landscapes",
-    "location": "North America",
-    "caption": "Discover the breathtaking sights and unique heritage of Bahamas.",
-    "imagePath": "/images/postcards/bs-bahamas-heritage-landscapes.png",
-    "imageFilename": "bs-bahamas-heritage-landscapes.png"
+    "landmarkName": "Paradise Island & Exuma Cays",
+    "location": "New Providence",
+    "caption": "Pristine white sandbars surrounded by crystal aqua shallows.",
+    "imagePath": "/images/postcards/bs-paradise-island-exuma-cays.webp",
+    "imageFilename": "bs-paradise-island-exuma-cays.webp"
   },
   {
     "id": "BT",
@@ -246,8 +246,8 @@
     "landmarkName": "Paro Taktsang (Tiger's Nest)",
     "location": "Paro Valley",
     "caption": "Himalayan Buddhist monastery clinging to sheer cliffside.",
-    "imagePath": "/images/postcards/bt-paro-taktsang-tiger-s-nest.png",
-    "imageFilename": "bt-paro-taktsang-tiger-s-nest.png"
+    "imagePath": "/images/postcards/bt-tigers-nest.webp",
+    "imageFilename": "bt-tigers-nest.webp"
   },
   {
     "id": "BW",
@@ -256,8 +256,8 @@
     "landmarkName": "Okavango Delta & Chobe Elephants",
     "location": "North-West District",
     "caption": "Lush papyrus water labyrinths teeming with wild elephants.",
-    "imagePath": "/images/postcards/bw-okavango-delta-chobe-elephants.png",
-    "imageFilename": "bw-okavango-delta-chobe-elephants.png"
+    "imagePath": "/images/postcards/bw-okavango-delta.webp",
+    "imageFilename": "bw-okavango-delta.webp"
   },
   {
     "id": "BY",
@@ -266,8 +266,8 @@
     "landmarkName": "Mir Castle Complex",
     "location": "Mir, Grodno",
     "caption": "Gothic and Renaissance red-brick turrets mirrored in tranquil lakes.",
-    "imagePath": "/images/postcards/by-mir-castle-complex.png",
-    "imageFilename": "by-mir-castle-complex.png"
+    "imagePath": "/images/postcards/by-mir-castle.webp",
+    "imageFilename": "by-mir-castle.webp"
   },
   {
     "id": "BZ",
@@ -276,18 +276,18 @@
     "landmarkName": "The Great Blue Hole & Barrier Reef",
     "location": "Lighthouse Reef",
     "caption": "Giant submarine sinkhole encircled by living coral atolls.",
-    "imagePath": "/images/postcards/bz-the-great-blue-hole-barrier-reef.png",
-    "imageFilename": "bz-the-great-blue-hole-barrier-reef.png"
+    "imagePath": "/images/postcards/bz-blue-hole.webp",
+    "imageFilename": "bz-blue-hole.webp"
   },
   {
     "id": "CA",
     "name": "Canada",
     "continent": "North America",
-    "landmarkName": "Canada Heritage & Landscapes",
-    "location": "North America",
-    "caption": "Discover the breathtaking sights and unique heritage of Canada.",
-    "imagePath": "/images/postcards/ca-canada-heritage-landscapes.png",
-    "imageFilename": "ca-canada-heritage-landscapes.png"
+    "landmarkName": "Banff & Lake Louise",
+    "location": "Alberta",
+    "caption": "Turquoise glacier-fed waters framed by rugged Canadian Rockies.",
+    "imagePath": "/images/postcards/ca-lake-louise.webp",
+    "imageFilename": "ca-lake-louise.webp"
   },
   {
     "id": "CD",
@@ -296,8 +296,8 @@
     "landmarkName": "Virunga Volcanoes & Mount Nyiragongo",
     "location": "North Kivu",
     "caption": "Lush misty volcanic home of majestic mountain gorillas.",
-    "imagePath": "/images/postcards/cd-virunga-volcanoes-mount-nyiragongo.png",
-    "imageFilename": "cd-virunga-volcanoes-mount-nyiragongo.png"
+    "imagePath": "/images/postcards/cd-virunga-volcanoes.webp",
+    "imageFilename": "cd-virunga-volcanoes.webp"
   },
   {
     "id": "CF",
@@ -306,8 +306,8 @@
     "landmarkName": "Dzanga-Ndoki Rainforest & Bais",
     "location": "Sangha-Mbaéré",
     "caption": "Primeval Congo basin forest salt clearings with forest elephants.",
-    "imagePath": "/images/postcards/cf-dzanga-ndoki-rainforest-bais.png",
-    "imageFilename": "cf-dzanga-ndoki-rainforest-bais.png"
+    "imagePath": "/images/postcards/cf-dzanga-ndoki.webp",
+    "imageFilename": "cf-dzanga-ndoki.webp"
   },
   {
     "id": "CG",
@@ -316,18 +316,18 @@
     "landmarkName": "Odzala-Kokoua Canopy & Congo River",
     "location": "Cuvette-Ouest",
     "caption": "Dense equatorial rainforest canopy bordering the mighty Congo.",
-    "imagePath": "/images/postcards/cg-odzala-kokoua-canopy-congo-river.png",
-    "imageFilename": "cg-odzala-kokoua-canopy-congo-river.png"
+    "imagePath": "/images/postcards/cg-odzala-kokoua.webp",
+    "imageFilename": "cg-odzala-kokoua.webp"
   },
   {
     "id": "CH",
     "name": "Switzerland",
     "continent": "Europe",
-    "landmarkName": "Switzerland Heritage & Landscapes",
-    "location": "Europe",
-    "caption": "Discover the breathtaking sights and unique heritage of Switzerland.",
-    "imagePath": "/images/postcards/ch-switzerland-heritage-landscapes.png",
-    "imageFilename": "ch-switzerland-heritage-landscapes.png"
+    "landmarkName": "The Matterhorn",
+    "location": "Zermatt, Valais",
+    "caption": "The pyramid peak of the Swiss Alps mirrored in alpine lakes.",
+    "imagePath": "/images/postcards/ch-matterhorn.webp",
+    "imageFilename": "ch-matterhorn.webp"
   },
   {
     "id": "CI",
@@ -336,18 +336,18 @@
     "landmarkName": "Basilica of Our Lady of Peace",
     "location": "Yamoussoukro",
     "caption": "Colossal marble dome rising above tranquil savanna plains.",
-    "imagePath": "/images/postcards/ci-basilica-of-our-lady-of-peace.png",
-    "imageFilename": "ci-basilica-of-our-lady-of-peace.png"
+    "imagePath": "/images/postcards/ci-basilica-yamoussoukro.webp",
+    "imageFilename": "ci-basilica-yamoussoukro.webp"
   },
   {
     "id": "CL",
     "name": "Chile",
     "continent": "South America",
-    "landmarkName": "Chile Heritage & Landscapes",
-    "location": "South America",
-    "caption": "Discover the breathtaking sights and unique heritage of Chile.",
-    "imagePath": "/images/postcards/cl-chile-heritage-landscapes.png",
-    "imageFilename": "cl-chile-heritage-landscapes.png"
+    "landmarkName": "Moai of Easter Island",
+    "location": "Rapa Nui",
+    "caption": "Enigmatic megalithic stone statues gazing inward across the Pacific.",
+    "imagePath": "/images/postcards/cl-moai-of-easter-island.webp",
+    "imageFilename": "cl-moai-of-easter-island.webp"
   },
   {
     "id": "CM",
@@ -356,48 +356,48 @@
     "landmarkName": "Mount Cameroon & Waza Park",
     "location": "Southwest Region",
     "caption": "Active coastal volcanic peak rising into tropical cloud forests.",
-    "imagePath": "/images/postcards/cm-mount-cameroon-waza-park.png",
-    "imageFilename": "cm-mount-cameroon-waza-park.png"
+    "imagePath": "/images/postcards/cm-mount-cameroon.webp",
+    "imageFilename": "cm-mount-cameroon.webp"
   },
   {
     "id": "CN",
     "name": "China",
     "continent": "Asia",
-    "landmarkName": "China Heritage & Landscapes",
-    "location": "Asia",
-    "caption": "Discover the breathtaking sights and unique heritage of China.",
-    "imagePath": "/images/postcards/cn-china-heritage-landscapes.png",
-    "imageFilename": "cn-china-heritage-landscapes.png"
+    "landmarkName": "The Great Wall of China",
+    "location": "Mutianyu, Beijing",
+    "caption": "Ancient serpentine stone ramparts winding through green ridge peaks.",
+    "imagePath": "/images/postcards/cn-great-wall.webp",
+    "imageFilename": "cn-great-wall.webp"
   },
   {
     "id": "CO",
     "name": "Colombia",
     "continent": "South America",
-    "landmarkName": "Colombia Heritage & Landscapes",
-    "location": "South America",
-    "caption": "Discover the breathtaking sights and unique heritage of Colombia.",
-    "imagePath": "/images/postcards/co-colombia-heritage-landscapes.png",
-    "imageFilename": "co-colombia-heritage-landscapes.png"
+    "landmarkName": "The Rock of Guatapé & Salento",
+    "location": "Antioquia & Quindío",
+    "caption": "Giant monolithic rock overlooking a scenic lake labyrinth.",
+    "imagePath": "/images/postcards/co-the-rock-of-guatape-salento.webp",
+    "imageFilename": "co-the-rock-of-guatape-salento.webp"
   },
   {
     "id": "CR",
     "name": "Costa Rica",
     "continent": "North America",
-    "landmarkName": "Costa Rica Heritage & Landscapes",
-    "location": "North America",
-    "caption": "Discover the breathtaking sights and unique heritage of Costa Rica.",
-    "imagePath": "/images/postcards/cr-costa-rica-heritage-landscapes.png",
-    "imageFilename": "cr-costa-rica-heritage-landscapes.png"
+    "landmarkName": "Arenal Volcano",
+    "location": "Alajuela Province",
+    "caption": "Perfect stratovolcano cone surrounded by canopy cloud forests.",
+    "imagePath": "/images/postcards/cr-arenal-volcano.webp",
+    "imageFilename": "cr-arenal-volcano.webp"
   },
   {
     "id": "CU",
     "name": "Cuba",
     "continent": "North America",
-    "landmarkName": "Cuba Heritage & Landscapes",
-    "location": "North America",
-    "caption": "Discover the breathtaking sights and unique heritage of Cuba.",
-    "imagePath": "/images/postcards/cu-cuba-heritage-landscapes.png",
-    "imageFilename": "cu-cuba-heritage-landscapes.png"
+    "landmarkName": "Old Havana & El Malecón",
+    "location": "Havana",
+    "caption": "Colorful vintage cars cruising the seafront boulevard with colonial arcades.",
+    "imagePath": "/images/postcards/cu-old-havana-el-malecon.webp",
+    "imageFilename": "cu-old-havana-el-malecon.webp"
   },
   {
     "id": "CV",
@@ -406,8 +406,8 @@
     "landmarkName": "Pico do Fogo Volcano",
     "location": "Fogo Island",
     "caption": "Dramatic volcanic peak rising from dark black basalt sands.",
-    "imagePath": "/images/postcards/cv-pico-do-fogo-volcano.png",
-    "imageFilename": "cv-pico-do-fogo-volcano.png"
+    "imagePath": "/images/postcards/cv-pico-do-fogo.webp",
+    "imageFilename": "cv-pico-do-fogo.webp"
   },
   {
     "id": "CY",
@@ -416,28 +416,28 @@
     "landmarkName": "Aphrodite's Rock & Paphos Harbor",
     "location": "Kouklia",
     "caption": "Mythical sea stacks and crystal Mediterranean waters.",
-    "imagePath": "/images/postcards/cy-aphrodite-s-rock-paphos-harbor.png",
-    "imageFilename": "cy-aphrodite-s-rock-paphos-harbor.png"
+    "imagePath": "/images/postcards/cy-aphrodites-rock.webp",
+    "imageFilename": "cy-aphrodites-rock.webp"
   },
   {
     "id": "CZ",
     "name": "Czechia",
     "continent": "Europe",
-    "landmarkName": "Czechia Heritage & Landscapes",
-    "location": "Europe",
-    "caption": "Discover the breathtaking sights and unique heritage of Czechia.",
-    "imagePath": "/images/postcards/cz-czechia-heritage-landscapes.png",
-    "imageFilename": "cz-czechia-heritage-landscapes.png"
+    "landmarkName": "Charles Bridge & Prague Castle",
+    "location": "Prague, Bohemia",
+    "caption": "Gothic stone bridge with baroque statues across the Vltava river.",
+    "imagePath": "/images/postcards/cz-charles-bridge-prague-castle.webp",
+    "imageFilename": "cz-charles-bridge-prague-castle.webp"
   },
   {
     "id": "DE",
     "name": "Germany",
     "continent": "Europe",
-    "landmarkName": "Germany Heritage & Landscapes",
-    "location": "Europe",
-    "caption": "Discover the breathtaking sights and unique heritage of Germany.",
-    "imagePath": "/images/postcards/de-germany-heritage-landscapes.png",
-    "imageFilename": "de-germany-heritage-landscapes.png"
+    "landmarkName": "Neuschwanstein Castle",
+    "location": "Schwangau, Bavaria",
+    "caption": "Fairy-tale Romanesque revival castle among Bavarian alpine pines.",
+    "imagePath": "/images/postcards/de-neuschwanstein.webp",
+    "imageFilename": "de-neuschwanstein.webp"
   },
   {
     "id": "DJ",
@@ -446,18 +446,18 @@
     "landmarkName": "Lake Assal Salt Formations",
     "location": "Danakil Desert",
     "caption": "Bright white salt flats and hyper-saline turquoise crater water.",
-    "imagePath": "/images/postcards/dj-lake-assal-salt-formations.png",
-    "imageFilename": "dj-lake-assal-salt-formations.png"
+    "imagePath": "/images/postcards/dj-lake-assal.webp",
+    "imageFilename": "dj-lake-assal.webp"
   },
   {
     "id": "DK",
     "name": "Denmark",
     "continent": "Europe",
-    "landmarkName": "Denmark Heritage & Landscapes",
-    "location": "Europe",
-    "caption": "Discover the breathtaking sights and unique heritage of Denmark.",
-    "imagePath": "/images/postcards/dk-denmark-heritage-landscapes.png",
-    "imageFilename": "dk-denmark-heritage-landscapes.png"
+    "landmarkName": "Nyhavn Waterfront",
+    "location": "Copenhagen",
+    "caption": "Brightly colored 17th-century townhouses and wooden sailing ships.",
+    "imagePath": "/images/postcards/dk-nyhavn-waterfront.webp",
+    "imageFilename": "dk-nyhavn-waterfront.webp"
   },
   {
     "id": "DM",
@@ -466,8 +466,8 @@
     "landmarkName": "Boiling Lake & Trafalgar Falls",
     "location": "Morne Trois Pitons",
     "caption": "Volcanic steam and twin cascades in lush Caribbean rainforest.",
-    "imagePath": "/images/postcards/dm-boiling-lake-trafalgar-falls.png",
-    "imageFilename": "dm-boiling-lake-trafalgar-falls.png"
+    "imagePath": "/images/postcards/dm-boiling-lake.webp",
+    "imageFilename": "dm-boiling-lake.webp"
   },
   {
     "id": "DO",
@@ -476,8 +476,8 @@
     "landmarkName": "Zona Colonial & Saona Island",
     "location": "Santo Domingo",
     "caption": "The Americas' oldest cathedral and coconut-fringed white beaches.",
-    "imagePath": "/images/postcards/do-zona-colonial-saona-island.png",
-    "imageFilename": "do-zona-colonial-saona-island.png"
+    "imagePath": "/images/postcards/do-zona-colonial.webp",
+    "imageFilename": "do-zona-colonial.webp"
   },
   {
     "id": "DZ",
@@ -486,8 +486,8 @@
     "landmarkName": "Notre Dame d'Afrique & Tassili n'Ajjer",
     "location": "Algiers & Sahara",
     "caption": "Neo-Byzantine basilica overlooking the bay and ancient desert rock art.",
-    "imagePath": "/images/postcards/dz-notre-dame-d-afrique-tassili-n-ajjer.png",
-    "imageFilename": "dz-notre-dame-d-afrique-tassili-n-ajjer.png"
+    "imagePath": "/images/postcards/dz-notre-dame-afrique.webp",
+    "imageFilename": "dz-notre-dame-afrique.webp"
   },
   {
     "id": "EC",
@@ -496,8 +496,8 @@
     "landmarkName": "Galápagos Islands & Cotopaxi",
     "location": "Galápagos & Andes",
     "caption": "Unique volcanic archipelago and perfect snow-capped Andean cone.",
-    "imagePath": "/images/postcards/ec-galapagos-islands-cotopaxi.png",
-    "imageFilename": "ec-galapagos-islands-cotopaxi.png"
+    "imagePath": "/images/postcards/ec-galapagos.webp",
+    "imageFilename": "ec-galapagos.webp"
   },
   {
     "id": "EE",
@@ -506,18 +506,18 @@
     "landmarkName": "Tallinn Old Town & Alexander Nevsky",
     "location": "Tallinn",
     "caption": "Cobblestone medieval spires and red-tiled ramparts.",
-    "imagePath": "/images/postcards/ee-tallinn-old-town-alexander-nevsky.png",
-    "imageFilename": "ee-tallinn-old-town-alexander-nevsky.png"
+    "imagePath": "/images/postcards/ee-tallinn-old-town.webp",
+    "imageFilename": "ee-tallinn-old-town.webp"
   },
   {
     "id": "EG",
     "name": "Egypt",
     "continent": "Africa",
-    "landmarkName": "Egypt Heritage & Landscapes",
-    "location": "Africa",
-    "caption": "Discover the breathtaking sights and unique heritage of Egypt.",
-    "imagePath": "/images/postcards/eg-egypt-heritage-landscapes.png",
-    "imageFilename": "eg-egypt-heritage-landscapes.png"
+    "landmarkName": "The Great Pyramids & Sphinx",
+    "location": "Giza Plateau, Cairo",
+    "caption": "Ancient wonders of the pharaohs standing timeless under golden sands.",
+    "imagePath": "/images/postcards/eg-pyramids.webp",
+    "imageFilename": "eg-pyramids.webp"
   },
   {
     "id": "ER",
@@ -526,18 +526,18 @@
     "landmarkName": "Asmara Art Deco & Red Sea Dahlak",
     "location": "Asmara",
     "caption": "Modernist Italian futurist architecture in the African horn.",
-    "imagePath": "/images/postcards/er-asmara-art-deco-red-sea-dahlak.png",
-    "imageFilename": "er-asmara-art-deco-red-sea-dahlak.png"
+    "imagePath": "/images/postcards/er-asmara-art-deco.webp",
+    "imageFilename": "er-asmara-art-deco.webp"
   },
   {
     "id": "ES",
     "name": "Spain",
     "continent": "Europe",
-    "landmarkName": "Spain Heritage & Landscapes",
-    "location": "Europe",
-    "caption": "Discover the breathtaking sights and unique heritage of Spain.",
-    "imagePath": "/images/postcards/es-spain-heritage-landscapes.png",
-    "imageFilename": "es-spain-heritage-landscapes.png"
+    "landmarkName": "Basílica de la Sagrada Família",
+    "location": "Barcelona, Catalonia",
+    "caption": "Gaudí’s magnificent organic masterwork reaching toward the sky.",
+    "imagePath": "/images/postcards/es-sagrada-familia.webp",
+    "imageFilename": "es-sagrada-familia.webp"
   },
   {
     "id": "ET",
@@ -546,28 +546,28 @@
     "landmarkName": "Rock-Hewn Churches of Lalibela",
     "location": "Amhara Region",
     "caption": "Monolithic 12th-century cruciform churches carved into living rock.",
-    "imagePath": "/images/postcards/et-rock-hewn-churches-of-lalibela.png",
-    "imageFilename": "et-rock-hewn-churches-of-lalibela.png"
+    "imagePath": "/images/postcards/et-lalibela-churches.webp",
+    "imageFilename": "et-lalibela-churches.webp"
   },
   {
     "id": "FI",
     "name": "Finland",
     "continent": "Europe",
-    "landmarkName": "Finland Heritage & Landscapes",
-    "location": "Europe",
-    "caption": "Discover the breathtaking sights and unique heritage of Finland.",
-    "imagePath": "/images/postcards/fi-finland-heritage-landscapes.png",
-    "imageFilename": "fi-finland-heritage-landscapes.png"
+    "landmarkName": "Santa Claus Village & Arctic Aurora",
+    "location": "Rovaniemi, Lapland",
+    "caption": "Snowy pine forests bathed in shimmering green northern lights.",
+    "imagePath": "/images/postcards/fi-santa-claus-village-arctic-aurora.webp",
+    "imageFilename": "fi-santa-claus-village-arctic-aurora.webp"
   },
   {
     "id": "FJ",
     "name": "Fiji",
     "continent": "Oceania",
-    "landmarkName": "Fiji Heritage & Landscapes",
-    "location": "Oceania",
-    "caption": "Discover the breathtaking sights and unique heritage of Fiji.",
-    "imagePath": "/images/postcards/fj-fiji-heritage-landscapes.png",
-    "imageFilename": "fj-fiji-heritage-landscapes.png"
+    "landmarkName": "Mamanuca Coral Islands",
+    "location": "Fiji",
+    "caption": "Castaway palm islands encircled by living turquoise barrier reefs.",
+    "imagePath": "/images/postcards/fj-mamanuca-coral-islands.webp",
+    "imageFilename": "fj-mamanuca-coral-islands.webp"
   },
   {
     "id": "FM",
@@ -576,18 +576,18 @@
     "landmarkName": "Nan Madol Ancient City",
     "location": "Pohnpei",
     "caption": "Megalithic basalt stone city built on coral reef canals.",
-    "imagePath": "/images/postcards/fm-nan-madol-ancient-city.png",
-    "imageFilename": "fm-nan-madol-ancient-city.png"
+    "imagePath": "/images/postcards/fm-nan-madol.webp",
+    "imageFilename": "fm-nan-madol.webp"
   },
   {
     "id": "FR",
     "name": "France",
     "continent": "Europe",
-    "landmarkName": "France Heritage & Landscapes",
-    "location": "Europe",
-    "caption": "Discover the breathtaking sights and unique heritage of France.",
-    "imagePath": "/images/postcards/fr-france-heritage-landscapes.png",
-    "imageFilename": "fr-france-heritage-landscapes.png"
+    "landmarkName": "The Eiffel Tower",
+    "location": "Paris",
+    "caption": "Iron lattice monument watching over the Seine and Parisian boulevards.",
+    "imagePath": "/images/postcards/fr-eiffel-tower.webp",
+    "imageFilename": "fr-eiffel-tower.webp"
   },
   {
     "id": "GA",
@@ -596,18 +596,18 @@
     "landmarkName": "Loango National Park",
     "location": "Ogooué-Maritime",
     "caption": "Surfing hippos and elephants roaming wild Atlantic shores.",
-    "imagePath": "/images/postcards/ga-loango-national-park.png",
-    "imageFilename": "ga-loango-national-park.png"
+    "imagePath": "/images/postcards/ga-loango-park.webp",
+    "imageFilename": "ga-loango-park.webp"
   },
   {
     "id": "GB",
     "name": "United Kingdom",
     "continent": "Europe",
-    "landmarkName": "United Kingdom Heritage & Landscapes",
-    "location": "Europe",
-    "caption": "Discover the breathtaking sights and unique heritage of United Kingdom.",
-    "imagePath": "/images/postcards/gb-united-kingdom-heritage-landscapes.png",
-    "imageFilename": "gb-united-kingdom-heritage-landscapes.png"
+    "landmarkName": "Big Ben & Westminster",
+    "location": "London, England",
+    "caption": "The Great Bell of the clock tower above the River Thames.",
+    "imagePath": "/images/postcards/gb-big-ben.webp",
+    "imageFilename": "gb-big-ben.webp"
   },
   {
     "id": "GD",
@@ -616,8 +616,8 @@
     "landmarkName": "Grand Anse & Underwater Sculpture Park",
     "location": "Saint George's",
     "caption": "Spice isle turquoise waters and mystical submerged coral statues.",
-    "imagePath": "/images/postcards/gd-grand-anse-underwater-sculpture-park.png",
-    "imageFilename": "gd-grand-anse-underwater-sculpture-park.png"
+    "imagePath": "/images/postcards/gd-grand-anse.webp",
+    "imageFilename": "gd-grand-anse.webp"
   },
   {
     "id": "GE",
@@ -626,18 +626,18 @@
     "landmarkName": "Gergeti Trinity Church",
     "location": "Kazbegi, Stepantsminda",
     "caption": "Solitary stone church beneath Mount Kazbek glaciers.",
-    "imagePath": "/images/postcards/ge-gergeti-trinity-church.png",
-    "imageFilename": "ge-gergeti-trinity-church.png"
+    "imagePath": "/images/postcards/ge-gergeti-trinity.webp",
+    "imageFilename": "ge-gergeti-trinity.webp"
   },
   {
     "id": "GH",
     "name": "Ghana",
     "continent": "Africa",
-    "landmarkName": "Ghana Heritage & Landscapes",
-    "location": "Africa",
-    "caption": "Discover the breathtaking sights and unique heritage of Ghana.",
-    "imagePath": "/images/postcards/gh-ghana-heritage-landscapes.png",
-    "imageFilename": "gh-ghana-heritage-landscapes.png"
+    "landmarkName": "Cape Coast Castle",
+    "location": "Central Region",
+    "caption": "Historic whitewashed fort on the Gulf of Guinea palms.",
+    "imagePath": "/images/postcards/gh-cape-coast-castle.webp",
+    "imageFilename": "gh-cape-coast-castle.webp"
   },
   {
     "id": "GM",
@@ -646,8 +646,8 @@
     "landmarkName": "Kunta Kinteh Island & River Gambia",
     "location": "North Bank",
     "caption": "Historic river fortress and vibrant birdlife on winding waterways.",
-    "imagePath": "/images/postcards/gm-kunta-kinteh-island-river-gambia.png",
-    "imageFilename": "gm-kunta-kinteh-island-river-gambia.png"
+    "imagePath": "/images/postcards/gm-kunta-kinteh.webp",
+    "imageFilename": "gm-kunta-kinteh.webp"
   },
   {
     "id": "GN",
@@ -656,8 +656,8 @@
     "landmarkName": "Fouta Djallon Highlands",
     "location": "Labé",
     "caption": "Verdant mountain plateaus, roaring waterfalls, and sandstone canyons.",
-    "imagePath": "/images/postcards/gn-fouta-djallon-highlands.png",
-    "imageFilename": "gn-fouta-djallon-highlands.png"
+    "imagePath": "/images/postcards/gn-fouta-djallon.webp",
+    "imageFilename": "gn-fouta-djallon.webp"
   },
   {
     "id": "GQ",
@@ -666,18 +666,18 @@
     "landmarkName": "Malabo Santa Isabel & Pico Basile",
     "location": "Bioko Island",
     "caption": "Colonial Spanish architecture beneath towering volcanic cloud peaks.",
-    "imagePath": "/images/postcards/gq-malabo-santa-isabel-pico-basile.png",
-    "imageFilename": "gq-malabo-santa-isabel-pico-basile.png"
+    "imagePath": "/images/postcards/gq-santa-isabel.webp",
+    "imageFilename": "gq-santa-isabel.webp"
   },
   {
     "id": "GR",
     "name": "Greece",
     "continent": "Europe",
-    "landmarkName": "Greece Heritage & Landscapes",
-    "location": "Europe",
-    "caption": "Discover the breathtaking sights and unique heritage of Greece.",
-    "imagePath": "/images/postcards/gr-greece-heritage-landscapes.png",
-    "imageFilename": "gr-greece-heritage-landscapes.png"
+    "landmarkName": "The Parthenon on the Acropolis",
+    "location": "Athens",
+    "caption": "Classical marble columns standing proud over the Aegean sea.",
+    "imagePath": "/images/postcards/gr-parthenon.webp",
+    "imageFilename": "gr-parthenon.webp"
   },
   {
     "id": "GT",
@@ -686,8 +686,8 @@
     "landmarkName": "Tikal Pyramids & Lake Atitlán",
     "location": "Petén & Sololá",
     "caption": "Towering Maya temples breaking through lush jungle canopy.",
-    "imagePath": "/images/postcards/gt-tikal-pyramids-lake-atitlan.png",
-    "imageFilename": "gt-tikal-pyramids-lake-atitlan.png"
+    "imagePath": "/images/postcards/gt-tikal-pyramids.webp",
+    "imageFilename": "gt-tikal-pyramids.webp"
   },
   {
     "id": "GW",
@@ -696,8 +696,8 @@
     "landmarkName": "Bijagós Biosphere Archipelago",
     "location": "Bijagós Islands",
     "caption": "Untouched tropical mangrove islands and saltwater hippopotamuses.",
-    "imagePath": "/images/postcards/gw-bijagos-biosphere-archipelago.png",
-    "imageFilename": "gw-bijagos-biosphere-archipelago.png"
+    "imagePath": "/images/postcards/gw-bijagos-islands.webp",
+    "imageFilename": "gw-bijagos-islands.webp"
   },
   {
     "id": "GY",
@@ -706,18 +706,18 @@
     "landmarkName": "Kaieteur Falls",
     "location": "Potaro-Siparuni",
     "caption": "World's largest single-drop waterfall roaring into misty gorges.",
-    "imagePath": "/images/postcards/gy-kaieteur-falls.png",
-    "imageFilename": "gy-kaieteur-falls.png"
+    "imagePath": "/images/postcards/gy-kaieteur-falls.webp",
+    "imageFilename": "gy-kaieteur-falls.webp"
   },
   {
     "id": "HK",
     "name": "Hong Kong",
     "continent": "Asia",
-    "landmarkName": "Hong Kong Heritage & Landscapes",
-    "location": "Asia",
-    "caption": "Discover the breathtaking sights and unique heritage of Hong Kong.",
-    "imagePath": "/images/postcards/hk-hong-kong-heritage-landscapes.png",
-    "imageFilename": "hk-hong-kong-heritage-landscapes.png"
+    "landmarkName": "Victoria Peak & Harbour",
+    "location": "Hong Kong",
+    "caption": "Spectacular harbour panoramas with iconic green Star Ferries.",
+    "imagePath": "/images/postcards/hk-victoria-peak-harbour.webp",
+    "imageFilename": "hk-victoria-peak-harbour.webp"
   },
   {
     "id": "HN",
@@ -726,18 +726,18 @@
     "landmarkName": "Copán Maya Ruins & Roatán",
     "location": "Copán & Bay Islands",
     "caption": "Intricate Maya hieroglyphic stairways and Caribbean barrier reefs.",
-    "imagePath": "/images/postcards/hn-copan-maya-ruins-roatan.png",
-    "imageFilename": "hn-copan-maya-ruins-roatan.png"
+    "imagePath": "/images/postcards/hn-copan-ruins.webp",
+    "imageFilename": "hn-copan-ruins.webp"
   },
   {
     "id": "HR",
     "name": "Croatia",
     "continent": "Europe",
-    "landmarkName": "Croatia Heritage & Landscapes",
-    "location": "Europe",
-    "caption": "Discover the breathtaking sights and unique heritage of Croatia.",
-    "imagePath": "/images/postcards/hr-croatia-heritage-landscapes.png",
-    "imageFilename": "hr-croatia-heritage-landscapes.png"
+    "landmarkName": "Dubrovnik Old Town Walls",
+    "location": "Dubrovnik",
+    "caption": "Terracotta roofs fortified against the sparkling sapphire Adriatic.",
+    "imagePath": "/images/postcards/hr-dubrovnik-old-town-walls.webp",
+    "imageFilename": "hr-dubrovnik-old-town-walls.webp"
   },
   {
     "id": "HT",
@@ -746,38 +746,38 @@
     "landmarkName": "Citadelle Laferrière",
     "location": "Milot",
     "caption": "Mountain fortress of freedom high above Caribbean clouds.",
-    "imagePath": "/images/postcards/ht-citadelle-laferriere.png",
-    "imageFilename": "ht-citadelle-laferriere.png"
+    "imagePath": "/images/postcards/ht-citadelle.webp",
+    "imageFilename": "ht-citadelle.webp"
   },
   {
     "id": "HU",
     "name": "Hungary",
     "continent": "Europe",
-    "landmarkName": "Hungary Heritage & Landscapes",
-    "location": "Europe",
-    "caption": "Discover the breathtaking sights and unique heritage of Hungary.",
-    "imagePath": "/images/postcards/hu-hungary-heritage-landscapes.png",
-    "imageFilename": "hu-hungary-heritage-landscapes.png"
+    "landmarkName": "Hungarian Parliament Building",
+    "location": "Budapest",
+    "caption": "Gothic revival palace reflected along the Danube promenade.",
+    "imagePath": "/images/postcards/hu-hungarian-parliament-building.webp",
+    "imageFilename": "hu-hungarian-parliament-building.webp"
   },
   {
     "id": "ID",
     "name": "Indonesia",
     "continent": "Asia",
-    "landmarkName": "Indonesia Heritage & Landscapes",
-    "location": "Asia",
-    "caption": "Discover the breathtaking sights and unique heritage of Indonesia.",
-    "imagePath": "/images/postcards/id-indonesia-heritage-landscapes.png",
-    "imageFilename": "id-indonesia-heritage-landscapes.png"
+    "landmarkName": "Borobudur Temple",
+    "location": "Magelang, Central Java",
+    "caption": "Ancient 9th-century Buddhist stupas greeting misty volcanic dawns.",
+    "imagePath": "/images/postcards/id-borobudur.webp",
+    "imageFilename": "id-borobudur.webp"
   },
   {
     "id": "IE",
     "name": "Ireland",
     "continent": "Europe",
-    "landmarkName": "Ireland Heritage & Landscapes",
-    "location": "Europe",
-    "caption": "Discover the breathtaking sights and unique heritage of Ireland.",
-    "imagePath": "/images/postcards/ie-ireland-heritage-landscapes.png",
-    "imageFilename": "ie-ireland-heritage-landscapes.png"
+    "landmarkName": "Cliffs of Moher",
+    "location": "County Clare",
+    "caption": "Towering sea cliffs plunging straight into the wild Atlantic waves.",
+    "imagePath": "/images/postcards/ie-cliffs-of-moher.webp",
+    "imageFilename": "ie-cliffs-of-moher.webp"
   },
   {
     "id": "IL",
@@ -786,18 +786,18 @@
     "landmarkName": "Old City of Jerusalem & Dome of the Rock",
     "location": "Jerusalem",
     "caption": "Golden dome and ancient limestone walls bathed in sunset.",
-    "imagePath": "/images/postcards/il-old-city-of-jerusalem-dome-of-the-rock.png",
-    "imageFilename": "il-old-city-of-jerusalem-dome-of-the-rock.png"
+    "imagePath": "/images/postcards/il-jerusalem.webp",
+    "imageFilename": "il-jerusalem.webp"
   },
   {
     "id": "IN",
     "name": "India",
     "continent": "Asia",
-    "landmarkName": "India Heritage & Landscapes",
-    "location": "Asia",
-    "caption": "Discover the breathtaking sights and unique heritage of India.",
-    "imagePath": "/images/postcards/in-india-heritage-landscapes.png",
-    "imageFilename": "in-india-heritage-landscapes.png"
+    "landmarkName": "Taj Mahal",
+    "location": "Agra, Uttar Pradesh",
+    "caption": "The timeless ivory-white marble mausoleum on the Yamuna river.",
+    "imagePath": "/images/postcards/in-taj-mahal.webp",
+    "imageFilename": "in-taj-mahal.webp"
   },
   {
     "id": "IQ",
@@ -806,78 +806,78 @@
     "landmarkName": "Ishtar Gate & Ziggurat of Ur",
     "location": "Babylon & Dhi Qar",
     "caption": "Lapis-glazed brick reliefs and ancient Mesopotamian ziggurat.",
-    "imagePath": "/images/postcards/iq-ishtar-gate-ziggurat-of-ur.png",
-    "imageFilename": "iq-ishtar-gate-ziggurat-of-ur.png"
+    "imagePath": "/images/postcards/iq-ziggurat-ur.webp",
+    "imageFilename": "iq-ziggurat-ur.webp"
   },
   {
     "id": "IR",
     "name": "Iran",
     "continent": "Asia",
-    "landmarkName": "Iran Heritage & Landscapes",
-    "location": "Asia",
-    "caption": "Discover the breathtaking sights and unique heritage of Iran.",
-    "imagePath": "/images/postcards/ir-iran-heritage-landscapes.png",
-    "imageFilename": "ir-iran-heritage-landscapes.png"
+    "landmarkName": "Naqsh-e Jahan Square & Persepolis",
+    "location": "Isfahan & Fars",
+    "caption": "Monumental Persian blue-tiled domes and ancient columns of the Achaemenid Empire.",
+    "imagePath": "/images/postcards/ir-persepolis.webp",
+    "imageFilename": "ir-persepolis.webp"
   },
   {
     "id": "IS",
     "name": "Iceland",
     "continent": "Europe",
-    "landmarkName": "Iceland Heritage & Landscapes",
-    "location": "Europe",
-    "caption": "Discover the breathtaking sights and unique heritage of Iceland.",
-    "imagePath": "/images/postcards/is-iceland-heritage-landscapes.png",
-    "imageFilename": "is-iceland-heritage-landscapes.png"
+    "landmarkName": "Kirkjufell & Black Sand Beaches",
+    "location": "Grundarfjörður",
+    "caption": "Church Mountain with twin waterfalls and dramatic volcanic shores.",
+    "imagePath": "/images/postcards/is-kirkjufell-black-sand-beaches.webp",
+    "imageFilename": "is-kirkjufell-black-sand-beaches.webp"
   },
   {
     "id": "IT",
     "name": "Italy",
     "continent": "Europe",
-    "landmarkName": "Italy Heritage & Landscapes",
-    "location": "Europe",
-    "caption": "Discover the breathtaking sights and unique heritage of Italy.",
-    "imagePath": "/images/postcards/it-italy-heritage-landscapes.png",
-    "imageFilename": "it-italy-heritage-landscapes.png"
+    "landmarkName": "The Colosseum",
+    "location": "Rome",
+    "caption": "Iconic flavian amphitheatre holding two millennia of history.",
+    "imagePath": "/images/postcards/it-colosseum.webp",
+    "imageFilename": "it-colosseum.webp"
   },
   {
     "id": "JM",
     "name": "Jamaica",
     "continent": "North America",
-    "landmarkName": "Jamaica Heritage & Landscapes",
-    "location": "North America",
-    "caption": "Discover the breathtaking sights and unique heritage of Jamaica.",
-    "imagePath": "/images/postcards/jm-jamaica-heritage-landscapes.png",
-    "imageFilename": "jm-jamaica-heritage-landscapes.png"
+    "landmarkName": "Dunn's River Falls",
+    "location": "Ocho Rios",
+    "caption": "Terraced limestone cascades emptying directly into the Caribbean Sea.",
+    "imagePath": "/images/postcards/jm-dunn-s-river-falls.webp",
+    "imageFilename": "jm-dunn-s-river-falls.webp"
   },
   {
     "id": "JO",
     "name": "Jordan",
     "continent": "Asia",
-    "landmarkName": "Jordan Heritage & Landscapes",
-    "location": "Asia",
-    "caption": "Discover the breathtaking sights and unique heritage of Jordan.",
-    "imagePath": "/images/postcards/jo-jordan-heritage-landscapes.png",
-    "imageFilename": "jo-jordan-heritage-landscapes.png"
+    "landmarkName": "The Treasury at Petra",
+    "location": "Ma'an Governorate",
+    "caption": "The rose-red carved Hellenistic facade hidden in the desert gorge.",
+    "imagePath": "/images/postcards/jo-petra.webp",
+    "imageFilename": "jo-petra.webp"
   },
   {
     "id": "JP",
     "name": "Japan",
     "continent": "Asia",
-    "landmarkName": "Japan Heritage & Landscapes",
-    "location": "Asia",
-    "caption": "Discover the breathtaking sights and unique heritage of Japan.",
-    "imagePath": "/images/postcards/jp-japan-heritage-landscapes.png",
-    "imageFilename": "jp-japan-heritage-landscapes.png"
+    "landmarkName": "Mount Fuji & Chureito Pagoda",
+    "location": "Fujiyoshida, Yamanashi",
+    "caption": "Snow-capped peak framed by cherry blossoms and vermilion wood.",
+    "imagePath": "/images/postcards/jp-mount-fuji.webp",
+    "imageFilename": "jp-mount-fuji.webp"
   },
   {
     "id": "KE",
     "name": "Kenya",
     "continent": "Africa",
-    "landmarkName": "Kenya Heritage & Landscapes",
-    "location": "Africa",
-    "caption": "Discover the breathtaking sights and unique heritage of Kenya.",
-    "imagePath": "/images/postcards/ke-kenya-heritage-landscapes.png",
-    "imageFilename": "ke-kenya-heritage-landscapes.png"
+    "landmarkName": "Maasai Mara Savanna",
+    "location": "Narok County",
+    "caption": "Acacia trees silhouetted against dramatic golden sunsets and wildlife.",
+    "imagePath": "/images/postcards/ke-maasai-mara-savanna.webp",
+    "imageFilename": "ke-maasai-mara-savanna.webp"
   },
   {
     "id": "KG",
@@ -886,18 +886,18 @@
     "landmarkName": "Lake Issyk-Kul & Tian Shan Peaks",
     "location": "Tian Shan",
     "caption": "Endless alpine lake ringed by snowcapped mountain ranges.",
-    "imagePath": "/images/postcards/kg-lake-issyk-kul-tian-shan-peaks.png",
-    "imageFilename": "kg-lake-issyk-kul-tian-shan-peaks.png"
+    "imagePath": "/images/postcards/kg-lake-issyk-kul.webp",
+    "imageFilename": "kg-lake-issyk-kul.webp"
   },
   {
     "id": "KH",
     "name": "Cambodia",
     "continent": "Asia",
-    "landmarkName": "Cambodia Heritage & Landscapes",
-    "location": "Asia",
-    "caption": "Discover the breathtaking sights and unique heritage of Cambodia.",
-    "imagePath": "/images/postcards/kh-cambodia-heritage-landscapes.png",
-    "imageFilename": "kh-cambodia-heritage-landscapes.png"
+    "landmarkName": "Angkor Wat",
+    "location": "Siem Reap",
+    "caption": "The world's largest temple complex emerging at morning sunrise.",
+    "imagePath": "/images/postcards/kh-angkor-wat.webp",
+    "imageFilename": "kh-angkor-wat.webp"
   },
   {
     "id": "KI",
@@ -906,8 +906,8 @@
     "landmarkName": "Christmas Island (Kiritimati) Lagoons",
     "location": "Line Islands",
     "caption": "Vast coral atoll lagoons and seabird colonies on the equator.",
-    "imagePath": "/images/postcards/ki-christmas-island-kiritimati-lagoons.png",
-    "imageFilename": "ki-christmas-island-kiritimati-lagoons.png"
+    "imagePath": "/images/postcards/ki-christmas-island.webp",
+    "imageFilename": "ki-christmas-island.webp"
   },
   {
     "id": "KM",
@@ -916,8 +916,8 @@
     "landmarkName": "Mount Karthala & Chomoni Beaches",
     "location": "Grande Comore",
     "caption": "Active volcano crater and white sand beaches fringed with palms.",
-    "imagePath": "/images/postcards/km-mount-karthala-chomoni-beaches.png",
-    "imageFilename": "km-mount-karthala-chomoni-beaches.png"
+    "imagePath": "/images/postcards/km-mount-karthala.webp",
+    "imageFilename": "km-mount-karthala.webp"
   },
   {
     "id": "KN",
@@ -926,8 +926,8 @@
     "landmarkName": "Brimstone Hill Fortress",
     "location": "Saint Kitts",
     "caption": "Gibraltar of the Caribbean perched over panoramic blue seas.",
-    "imagePath": "/images/postcards/kn-brimstone-hill-fortress.png",
-    "imageFilename": "kn-brimstone-hill-fortress.png"
+    "imagePath": "/images/postcards/kn-brimstone-hill.webp",
+    "imageFilename": "kn-brimstone-hill.webp"
   },
   {
     "id": "KP",
@@ -936,18 +936,18 @@
     "landmarkName": "Mount Paektu & Heaven Lake",
     "location": "Samjiyon",
     "caption": "Sacred volcanic crater lake encircled by jagged granite crags.",
-    "imagePath": "/images/postcards/kp-mount-paektu-heaven-lake.png",
-    "imageFilename": "kp-mount-paektu-heaven-lake.png"
+    "imagePath": "/images/postcards/kp-mount-paektu.webp",
+    "imageFilename": "kp-mount-paektu.webp"
   },
   {
     "id": "KR",
     "name": "South Korea",
     "continent": "Asia",
-    "landmarkName": "South Korea Heritage & Landscapes",
-    "location": "Asia",
-    "caption": "Discover the breathtaking sights and unique heritage of South Korea.",
-    "imagePath": "/images/postcards/kr-south-korea-heritage-landscapes.png",
-    "imageFilename": "kr-south-korea-heritage-landscapes.png"
+    "landmarkName": "Gyeongbokgung Palace",
+    "location": "Seoul",
+    "caption": "Grand Joseon dynasty pavilions with Bukhansan mountains behind.",
+    "imagePath": "/images/postcards/kr-gyeongbokgung.webp",
+    "imageFilename": "kr-gyeongbokgung.webp"
   },
   {
     "id": "KW",
@@ -956,8 +956,8 @@
     "landmarkName": "Kuwait Towers",
     "location": "Kuwait City",
     "caption": "Iconic blue-green tiled spires over the Persian Gulf.",
-    "imagePath": "/images/postcards/kw-kuwait-towers.png",
-    "imageFilename": "kw-kuwait-towers.png"
+    "imagePath": "/images/postcards/kw-kuwait-towers.webp",
+    "imageFilename": "kw-kuwait-towers.webp"
   },
   {
     "id": "KZ",
@@ -966,8 +966,8 @@
     "landmarkName": "Charyn Canyon & Baiterek Tower",
     "location": "Almaty & Astana",
     "caption": "Ochre sandstone canyons and soaring steppes.",
-    "imagePath": "/images/postcards/kz-charyn-canyon-baiterek-tower.png",
-    "imageFilename": "kz-charyn-canyon-baiterek-tower.png"
+    "imagePath": "/images/postcards/kz-charyn-canyon.webp",
+    "imageFilename": "kz-charyn-canyon.webp"
   },
   {
     "id": "LA",
@@ -976,8 +976,8 @@
     "landmarkName": "Kuang Si Falls & Luang Prabang",
     "location": "Luang Prabang",
     "caption": "Multi-tiered turquoise jungle waterfalls and Buddhist wats.",
-    "imagePath": "/images/postcards/la-kuang-si-falls-luang-prabang.png",
-    "imageFilename": "la-kuang-si-falls-luang-prabang.png"
+    "imagePath": "/images/postcards/la-kuang-si-falls.webp",
+    "imageFilename": "la-kuang-si-falls.webp"
   },
   {
     "id": "LB",
@@ -986,8 +986,8 @@
     "landmarkName": "Baalbek Roman Temples & Pigeon Rocks",
     "location": "Beqaa & Beirut",
     "caption": "Towering Roman granite colonnades and coastal sea arches.",
-    "imagePath": "/images/postcards/lb-baalbek-roman-temples-pigeon-rocks.png",
-    "imageFilename": "lb-baalbek-roman-temples-pigeon-rocks.png"
+    "imagePath": "/images/postcards/lb-baalbek.webp",
+    "imageFilename": "lb-baalbek.webp"
   },
   {
     "id": "LC",
@@ -996,8 +996,8 @@
     "landmarkName": "The Pitons",
     "location": "Soufrière",
     "caption": "Twin emerald volcanic spires rising vertically from the ocean.",
-    "imagePath": "/images/postcards/lc-the-pitons.png",
-    "imageFilename": "lc-the-pitons.png"
+    "imagePath": "/images/postcards/lc-the-pitons.webp",
+    "imageFilename": "lc-the-pitons.webp"
   },
   {
     "id": "LI",
@@ -1006,18 +1006,18 @@
     "landmarkName": "Vaduz Castle",
     "location": "Vaduz",
     "caption": "Princely fortress overlooking alpine Rhine river valleys.",
-    "imagePath": "/images/postcards/li-vaduz-castle.png",
-    "imageFilename": "li-vaduz-castle.png"
+    "imagePath": "/images/postcards/li-vaduz-castle.webp",
+    "imageFilename": "li-vaduz-castle.webp"
   },
   {
     "id": "LK",
     "name": "Sri Lanka",
     "continent": "Asia",
-    "landmarkName": "Sri Lanka Heritage & Landscapes",
-    "location": "Asia",
-    "caption": "Discover the breathtaking sights and unique heritage of Sri Lanka.",
-    "imagePath": "/images/postcards/lk-sri-lanka-heritage-landscapes.png",
-    "imageFilename": "lk-sri-lanka-heritage-landscapes.png"
+    "landmarkName": "Sigiriya Lion Rock Fortress",
+    "location": "Matale District",
+    "caption": "Ancient sky fortress perched atop an sheer 200-meter monolith.",
+    "imagePath": "/images/postcards/lk-sigiriya-lion-rock-fortress.webp",
+    "imageFilename": "lk-sigiriya-lion-rock-fortress.webp"
   },
   {
     "id": "LR",
@@ -1026,8 +1026,8 @@
     "landmarkName": "Providence Island & Mount Nimba",
     "location": "Monrovia",
     "caption": "Historic lagoon island and mist-shrouded biodiversity mountains.",
-    "imagePath": "/images/postcards/lr-providence-island-mount-nimba.png",
-    "imageFilename": "lr-providence-island-mount-nimba.png"
+    "imagePath": "/images/postcards/lr-providence-island.webp",
+    "imageFilename": "lr-providence-island.webp"
   },
   {
     "id": "LS",
@@ -1036,8 +1036,8 @@
     "landmarkName": "Maletsunyane Falls & Drakensberg",
     "location": "Semonkong",
     "caption": "Single-drop plume plunging into deep basalt mountain gorges.",
-    "imagePath": "/images/postcards/ls-maletsunyane-falls-drakensberg.png",
-    "imageFilename": "ls-maletsunyane-falls-drakensberg.png"
+    "imagePath": "/images/postcards/ls-maletsunyane-falls.webp",
+    "imageFilename": "ls-maletsunyane-falls.webp"
   },
   {
     "id": "LT",
@@ -1046,8 +1046,8 @@
     "landmarkName": "Trakai Island Castle",
     "location": "Trakai",
     "caption": "Red-brick fairy tale fortress situated on a misty lake.",
-    "imagePath": "/images/postcards/lt-trakai-island-castle.png",
-    "imageFilename": "lt-trakai-island-castle.png"
+    "imagePath": "/images/postcards/lt-trakai-castle.webp",
+    "imageFilename": "lt-trakai-castle.webp"
   },
   {
     "id": "LU",
@@ -1056,8 +1056,8 @@
     "landmarkName": "Bock Casemates & Adolphe Bridge",
     "location": "Luxembourg City",
     "caption": "Cliffside fortress ramparts spanning the deep Alzette gorge.",
-    "imagePath": "/images/postcards/lu-bock-casemates-adolphe-bridge.png",
-    "imageFilename": "lu-bock-casemates-adolphe-bridge.png"
+    "imagePath": "/images/postcards/lu-bock-casemates.webp",
+    "imageFilename": "lu-bock-casemates.webp"
   },
   {
     "id": "LV",
@@ -1066,8 +1066,8 @@
     "landmarkName": "Riga Old Town & House of the Black Heads",
     "location": "Riga",
     "caption": "Ornate Hanseatic facades and Art Nouveau boulevards.",
-    "imagePath": "/images/postcards/lv-riga-old-town-house-of-the-black-heads.png",
-    "imageFilename": "lv-riga-old-town-house-of-the-black-heads.png"
+    "imagePath": "/images/postcards/lv-riga-old-town.webp",
+    "imageFilename": "lv-riga-old-town.webp"
   },
   {
     "id": "LY",
@@ -1076,28 +1076,28 @@
     "landmarkName": "Leptis Magna Roman Ruins",
     "location": "Al-Khums",
     "caption": "One of the Mediterranean's best preserved Roman imperial cities.",
-    "imagePath": "/images/postcards/ly-leptis-magna-roman-ruins.png",
-    "imageFilename": "ly-leptis-magna-roman-ruins.png"
+    "imagePath": "/images/postcards/ly-leptis-magna.webp",
+    "imageFilename": "ly-leptis-magna.webp"
   },
   {
     "id": "MA",
     "name": "Morocco",
     "continent": "Africa",
-    "landmarkName": "Morocco Heritage & Landscapes",
-    "location": "Africa",
-    "caption": "Discover the breathtaking sights and unique heritage of Morocco.",
-    "imagePath": "/images/postcards/ma-morocco-heritage-landscapes.png",
-    "imageFilename": "ma-morocco-heritage-landscapes.png"
+    "landmarkName": "Hassan II Mosque & Chefchaouen",
+    "location": "Casablanca & Rif Mountains",
+    "caption": "Intricate blue-washed mountain alleys and towering ocean minarets.",
+    "imagePath": "/images/postcards/ma-hassan-ii-mosque-chefchaouen.webp",
+    "imageFilename": "ma-hassan-ii-mosque-chefchaouen.webp"
   },
   {
     "id": "MC",
     "name": "Monaco",
     "continent": "Europe",
-    "landmarkName": "Monaco Heritage & Landscapes",
-    "location": "Europe",
-    "caption": "Discover the breathtaking sights and unique heritage of Monaco.",
-    "imagePath": "/images/postcards/mc-monaco-heritage-landscapes.png",
-    "imageFilename": "mc-monaco-heritage-landscapes.png"
+    "landmarkName": "Casino de Monte-Carlo & Port",
+    "location": "Monte Carlo",
+    "caption": "Beaux-Arts grandeur overlooking superyachts on the Riviera coast.",
+    "imagePath": "/images/postcards/mc-casino-de-monte-carlo-port.webp",
+    "imageFilename": "mc-casino-de-monte-carlo-port.webp"
   },
   {
     "id": "MD",
@@ -1106,8 +1106,8 @@
     "landmarkName": "Orheiul Vechi Monastery",
     "location": "Trebujeni",
     "caption": "Cave monastery carved into limestone ridges above the Răut river.",
-    "imagePath": "/images/postcards/md-orheiul-vechi-monastery.png",
-    "imageFilename": "md-orheiul-vechi-monastery.png"
+    "imagePath": "/images/postcards/md-orheiul-vechi.webp",
+    "imageFilename": "md-orheiul-vechi.webp"
   },
   {
     "id": "ME",
@@ -1116,8 +1116,8 @@
     "landmarkName": "Bay of Kotor & Our Lady of the Rocks",
     "location": "Kotor",
     "caption": "Deep fjord-like Adriatic bay flanked by dramatic limestone cliffs.",
-    "imagePath": "/images/postcards/me-bay-of-kotor-our-lady-of-the-rocks.png",
-    "imageFilename": "me-bay-of-kotor-our-lady-of-the-rocks.png"
+    "imagePath": "/images/postcards/me-bay-of-kotor.webp",
+    "imageFilename": "me-bay-of-kotor.webp"
   },
   {
     "id": "MG",
@@ -1126,8 +1126,8 @@
     "landmarkName": "Avenue of the Baobabs",
     "location": "Menabe",
     "caption": "Ancient giant trees standing tall against brilliant crimson sunsets.",
-    "imagePath": "/images/postcards/mg-avenue-of-the-baobabs.png",
-    "imageFilename": "mg-avenue-of-the-baobabs.png"
+    "imagePath": "/images/postcards/mg-avenue-of-baobabs.webp",
+    "imageFilename": "mg-avenue-of-baobabs.webp"
   },
   {
     "id": "MH",
@@ -1136,8 +1136,8 @@
     "landmarkName": "Majuro Atoll & Arno Coral Lagoon",
     "location": "Majuro",
     "caption": "Narrow palm-lined coral ring encircled by vast turquoise Pacific.",
-    "imagePath": "/images/postcards/mh-majuro-atoll-arno-coral-lagoon.png",
-    "imageFilename": "mh-majuro-atoll-arno-coral-lagoon.png"
+    "imagePath": "/images/postcards/mh-majuro-atoll.webp",
+    "imageFilename": "mh-majuro-atoll.webp"
   },
   {
     "id": "MK",
@@ -1146,8 +1146,8 @@
     "landmarkName": "Church of St. John at Kaneo",
     "location": "Ohrid",
     "caption": "Byzantine church perched high above crystal Lake Ohrid.",
-    "imagePath": "/images/postcards/mk-church-of-st-john-at-kaneo.png",
-    "imageFilename": "mk-church-of-st-john-at-kaneo.png"
+    "imagePath": "/images/postcards/mk-st-john-kaneo.webp",
+    "imageFilename": "mk-st-john-kaneo.webp"
   },
   {
     "id": "ML",
@@ -1156,18 +1156,18 @@
     "landmarkName": "Great Mosque of Djenné",
     "location": "Mopti Region",
     "caption": "The world's largest adobe mudbrick building rising above floodplains.",
-    "imagePath": "/images/postcards/ml-great-mosque-of-djenne.png",
-    "imageFilename": "ml-great-mosque-of-djenne.png"
+    "imagePath": "/images/postcards/ml-djenne-mosque.webp",
+    "imageFilename": "ml-djenne-mosque.webp"
   },
   {
     "id": "MM",
     "name": "Myanmar",
     "continent": "Asia",
-    "landmarkName": "Myanmar Heritage & Landscapes",
-    "location": "Asia",
-    "caption": "Discover the breathtaking sights and unique heritage of Myanmar.",
-    "imagePath": "/images/postcards/mm-myanmar-heritage-landscapes.png",
-    "imageFilename": "mm-myanmar-heritage-landscapes.png"
+    "landmarkName": "Ancient Temples of Bagan",
+    "location": "Mandalay Region",
+    "caption": "Thousands of terracotta pagodas under morning hot air balloons.",
+    "imagePath": "/images/postcards/mm-ancient-temples-of-bagan.webp",
+    "imageFilename": "mm-ancient-temples-of-bagan.webp"
   },
   {
     "id": "MN",
@@ -1176,18 +1176,18 @@
     "landmarkName": "Genghis Khan Statue & Gobi Dunes",
     "location": "Tsonjin Boldog & Gobi",
     "caption": "Colossal stainless steel equestrian statue on the steppe.",
-    "imagePath": "/images/postcards/mn-genghis-khan-statue-gobi-dunes.png",
-    "imageFilename": "mn-genghis-khan-statue-gobi-dunes.png"
+    "imagePath": "/images/postcards/mn-genghis-khan.webp",
+    "imageFilename": "mn-genghis-khan.webp"
   },
   {
     "id": "MO",
     "name": "Macau",
     "continent": "Asia",
-    "landmarkName": "Macau Heritage & Landscapes",
-    "location": "Asia",
-    "caption": "Discover the breathtaking sights and unique heritage of Macau.",
-    "imagePath": "/images/postcards/mo-macau-heritage-landscapes.png",
-    "imageFilename": "mo-macau-heritage-landscapes.png"
+    "landmarkName": "Ruins of St. Paul's & Senado Square",
+    "location": "Macau Peninsula",
+    "caption": "17th-century stone baroque facade overlooking vibrant wave-patterned Portuguese mosaics.",
+    "imagePath": "/images/postcards/mo-ruins-of-st-pauls.webp",
+    "imageFilename": "mo-ruins-of-st-pauls.webp"
   },
   {
     "id": "MR",
@@ -1196,8 +1196,8 @@
     "landmarkName": "Eye of the Sahara (Richat Structure)",
     "location": "Ouadane",
     "caption": "Giant concentric circular rock dome visible from outer space.",
-    "imagePath": "/images/postcards/mr-eye-of-the-sahara-richat-structure.png",
-    "imageFilename": "mr-eye-of-the-sahara-richat-structure.png"
+    "imagePath": "/images/postcards/mr-eye-of-sahara.webp",
+    "imageFilename": "mr-eye-of-sahara.webp"
   },
   {
     "id": "MT",
@@ -1206,28 +1206,28 @@
     "landmarkName": "Valletta Grand Harbour & Blue Grotto",
     "location": "Valletta",
     "caption": "Golden honey-limestone bastions surrounded by deep blue seas.",
-    "imagePath": "/images/postcards/mt-valletta-grand-harbour-blue-grotto.png",
-    "imageFilename": "mt-valletta-grand-harbour-blue-grotto.png"
+    "imagePath": "/images/postcards/mt-valletta-harbour.webp",
+    "imageFilename": "mt-valletta-harbour.webp"
   },
   {
     "id": "MU",
     "name": "Mauritius",
     "continent": "Africa",
-    "landmarkName": "Mauritius Heritage & Landscapes",
-    "location": "Africa",
-    "caption": "Discover the breathtaking sights and unique heritage of Mauritius.",
-    "imagePath": "/images/postcards/mu-mauritius-heritage-landscapes.png",
-    "imageFilename": "mu-mauritius-heritage-landscapes.png"
+    "landmarkName": "Le Morne Brabant & Seven Colours",
+    "location": "Black River District",
+    "caption": "Dramatic basaltic mountain fringed by turquoise underwater waterfalls.",
+    "imagePath": "/images/postcards/mu-le-morne-brabant-seven-colours.webp",
+    "imageFilename": "mu-le-morne-brabant-seven-colours.webp"
   },
   {
     "id": "MV",
     "name": "Maldives",
     "continent": "Asia",
-    "landmarkName": "Maldives Heritage & Landscapes",
-    "location": "Asia",
-    "caption": "Discover the breathtaking sights and unique heritage of Maldives.",
-    "imagePath": "/images/postcards/mv-maldives-heritage-landscapes.png",
-    "imageFilename": "mv-maldives-heritage-landscapes.png"
+    "landmarkName": "Malé Atoll & Overwater Villas",
+    "location": "Kaafu Atoll",
+    "caption": "Crystal turquoise lagoons with vibrant coral rings and palms.",
+    "imagePath": "/images/postcards/mv-male-atoll-overwater-villas.webp",
+    "imageFilename": "mv-male-atoll-overwater-villas.webp"
   },
   {
     "id": "MW",
@@ -1236,28 +1236,28 @@
     "landmarkName": "Lake Malawi & Cape Maclear",
     "location": "Mangochi",
     "caption": "Golden sandy coves and hundreds of colorful cichlid fishes.",
-    "imagePath": "/images/postcards/mw-lake-malawi-cape-maclear.png",
-    "imageFilename": "mw-lake-malawi-cape-maclear.png"
+    "imagePath": "/images/postcards/mw-lake-malawi.webp",
+    "imageFilename": "mw-lake-malawi.webp"
   },
   {
     "id": "MX",
     "name": "Mexico",
     "continent": "North America",
-    "landmarkName": "Mexico Heritage & Landscapes",
-    "location": "North America",
-    "caption": "Discover the breathtaking sights and unique heritage of Mexico.",
-    "imagePath": "/images/postcards/mx-mexico-heritage-landscapes.png",
-    "imageFilename": "mx-mexico-heritage-landscapes.png"
+    "landmarkName": "El Castillo at Chichén Itzá",
+    "location": "Yucatán Peninsula",
+    "caption": "Monumental stepped pyramid of ancient Maya astronomical genius.",
+    "imagePath": "/images/postcards/mx-chichen-itza.webp",
+    "imageFilename": "mx-chichen-itza.webp"
   },
   {
     "id": "MY",
     "name": "Malaysia",
     "continent": "Asia",
-    "landmarkName": "Malaysia Heritage & Landscapes",
-    "location": "Asia",
-    "caption": "Discover the breathtaking sights and unique heritage of Malaysia.",
-    "imagePath": "/images/postcards/my-malaysia-heritage-landscapes.png",
-    "imageFilename": "my-malaysia-heritage-landscapes.png"
+    "landmarkName": "Petronas Twin Towers",
+    "location": "Kuala Lumpur",
+    "caption": "Twin spire architecture glowing brilliantly into the tropical evening.",
+    "imagePath": "/images/postcards/my-petronas-towers.webp",
+    "imageFilename": "my-petronas-towers.webp"
   },
   {
     "id": "MZ",
@@ -1266,8 +1266,8 @@
     "landmarkName": "Bazaruto Coral Archipelago",
     "location": "Inhambane",
     "caption": "White sand dunes drifting into vivid turquoise Indian Ocean lagoons.",
-    "imagePath": "/images/postcards/mz-bazaruto-coral-archipelago.png",
-    "imageFilename": "mz-bazaruto-coral-archipelago.png"
+    "imagePath": "/images/postcards/mz-bazaruto-archipelago.webp",
+    "imageFilename": "mz-bazaruto-archipelago.webp"
   },
   {
     "id": "NA",
@@ -1276,8 +1276,8 @@
     "landmarkName": "Sossusvlei & Deadvlei Dunes",
     "location": "Namib Desert",
     "caption": "Towering terracotta dunes and 900-year-old camel thorn silhouettes.",
-    "imagePath": "/images/postcards/na-sossusvlei-deadvlei-dunes.png",
-    "imageFilename": "na-sossusvlei-deadvlei-dunes.png"
+    "imagePath": "/images/postcards/na-sossusvlei-dunes.webp",
+    "imageFilename": "na-sossusvlei-dunes.webp"
   },
   {
     "id": "NE",
@@ -1286,18 +1286,18 @@
     "landmarkName": "Agadez Grand Mosque & Aïr Mountains",
     "location": "Agadez",
     "caption": "Ancient mudbrick minaret with wooden scaffolding over Saharan sands.",
-    "imagePath": "/images/postcards/ne-agadez-grand-mosque-air-mountains.png",
-    "imageFilename": "ne-agadez-grand-mosque-air-mountains.png"
+    "imagePath": "/images/postcards/ne-agadez-mosque.webp",
+    "imageFilename": "ne-agadez-mosque.webp"
   },
   {
     "id": "NG",
     "name": "Nigeria",
     "continent": "Africa",
-    "landmarkName": "Nigeria Heritage & Landscapes",
-    "location": "Africa",
-    "caption": "Discover the breathtaking sights and unique heritage of Nigeria.",
-    "imagePath": "/images/postcards/ng-nigeria-heritage-landscapes.png",
-    "imageFilename": "ng-nigeria-heritage-landscapes.png"
+    "landmarkName": "Zuma Rock",
+    "location": "Niger State / Abuja",
+    "caption": "Monolithic natural granite inselberg towering over Nigerian savanna.",
+    "imagePath": "/images/postcards/ng-zuma-rock.webp",
+    "imageFilename": "ng-zuma-rock.webp"
   },
   {
     "id": "NI",
@@ -1306,38 +1306,38 @@
     "landmarkName": "Masaya Volcano & Granada",
     "location": "Granada & Masaya",
     "caption": "Colonial pastel plazas and glowing volcanic craters.",
-    "imagePath": "/images/postcards/ni-masaya-volcano-granada.png",
-    "imageFilename": "ni-masaya-volcano-granada.png"
+    "imagePath": "/images/postcards/ni-masaya-volcano.webp",
+    "imageFilename": "ni-masaya-volcano.webp"
   },
   {
     "id": "NL",
     "name": "Netherlands",
     "continent": "Europe",
-    "landmarkName": "Netherlands Heritage & Landscapes",
-    "location": "Europe",
-    "caption": "Discover the breathtaking sights and unique heritage of Netherlands.",
-    "imagePath": "/images/postcards/nl-netherlands-heritage-landscapes.png",
-    "imageFilename": "nl-netherlands-heritage-landscapes.png"
+    "landmarkName": "Zaanse Schans Windmills",
+    "location": "Zaandam, North Holland",
+    "caption": "Historic green wooden windmills and colorful tulip meadows.",
+    "imagePath": "/images/postcards/nl-windmills.webp",
+    "imageFilename": "nl-windmills.webp"
   },
   {
     "id": "NO",
     "name": "Norway",
     "continent": "Europe",
-    "landmarkName": "Norway Heritage & Landscapes",
-    "location": "Europe",
-    "caption": "Discover the breathtaking sights and unique heritage of Norway.",
-    "imagePath": "/images/postcards/no-norway-heritage-landscapes.png",
-    "imageFilename": "no-norway-heritage-landscapes.png"
+    "landmarkName": "Geirangerfjord",
+    "location": "Møre og Romsdal",
+    "caption": "Deep emerald fjord carved with roaring waterfalls and alpine peaks.",
+    "imagePath": "/images/postcards/no-geirangerfjord.webp",
+    "imageFilename": "no-geirangerfjord.webp"
   },
   {
     "id": "NP",
     "name": "Nepal",
     "continent": "Asia",
-    "landmarkName": "Nepal Heritage & Landscapes",
-    "location": "Asia",
-    "caption": "Discover the breathtaking sights and unique heritage of Nepal.",
-    "imagePath": "/images/postcards/np-nepal-heritage-landscapes.png",
-    "imageFilename": "np-nepal-heritage-landscapes.png"
+    "landmarkName": "Mount Everest & Swayambhunath",
+    "location": "Solukhumbu & Kathmandu",
+    "caption": "The roof of the world beneath fluttering Buddhist prayer flags.",
+    "imagePath": "/images/postcards/np-mount-everest-swayambhunath.webp",
+    "imageFilename": "np-mount-everest-swayambhunath.webp"
   },
   {
     "id": "NR",
@@ -1346,28 +1346,28 @@
     "landmarkName": "Anibare Bay & Command Ridge",
     "location": "Anibare District",
     "caption": "Pristine white sand bay framed by jagged coastal coral pinnacles.",
-    "imagePath": "/images/postcards/nr-anibare-bay-command-ridge.png",
-    "imageFilename": "nr-anibare-bay-command-ridge.png"
+    "imagePath": "/images/postcards/nr-anibare-bay.webp",
+    "imageFilename": "nr-anibare-bay.webp"
   },
   {
     "id": "NZ",
     "name": "New Zealand",
     "continent": "Oceania",
-    "landmarkName": "New Zealand Heritage & Landscapes",
-    "location": "Oceania",
-    "caption": "Discover the breathtaking sights and unique heritage of New Zealand.",
-    "imagePath": "/images/postcards/nz-new-zealand-heritage-landscapes.png",
-    "imageFilename": "nz-new-zealand-heritage-landscapes.png"
+    "landmarkName": "Milford Sound",
+    "location": "Fiordland, South Island",
+    "caption": "Towering Mitre Peak plunging straight into dark fjord waters.",
+    "imagePath": "/images/postcards/nz-milford-sound.webp",
+    "imageFilename": "nz-milford-sound.webp"
   },
   {
     "id": "OM",
     "name": "Oman",
     "continent": "Asia",
-    "landmarkName": "Oman Heritage & Landscapes",
-    "location": "Asia",
-    "caption": "Discover the breathtaking sights and unique heritage of Oman.",
-    "imagePath": "/images/postcards/om-oman-heritage-landscapes.png",
-    "imageFilename": "om-oman-heritage-landscapes.png"
+    "landmarkName": "Sultan Qaboos Grand Mosque",
+    "location": "Muscat",
+    "caption": "Pristine white marble courtyards and grand desert minarets.",
+    "imagePath": "/images/postcards/om-sultan-qaboos-grand-mosque.webp",
+    "imageFilename": "om-sultan-qaboos-grand-mosque.webp"
   },
   {
     "id": "PA",
@@ -1376,18 +1376,18 @@
     "landmarkName": "Panama Canal & Casco Viejo",
     "location": "Panama City",
     "caption": "Engineering marvel connecting two oceans beside colonial cobblestones.",
-    "imagePath": "/images/postcards/pa-panama-canal-casco-viejo.png",
-    "imageFilename": "pa-panama-canal-casco-viejo.png"
+    "imagePath": "/images/postcards/pa-panama-canal.webp",
+    "imageFilename": "pa-panama-canal.webp"
   },
   {
     "id": "PE",
     "name": "Peru",
     "continent": "South America",
-    "landmarkName": "Peru Heritage & Landscapes",
-    "location": "South America",
-    "caption": "Discover the breathtaking sights and unique heritage of Peru.",
-    "imagePath": "/images/postcards/pe-peru-heritage-landscapes.png",
-    "imageFilename": "pe-peru-heritage-landscapes.png"
+    "landmarkName": "Machu Picchu",
+    "location": "Cusco Region",
+    "caption": "The Lost Citadel of the Incas nestled in misty Andean peaks.",
+    "imagePath": "/images/postcards/pe-machu-picchu.webp",
+    "imageFilename": "pe-machu-picchu.webp"
   },
   {
     "id": "PG",
@@ -1396,8 +1396,8 @@
     "landmarkName": "Tavurvur Volcano & Sepik River",
     "location": "Rabaul & East Sepik",
     "caption": "Smoking active caldera and sacred carved spirit houses.",
-    "imagePath": "/images/postcards/pg-tavurvur-volcano-sepik-river.png",
-    "imageFilename": "pg-tavurvur-volcano-sepik-river.png"
+    "imagePath": "/images/postcards/pg-tavurvur-volcano.webp",
+    "imageFilename": "pg-tavurvur-volcano.webp"
   },
   {
     "id": "PH",
@@ -1406,8 +1406,8 @@
     "landmarkName": "Chocolate Hills & El Nido",
     "location": "Bohol & Palawan",
     "caption": "Rolling emerald karst mounds and crystal limestone lagoons.",
-    "imagePath": "/images/postcards/ph-chocolate-hills-el-nido.png",
-    "imageFilename": "ph-chocolate-hills-el-nido.png"
+    "imagePath": "/images/postcards/ph-chocolate-hills.webp",
+    "imageFilename": "ph-chocolate-hills.webp"
   },
   {
     "id": "PK",
@@ -1416,8 +1416,8 @@
     "landmarkName": "Badshahi Mosque & K2",
     "location": "Lahore & Karakoram",
     "caption": "Grand Mughal red sandstone arches and Karakoram giants.",
-    "imagePath": "/images/postcards/pk-badshahi-mosque-k2.png",
-    "imageFilename": "pk-badshahi-mosque-k2.png"
+    "imagePath": "/images/postcards/pk-badshahi-mosque.webp",
+    "imageFilename": "pk-badshahi-mosque.webp"
   },
   {
     "id": "PL",
@@ -1426,8 +1426,8 @@
     "landmarkName": "Wawel Royal Castle & Main Square",
     "location": "Kraków",
     "caption": "Gothic towers and Renaissance courtyards beside the Vistula.",
-    "imagePath": "/images/postcards/pl-wawel-royal-castle-main-square.png",
-    "imageFilename": "pl-wawel-royal-castle-main-square.png"
+    "imagePath": "/images/postcards/pl-wawel-castle.webp",
+    "imageFilename": "pl-wawel-castle.webp"
   },
   {
     "id": "PS",
@@ -1436,18 +1436,18 @@
     "landmarkName": "Church of the Nativity & Mar Saba",
     "location": "Bethlehem & Judean Desert",
     "caption": "Ancient cliff-hanging monastery over desert canyons.",
-    "imagePath": "/images/postcards/ps-church-of-the-nativity-mar-saba.png",
-    "imageFilename": "ps-church-of-the-nativity-mar-saba.png"
+    "imagePath": "/images/postcards/ps-mar-saba.webp",
+    "imageFilename": "ps-mar-saba.webp"
   },
   {
     "id": "PT",
     "name": "Portugal",
     "continent": "Europe",
-    "landmarkName": "Portugal Heritage & Landscapes",
-    "location": "Europe",
-    "caption": "Discover the breathtaking sights and unique heritage of Portugal.",
-    "imagePath": "/images/postcards/pt-portugal-heritage-landscapes.png",
-    "imageFilename": "pt-portugal-heritage-landscapes.png"
+    "landmarkName": "Belém Tower & Sintra",
+    "location": "Lisbon & Sintra",
+    "caption": "Maritime Manueline fortress on the Tagus and pastel mountain palaces.",
+    "imagePath": "/images/postcards/pt-belem-tower-sintra.webp",
+    "imageFilename": "pt-belem-tower-sintra.webp"
   },
   {
     "id": "PW",
@@ -1456,8 +1456,8 @@
     "landmarkName": "Rock Islands Southern Lagoon",
     "location": "Koror",
     "caption": "Mushroom-shaped emerald limestone islets in luminous turquoise seas.",
-    "imagePath": "/images/postcards/pw-rock-islands-southern-lagoon.png",
-    "imageFilename": "pw-rock-islands-southern-lagoon.png"
+    "imagePath": "/images/postcards/pw-rock-islands.webp",
+    "imageFilename": "pw-rock-islands.webp"
   },
   {
     "id": "PY",
@@ -1466,18 +1466,18 @@
     "landmarkName": "Itaipu Dam & Jesuit Missions",
     "location": "Hernandarias & Itapúa",
     "caption": "Monumental hydro engineering and historic red sandstone ruins.",
-    "imagePath": "/images/postcards/py-itaipu-dam-jesuit-missions.png",
-    "imageFilename": "py-itaipu-dam-jesuit-missions.png"
+    "imagePath": "/images/postcards/py-itaipu-dam.webp",
+    "imageFilename": "py-itaipu-dam.webp"
   },
   {
     "id": "QA",
     "name": "Qatar",
     "continent": "Asia",
-    "landmarkName": "Qatar Heritage & Landscapes",
-    "location": "Asia",
-    "caption": "Discover the breathtaking sights and unique heritage of Qatar.",
-    "imagePath": "/images/postcards/qa-qatar-heritage-landscapes.png",
-    "imageFilename": "qa-qatar-heritage-landscapes.png"
+    "landmarkName": "Museum of Islamic Art",
+    "location": "Doha",
+    "caption": "Geometric limestone architecture framing the Arabian Gulf.",
+    "imagePath": "/images/postcards/qa-museum-of-islamic-art.webp",
+    "imageFilename": "qa-museum-of-islamic-art.webp"
   },
   {
     "id": "RO",
@@ -1486,8 +1486,8 @@
     "landmarkName": "Bran Castle (Dracula's Castle)",
     "location": "Transylvania",
     "caption": "Dramatic stone fortress towering over misty Carpathian pine forests.",
-    "imagePath": "/images/postcards/ro-bran-castle-dracula-s-castle.png",
-    "imageFilename": "ro-bran-castle-dracula-s-castle.png"
+    "imagePath": "/images/postcards/ro-bran-castle.webp",
+    "imageFilename": "ro-bran-castle.webp"
   },
   {
     "id": "RS",
@@ -1496,8 +1496,8 @@
     "landmarkName": "Kalemegdan Fortress & Saint Sava",
     "location": "Belgrade",
     "caption": "Ancient citadel commanding the confluence of the Danube and Sava.",
-    "imagePath": "/images/postcards/rs-kalemegdan-fortress-saint-sava.png",
-    "imageFilename": "rs-kalemegdan-fortress-saint-sava.png"
+    "imagePath": "/images/postcards/rs-kalemegdan.webp",
+    "imageFilename": "rs-kalemegdan.webp"
   },
   {
     "id": "RU",
@@ -1506,8 +1506,8 @@
     "landmarkName": "Saint Basil's Cathedral & Red Square",
     "location": "Moscow",
     "caption": "Colorful swirling onion domes of Russian fairy-tale legend.",
-    "imagePath": "/images/postcards/ru-saint-basil-s-cathedral-red-square.png",
-    "imageFilename": "ru-saint-basil-s-cathedral-red-square.png"
+    "imagePath": "/images/postcards/ru-saint-basils.webp",
+    "imageFilename": "ru-saint-basils.webp"
   },
   {
     "id": "RW",
@@ -1516,18 +1516,18 @@
     "landmarkName": "Volcanoes National Park",
     "location": "Musanze",
     "caption": "Bamboo forests and emerald dormant volcanoes sheltering mountain gorillas.",
-    "imagePath": "/images/postcards/rw-volcanoes-national-park.png",
-    "imageFilename": "rw-volcanoes-national-park.png"
+    "imagePath": "/images/postcards/rw-volcanoes-park.webp",
+    "imageFilename": "rw-volcanoes-park.webp"
   },
   {
     "id": "SA",
     "name": "Saudi Arabia",
     "continent": "Asia",
-    "landmarkName": "Saudi Arabia Heritage & Landscapes",
-    "location": "Asia",
-    "caption": "Discover the breathtaking sights and unique heritage of Saudi Arabia.",
-    "imagePath": "/images/postcards/sa-saudi-arabia-heritage-landscapes.png",
-    "imageFilename": "sa-saudi-arabia-heritage-landscapes.png"
+    "landmarkName": "Al-Ula & Hegra",
+    "location": "Madinah Region",
+    "caption": "Monumental Nabataean tombs carved straight into sandstone cliffs.",
+    "imagePath": "/images/postcards/sa-al-ula-hegra.webp",
+    "imageFilename": "sa-al-ula-hegra.webp"
   },
   {
     "id": "SB",
@@ -1536,18 +1536,18 @@
     "landmarkName": "Marovo Lagoon",
     "location": "Western Province",
     "caption": "The world's largest saltwater lagoon dotted with hundreds of islets.",
-    "imagePath": "/images/postcards/sb-marovo-lagoon.png",
-    "imageFilename": "sb-marovo-lagoon.png"
+    "imagePath": "/images/postcards/sb-marovo-lagoon.webp",
+    "imageFilename": "sb-marovo-lagoon.webp"
   },
   {
     "id": "SC",
     "name": "Seychelles",
     "continent": "Africa",
-    "landmarkName": "Seychelles Heritage & Landscapes",
-    "location": "Africa",
-    "caption": "Discover the breathtaking sights and unique heritage of Seychelles.",
-    "imagePath": "/images/postcards/sc-seychelles-heritage-landscapes.png",
-    "imageFilename": "sc-seychelles-heritage-landscapes.png"
+    "landmarkName": "Anse Source d'Argent",
+    "location": "La Digue Island",
+    "caption": "Famous sculpted granite boulders and powdery pinkish coral sand.",
+    "imagePath": "/images/postcards/sc-anse-source-d-argent.webp",
+    "imageFilename": "sc-anse-source-d-argent.webp"
   },
   {
     "id": "SD",
@@ -1556,28 +1556,28 @@
     "landmarkName": "Meroë Pyramids",
     "location": "River Nile State",
     "caption": "Steep-sided Nubian sandstone pyramids rising out of desert dunes.",
-    "imagePath": "/images/postcards/sd-meroe-pyramids.png",
-    "imageFilename": "sd-meroe-pyramids.png"
+    "imagePath": "/images/postcards/sd-meroe-pyramids.webp",
+    "imageFilename": "sd-meroe-pyramids.webp"
   },
   {
     "id": "SE",
     "name": "Sweden",
     "continent": "Europe",
-    "landmarkName": "Sweden Heritage & Landscapes",
-    "location": "Europe",
-    "caption": "Discover the breathtaking sights and unique heritage of Sweden.",
-    "imagePath": "/images/postcards/se-sweden-heritage-landscapes.png",
-    "imageFilename": "se-sweden-heritage-landscapes.png"
+    "landmarkName": "Gamla Stan",
+    "location": "Stockholm",
+    "caption": "Ochre and saffron medieval buildings across the Baltic archipelago.",
+    "imagePath": "/images/postcards/se-gamla-stan.webp",
+    "imageFilename": "se-gamla-stan.webp"
   },
   {
     "id": "SG",
     "name": "Singapore",
     "continent": "Asia",
-    "landmarkName": "Singapore Heritage & Landscapes",
-    "location": "Asia",
-    "caption": "Discover the breathtaking sights and unique heritage of Singapore.",
-    "imagePath": "/images/postcards/sg-singapore-heritage-landscapes.png",
-    "imageFilename": "sg-singapore-heritage-landscapes.png"
+    "landmarkName": "Marina Bay Sands & Supertrees",
+    "location": "Marina Bay, Singapore",
+    "caption": "Futuristic vertical gardens and illuminated skyline by the bay.",
+    "imagePath": "/images/postcards/sg-marina-bay.webp",
+    "imageFilename": "sg-marina-bay.webp"
   },
   {
     "id": "SI",
@@ -1586,8 +1586,8 @@
     "landmarkName": "Lake Bled Island & Castle",
     "location": "Upper Carniola",
     "caption": "Emerald glacial lake with a solitary island church and cliffside castle.",
-    "imagePath": "/images/postcards/si-lake-bled-island-castle.png",
-    "imageFilename": "si-lake-bled-island-castle.png"
+    "imagePath": "/images/postcards/si-lake-bled.webp",
+    "imageFilename": "si-lake-bled.webp"
   },
   {
     "id": "SK",
@@ -1596,8 +1596,8 @@
     "landmarkName": "Spiš Castle & High Tatras",
     "location": "Žehra & Tatras",
     "caption": "One of Europe's largest castle ruins beneath alpine peaks.",
-    "imagePath": "/images/postcards/sk-spis-castle-high-tatras.png",
-    "imageFilename": "sk-spis-castle-high-tatras.png"
+    "imagePath": "/images/postcards/sk-spis-castle.webp",
+    "imageFilename": "sk-spis-castle.webp"
   },
   {
     "id": "SL",
@@ -1606,8 +1606,8 @@
     "landmarkName": "Banana Islands & River Number Two",
     "location": "Freetown Peninsula",
     "caption": "Powder white sands and emerald rainforest hills meeting the Atlantic.",
-    "imagePath": "/images/postcards/sl-banana-islands-river-number-two.png",
-    "imageFilename": "sl-banana-islands-river-number-two.png"
+    "imagePath": "/images/postcards/sl-banana-islands.webp",
+    "imageFilename": "sl-banana-islands.webp"
   },
   {
     "id": "SM",
@@ -1616,8 +1616,8 @@
     "landmarkName": "Three Towers of San Marino",
     "location": "Mount Titano",
     "caption": "Medieval stone fortresses crowning steep mountain peaks.",
-    "imagePath": "/images/postcards/sm-three-towers-of-san-marino.png",
-    "imageFilename": "sm-three-towers-of-san-marino.png"
+    "imagePath": "/images/postcards/sm-three-towers.webp",
+    "imageFilename": "sm-three-towers.webp"
   },
   {
     "id": "SN",
@@ -1626,8 +1626,8 @@
     "landmarkName": "Gorée Island & Lake Retba",
     "location": "Dakar",
     "caption": "Colonial pastel facades and pink saltwater lagoon waters.",
-    "imagePath": "/images/postcards/sn-goree-island-lake-retba.png",
-    "imageFilename": "sn-goree-island-lake-retba.png"
+    "imagePath": "/images/postcards/sn-goree-island.webp",
+    "imageFilename": "sn-goree-island.webp"
   },
   {
     "id": "SO",
@@ -1636,8 +1636,8 @@
     "landmarkName": "Laas Geel Rock Art & Mogadishu Coast",
     "location": "Woqooyi Galbeed",
     "caption": "Neolithic painted cave art and Indian Ocean coastal vistas.",
-    "imagePath": "/images/postcards/so-laas-geel-rock-art-mogadishu-coast.png",
-    "imageFilename": "so-laas-geel-rock-art-mogadishu-coast.png"
+    "imagePath": "/images/postcards/so-laas-geel.webp",
+    "imageFilename": "so-laas-geel.webp"
   },
   {
     "id": "SR",
@@ -1646,8 +1646,8 @@
     "landmarkName": "Historic Paramaribo & Voltzberg",
     "location": "Paramaribo",
     "caption": "Colonial Dutch wooden architecture alongside Amazonian rainforest.",
-    "imagePath": "/images/postcards/sr-historic-paramaribo-voltzberg.png",
-    "imageFilename": "sr-historic-paramaribo-voltzberg.png"
+    "imagePath": "/images/postcards/sr-paramaribo.webp",
+    "imageFilename": "sr-paramaribo.webp"
   },
   {
     "id": "SS",
@@ -1656,8 +1656,8 @@
     "landmarkName": "The Sudd Wetlands & Nile",
     "location": "Unity State",
     "caption": "Vast papyrus marshes and sweeping Nile floodplains.",
-    "imagePath": "/images/postcards/ss-the-sudd-wetlands-nile.png",
-    "imageFilename": "ss-the-sudd-wetlands-nile.png"
+    "imagePath": "/images/postcards/ss-sudd-wetlands.webp",
+    "imageFilename": "ss-sudd-wetlands.webp"
   },
   {
     "id": "ST",
@@ -1666,8 +1666,8 @@
     "landmarkName": "Pico Cão Grande",
     "location": "Caué District",
     "caption": "Dramatic needle-like volcanic plug towering over dense jungle canopy.",
-    "imagePath": "/images/postcards/st-pico-cao-grande.png",
-    "imageFilename": "st-pico-cao-grande.png"
+    "imagePath": "/images/postcards/st-pico-cao-grande.webp",
+    "imageFilename": "st-pico-cao-grande.webp"
   },
   {
     "id": "SV",
@@ -1676,8 +1676,8 @@
     "landmarkName": "Santa Ana Volcano & Joya de Cerén",
     "location": "Santa Ana",
     "caption": "Turquoise sulfur crater lake atop volcanic peaks.",
-    "imagePath": "/images/postcards/sv-santa-ana-volcano-joya-de-ceren.png",
-    "imageFilename": "sv-santa-ana-volcano-joya-de-ceren.png"
+    "imagePath": "/images/postcards/sv-santa-ana-volcano.webp",
+    "imageFilename": "sv-santa-ana-volcano.webp"
   },
   {
     "id": "SY",
@@ -1686,8 +1686,8 @@
     "landmarkName": "Palmyra Colonnade & Krak des Chevaliers",
     "location": "Tadmur & Homs",
     "caption": "Ancient desert oasis arches and crusader castles.",
-    "imagePath": "/images/postcards/sy-palmyra-colonnade-krak-des-chevaliers.png",
-    "imageFilename": "sy-palmyra-colonnade-krak-des-chevaliers.png"
+    "imagePath": "/images/postcards/sy-palmyra.webp",
+    "imageFilename": "sy-palmyra.webp"
   },
   {
     "id": "SZ",
@@ -1696,8 +1696,8 @@
     "landmarkName": "Mlilwane Sanctuary & Mantenga Falls",
     "location": "Ezulwini Valley",
     "caption": "Emerald royal valley with traditional beehive kraals.",
-    "imagePath": "/images/postcards/sz-mlilwane-sanctuary-mantenga-falls.png",
-    "imageFilename": "sz-mlilwane-sanctuary-mantenga-falls.png"
+    "imagePath": "/images/postcards/sz-mlilwane-sanctuary.webp",
+    "imageFilename": "sz-mlilwane-sanctuary.webp"
   },
   {
     "id": "TD",
@@ -1706,8 +1706,8 @@
     "landmarkName": "Ennedi Plateau & Guelta d'Archei",
     "location": "Ennedi",
     "caption": "Monumental sandstone arches and desert oasis camel watering holes.",
-    "imagePath": "/images/postcards/td-ennedi-plateau-guelta-d-archei.png",
-    "imageFilename": "td-ennedi-plateau-guelta-d-archei.png"
+    "imagePath": "/images/postcards/td-ennedi-plateau.webp",
+    "imageFilename": "td-ennedi-plateau.webp"
   },
   {
     "id": "TG",
@@ -1716,18 +1716,18 @@
     "landmarkName": "Koutammakou Mud Tower-Houses",
     "location": "Kara Region",
     "caption": "Fortified clay two-story castles of the Batammariba people.",
-    "imagePath": "/images/postcards/tg-koutammakou-mud-tower-houses.png",
-    "imageFilename": "tg-koutammakou-mud-tower-houses.png"
+    "imagePath": "/images/postcards/tg-koutammakou-towers.webp",
+    "imageFilename": "tg-koutammakou-towers.webp"
   },
   {
     "id": "TH",
     "name": "Thailand",
     "continent": "Asia",
-    "landmarkName": "Thailand Heritage & Landscapes",
-    "location": "Asia",
-    "caption": "Discover the breathtaking sights and unique heritage of Thailand.",
-    "imagePath": "/images/postcards/th-thailand-heritage-landscapes.png",
-    "imageFilename": "th-thailand-heritage-landscapes.png"
+    "landmarkName": "Wat Arun & Grand Palace",
+    "location": "Bangkok",
+    "caption": "The Temple of Dawn standing proud beside the Chao Phraya river.",
+    "imagePath": "/images/postcards/th-wat-arun.webp",
+    "imageFilename": "th-wat-arun.webp"
   },
   {
     "id": "TJ",
@@ -1736,8 +1736,8 @@
     "landmarkName": "Pamir Highway & Iskanderkul",
     "location": "Fann Mountains",
     "caption": "Glacial alpine lakes in the roof of the world.",
-    "imagePath": "/images/postcards/tj-pamir-highway-iskanderkul.png",
-    "imageFilename": "tj-pamir-highway-iskanderkul.png"
+    "imagePath": "/images/postcards/tj-pamir-highway.webp",
+    "imageFilename": "tj-pamir-highway.webp"
   },
   {
     "id": "TL",
@@ -1746,8 +1746,8 @@
     "landmarkName": "Cristo Rei & Atauro Coral Reefs",
     "location": "Dili",
     "caption": "Panoramic coastal statue and pristine underwater biodiversity.",
-    "imagePath": "/images/postcards/tl-cristo-rei-atauro-coral-reefs.png",
-    "imageFilename": "tl-cristo-rei-atauro-coral-reefs.png"
+    "imagePath": "/images/postcards/tl-cristo-rei.webp",
+    "imageFilename": "tl-cristo-rei.webp"
   },
   {
     "id": "TM",
@@ -1756,8 +1756,8 @@
     "landmarkName": "Darvaza Gas Crater & Ashgabat Marble",
     "location": "Karakum Desert",
     "caption": "The blazing 'Door to Hell' glowing in desert night.",
-    "imagePath": "/images/postcards/tm-darvaza-gas-crater-ashgabat-marble.png",
-    "imageFilename": "tm-darvaza-gas-crater-ashgabat-marble.png"
+    "imagePath": "/images/postcards/tm-darvaza-crater.webp",
+    "imageFilename": "tm-darvaza-crater.webp"
   },
   {
     "id": "TN",
@@ -1766,8 +1766,8 @@
     "landmarkName": "El Jem Amphitheatre & Sidi Bou Said",
     "location": "Mahdia & Tunis",
     "caption": "Roman colosseum and dazzling blue-and-white cliffside village.",
-    "imagePath": "/images/postcards/tn-el-jem-amphitheatre-sidi-bou-said.png",
-    "imageFilename": "tn-el-jem-amphitheatre-sidi-bou-said.png"
+    "imagePath": "/images/postcards/tn-el-jem.webp",
+    "imageFilename": "tn-el-jem.webp"
   },
   {
     "id": "TO",
@@ -1776,18 +1776,18 @@
     "landmarkName": "Ha'amonga 'a Maui Trilithon",
     "location": "Heketā, Tongatapu",
     "caption": "Ancient Polynesian coral stone megalith known as Stonehenge of the Pacific.",
-    "imagePath": "/images/postcards/to-ha-amonga-a-maui-trilithon.png",
-    "imageFilename": "to-ha-amonga-a-maui-trilithon.png"
+    "imagePath": "/images/postcards/to-trilithon.webp",
+    "imageFilename": "to-trilithon.webp"
   },
   {
     "id": "TR",
     "name": "Türkiye",
     "continent": "Asia",
-    "landmarkName": "Türkiye Heritage & Landscapes",
-    "location": "Asia",
-    "caption": "Discover the breathtaking sights and unique heritage of Türkiye.",
-    "imagePath": "/images/postcards/tr-turkiye-heritage-landscapes.png",
-    "imageFilename": "tr-turkiye-heritage-landscapes.png"
+    "landmarkName": "Hagia Sophia & Bosphorus",
+    "location": "Istanbul",
+    "caption": "Historic domes and minarets bridging Europe and Asia.",
+    "imagePath": "/images/postcards/tr-hagia-sophia.webp",
+    "imageFilename": "tr-hagia-sophia.webp"
   },
   {
     "id": "TT",
@@ -1796,8 +1796,8 @@
     "landmarkName": "Pigeon Point & Maracas Bay",
     "location": "Tobago & Trinidad",
     "caption": "Thatch-roofed jetties extending into calm turquoise shallows.",
-    "imagePath": "/images/postcards/tt-pigeon-point-maracas-bay.png",
-    "imageFilename": "tt-pigeon-point-maracas-bay.png"
+    "imagePath": "/images/postcards/tt-pigeon-point.webp",
+    "imageFilename": "tt-pigeon-point.webp"
   },
   {
     "id": "TV",
@@ -1806,28 +1806,28 @@
     "landmarkName": "Funafuti Conservation Marine Lagoon",
     "location": "Funafuti",
     "caption": "Translucent turquoise atoll ribbon and tropical coconut motus.",
-    "imagePath": "/images/postcards/tv-funafuti-conservation-marine-lagoon.png",
-    "imageFilename": "tv-funafuti-conservation-marine-lagoon.png"
+    "imagePath": "/images/postcards/tv-funafuti-lagoon.webp",
+    "imageFilename": "tv-funafuti-lagoon.webp"
   },
   {
     "id": "TW",
     "name": "Taiwan",
     "continent": "Asia",
-    "landmarkName": "Taiwan Heritage & Landscapes",
-    "location": "Asia",
-    "caption": "Discover the breathtaking sights and unique heritage of Taiwan.",
-    "imagePath": "/images/postcards/tw-taiwan-heritage-landscapes.png",
-    "imageFilename": "tw-taiwan-heritage-landscapes.png"
+    "landmarkName": "Taipei 101 & Elephant Mountain",
+    "location": "Taipei",
+    "caption": "Bamboo-inspired skyscraper towering over lush subtropical hills.",
+    "imagePath": "/images/postcards/tw-taipei-101-elephant-mountain.webp",
+    "imageFilename": "tw-taipei-101-elephant-mountain.webp"
   },
   {
     "id": "TZ",
     "name": "Tanzania",
     "continent": "Africa",
-    "landmarkName": "Tanzania Heritage & Landscapes",
-    "location": "Africa",
-    "caption": "Discover the breathtaking sights and unique heritage of Tanzania.",
-    "imagePath": "/images/postcards/tz-tanzania-heritage-landscapes.png",
-    "imageFilename": "tz-tanzania-heritage-landscapes.png"
+    "landmarkName": "Mount Kilimanjaro",
+    "location": "Kilimanjaro Region",
+    "caption": "Africa's highest snow-capped peak rising gracefully above the plains.",
+    "imagePath": "/images/postcards/tz-mount-kilimanjaro.webp",
+    "imageFilename": "tz-mount-kilimanjaro.webp"
   },
   {
     "id": "UA",
@@ -1836,8 +1836,8 @@
     "landmarkName": "Saint Sophia's Cathedral & Pechersk Lavra",
     "location": "Kyiv",
     "caption": "Golden domes and green roofs shining above the Dnieper.",
-    "imagePath": "/images/postcards/ua-saint-sophia-s-cathedral-pechersk-lavra.png",
-    "imageFilename": "ua-saint-sophia-s-cathedral-pechersk-lavra.png"
+    "imagePath": "/images/postcards/ua-saint-sophia.webp",
+    "imageFilename": "ua-saint-sophia.webp"
   },
   {
     "id": "UG",
@@ -1846,18 +1846,18 @@
     "landmarkName": "Murchison Falls & Bwindi Impenetrable",
     "location": "Masindi & Kanungu",
     "caption": "The Nile exploding through narrow rock clefts into thunderous falls.",
-    "imagePath": "/images/postcards/ug-murchison-falls-bwindi-impenetrable.png",
-    "imageFilename": "ug-murchison-falls-bwindi-impenetrable.png"
+    "imagePath": "/images/postcards/ug-murchison-falls.webp",
+    "imageFilename": "ug-murchison-falls.webp"
   },
   {
     "id": "US",
     "name": "United States",
     "continent": "North America",
-    "landmarkName": "United States Heritage & Landscapes",
-    "location": "North America",
-    "caption": "Discover the breathtaking sights and unique heritage of United States.",
-    "imagePath": "/images/postcards/us-united-states-heritage-landscapes.png",
-    "imageFilename": "us-united-states-heritage-landscapes.png"
+    "landmarkName": "The Golden Gate Bridge",
+    "location": "San Francisco, California",
+    "caption": "International orange suspension towers rising above ocean fog.",
+    "imagePath": "/images/postcards/us-golden-gate.webp",
+    "imageFilename": "us-golden-gate.webp"
   },
   {
     "id": "UY",
@@ -1866,8 +1866,8 @@
     "landmarkName": "Casapueblo & Punta del Este",
     "location": "Maldonado",
     "caption": "Sculpted whitewashed cliff citadel catching dramatic Atlantic sunsets.",
-    "imagePath": "/images/postcards/uy-casapueblo-punta-del-este.png",
-    "imageFilename": "uy-casapueblo-punta-del-este.png"
+    "imagePath": "/images/postcards/uy-casapueblo.webp",
+    "imageFilename": "uy-casapueblo.webp"
   },
   {
     "id": "UZ",
@@ -1876,18 +1876,18 @@
     "landmarkName": "Registan Square",
     "location": "Samarkand",
     "caption": "Majestic blue-tiled madrasahs and mosaic courtyards of the Silk Road.",
-    "imagePath": "/images/postcards/uz-registan-square.png",
-    "imageFilename": "uz-registan-square.png"
+    "imagePath": "/images/postcards/uz-registan-square.webp",
+    "imageFilename": "uz-registan-square.webp"
   },
   {
     "id": "VA",
     "name": "Vatican City",
     "continent": "Europe",
-    "landmarkName": "Vatican City Heritage & Landscapes",
-    "location": "Europe",
-    "caption": "Discover the breathtaking sights and unique heritage of Vatican City.",
-    "imagePath": "/images/postcards/va-vatican-city-heritage-landscapes.png",
-    "imageFilename": "va-vatican-city-heritage-landscapes.png"
+    "landmarkName": "St. Peter's Basilica",
+    "location": "Vatican City",
+    "caption": "Renaissance dome and Bernini's sweeping colonnade at the heart of Rome.",
+    "imagePath": "/images/postcards/va-st-peter-s-basilica.webp",
+    "imageFilename": "va-st-peter-s-basilica.webp"
   },
   {
     "id": "VC",
@@ -1896,8 +1896,8 @@
     "landmarkName": "Tobago Cays & La Soufrière",
     "location": "The Grenadines",
     "caption": "Pristine coral cays and sailing sanctuaries in azure seas.",
-    "imagePath": "/images/postcards/vc-tobago-cays-la-soufriere.png",
-    "imageFilename": "vc-tobago-cays-la-soufriere.png"
+    "imagePath": "/images/postcards/vc-tobago-cays.webp",
+    "imageFilename": "vc-tobago-cays.webp"
   },
   {
     "id": "VE",
@@ -1906,18 +1906,18 @@
     "landmarkName": "Angel Falls (Salto Ángel)",
     "location": "Canaima National Park",
     "caption": "The world's highest uninterrupted waterfall plunging from tepui cliffs.",
-    "imagePath": "/images/postcards/ve-angel-falls-salto-angel.png",
-    "imageFilename": "ve-angel-falls-salto-angel.png"
+    "imagePath": "/images/postcards/ve-angel-falls.webp",
+    "imageFilename": "ve-angel-falls.webp"
   },
   {
     "id": "VN",
     "name": "Vietnam",
     "continent": "Asia",
-    "landmarkName": "Vietnam Heritage & Landscapes",
-    "location": "Asia",
-    "caption": "Discover the breathtaking sights and unique heritage of Vietnam.",
-    "imagePath": "/images/postcards/vn-vietnam-heritage-landscapes.png",
-    "imageFilename": "vn-vietnam-heritage-landscapes.png"
+    "landmarkName": "Ha Long Bay",
+    "location": "Quảng Ninh",
+    "caption": "Emerald waters and thousands of towering limestone islands.",
+    "imagePath": "/images/postcards/vn-ha-long-bay.webp",
+    "imageFilename": "vn-ha-long-bay.webp"
   },
   {
     "id": "VU",
@@ -1926,28 +1926,28 @@
     "landmarkName": "Mount Yasur Volcano & Blue Cave",
     "location": "Tanna Island",
     "caption": "One of the world's most accessible living lava firework calderas.",
-    "imagePath": "/images/postcards/vu-mount-yasur-volcano-blue-cave.png",
-    "imageFilename": "vu-mount-yasur-volcano-blue-cave.png"
+    "imagePath": "/images/postcards/vu-mount-yasur.webp",
+    "imageFilename": "vu-mount-yasur.webp"
   },
   {
     "id": "WS",
     "name": "Samoa",
     "continent": "Oceania",
-    "landmarkName": "Samoa Heritage & Landscapes",
-    "location": "Oceania",
-    "caption": "Discover the breathtaking sights and unique heritage of Samoa.",
-    "imagePath": "/images/postcards/ws-samoa-heritage-landscapes.png",
-    "imageFilename": "ws-samoa-heritage-landscapes.png"
+    "landmarkName": "To Sua Ocean Trench",
+    "location": "Lotofaga, Upolu",
+    "caption": "Ancient lava blowhole swimming hole enveloped in lush jungle ferns.",
+    "imagePath": "/images/postcards/ws-to-sua-ocean-trench.webp",
+    "imageFilename": "ws-to-sua-ocean-trench.webp"
   },
   {
     "id": "XK",
     "name": "Kosovo",
     "continent": "Europe",
-    "landmarkName": "Kosovo Heritage & Landscapes",
-    "location": "Europe",
-    "caption": "Discover the breathtaking sights and unique heritage of Kosovo.",
-    "imagePath": "/images/postcards/xk-kosovo-heritage-landscapes.png",
-    "imageFilename": "xk-kosovo-heritage-landscapes.png"
+    "landmarkName": "Rugova Canyon & Patriarchate of Peć",
+    "location": "Peja",
+    "caption": "Dramatic limestone gorges framing medieval frescoed monasteries.",
+    "imagePath": "/images/postcards/xk-rugova-canyon.webp",
+    "imageFilename": "xk-rugova-canyon.webp"
   },
   {
     "id": "YE",
@@ -1956,18 +1956,18 @@
     "landmarkName": "Old Walled City of Shibam & Socotra",
     "location": "Hadramawt & Socotra",
     "caption": "Ancient mudbrick skyscrapers and dragon blood trees.",
-    "imagePath": "/images/postcards/ye-old-walled-city-of-shibam-socotra.png",
-    "imageFilename": "ye-old-walled-city-of-shibam-socotra.png"
+    "imagePath": "/images/postcards/ye-shibam-socotra.webp",
+    "imageFilename": "ye-shibam-socotra.webp"
   },
   {
     "id": "ZA",
     "name": "South Africa",
     "continent": "Africa",
-    "landmarkName": "South Africa Heritage & Landscapes",
-    "location": "Africa",
-    "caption": "Discover the breathtaking sights and unique heritage of South Africa.",
-    "imagePath": "/images/postcards/za-south-africa-heritage-landscapes.png",
-    "imageFilename": "za-south-africa-heritage-landscapes.png"
+    "landmarkName": "Table Mountain",
+    "location": "Cape Town",
+    "caption": "Flat-topped sandstone sentinel flanked by the Atlantic and Indian Oceans.",
+    "imagePath": "/images/postcards/za-table-mountain.webp",
+    "imageFilename": "za-table-mountain.webp"
   },
   {
     "id": "ZM",
@@ -1976,8 +1976,8 @@
     "landmarkName": "Victoria Falls (Mosi-oa-Tunya)",
     "location": "Livingstone",
     "caption": "The Smoke that Thunders pouring into sheer basalt chasms.",
-    "imagePath": "/images/postcards/zm-victoria-falls-mosi-oa-tunya.png",
-    "imageFilename": "zm-victoria-falls-mosi-oa-tunya.png"
+    "imagePath": "/images/postcards/zm-victoria-falls.webp",
+    "imageFilename": "zm-victoria-falls.webp"
   },
   {
     "id": "ZW",
@@ -1986,7 +1986,7 @@
     "landmarkName": "Great Zimbabwe Ruins & Victoria Falls",
     "location": "Masvingo",
     "caption": "Monumental medieval drystone city walls of royal Bantu heritage.",
-    "imagePath": "/images/postcards/zw-great-zimbabwe-ruins-victoria-falls.png",
-    "imageFilename": "zw-great-zimbabwe-ruins-victoria-falls.png"
+    "imagePath": "/images/postcards/zw-great-zimbabwe.webp",
+    "imageFilename": "zw-great-zimbabwe.webp"
   }
 ]

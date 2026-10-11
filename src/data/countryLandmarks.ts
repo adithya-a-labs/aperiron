@@ -10,7 +10,7 @@ export interface CountryLandmark {
 }
 
 /**
- * Curated iconic landmark registry for countries worldwide.
+ * Comprehensive iconic landmark registry for all 199 countries worldwide.
  * Follows the 16:9 cartoonish travel illustration aesthetic (WebP format).
  */
 export const CURATED_LANDMARKS: Record<string, { landmarkName: string; location: string; caption: string; imagePath?: string }> = {
@@ -1224,7 +1224,7 @@ export const CURATED_LANDMARKS: Record<string, { landmarkName: string; location:
 
 /**
  * Returns the landmark for any country ID.
- * Falls back gracefully to country metadata from catalog if no custom landmark exists.
+ * Resolves from CURATED_LANDMARKS with fallback to country metadata from catalog.
  */
 export function getCountryLandmark(countryId: string): CountryLandmark {
   const code = countryId.toUpperCase();
@@ -1243,7 +1243,7 @@ export function getCountryLandmark(countryId: string): CountryLandmark {
     };
   }
 
-  // Graceful fallback for any of the 199 countries
+  // Graceful fallback for any unrecognized code
   return {
     countryId: code,
     countryName,
