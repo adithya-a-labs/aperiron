@@ -140,7 +140,7 @@ export function createAssistantHandler(options: AssistantOptions = {}) {
   add('DELETE', '/trips/{tripId}', undefined, c => { const trip = resource<TripResource>(c, 'tripId', 'trip'); jobs.supersede(c.owner, trip.id); store.remove(trip.id, c.owner); return { status: 204 }; });
   add('POST', '/trips/{tripId}/destinations/query', requests.groupQuery, (c, b) => {
     const t = contexts.trip(c.owner, c.params.tripId, b.tripRevision);
-    return { data: contexts.query(t.trip.travellers.map((person, i) => ({ id: person.id, profile: contexts.groupProfile(t, i) })), b.filters, b.destinationIds, b.page) };
+    return { data: contexts.query(t.trip.travellers.map((person, i) => ({ id: person.id, profile: contexts.groupProfile(t, i) })), b.filters, b.destinationIds, b.page, true) };
   });
   add('GET', '/trips/{tripId}/countries/{destinationId}/context', undefined, async c => {
     query(c, ['tripRevision']); const tripRevision = numericQuery(c, 'tripRevision'), destinationId = country.parse(c.params.destinationId);
