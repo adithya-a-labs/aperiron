@@ -10,6 +10,7 @@ multiple work lanes to edit the same document.
 | dev-prabhu | [STATE.md](dev-prabhu/STATE.md) | [runs/](dev-prabhu/runs/) |
 | dev-integration | [STATE.md](dev-integration/STATE.md) | [runs/](dev-integration/runs/) |
 | dev-frontend (branch-scoped frontend collaborator) | [STATE.md](dev-frontend/STATE.md) | [runs/](dev-frontend/runs/) |
+| dev-tripplanner (branch-scoped trip-planner lane) | [STATE.md](dev-tripplanner/STATE.md) | [runs/](dev-tripplanner/runs/) |
 
 The user explicitly assigned dev-integration to integrate both layers on the
 dev-integration branch. Its records preserve the two module owners’ history.
@@ -22,6 +23,10 @@ for allowed work, exclusions and coordination boundaries.
 This table is an index, not a duplicate progress summary. The linked state files
 contain the current summaries. The user assigned dev-adithyaa to frontend
 experience and dev-prabhu to the core engine. See development guidance for scope.
+
+The user explicitly assigned `dev-tripplanner` as its own branch-scoped work lane
+on 2026-10-11. It maintains only its own records and coordinates shared frontend
+and backend changes with the existing owners.
 
 ## What a run means
 
