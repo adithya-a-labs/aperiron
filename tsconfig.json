@@ -29,7 +29,7 @@
     "src",
     "server",
     "vite.config.ts",
-    "api",
+    "routes",
     "workflows"
   ]
 }

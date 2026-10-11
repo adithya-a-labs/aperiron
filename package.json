@@ -20,6 +20,7 @@
     "assistant:openapi": "tsx scripts/generate-assistant-openapi.ts",
     "assistant:live": "tsx scripts/test-assistant-live.ts",
     "build:vercel": "npm run typecheck && node scripts/build-vercel.mjs",
+    "verify:vercel": "node scripts/verify-vercel.mjs",
     "db:migrate": "tsx scripts/migrate-deployment.ts",
     "db:travel-quota": "tsx scripts/configure-travel-quota.ts"
   },

@@ -1,12 +1,12 @@
 import { fromNodeHandler } from 'nitro/h3';
 import type { IncomingMessage, ServerResponse } from 'node:http';
-import { createApiHandler } from '../server/api-server';
-import { createResearchHandler, ResearchServiceError } from '../server/groq-browser-search';
-import { createTravelHandler } from '../server/travel-details';
-import { ApiError, opaque } from '../server/assistant/store';
-import { allowedOrigins, createDeployedAssistant, createDeployedTravel, reserveLegacyResearch, recordLegacyCooldown, sessionCookie } from '../server/deployment/runtime';
-import { dispatchPending } from '../server/deployment/dispatch';
-import { getDatabase } from '../server/deployment/database';
+import { createApiHandler } from '../../server/api-server';
+import { createResearchHandler, ResearchServiceError } from '../../server/groq-browser-search';
+import { createTravelHandler } from '../../server/travel-details';
+import { ApiError, opaque } from '../../server/assistant/store';
+import { allowedOrigins, createDeployedAssistant, createDeployedTravel, reserveLegacyResearch, recordLegacyCooldown, sessionCookie } from '../../server/deployment/runtime';
+import { dispatchPending } from '../../server/deployment/dispatch';
+import { getDatabase } from '../../server/deployment/database';
 
 let local: ReturnType<typeof createApiHandler> | undefined;
 export default fromNodeHandler(async (req,res)=>{

@@ -5,6 +5,11 @@ engine. Nitro deploys the existing `/api` routes as Node functions; Workflow run
 assistant jobs. Managed Postgres stores private resources, provider accounting,
 job inputs and the dispatch outbox. Railway is not used.
 
+The source API handler lives in `routes/api/[...path].ts`. Do not move it to a
+top-level `api/` directory: Vercel would build that source separately from Nitro,
+causing extensionless module imports to fail at runtime. Nitro owns bundling and
+generates the deployment's API functions through the Build Output API.
+
 ## Connect the project
 
 1. Import this Git repository into Vercel. Set **Settings → Environments → Production
@@ -122,7 +127,8 @@ builds the Vercel target. `npm run preview` previews the built Nitro application
 ## Verification before production use
 
 - Run `npm run typecheck`, `npm test`, `npm run assistant:openapi -- --check`, and
-  `npm run build:vercel`. Embedded Postgres tests spend no provider quota.
+  `npm run build:vercel`, then `npm run verify:vercel`. Embedded Postgres tests and
+  compiled HTTP smoke checks spend no provider quota.
 - Confirm build output contains static images, API functions and Workflow routes,
   with a Node runtime and duration above the bounded provider work.
 - Against the connected preview database, verify cookie bootstrap, CSRF, ownership,

@@ -6,7 +6,11 @@
 ownership, concurrent revisions, rollback, durable job inputs/outbox, cancellation,
 shared provider budgets/leases, quota persistence and serialized checklist work.
 `npm run build:vercel` verifies compilation of API and Workflow functions alongside
-static assets. Follow [deployment acceptance checks](DEPLOYMENT.md#verification-before-production-use)
+static assets. Its packaging guard rejects top-level source API files and checks
+the API function resolves to Nitro's bundle. `npm run verify:vercel` then exercises
+the compiled Node handler over local HTTP with synthetic sessions and no provider
+calls, including frontend rendering and fail-closed hosted API errors.
+Follow [deployment acceptance checks](DEPLOYMENT.md#verification-before-production-use)
 against a connected preview project before production use; local tests do not
 verify cloud Workflow execution or live provider credentials.
 

@@ -1,18 +1,18 @@
 # dev-adithyaa state
 
-- Updated at: 2026-10-11T02:59:06Z
+- Updated at: 2026-10-11T03:40:38Z
 - Status: ready_for_review
-- Task: Configure complete Vercel deployment with managed Postgres
+- Task: Correct Vercel source API discovery collision causing runtime HTTP 500
 - Branch: main
-- Baseline commit: 9ac269bdb590df79eae917f3bebcb50bcf471360
-- Latest run: [Vercel deployment](runs/20261011T024729Z-vercel-main-6d48a1.md)
+- Baseline commit: 404a7cd861e7a511de9f08786361cc778740b50c
+- Latest run: [Route packaging correction](runs/20261011T034038Z-vercel-route-packaging-a38c10.md)
 
-Configured Vercel Node API functions, durable Workflow jobs, managed Postgres
-persistence and quota controls on main. All 88 tests, typecheck, production build
-and compiled API smoke tests passed. User selected dev-adithyaa attribution and
-managed Postgres via Marketplace. External project/database setup and hosted
-acceptance checks remain; no commit, push or deployment performed. Earlier
-completed work below is historical; current verification supersedes older results.
+User runtime logs revealed raw source API discovery after the successful build.
+Moved the handler to routes/api and added packaging guards/compiled HTTP smoke
+checks. Typecheck, Vercel build, packaging checks and HTTP smoke passed locally.
+The fix must be published as a new main commit and redeployed; old 404a7cd retains
+the failure. No commit, push or deployment performed by this run. Prior business
+logic test results and completed work below are historical; see latest run.
 
 ## Completed
 
@@ -67,8 +67,8 @@ frontend integration `84a0e47`, and the accompanying documentation/state group.
 
 ## In progress
 
-Local deployment configuration is ready for review. Cloud provisioning, secrets,
-migrations and live acceptance checks have not been performed.
+Packaging correction is ready for review. New commit publication, redeployment
+and live database/API/Workflow acceptance checks remain.
 
 ## Verification
 
@@ -84,15 +84,16 @@ external resources. See latest run for prior failures and corrections.
 Verified detailed regulation data and a production requirements resolver remain pending.
 Prototype classifications or generated regulation details must not be represented as
 verified travel guidance.
-Publishing requires Vercel project access, managed Postgres and server credentials.
+The deployed old source still fails until a deployment includes the local fix.
 The earlier core TypeScript build blocker is no longer present on this main baseline.
 
 ## Next actions
 
-Review [deployment setup](../../DEPLOYMENT.md), connect Marketplace Postgres, set
-server secrets, run migrations and reconcile actual provider allowance. Set Vercel
-Production Branch to main and perform hosted acceptance checks. Commit/push only
-when authorized. Research remains unverified and must not become requirements.
+Publish the packaging fix to main when authorized, then redeploy that new commit.
+Follow [deployment setup](../../DEPLOYMENT.md) and verify /api/health plus cloud
+Workflow execution. User reports schema executed in the database SQL editor;
+the actual connected production database has not been independently verified.
+Research remains unverified and must not become requirements.
 
 ## Coordination
 
