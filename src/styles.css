@@ -2385,3 +2385,36 @@ dialog::backdrop {
 .travel-status { font-size: .82rem; line-height: 1.5; color: #536a70; }
 .travel-rule p { margin: .4rem 0; }
 .travel-rule a { display: inline-block; margin-top: .4rem; }
+
+/* Explorer companion bot */
+.explore-sidebar {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 12px;
+  width: 100%;
+}
+.bot-explorer {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  user-select: none;
+}
+.bot-explorer-img {
+  width: 180px;
+  max-width: 100%;
+  aspect-ratio: 16 / 9;
+  object-fit: contain;
+  display: block;
+  pointer-events: auto;
+  cursor: pointer;
+  filter: drop-shadow(0 4px 12px rgba(3, 43, 67, 0.12));
+  transition: transform 0.2s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+}
+.bot-explorer-img:hover {
+  transform: scale(1.05);
+}
+.bot-explorer-img:active {
+  transform: scale(0.96);
+}

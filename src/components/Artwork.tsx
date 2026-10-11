@@ -75,9 +75,11 @@ export function Landscape({ compact = false }: { compact?: boolean }) {
 export function PostcardArt({
   variant = 0,
   countryId,
+  stableImage = false,
 }: {
   variant?: number;
   countryId?: string;
+  stableImage?: boolean;
 }) {
   const id = useId();
   const landmark = countryId ? getCountryLandmark(countryId) : null;
@@ -99,11 +101,11 @@ export function PostcardArt({
     <div className="postcard-art-wrap">
       {hasImage ? (
         <>
-          {imgStatus === "loading" && <div className="postcard-shimmer" />}
+          {!stableImage && imgStatus === "loading" && <div className="postcard-shimmer" />}
           <img
             src={landmark!.imagePath}
             alt={landmark ? `${landmark.landmarkName}, ${landmark.countryName}` : "Iconic landmark"}
-            className={`postcard-photo ${imgStatus === "loaded" ? "loaded" : "loading"}`}
+            className={`postcard-photo ${stableImage || imgStatus === "loaded" ? "loaded" : "loading"}`}
             onLoad={() => setImgStatus("loaded")}
             onError={() => setImgStatus("error")}
           />

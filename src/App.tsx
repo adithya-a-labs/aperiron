@@ -34,6 +34,7 @@ import {
   DnaFlower,
 } from "./components/Artwork";
 import { WorldMap } from "./components/AccessMap";
+import { BotExplorer } from "./components/BotExplorer";
 import { GAME_ENABLED } from "./frontend/features";
 import { isResearchResponse, type ResearchResponse } from "./shared/research";
 import { useTravelDetails } from "./store/travelDetailsStore";
@@ -407,10 +408,13 @@ function Explore() {
             {simulated ? " · fictional treaty effects" : ""}
           </p>
         </section>
-        <aside className="postcard">
+        <div className="explore-sidebar">
+          <BotExplorer countryId={destination} />
+          <aside className="postcard">
           <div className="postcard-image">
             <PostcardArt
               countryId={destination}
+              stableImage
               variant={
                 destination === "JP"
                   ? 0
@@ -442,6 +446,7 @@ function Explore() {
             View requirements <ArrowRight size={17} />
           </Button>
         </aside>
+        </div>
       </div>
       <div className="explore-bottom">
         <div className="travel-seal">
