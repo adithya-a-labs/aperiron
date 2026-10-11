@@ -1,0 +1,134 @@
+{
+  "id": "batch-6",
+  "name": "South America & Caribbean",
+  "items": [
+    {
+      "id": "HN",
+      "name": "Honduras",
+      "continent": "North America",
+      "landmarkName": "Copán Maya Ruins & Roatán",
+      "location": "Copán & Bay Islands",
+      "imagePath": "/images/postcards/hn-copan-ruins.webp"
+    },
+    {
+      "id": "HT",
+      "name": "Haiti",
+      "continent": "North America",
+      "landmarkName": "Citadelle Laferrière",
+      "location": "Milot",
+      "imagePath": "/images/postcards/ht-citadelle.webp"
+    },
+    {
+      "id": "JM",
+      "name": "Jamaica",
+      "continent": "North America",
+      "landmarkName": "Dunn's River Falls",
+      "location": "Ocho Rios",
+      "imagePath": "/images/postcards/jm-dunn-s-river-falls.webp"
+    },
+    {
+      "id": "KN",
+      "name": "Saint Kitts and Nevis",
+      "continent": "North America",
+      "landmarkName": "Brimstone Hill Fortress",
+      "location": "Saint Kitts",
+      "imagePath": "/images/postcards/kn-brimstone-hill.webp"
+    },
+    {
+      "id": "LC",
+      "name": "Saint Lucia",
+      "continent": "North America",
+      "landmarkName": "The Pitons",
+      "location": "Soufrière",
+      "imagePath": "/images/postcards/lc-the-pitons.webp"
+    },
+    {
+      "id": "MX",
+      "name": "Mexico",
+      "continent": "North America",
+      "landmarkName": "El Castillo at Chichén Itzá",
+      "location": "Yucatán Peninsula",
+      "imagePath": "/images/postcards/mx-chichen-itza.webp"
+    },
+    {
+      "id": "NI",
+      "name": "Nicaragua",
+      "continent": "North America",
+      "landmarkName": "Masaya Volcano & Granada",
+      "location": "Granada & Masaya",
+      "imagePath": "/images/postcards/ni-masaya-volcano.webp"
+    },
+    {
+      "id": "PA",
+      "name": "Panama",
+      "continent": "North America",
+      "landmarkName": "Panama Canal & Casco Viejo",
+      "location": "Panama City",
+      "imagePath": "/images/postcards/pa-panama-canal.webp"
+    },
+    {
+      "id": "PE",
+      "name": "Peru",
+      "continent": "South America",
+      "landmarkName": "Machu Picchu",
+      "location": "Cusco Region",
+      "imagePath": "/images/postcards/pe-machu-picchu.webp"
+    },
+    {
+      "id": "PY",
+      "name": "Paraguay",
+      "continent": "South America",
+      "landmarkName": "Itaipu Dam & Jesuit Missions",
+      "location": "Hernandarias & Itapúa",
+      "imagePath": "/images/postcards/py-itaipu-dam.webp"
+    },
+    {
+      "id": "SR",
+      "name": "Suriname",
+      "continent": "South America",
+      "landmarkName": "Historic Paramaribo & Voltzberg",
+      "location": "Paramaribo",
+      "imagePath": "/images/postcards/sr-paramaribo.webp"
+    },
+    {
+      "id": "SV",
+      "name": "El Salvador",
+      "continent": "North America",
+      "landmarkName": "Santa Ana Volcano & Joya de Cerén",
+      "location": "Santa Ana",
+      "imagePath": "/images/postcards/sv-santa-ana-volcano.webp"
+    },
+    {
+      "id": "TT",
+      "name": "Trinidad and Tobago",
+      "continent": "North America",
+      "landmarkName": "Pigeon Point & Maracas Bay",
+      "location": "Tobago & Trinidad",
+      "imagePath": "/images/postcards/tt-pigeon-point.webp"
+    },
+    {
+      "id": "UY",
+      "name": "Uruguay",
+      "continent": "South America",
+      "landmarkName": "Casapueblo & Punta del Este",
+      "location": "Maldonado",
+      "imagePath": "/images/postcards/uy-casapueblo.webp"
+    },
+    {
+      "id": "VC",
+      "name": "Saint Vincent and the Grenadines",
+      "continent": "North America",
+      "landmarkName": "Tobago Cays & La Soufrière",
+      "location": "The Grenadines",
+      "imagePath": "/images/postcards/vc-tobago-cays.webp"
+    },
+    {
+      "id": "VE",
+      "name": "Venezuela",
+      "continent": "South America",
+      "landmarkName": "Angel Falls (Salto Ángel)",
+      "location": "Canaima National Park",
+      "imagePath": "/images/postcards/ve-angel-falls.webp"
+    }
+  ]
+}

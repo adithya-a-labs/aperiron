@@ -44,12 +44,31 @@ remains available.
 The user authorized applying the [colour palette](COLOUR_PALETTE.md) and the
 `output/design-concepts/playful-v3` reference boards. The interface uses warm ivory,
 navy typography, yellow pill actions, teal and blue map/DNA accents, and red stamps.
-Locally authored SVG postcard art, passport booklets and landscapes reflect the
-references without embedding a screenshot as a page. System fonts and bundled
+Bundled generated WebP landmark illustrations cover all 199 catalog destinations
+through `src/data/countryLandmarks.ts` and `public/images/postcards/`. Explore and
+Trips render the selected country's illustration and landmark/location badge;
+loading errors use the generic SVG landscape and label. Country changes reset
+image loading state. These illustrations are decorative, not regulation evidence.
+Passport booklets and landscapes use locally authored SVG art. System fonts and bundled
 world-atlas geography work offline. The app is desktop first; current audit fixes
 target 1366×768, 1440×900 and 1920×1080. Existing narrow-width reflow remains,
 but mobile optimization is outside this work. Keyboard focus and reduced-motion
 support apply across the active screens.
+
+The shipped registry can be rebuilt with
+`node scripts/generate-country-landmarks-ts.cjs` from
+`src/data/allLandmarksCatalog.json`. That input uses the shipped WebP paths;
+`all-landmarks.json` is an earlier planning manifest. Regional generation batches
+and `scripts/generate-all-postcards.cjs` are optional offline authoring tools,
+requiring a server-side `OPENAI_API_KEY` and ffmpeg; app startup never invokes them.
+The source assets include 1280×714 and 1280×720 images; the UI crops them into a
+consistent 16:9 frame. `countryLandmarks.test.ts` checks destination coverage,
+WebP containers, and generation-input consistency.
+
+Explore includes the bundled 52-frame WebP companion above the destination card.
+Its button supports keyboard activation, stays static with reduced motion and
+cancels playback on unmount. Compact desktop styling keeps the legend and
+destination action visible on laptop-height screens.
 
 React, TypeScript, Vite, Zustand, Lucide and Tailwind's Vite plugin remain the stack.
 Most visual styling is semantic CSS. D3 and TopoJSON render the map and rotating
@@ -152,3 +171,17 @@ switches, the country simulation section and DNA before/after comparison are hid
 Explore, Compare, DNA and the globe use baseline data even if a prior session held
 a purchased treaty. DNA's primary action now opens Explore. Re-enable the flag to
 restore the retained game UI. Verified country data remains a separate dependency.
+
+## Desktop re-audit repairs
+
+Explore uses width-driven map sizing (maximum SVG width 1120px), a 320–360px
+selected-destination column and natural vertical scrolling. There is no 900px
+height compact breakpoint. The companion uses a stable 160×144px viewport over
+aligned WebP frames. It is decorative and excluded from keyboard navigation;
+only an explicit pointer press starts playback. Destination changes cancel and
+reset playback, reduced motion remains static, and hover scale requires a fine
+pointer. Supporting map/provenance text is at least 12px on desktop.
+
+The [re-audit repair evidence](FRONTEND_REAUDIT_2026-10-11.md) covers restored
+comparison table, notebook actions, six-category DNA counts and wrapped research
+leads. Engine data and provider contracts are unchanged.

@@ -1,0 +1,110 @@
+{
+  "id": "batch-7",
+  "name": "Oceania",
+  "items": [
+    {
+      "id": "FJ",
+      "name": "Fiji",
+      "continent": "Oceania",
+      "landmarkName": "Mamanuca Coral Islands",
+      "location": "Fiji",
+      "imagePath": "/images/postcards/fj-mamanuca-coral-islands.webp"
+    },
+    {
+      "id": "FM",
+      "name": "Micronesia",
+      "continent": "Oceania",
+      "landmarkName": "Nan Madol Ancient City",
+      "location": "Pohnpei",
+      "imagePath": "/images/postcards/fm-nan-madol.webp"
+    },
+    {
+      "id": "KI",
+      "name": "Kiribati",
+      "continent": "Oceania",
+      "landmarkName": "Christmas Island (Kiritimati) Lagoons",
+      "location": "Line Islands",
+      "imagePath": "/images/postcards/ki-christmas-island.webp"
+    },
+    {
+      "id": "MH",
+      "name": "Marshall Islands",
+      "continent": "Oceania",
+      "landmarkName": "Majuro Atoll & Arno Coral Lagoon",
+      "location": "Majuro",
+      "imagePath": "/images/postcards/mh-majuro-atoll.webp"
+    },
+    {
+      "id": "NR",
+      "name": "Nauru",
+      "continent": "Oceania",
+      "landmarkName": "Anibare Bay & Command Ridge",
+      "location": "Anibare District",
+      "imagePath": "/images/postcards/nr-anibare-bay.webp"
+    },
+    {
+      "id": "NZ",
+      "name": "New Zealand",
+      "continent": "Oceania",
+      "landmarkName": "Milford Sound",
+      "location": "Fiordland, South Island",
+      "imagePath": "/images/postcards/nz-milford-sound.webp"
+    },
+    {
+      "id": "PG",
+      "name": "Papua New Guinea",
+      "continent": "Oceania",
+      "landmarkName": "Tavurvur Volcano & Sepik River",
+      "location": "Rabaul & East Sepik",
+      "imagePath": "/images/postcards/pg-tavurvur-volcano.webp"
+    },
+    {
+      "id": "PW",
+      "name": "Palau",
+      "continent": "Oceania",
+      "landmarkName": "Rock Islands Southern Lagoon",
+      "location": "Koror",
+      "imagePath": "/images/postcards/pw-rock-islands.webp"
+    },
+    {
+      "id": "SB",
+      "name": "Solomon Islands",
+      "continent": "Oceania",
+      "landmarkName": "Marovo Lagoon",
+      "location": "Western Province",
+      "imagePath": "/images/postcards/sb-marovo-lagoon.webp"
+    },
+    {
+      "id": "TO",
+      "name": "Tonga",
+      "continent": "Oceania",
+      "landmarkName": "Ha'amonga 'a Maui Trilithon",
+      "location": "Heketā, Tongatapu",
+      "imagePath": "/images/postcards/to-trilithon.webp"
+    },
+    {
+      "id": "TV",
+      "name": "Tuvalu",
+      "continent": "Oceania",
+      "landmarkName": "Funafuti Conservation Marine Lagoon",
+      "location": "Funafuti",
+      "imagePath": "/images/postcards/tv-funafuti-lagoon.webp"
+    },
+    {
+      "id": "VU",
+      "name": "Vanuatu",
+      "continent": "Oceania",
+      "landmarkName": "Mount Yasur Volcano & Blue Cave",
+      "location": "Tanna Island",
+      "imagePath": "/images/postcards/vu-mount-yasur.webp"
+    },
+    {
+      "id": "WS",
+      "name": "Samoa",
+      "continent": "Oceania",
+      "landmarkName": "To Sua Ocean Trench",
+      "location": "Lotofaga, Upolu",
+      "imagePath": "/images/postcards/ws-to-sua-ocean-trench.webp"
+    }
+  ]
+}

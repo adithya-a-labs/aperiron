@@ -28,6 +28,9 @@ test("research uses GPT-OSS browser search without sending client-provided prose
   assert.match(requestBody, /browser_search/);
   assert.match(requestBody, /India/);
   assert.match(requestBody, /Japan/);
+  const generation = JSON.parse(requestBody);
+  assert.equal(generation.reasoning_effort, 'low');
+  assert.equal(generation.max_completion_tokens, 2400);
   assert.equal(result.answer, "Official-source research.");
   assert.match(result.disclaimer, /Unverified web research/);
 });
@@ -69,10 +72,10 @@ test("HTTP boundary handles success, malformed requests, and provider failures w
   const rejected = await post(valid);
   assert.equal(rejected.status, 503);
   assert.equal((await rejected.text()).includes("private-test-key"), false);
-  upstreamStatus = 429;
-  assert.equal((await post(valid)).status, 429);
   upstreamStatus = 500;
   assert.equal((await post(valid)).status, 502);
+  upstreamStatus = 429;
+  assert.equal((await post(valid)).status, 429);
 });
 
 test("missing configuration and malformed upstream output fail cleanly", async () => {
@@ -83,4 +86,32 @@ test("missing configuration and malformed upstream output fail cleanly", async (
   }
   assert.equal(isResearchResponse(null), false);
   assert.equal(isResearchResponse({ answer: "text" }), false);
+});
+
+test('research preserves provider cooldowns and does not redispatch while allowance recovers', async t => {
+  let calls = 0;
+  const server = createServer(createResearchHandler({ apiKey: 'synthetic-secret', fetchImpl: async () => {
+    calls++;
+    return new Response('private provider message', { status: 429, headers: { 'Retry-After': '628' } });
+  } }));
+  server.listen(0, '127.0.0.1'); await once(server, 'listening');
+  t.after(() => new Promise<void>(resolve => server.close(() => resolve())));
+  const address = server.address(); assert.ok(address && typeof address !== 'string');
+  for (let i = 0; i < 2; i++) {
+    const r: Response = await fetch(`http://127.0.0.1:${address.port}/api/groq-research`, {
+      method: 'POST', body: JSON.stringify({ passportId: 'IN', destinationId: 'JP', purpose: 'tourism' }),
+    });
+    assert.equal(r.status, 429);
+    assert.ok(Number(r.headers.get('Retry-After')) >= 627);
+    const p = await r.json();
+    assert.match(p.error, /11 minute/);
+    assert.equal(p.error.includes('private provider'), false);
+  }
+  assert.equal(calls, 1, 'An explicit retry during cooldown must not call the provider again');
+});
+
+test('research reports an exhausted output budget without treating reasoning as an answer', async () => {
+  await assert.rejects(researchWithGroq({ passportId: 'IN', destinationId: 'JP', purpose: 'tourism' },
+    async () => Response.json({ choices: [{ finish_reason: 'length', message: { content: null, reasoning: 'internal reasoning only' } }] }), 'synthetic-key'),
+  /response limit before producing an answer/);
 });

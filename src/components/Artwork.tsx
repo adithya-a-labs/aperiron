@@ -1,6 +1,7 @@
-import { useId } from "react";
+import { useId, useState } from "react";
 import type { AccessLevel, VisaDNA } from "../shared/contracts";
 import { accessColors, catalog } from "../frontend/engine";
+import { getCountryLandmark } from "../data/countryLandmarks";
 
 export function Landscape({ compact = false }: { compact?: boolean }) {
   const id = useId();
@@ -74,17 +75,40 @@ export function Landscape({ compact = false }: { compact?: boolean }) {
 export function PostcardArt({
   variant = 0,
   countryId,
-  stableImage = false,
 }: {
   variant?: number;
   countryId?: string;
-  stableImage?: boolean;
+}) {
+  return <PostcardContent key={countryId ?? "generic"} variant={variant} countryId={countryId} />;
+}
+
+function PostcardContent({
+  variant = 0,
+  countryId,
+}: {
+  variant?: number;
+  countryId?: string;
 }) {
   const id = useId();
+  const landmark = countryId ? getCountryLandmark(countryId) : undefined;
+  const [imageStatus, setImageStatus] = useState<"loading" | "loaded" | "error">("loading");
+  const hasImage = Boolean(landmark?.imagePath && imageStatus !== "error");
   const countryName = catalog.destinations.find(c => c.id === countryId)?.name;
   const description = ["A mountain and a garden", "An island in a turquoise sea", "A bridge between two shores", "An open garden gate"][variant % 4];
   return (
     <div className="postcard-art-wrap">
+      {hasImage ? (
+        <>
+          {imageStatus === "loading" && <div className="postcard-shimmer" aria-hidden="true" />}
+          <img
+            src={landmark!.imagePath}
+            alt={`Illustration of ${landmark!.landmarkName}, ${landmark!.countryName}`}
+            className={`postcard-photo ${imageStatus === "loaded" ? "loaded" : "loading"}`}
+            onLoad={() => setImageStatus("loaded")}
+            onError={() => setImageStatus("error")}
+          />
+        </>
+      ) : (
         <svg
           className="postcard-art"
           viewBox="0 0 420 236"
@@ -178,9 +202,10 @@ export function PostcardArt({
             strokeWidth="12"
           />
         </svg>
+      )}
       {countryName && <div className="postcard-landmark-badge">
-        <span className="landmark-title"><b>{countryName}</b></span>
-        <span className="landmark-loc">Illustrated landscape</span>
+        <span className="landmark-title"><b>{hasImage ? landmark!.landmarkName : countryName}</b></span>
+        <span className="landmark-loc">{hasImage ? landmark!.location : "Illustrated landscape"}</span>
       </div>}
 
     </div>

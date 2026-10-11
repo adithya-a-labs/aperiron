@@ -35,17 +35,33 @@ export class Jobs {
   }
   private update(id: string, fn: (job: Job) => void) { this.store.mutate(d => { const r = d.jobs[id]; if (r) fn(r.value); }); }
   private finish(id: string, status: Job['status'], result: unknown, error?: unknown) {
-    this.update(id, j => { if (j.status !== 'running' && j.status !== 'queued') return;
-      j.status = status; j.stage = 'finished'; j.result = result;
-      j.error = error ? { code: error instanceof ApiError ? error.code : 'UPSTREAM_FAILURE', message: error instanceof ApiError ? error.message : 'Assistant work could not complete.', retryable: error instanceof ApiError && error.retryable } : null;
-    });
+    try {
+      this.update(id, j => { if (j.status !== 'running' && j.status !== 'queued') return;
+        j.status = status; j.stage = 'finished'; j.result = result;
+        j.error = error ? { code: error instanceof ApiError ? error.code : 'UPSTREAM_FAILURE', message: error instanceof ApiError ? error.message : 'Assistant work could not complete.', retryable: error instanceof ApiError && error.retryable } : null;
+      });
+    } catch {
+      // The accepted reservation is already durable. Report failure in memory
+      // without publishing an unsaved result or replaying work after restart.
+      const job = this.store.data.jobs[id]?.value;
+      if (job && ['queued', 'running'].includes(job.status)) {
+        job.status = 'failed'; job.stage = 'finished'; job.result = null;
+        job.error = { code: 'SERVICE_UNAVAILABLE', message: 'Assistant storage is unavailable. No result was saved; retry explicitly after storage recovers.', retryable: true };
+      }
+    }
   }
   private drain() {
     while (this.active < (this.options.concurrency ?? 2) && this.queue.length) {
       const entry = this.queue.shift()!, stored = this.store.data.jobs[entry.id];
       if (!stored || stored.value.status !== 'queued') continue;
       this.active++; const controller = new AbortController(); this.controllers.set(entry.id, controller);
-      this.update(entry.id, j => { j.status = 'running'; j.stage = 'collecting_context'; });
+      try {
+        this.update(entry.id, j => { j.status = 'running'; j.stage = 'collecting_context'; });
+      } catch (error) {
+        this.finish(entry.id, 'failed', null, error);
+        this.controllers.delete(entry.id); this.active--;
+        continue;
+      }
       const timer = setTimeout(() => controller.abort(new ApiError(503, 'UPSTREAM_TIMEOUT', 'Job deadline exceeded.', true)), this.options.deadlineMs ?? 90_000);
       const aborted = new Promise<never>((_, reject) => controller.signal.addEventListener('abort', () => reject(controller.signal.reason), { once: true }));
       void Promise.race([entry.work(controller.signal, stage => { if (!controller.signal.aborted) this.update(entry.id, j => { j.stage = stage; }); }), aborted])

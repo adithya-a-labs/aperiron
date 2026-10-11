@@ -217,3 +217,9 @@ Malformed or oversized requests return 400; unavailable configuration/provider
 access returns 503; quota/rate limiting returns 429; other upstream failures return
 502. Errors use a JSON `error` string. Responses disable caching. Baseline engine,
 mock, data and simulation contracts remain unchanged.
+
+Rate-limit errors include Retry-After in seconds, derived from the provider
+(bounded to one day, with a sixty-second default). Repeated valid requests during
+the handler's in-process cooldown return 429 without another provider call.
+The error body shape is unchanged. A completion containing only reasoning or
+truncated before an answer is a failure, never a successful research response.

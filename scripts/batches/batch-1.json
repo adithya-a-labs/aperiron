@@ -1,0 +1,166 @@
+{
+  "id": "batch-1",
+  "name": "Europe West & North",
+  "items": [
+    {
+      "id": "AD",
+      "name": "Andorra",
+      "continent": "Europe",
+      "landmarkName": "Casa de la Vall & Madriu-Perafita",
+      "location": "Andorra la Vella",
+      "imagePath": "/images/postcards/ad-casa-de-la-vall.webp"
+    },
+    {
+      "id": "AL",
+      "name": "Albania",
+      "continent": "Europe",
+      "landmarkName": "Berat Ottoman Castle & Ksamil",
+      "location": "Berat & Vlorë",
+      "imagePath": "/images/postcards/al-berat-castle.webp"
+    },
+    {
+      "id": "AT",
+      "name": "Austria",
+      "continent": "Europe",
+      "landmarkName": "Hallstatt & Schönbrunn",
+      "location": "Salzkammergut & Vienna",
+      "imagePath": "/images/postcards/at-hallstatt-schonbrunn.webp"
+    },
+    {
+      "id": "BA",
+      "name": "Bosnia and Herzegovina",
+      "continent": "Europe",
+      "landmarkName": "Stari Most (Old Bridge)",
+      "location": "Mostar",
+      "imagePath": "/images/postcards/ba-stari-most.webp"
+    },
+    {
+      "id": "BE",
+      "name": "Belgium",
+      "continent": "Europe",
+      "landmarkName": "The Grand-Place",
+      "location": "Brussels",
+      "imagePath": "/images/postcards/be-the-grand-place.webp"
+    },
+    {
+      "id": "BG",
+      "name": "Bulgaria",
+      "continent": "Europe",
+      "landmarkName": "Rila Monastery & Alexander Nevsky",
+      "location": "Rila & Sofia",
+      "imagePath": "/images/postcards/bg-rila-monastery.webp"
+    },
+    {
+      "id": "BY",
+      "name": "Belarus",
+      "continent": "Europe",
+      "landmarkName": "Mir Castle Complex",
+      "location": "Mir, Grodno",
+      "imagePath": "/images/postcards/by-mir-castle.webp"
+    },
+    {
+      "id": "CH",
+      "name": "Switzerland",
+      "continent": "Europe",
+      "landmarkName": "The Matterhorn",
+      "location": "Zermatt, Valais",
+      "imagePath": "/images/postcards/ch-matterhorn.webp"
+    },
+    {
+      "id": "CY",
+      "name": "Cyprus",
+      "continent": "Europe",
+      "landmarkName": "Aphrodite's Rock & Paphos Harbor",
+      "location": "Kouklia",
+      "imagePath": "/images/postcards/cy-aphrodites-rock.webp"
+    },
+    {
+      "id": "CZ",
+      "name": "Czechia",
+      "continent": "Europe",
+      "landmarkName": "Charles Bridge & Prague Castle",
+      "location": "Prague, Bohemia",
+      "imagePath": "/images/postcards/cz-charles-bridge-prague-castle.webp"
+    },
+    {
+      "id": "DK",
+      "name": "Denmark",
+      "continent": "Europe",
+      "landmarkName": "Nyhavn Waterfront",
+      "location": "Copenhagen",
+      "imagePath": "/images/postcards/dk-nyhavn-waterfront.webp"
+    },
+    {
+      "id": "EE",
+      "name": "Estonia",
+      "continent": "Europe",
+      "landmarkName": "Tallinn Old Town & Alexander Nevsky",
+      "location": "Tallinn",
+      "imagePath": "/images/postcards/ee-tallinn-old-town.webp"
+    },
+    {
+      "id": "FI",
+      "name": "Finland",
+      "continent": "Europe",
+      "landmarkName": "Santa Claus Village & Arctic Aurora",
+      "location": "Rovaniemi, Lapland",
+      "imagePath": "/images/postcards/fi-santa-claus-village-arctic-aurora.webp"
+    },
+    {
+      "id": "GR",
+      "name": "Greece",
+      "continent": "Europe",
+      "landmarkName": "The Parthenon on the Acropolis",
+      "location": "Athens",
+      "imagePath": "/images/postcards/gr-parthenon.webp"
+    },
+    {
+      "id": "HR",
+      "name": "Croatia",
+      "continent": "Europe",
+      "landmarkName": "Dubrovnik Old Town Walls",
+      "location": "Dubrovnik",
+      "imagePath": "/images/postcards/hr-dubrovnik-old-town-walls.webp"
+    },
+    {
+      "id": "HU",
+      "name": "Hungary",
+      "continent": "Europe",
+      "landmarkName": "Hungarian Parliament Building",
+      "location": "Budapest",
+      "imagePath": "/images/postcards/hu-hungarian-parliament-building.webp"
+    },
+    {
+      "id": "IE",
+      "name": "Ireland",
+      "continent": "Europe",
+      "landmarkName": "Cliffs of Moher",
+      "location": "County Clare",
+      "imagePath": "/images/postcards/ie-cliffs-of-moher.webp"
+    },
+    {
+      "id": "IS",
+      "name": "Iceland",
+      "continent": "Europe",
+      "landmarkName": "Kirkjufell & Black Sand Beaches",
+      "location": "Grundarfjörður",
+      "imagePath": "/images/postcards/is-kirkjufell-black-sand-beaches.webp"
+    },
+    {
+      "id": "LI",
+      "name": "Liechtenstein",
+      "continent": "Europe",
+      "landmarkName": "Vaduz Castle",
+      "location": "Vaduz",
+      "imagePath": "/images/postcards/li-vaduz-castle.webp"
+    },
+    {
+      "id": "LT",
+      "name": "Lithuania",
+      "continent": "Europe",
+      "landmarkName": "Trakai Island Castle",
+      "location": "Trakai",
+      "imagePath": "/images/postcards/lt-trakai-castle.webp"
+    }
+  ]
+}

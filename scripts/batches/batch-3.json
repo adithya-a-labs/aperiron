@@ -1,0 +1,190 @@
+{
+  "id": "batch-3",
+  "name": "Asia East & Southeast",
+  "items": [
+    {
+      "id": "AF",
+      "name": "Afghanistan",
+      "continent": "Asia",
+      "landmarkName": "Blue Mosque & Band-e Amir",
+      "location": "Mazar-i-Sharif",
+      "imagePath": "/images/postcards/af-blue-mosque.webp"
+    },
+    {
+      "id": "AM",
+      "name": "Armenia",
+      "continent": "Asia",
+      "landmarkName": "Khor Virap & Mount Ararat",
+      "location": "Ararat Plain",
+      "imagePath": "/images/postcards/am-khor-virap.webp"
+    },
+    {
+      "id": "AZ",
+      "name": "Azerbaijan",
+      "continent": "Asia",
+      "landmarkName": "Flame Towers & Old City",
+      "location": "Baku",
+      "imagePath": "/images/postcards/az-flame-towers.webp"
+    },
+    {
+      "id": "BD",
+      "name": "Bangladesh",
+      "continent": "Asia",
+      "landmarkName": "Sundarbans Mangrove Forest",
+      "location": "Khulna Division",
+      "imagePath": "/images/postcards/bd-sundarbans.webp"
+    },
+    {
+      "id": "BH",
+      "name": "Bahrain",
+      "continent": "Asia",
+      "landmarkName": "Qal'at al-Bahrain",
+      "location": "Northern Governorate",
+      "imagePath": "/images/postcards/bh-bahrain-fort.webp"
+    },
+    {
+      "id": "BN",
+      "name": "Brunei",
+      "continent": "Asia",
+      "landmarkName": "Sultan Omar Ali Saifuddien Mosque",
+      "location": "Bandar Seri Begawan",
+      "imagePath": "/images/postcards/bn-saifuddien-mosque.webp"
+    },
+    {
+      "id": "BT",
+      "name": "Bhutan",
+      "continent": "Asia",
+      "landmarkName": "Paro Taktsang (Tiger's Nest)",
+      "location": "Paro Valley",
+      "imagePath": "/images/postcards/bt-tigers-nest.webp"
+    },
+    {
+      "id": "CN",
+      "name": "China",
+      "continent": "Asia",
+      "landmarkName": "The Great Wall of China",
+      "location": "Mutianyu, Beijing",
+      "imagePath": "/images/postcards/cn-great-wall.webp"
+    },
+    {
+      "id": "GE",
+      "name": "Georgia",
+      "continent": "Asia",
+      "landmarkName": "Gergeti Trinity Church",
+      "location": "Kazbegi, Stepantsminda",
+      "imagePath": "/images/postcards/ge-gergeti-trinity.webp"
+    },
+    {
+      "id": "HK",
+      "name": "Hong Kong",
+      "continent": "Asia",
+      "landmarkName": "Victoria Peak & Harbour",
+      "location": "Hong Kong",
+      "imagePath": "/images/postcards/hk-victoria-peak-harbour.webp"
+    },
+    {
+      "id": "ID",
+      "name": "Indonesia",
+      "continent": "Asia",
+      "landmarkName": "Borobudur Temple",
+      "location": "Magelang, Central Java",
+      "imagePath": "/images/postcards/id-borobudur.webp"
+    },
+    {
+      "id": "IL",
+      "name": "Israel",
+      "continent": "Asia",
+      "landmarkName": "Old City of Jerusalem & Dome of the Rock",
+      "location": "Jerusalem",
+      "imagePath": "/images/postcards/il-jerusalem.webp"
+    },
+    {
+      "id": "IQ",
+      "name": "Iraq",
+      "continent": "Asia",
+      "landmarkName": "Ishtar Gate & Ziggurat of Ur",
+      "location": "Babylon & Dhi Qar",
+      "imagePath": "/images/postcards/iq-ziggurat-ur.webp"
+    },
+    {
+      "id": "IR",
+      "name": "Iran",
+      "continent": "Asia",
+      "landmarkName": "Naqsh-e Jahan Square & Persepolis",
+      "location": "Isfahan & Fars",
+      "imagePath": "/images/postcards/ir-persepolis.webp"
+    },
+    {
+      "id": "JO",
+      "name": "Jordan",
+      "continent": "Asia",
+      "landmarkName": "The Treasury at Petra",
+      "location": "Ma'an Governorate",
+      "imagePath": "/images/postcards/jo-petra.webp"
+    },
+    {
+      "id": "KG",
+      "name": "Kyrgyzstan",
+      "continent": "Asia",
+      "landmarkName": "Lake Issyk-Kul & Tian Shan Peaks",
+      "location": "Tian Shan",
+      "imagePath": "/images/postcards/kg-lake-issyk-kul.webp"
+    },
+    {
+      "id": "KH",
+      "name": "Cambodia",
+      "continent": "Asia",
+      "landmarkName": "Angkor Wat",
+      "location": "Siem Reap",
+      "imagePath": "/images/postcards/kh-angkor-wat.webp"
+    },
+    {
+      "id": "KP",
+      "name": "North Korea",
+      "continent": "Asia",
+      "landmarkName": "Mount Paektu & Heaven Lake",
+      "location": "Samjiyon",
+      "imagePath": "/images/postcards/kp-mount-paektu.webp"
+    },
+    {
+      "id": "KR",
+      "name": "South Korea",
+      "continent": "Asia",
+      "landmarkName": "Gyeongbokgung Palace",
+      "location": "Seoul",
+      "imagePath": "/images/postcards/kr-gyeongbokgung.webp"
+    },
+    {
+      "id": "KW",
+      "name": "Kuwait",
+      "continent": "Asia",
+      "landmarkName": "Kuwait Towers",
+      "location": "Kuwait City",
+      "imagePath": "/images/postcards/kw-kuwait-towers.webp"
+    },
+    {
+      "id": "KZ",
+      "name": "Kazakhstan",
+      "continent": "Asia",
+      "landmarkName": "Charyn Canyon & Baiterek Tower",
+      "location": "Almaty & Astana",
+      "imagePath": "/images/postcards/kz-charyn-canyon.webp"
+    },
+    {
+      "id": "LA",
+      "name": "Laos",
+      "continent": "Asia",
+      "landmarkName": "Kuang Si Falls & Luang Prabang",
+      "location": "Luang Prabang",
+      "imagePath": "/images/postcards/la-kuang-si-falls.webp"
+    },
+    {
+      "id": "LB",
+      "name": "Lebanon",
+      "continent": "Asia",
+      "landmarkName": "Baalbek Roman Temples & Pigeon Rocks",
+      "location": "Beqaa & Beirut",
+      "imagePath": "/images/postcards/lb-baalbek.webp"
+    }
+  ]
+}

@@ -1,4 +1,4 @@
-import { existsSync, mkdirSync, readFileSync, renameSync, writeFileSync } from 'node:fs';
+import { existsSync, mkdirSync, readFileSync, renameSync, writeFileSync, unlinkSync } from 'node:fs';
 import { dirname } from 'node:path';
 import { createHash, randomUUID } from 'node:crypto';
 import type { ContextRef, Profile, Trip } from '../../src/shared/assistant/schemas';
@@ -63,7 +63,21 @@ export class AssistantStore {
     const next = structuredClone(this.data), result = fn(next);
     try {
       if (this.path) { mkdirSync(dirname(this.path), { recursive: true }); const temporary = `${this.path}.${randomUUID()}.tmp`;
-        writeFileSync(temporary, JSON.stringify(next), { mode: 0o600 }); renameSync(temporary, this.path); }
+        try {
+          writeFileSync(temporary, JSON.stringify(next), { mode: 0o600 });
+          for (let attempt = 0; ; attempt++) {
+            try { renameSync(temporary, this.path); break; }
+            catch (error) {
+              // Windows scanners/readers can briefly hold the destination open.
+              // Retry only the atomic local rename, never a provider operation.
+              if (process.platform !== 'win32' || attempt >= 2 || !['EACCES', 'EPERM', 'EBUSY'].includes((error as NodeJS.ErrnoException).code ?? '')) throw error;
+              Atomics.wait(new Int32Array(new SharedArrayBuffer(4)), 0, 0, 10);
+            }
+          }
+        } finally {
+          try { if (existsSync(temporary)) unlinkSync(temporary); } catch { /* Keep the previous durable ledger intact. */ }
+        }
+      }
     } catch { throw new ApiError(503, 'SERVICE_UNAVAILABLE', 'Assistant storage is unavailable.'); }
     this.data = next; return structuredClone(result);
   }

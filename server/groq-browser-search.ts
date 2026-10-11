@@ -25,7 +25,7 @@ loadLocalEnv();
 
 export class ResearchRequestError extends Error {}
 export class ResearchServiceError extends Error {
-  constructor(public status: number, message: string) { super(message); }
+  constructor(public status: number, message: string, public retryAfter = 0) { super(message); }
 }
 
 export function validateResearchRequest(value: unknown): ResearchRequest {
@@ -71,19 +71,28 @@ export async function researchWithGroq(
       tools: [{ type: "browser_search" }],
       tool_choice: "required",
       temperature: 0,
-      max_completion_tokens: 1_200,
+      reasoning_effort: 'low',
+      max_completion_tokens: 2_400,
     }),
     signal: AbortSignal.timeout(45_000),
   });
   if (!response.ok) {
     if (response.status === 401 || response.status === 403) throw new ResearchServiceError(503, "Groq rejected the API key or model access. Check your server configuration.");
-    if (response.status === 429) throw new ResearchServiceError(429, "Groq is rate limited. Please try again shortly.");
+    if (response.status === 429) {
+      const retry = response.headers.get('retry-after');
+      const seconds = retry && /^\d+$/.test(retry) ? Number(retry) : retry ? Math.ceil((Date.parse(retry) - Date.now()) / 1000) : 60;
+      const retryAfter = Number.isFinite(seconds) && seconds > 0 ? Math.min(seconds, 86_400) : 60;
+      throw new ResearchServiceError(429, `Groq's research allowance is temporarily exhausted. Try again in ${Math.ceil(retryAfter / 60)} minute(s).`, retryAfter);
+    }
     throw new ResearchServiceError(502, "Groq research is temporarily unavailable. Please try again.");
   }
-  const payload = (await response.json()) as { choices?: Array<{ message?: { content?: unknown } }> } | null;
+  const payload = (await response.json()) as { choices?: Array<{ finish_reason?: string; message?: { content?: unknown } }> } | null;
   const content = payload?.choices?.[0]?.message?.content;
   const answer = typeof content === "string" ? content.trim() : "";
-  if (!answer) throw new Error("Groq returned no research response.");
+  if (!answer) {
+    if (payload?.choices?.[0]?.finish_reason === 'length') throw new ResearchServiceError(502, 'Research reached its response limit before producing an answer. Try again with the same selection.');
+    throw new Error("Groq returned no research response.");
+  }
   return {
     answer,
     model: MODEL,
@@ -113,15 +122,25 @@ function sendJson(response: ServerResponse, status: number, body: unknown) {
 }
 
 export function createResearchHandler(options: { fetchImpl?: typeof fetch; apiKey?: string } = {}) {
+  let retryAt = 0;
   return async (request: IncomingMessage, response: ServerResponse) => {
   if (request.method !== "POST" || request.url !== "/api/groq-research") {
     sendJson(response, 404, { error: "Not found." });
     return;
   }
   try {
-    const research = await researchWithGroq(validateResearchRequest(await readJson(request)), options.fetchImpl, options.apiKey);
+    const selection = validateResearchRequest(await readJson(request));
+    if (retryAt > Date.now()) {
+      const remaining = Math.ceil((retryAt - Date.now()) / 1000);
+      throw new ResearchServiceError(429, `Groq's research allowance is temporarily exhausted. Try again in ${Math.ceil(remaining / 60)} minute(s).`, remaining);
+    }
+    const research = await researchWithGroq(selection, options.fetchImpl, options.apiKey);
     sendJson(response, 200, research);
   } catch (error) {
+    if (error instanceof ResearchServiceError && error.status === 429) {
+      retryAt = Math.max(retryAt, Date.now() + error.retryAfter * 1000);
+      response.setHeader('Retry-After', String(error.retryAfter));
+    }
     const status = error instanceof ResearchRequestError ? 400 : error instanceof ResearchServiceError ? error.status : 502;
     const message = error instanceof ResearchRequestError || error instanceof ResearchServiceError
       ? error.message : "Research could not complete. Please try again.";

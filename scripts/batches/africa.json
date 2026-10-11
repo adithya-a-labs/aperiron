@@ -1,0 +1,542 @@
+[
+  {
+    "id": "AO",
+    "name": "Angola",
+    "continent": "Africa",
+    "landmarkName": "Kalandula Falls & Miradouro da Lua",
+    "location": "Malanje & Luanda",
+    "caption": "Horseshoe waterfalls roaring over lush tropical greenery.",
+    "imagePath": "/images/postcards/ao-kalandula-falls-miradouro-da-lua.png",
+    "imageFilename": "ao-kalandula-falls-miradouro-da-lua.png"
+  },
+  {
+    "id": "BF",
+    "name": "Burkina Faso",
+    "continent": "Africa",
+    "landmarkName": "Sindou Peaks & Grand Mosque",
+    "location": "Cascades & Bobo-Dioulasso",
+    "caption": "Mystical eroded sandstone pinnacles sculpted by desert winds.",
+    "imagePath": "/images/postcards/bf-sindou-peaks-grand-mosque.png",
+    "imageFilename": "bf-sindou-peaks-grand-mosque.png"
+  },
+  {
+    "id": "BI",
+    "name": "Burundi",
+    "continent": "Africa",
+    "landmarkName": "Lake Tanganyika & Karera Falls",
+    "location": "Rutana",
+    "caption": "Crystal African Great Lake flanked by green mountain ridges.",
+    "imagePath": "/images/postcards/bi-lake-tanganyika-karera-falls.png",
+    "imageFilename": "bi-lake-tanganyika-karera-falls.png"
+  },
+  {
+    "id": "BJ",
+    "name": "Benin",
+    "continent": "Africa",
+    "landmarkName": "Ganvié Stilt Village & Abomey Palaces",
+    "location": "Lake Nokoué",
+    "caption": "The Venice of Africa thriving atop tranquil lake waters.",
+    "imagePath": "/images/postcards/bj-ganvie-stilt-village-abomey-palaces.png",
+    "imageFilename": "bj-ganvie-stilt-village-abomey-palaces.png"
+  },
+  {
+    "id": "BW",
+    "name": "Botswana",
+    "continent": "Africa",
+    "landmarkName": "Okavango Delta & Chobe Elephants",
+    "location": "North-West District",
+    "caption": "Lush papyrus water labyrinths teeming with wild elephants.",
+    "imagePath": "/images/postcards/bw-okavango-delta-chobe-elephants.png",
+    "imageFilename": "bw-okavango-delta-chobe-elephants.png"
+  },
+  {
+    "id": "CD",
+    "name": "DR Congo",
+    "continent": "Africa",
+    "landmarkName": "Virunga Volcanoes & Mount Nyiragongo",
+    "location": "North Kivu",
+    "caption": "Lush misty volcanic home of majestic mountain gorillas.",
+    "imagePath": "/images/postcards/cd-virunga-volcanoes-mount-nyiragongo.png",
+    "imageFilename": "cd-virunga-volcanoes-mount-nyiragongo.png"
+  },
+  {
+    "id": "CF",
+    "name": "Central African Republic",
+    "continent": "Africa",
+    "landmarkName": "Dzanga-Ndoki Rainforest & Bais",
+    "location": "Sangha-Mbaéré",
+    "caption": "Primeval Congo basin forest salt clearings with forest elephants.",
+    "imagePath": "/images/postcards/cf-dzanga-ndoki-rainforest-bais.png",
+    "imageFilename": "cf-dzanga-ndoki-rainforest-bais.png"
+  },
+  {
+    "id": "CG",
+    "name": "Congo",
+    "continent": "Africa",
+    "landmarkName": "Odzala-Kokoua Canopy & Congo River",
+    "location": "Cuvette-Ouest",
+    "caption": "Dense equatorial rainforest canopy bordering the mighty Congo.",
+    "imagePath": "/images/postcards/cg-odzala-kokoua-canopy-congo-river.png",
+    "imageFilename": "cg-odzala-kokoua-canopy-congo-river.png"
+  },
+  {
+    "id": "CI",
+    "name": "Ivory Coast",
+    "continent": "Africa",
+    "landmarkName": "Basilica of Our Lady of Peace",
+    "location": "Yamoussoukro",
+    "caption": "Colossal marble dome rising above tranquil savanna plains.",
+    "imagePath": "/images/postcards/ci-basilica-of-our-lady-of-peace.png",
+    "imageFilename": "ci-basilica-of-our-lady-of-peace.png"
+  },
+  {
+    "id": "CM",
+    "name": "Cameroon",
+    "continent": "Africa",
+    "landmarkName": "Mount Cameroon & Waza Park",
+    "location": "Southwest Region",
+    "caption": "Active coastal volcanic peak rising into tropical cloud forests.",
+    "imagePath": "/images/postcards/cm-mount-cameroon-waza-park.png",
+    "imageFilename": "cm-mount-cameroon-waza-park.png"
+  },
+  {
+    "id": "CV",
+    "name": "Cape Verde",
+    "continent": "Africa",
+    "landmarkName": "Pico do Fogo Volcano",
+    "location": "Fogo Island",
+    "caption": "Dramatic volcanic peak rising from dark black basalt sands.",
+    "imagePath": "/images/postcards/cv-pico-do-fogo-volcano.png",
+    "imageFilename": "cv-pico-do-fogo-volcano.png"
+  },
+  {
+    "id": "DJ",
+    "name": "Djibouti",
+    "continent": "Africa",
+    "landmarkName": "Lake Assal Salt Formations",
+    "location": "Danakil Desert",
+    "caption": "Bright white salt flats and hyper-saline turquoise crater water.",
+    "imagePath": "/images/postcards/dj-lake-assal-salt-formations.png",
+    "imageFilename": "dj-lake-assal-salt-formations.png"
+  },
+  {
+    "id": "DZ",
+    "name": "Algeria",
+    "continent": "Africa",
+    "landmarkName": "Notre Dame d'Afrique & Tassili n'Ajjer",
+    "location": "Algiers & Sahara",
+    "caption": "Neo-Byzantine basilica overlooking the bay and ancient desert rock art.",
+    "imagePath": "/images/postcards/dz-notre-dame-d-afrique-tassili-n-ajjer.png",
+    "imageFilename": "dz-notre-dame-d-afrique-tassili-n-ajjer.png"
+  },
+  {
+    "id": "EG",
+    "name": "Egypt",
+    "continent": "Africa",
+    "landmarkName": "Egypt Heritage & Landscapes",
+    "location": "Africa",
+    "caption": "Discover the breathtaking sights and unique heritage of Egypt.",
+    "imagePath": "/images/postcards/eg-egypt-heritage-landscapes.png",
+    "imageFilename": "eg-egypt-heritage-landscapes.png"
+  },
+  {
+    "id": "ER",
+    "name": "Eritrea",
+    "continent": "Africa",
+    "landmarkName": "Asmara Art Deco & Red Sea Dahlak",
+    "location": "Asmara",
+    "caption": "Modernist Italian futurist architecture in the African horn.",
+    "imagePath": "/images/postcards/er-asmara-art-deco-red-sea-dahlak.png",
+    "imageFilename": "er-asmara-art-deco-red-sea-dahlak.png"
+  },
+  {
+    "id": "ET",
+    "name": "Ethiopia",
+    "continent": "Africa",
+    "landmarkName": "Rock-Hewn Churches of Lalibela",
+    "location": "Amhara Region",
+    "caption": "Monolithic 12th-century cruciform churches carved into living rock.",
+    "imagePath": "/images/postcards/et-rock-hewn-churches-of-lalibela.png",
+    "imageFilename": "et-rock-hewn-churches-of-lalibela.png"
+  },
+  {
+    "id": "GA",
+    "name": "Gabon",
+    "continent": "Africa",
+    "landmarkName": "Loango National Park",
+    "location": "Ogooué-Maritime",
+    "caption": "Surfing hippos and elephants roaming wild Atlantic shores.",
+    "imagePath": "/images/postcards/ga-loango-national-park.png",
+    "imageFilename": "ga-loango-national-park.png"
+  },
+  {
+    "id": "GH",
+    "name": "Ghana",
+    "continent": "Africa",
+    "landmarkName": "Ghana Heritage & Landscapes",
+    "location": "Africa",
+    "caption": "Discover the breathtaking sights and unique heritage of Ghana.",
+    "imagePath": "/images/postcards/gh-ghana-heritage-landscapes.png",
+    "imageFilename": "gh-ghana-heritage-landscapes.png"
+  },
+  {
+    "id": "GM",
+    "name": "Gambia",
+    "continent": "Africa",
+    "landmarkName": "Kunta Kinteh Island & River Gambia",
+    "location": "North Bank",
+    "caption": "Historic river fortress and vibrant birdlife on winding waterways.",
+    "imagePath": "/images/postcards/gm-kunta-kinteh-island-river-gambia.png",
+    "imageFilename": "gm-kunta-kinteh-island-river-gambia.png"
+  },
+  {
+    "id": "GN",
+    "name": "Guinea",
+    "continent": "Africa",
+    "landmarkName": "Fouta Djallon Highlands",
+    "location": "Labé",
+    "caption": "Verdant mountain plateaus, roaring waterfalls, and sandstone canyons.",
+    "imagePath": "/images/postcards/gn-fouta-djallon-highlands.png",
+    "imageFilename": "gn-fouta-djallon-highlands.png"
+  },
+  {
+    "id": "GQ",
+    "name": "Equatorial Guinea",
+    "continent": "Africa",
+    "landmarkName": "Malabo Santa Isabel & Pico Basile",
+    "location": "Bioko Island",
+    "caption": "Colonial Spanish architecture beneath towering volcanic cloud peaks.",
+    "imagePath": "/images/postcards/gq-malabo-santa-isabel-pico-basile.png",
+    "imageFilename": "gq-malabo-santa-isabel-pico-basile.png"
+  },
+  {
+    "id": "GW",
+    "name": "Guinea-Bissau",
+    "continent": "Africa",
+    "landmarkName": "Bijagós Biosphere Archipelago",
+    "location": "Bijagós Islands",
+    "caption": "Untouched tropical mangrove islands and saltwater hippopotamuses.",
+    "imagePath": "/images/postcards/gw-bijagos-biosphere-archipelago.png",
+    "imageFilename": "gw-bijagos-biosphere-archipelago.png"
+  },
+  {
+    "id": "KE",
+    "name": "Kenya",
+    "continent": "Africa",
+    "landmarkName": "Kenya Heritage & Landscapes",
+    "location": "Africa",
+    "caption": "Discover the breathtaking sights and unique heritage of Kenya.",
+    "imagePath": "/images/postcards/ke-kenya-heritage-landscapes.png",
+    "imageFilename": "ke-kenya-heritage-landscapes.png"
+  },
+  {
+    "id": "KM",
+    "name": "Comoros",
+    "continent": "Africa",
+    "landmarkName": "Mount Karthala & Chomoni Beaches",
+    "location": "Grande Comore",
+    "caption": "Active volcano crater and white sand beaches fringed with palms.",
+    "imagePath": "/images/postcards/km-mount-karthala-chomoni-beaches.png",
+    "imageFilename": "km-mount-karthala-chomoni-beaches.png"
+  },
+  {
+    "id": "LR",
+    "name": "Liberia",
+    "continent": "Africa",
+    "landmarkName": "Providence Island & Mount Nimba",
+    "location": "Monrovia",
+    "caption": "Historic lagoon island and mist-shrouded biodiversity mountains.",
+    "imagePath": "/images/postcards/lr-providence-island-mount-nimba.png",
+    "imageFilename": "lr-providence-island-mount-nimba.png"
+  },
+  {
+    "id": "LS",
+    "name": "Lesotho",
+    "continent": "Africa",
+    "landmarkName": "Maletsunyane Falls & Drakensberg",
+    "location": "Semonkong",
+    "caption": "Single-drop plume plunging into deep basalt mountain gorges.",
+    "imagePath": "/images/postcards/ls-maletsunyane-falls-drakensberg.png",
+    "imageFilename": "ls-maletsunyane-falls-drakensberg.png"
+  },
+  {
+    "id": "LY",
+    "name": "Libya",
+    "continent": "Africa",
+    "landmarkName": "Leptis Magna Roman Ruins",
+    "location": "Al-Khums",
+    "caption": "One of the Mediterranean's best preserved Roman imperial cities.",
+    "imagePath": "/images/postcards/ly-leptis-magna-roman-ruins.png",
+    "imageFilename": "ly-leptis-magna-roman-ruins.png"
+  },
+  {
+    "id": "MA",
+    "name": "Morocco",
+    "continent": "Africa",
+    "landmarkName": "Morocco Heritage & Landscapes",
+    "location": "Africa",
+    "caption": "Discover the breathtaking sights and unique heritage of Morocco.",
+    "imagePath": "/images/postcards/ma-morocco-heritage-landscapes.png",
+    "imageFilename": "ma-morocco-heritage-landscapes.png"
+  },
+  {
+    "id": "MG",
+    "name": "Madagascar",
+    "continent": "Africa",
+    "landmarkName": "Avenue of the Baobabs",
+    "location": "Menabe",
+    "caption": "Ancient giant trees standing tall against brilliant crimson sunsets.",
+    "imagePath": "/images/postcards/mg-avenue-of-the-baobabs.png",
+    "imageFilename": "mg-avenue-of-the-baobabs.png"
+  },
+  {
+    "id": "ML",
+    "name": "Mali",
+    "continent": "Africa",
+    "landmarkName": "Great Mosque of Djenné",
+    "location": "Mopti Region",
+    "caption": "The world's largest adobe mudbrick building rising above floodplains.",
+    "imagePath": "/images/postcards/ml-great-mosque-of-djenne.png",
+    "imageFilename": "ml-great-mosque-of-djenne.png"
+  },
+  {
+    "id": "MR",
+    "name": "Mauritania",
+    "continent": "Africa",
+    "landmarkName": "Eye of the Sahara (Richat Structure)",
+    "location": "Ouadane",
+    "caption": "Giant concentric circular rock dome visible from outer space.",
+    "imagePath": "/images/postcards/mr-eye-of-the-sahara-richat-structure.png",
+    "imageFilename": "mr-eye-of-the-sahara-richat-structure.png"
+  },
+  {
+    "id": "MU",
+    "name": "Mauritius",
+    "continent": "Africa",
+    "landmarkName": "Mauritius Heritage & Landscapes",
+    "location": "Africa",
+    "caption": "Discover the breathtaking sights and unique heritage of Mauritius.",
+    "imagePath": "/images/postcards/mu-mauritius-heritage-landscapes.png",
+    "imageFilename": "mu-mauritius-heritage-landscapes.png"
+  },
+  {
+    "id": "MW",
+    "name": "Malawi",
+    "continent": "Africa",
+    "landmarkName": "Lake Malawi & Cape Maclear",
+    "location": "Mangochi",
+    "caption": "Golden sandy coves and hundreds of colorful cichlid fishes.",
+    "imagePath": "/images/postcards/mw-lake-malawi-cape-maclear.png",
+    "imageFilename": "mw-lake-malawi-cape-maclear.png"
+  },
+  {
+    "id": "MZ",
+    "name": "Mozambique",
+    "continent": "Africa",
+    "landmarkName": "Bazaruto Coral Archipelago",
+    "location": "Inhambane",
+    "caption": "White sand dunes drifting into vivid turquoise Indian Ocean lagoons.",
+    "imagePath": "/images/postcards/mz-bazaruto-coral-archipelago.png",
+    "imageFilename": "mz-bazaruto-coral-archipelago.png"
+  },
+  {
+    "id": "NA",
+    "name": "Namibia",
+    "continent": "Africa",
+    "landmarkName": "Sossusvlei & Deadvlei Dunes",
+    "location": "Namib Desert",
+    "caption": "Towering terracotta dunes and 900-year-old camel thorn silhouettes.",
+    "imagePath": "/images/postcards/na-sossusvlei-deadvlei-dunes.png",
+    "imageFilename": "na-sossusvlei-deadvlei-dunes.png"
+  },
+  {
+    "id": "NE",
+    "name": "Niger",
+    "continent": "Africa",
+    "landmarkName": "Agadez Grand Mosque & Aïr Mountains",
+    "location": "Agadez",
+    "caption": "Ancient mudbrick minaret with wooden scaffolding over Saharan sands.",
+    "imagePath": "/images/postcards/ne-agadez-grand-mosque-air-mountains.png",
+    "imageFilename": "ne-agadez-grand-mosque-air-mountains.png"
+  },
+  {
+    "id": "NG",
+    "name": "Nigeria",
+    "continent": "Africa",
+    "landmarkName": "Nigeria Heritage & Landscapes",
+    "location": "Africa",
+    "caption": "Discover the breathtaking sights and unique heritage of Nigeria.",
+    "imagePath": "/images/postcards/ng-nigeria-heritage-landscapes.png",
+    "imageFilename": "ng-nigeria-heritage-landscapes.png"
+  },
+  {
+    "id": "RW",
+    "name": "Rwanda",
+    "continent": "Africa",
+    "landmarkName": "Volcanoes National Park",
+    "location": "Musanze",
+    "caption": "Bamboo forests and emerald dormant volcanoes sheltering mountain gorillas.",
+    "imagePath": "/images/postcards/rw-volcanoes-national-park.png",
+    "imageFilename": "rw-volcanoes-national-park.png"
+  },
+  {
+    "id": "SC",
+    "name": "Seychelles",
+    "continent": "Africa",
+    "landmarkName": "Seychelles Heritage & Landscapes",
+    "location": "Africa",
+    "caption": "Discover the breathtaking sights and unique heritage of Seychelles.",
+    "imagePath": "/images/postcards/sc-seychelles-heritage-landscapes.png",
+    "imageFilename": "sc-seychelles-heritage-landscapes.png"
+  },
+  {
+    "id": "SD",
+    "name": "Sudan",
+    "continent": "Africa",
+    "landmarkName": "Meroë Pyramids",
+    "location": "River Nile State",
+    "caption": "Steep-sided Nubian sandstone pyramids rising out of desert dunes.",
+    "imagePath": "/images/postcards/sd-meroe-pyramids.png",
+    "imageFilename": "sd-meroe-pyramids.png"
+  },
+  {
+    "id": "SL",
+    "name": "Sierra Leone",
+    "continent": "Africa",
+    "landmarkName": "Banana Islands & River Number Two",
+    "location": "Freetown Peninsula",
+    "caption": "Powder white sands and emerald rainforest hills meeting the Atlantic.",
+    "imagePath": "/images/postcards/sl-banana-islands-river-number-two.png",
+    "imageFilename": "sl-banana-islands-river-number-two.png"
+  },
+  {
+    "id": "SN",
+    "name": "Senegal",
+    "continent": "Africa",
+    "landmarkName": "Gorée Island & Lake Retba",
+    "location": "Dakar",
+    "caption": "Colonial pastel facades and pink saltwater lagoon waters.",
+    "imagePath": "/images/postcards/sn-goree-island-lake-retba.png",
+    "imageFilename": "sn-goree-island-lake-retba.png"
+  },
+  {
+    "id": "SO",
+    "name": "Somalia",
+    "continent": "Africa",
+    "landmarkName": "Laas Geel Rock Art & Mogadishu Coast",
+    "location": "Woqooyi Galbeed",
+    "caption": "Neolithic painted cave art and Indian Ocean coastal vistas.",
+    "imagePath": "/images/postcards/so-laas-geel-rock-art-mogadishu-coast.png",
+    "imageFilename": "so-laas-geel-rock-art-mogadishu-coast.png"
+  },
+  {
+    "id": "SS",
+    "name": "South Sudan",
+    "continent": "Africa",
+    "landmarkName": "The Sudd Wetlands & Nile",
+    "location": "Unity State",
+    "caption": "Vast papyrus marshes and sweeping Nile floodplains.",
+    "imagePath": "/images/postcards/ss-the-sudd-wetlands-nile.png",
+    "imageFilename": "ss-the-sudd-wetlands-nile.png"
+  },
+  {
+    "id": "ST",
+    "name": "São Tomé and Príncipe",
+    "continent": "Africa",
+    "landmarkName": "Pico Cão Grande",
+    "location": "Caué District",
+    "caption": "Dramatic needle-like volcanic plug towering over dense jungle canopy.",
+    "imagePath": "/images/postcards/st-pico-cao-grande.png",
+    "imageFilename": "st-pico-cao-grande.png"
+  },
+  {
+    "id": "SZ",
+    "name": "Eswatini",
+    "continent": "Africa",
+    "landmarkName": "Mlilwane Sanctuary & Mantenga Falls",
+    "location": "Ezulwini Valley",
+    "caption": "Emerald royal valley with traditional beehive kraals.",
+    "imagePath": "/images/postcards/sz-mlilwane-sanctuary-mantenga-falls.png",
+    "imageFilename": "sz-mlilwane-sanctuary-mantenga-falls.png"
+  },
+  {
+    "id": "TD",
+    "name": "Chad",
+    "continent": "Africa",
+    "landmarkName": "Ennedi Plateau & Guelta d'Archei",
+    "location": "Ennedi",
+    "caption": "Monumental sandstone arches and desert oasis camel watering holes.",
+    "imagePath": "/images/postcards/td-ennedi-plateau-guelta-d-archei.png",
+    "imageFilename": "td-ennedi-plateau-guelta-d-archei.png"
+  },
+  {
+    "id": "TG",
+    "name": "Togo",
+    "continent": "Africa",
+    "landmarkName": "Koutammakou Mud Tower-Houses",
+    "location": "Kara Region",
+    "caption": "Fortified clay two-story castles of the Batammariba people.",
+    "imagePath": "/images/postcards/tg-koutammakou-mud-tower-houses.png",
+    "imageFilename": "tg-koutammakou-mud-tower-houses.png"
+  },
+  {
+    "id": "TN",
+    "name": "Tunisia",
+    "continent": "Africa",
+    "landmarkName": "El Jem Amphitheatre & Sidi Bou Said",
+    "location": "Mahdia & Tunis",
+    "caption": "Roman colosseum and dazzling blue-and-white cliffside village.",
+    "imagePath": "/images/postcards/tn-el-jem-amphitheatre-sidi-bou-said.png",
+    "imageFilename": "tn-el-jem-amphitheatre-sidi-bou-said.png"
+  },
+  {
+    "id": "TZ",
+    "name": "Tanzania",
+    "continent": "Africa",
+    "landmarkName": "Tanzania Heritage & Landscapes",
+    "location": "Africa",
+    "caption": "Discover the breathtaking sights and unique heritage of Tanzania.",
+    "imagePath": "/images/postcards/tz-tanzania-heritage-landscapes.png",
+    "imageFilename": "tz-tanzania-heritage-landscapes.png"
+  },
+  {
+    "id": "UG",
+    "name": "Uganda",
+    "continent": "Africa",
+    "landmarkName": "Murchison Falls & Bwindi Impenetrable",
+    "location": "Masindi & Kanungu",
+    "caption": "The Nile exploding through narrow rock clefts into thunderous falls.",
+    "imagePath": "/images/postcards/ug-murchison-falls-bwindi-impenetrable.png",
+    "imageFilename": "ug-murchison-falls-bwindi-impenetrable.png"
+  },
+  {
+    "id": "ZA",
+    "name": "South Africa",
+    "continent": "Africa",
+    "landmarkName": "South Africa Heritage & Landscapes",
+    "location": "Africa",
+    "caption": "Discover the breathtaking sights and unique heritage of South Africa.",
+    "imagePath": "/images/postcards/za-south-africa-heritage-landscapes.png",
+    "imageFilename": "za-south-africa-heritage-landscapes.png"
+  },
+  {
+    "id": "ZM",
+    "name": "Zambia",
+    "continent": "Africa",
+    "landmarkName": "Victoria Falls (Mosi-oa-Tunya)",
+    "location": "Livingstone",
+    "caption": "The Smoke that Thunders pouring into sheer basalt chasms.",
+    "imagePath": "/images/postcards/zm-victoria-falls-mosi-oa-tunya.png",
+    "imageFilename": "zm-victoria-falls-mosi-oa-tunya.png"
+  },
+  {
+    "id": "ZW",
+    "name": "Zimbabwe",
+    "continent": "Africa",
+    "landmarkName": "Great Zimbabwe Ruins & Victoria Falls",
+    "location": "Masvingo",
+    "caption": "Monumental medieval drystone city walls of royal Bantu heritage.",
+    "imagePath": "/images/postcards/zw-great-zimbabwe-ruins-victoria-falls.png",
+    "imageFilename": "zw-great-zimbabwe-ruins-victoria-falls.png"
+  }
+]
