@@ -2410,41 +2410,19 @@ main { overflow: visible; }
   .requirements > div { grid-template-columns: 110px minmax(0, 1fr); }
 }
 
-/* Explorer companion bot */
-.explore-sidebar {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  gap: 12px;
-  width: 100%;
-  min-width: 0;
-}
+/* Desktop Explore: size by available width, never by a viewport-height cliff. */
+.explore-sidebar { display: flex; flex-direction: column; align-items: center; gap: 12px; min-width: 0; }
 .explore-sidebar > .postcard { width: 100%; }
 .bot-explorer {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  width: 100%;
-  user-select: none;
+  position: relative; width: 160px; height: 144px; overflow: hidden;
+  flex: none; user-select: none; touch-action: pan-y;
 }
 .bot-explorer-img {
-  width: 180px;
-  max-width: 100%;
-  aspect-ratio: 16 / 9;
-  object-fit: contain;
-  display: block;
-  pointer-events: auto;
-  cursor: pointer;
-  filter: drop-shadow(0 4px 12px rgba(3, 43, 67, 0.12));
-  transition: transform 0.2s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+  /* All 52 frames: alpha bounds x129..426, y2..285 on a 512x288 canvas. */
+  position: absolute; left: -58.75px; top: 0; width: 256px; height: 144px;
+  max-width: none; display: block; cursor: pointer;
+  filter: drop-shadow(0 3px 3px #032b431a);
 }
-.bot-explorer-img:hover {
-  transform: scale(1.05);
-}
-.bot-explorer-img:active {
-  transform: scale(0.96);
-}
-
 @media (min-width: 901px) {
   .page-explore .explore-layout { grid-template-columns: minmax(0, 1fr) clamp(320px, 24vw, 360px); gap: 28px; }
   .page-explore { padding-top: 24px; }
@@ -2460,4 +2438,9 @@ main { overflow: visible; }
   .page-explore .postcard h2 { font-size: 28px; margin-bottom: 16px; overflow-wrap: anywhere; }
   .page-explore .postcard-details { gap: 12px; margin-bottom: 16px; overflow-wrap: anywhere; }
   .page-explore .postcard .travel-status { font-size: 12px; line-height: 1.5; }
+}
+@media (hover: hover) and (pointer: fine) and (prefers-reduced-motion: no-preference) {
+  .bot-explorer-img { transition: transform 140ms cubic-bezier(.23, 1, .32, 1); transform-origin: 54% 52%; }
+  .bot-explorer-img:hover { transform: scale(1.02); }
+  .bot-explorer-img:active { transform: scale(.97); }
 }
