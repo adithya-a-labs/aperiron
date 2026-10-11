@@ -68,6 +68,10 @@ explicit free port, for example `npm run dev -- --port 5175`.
 exploration, comparison, Visa DNA, and the local trips workflow need no API key,
 remote map service, database, or separate server process.
 
+The full app is configured for Vercel from `main`, including API functions,
+durable background jobs and managed Postgres. Follow the
+[deployment guide](docs/DEPLOYMENT.md) to connect storage, set secrets and migrate.
+
 ### Useful commands
 
 | Command | Purpose |
@@ -76,7 +80,8 @@ remote map service, database, or separate server process.
 | `npm run server` | Start only the local API server on `127.0.0.1:8787` by default. |
 | `npm run typecheck` | Run the TypeScript compiler without emitting files. |
 | `npm test` | Run Node/TypeScript tests, including engine, data, store, and server checks. |
-| `npm run build` | Type-check and create a production frontend build. |
+| `npm run build` | Type-check and build the frontend and Nitro API. |
+| `npm run build:vercel` | Build static assets, API functions and background workflows for Vercel. |
 | `npm run check` | Run type-checking, tests, and production build in sequence. |
 | `npm run data:build` | Regenerate the Passport Index runtime data and country catalog after changing the bundled CSV or country metadata. |
 | `npm run assistant:openapi -- --check` | Check generated assistant OpenAPI output against its runtime schemas. |

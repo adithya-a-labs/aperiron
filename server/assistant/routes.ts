@@ -8,15 +8,15 @@ import { responses } from '../../src/shared/assistant/responses';
 import { createDefaultTravelService, type TravelService } from '../travel-details';
 import { Contexts, regionViewports, type Evidence } from './context';
 import { GroqModel, type Model } from './groq';
-import { Jobs } from './jobs';
+import { Jobs, type JobOptions } from './jobs';
 import { AssistantService, type Brief, type Message } from './service';
-import { ApiError, AssistantStore, opaque, stamp, hash, type Conversation, type Job, type Session, type TripResource } from './store';
+import { ApiError, AssistantStore, type AssistantStorage, opaque, stamp, hash, type Conversation, type Job, type Session, type TripResource } from './store';
 
 export const BASE = '/api/v1/assistant';
 interface RequestContext { owner: string; url: URL; params: Record<string, string>; key: string; request: IncomingMessage; response: ServerResponse }
 interface Reply { status?: number; data?: unknown; raw?: string; contentType?: string }
 type Endpoint = { method: string; path: string; schema?: Schema; match: RegExp; handler: (c: RequestContext, body: unknown) => Promise<Reply> | Reply };
-export interface AssistantOptions { store?: AssistantStore; travel?: TravelService; model?: Model; allowedOrigins?: string[]; jobs?: { rate?: number; deadlineMs?: number; concurrency?: number; queueLimit?: number } }
+export interface AssistantOptions { store?: AssistantStorage; travel?: TravelService; model?: Model; allowedOrigins?: string[]; jobs?: JobOptions; afterCommit?: () => Promise<void> }
 export function createAssistantHandler(options: AssistantOptions = {}) {
   const store = options.store ?? new AssistantStore(resolve(process.env.ASSISTANT_STORE_DIR ?? '.local/assistant', 'store.json'));
   const contexts = new Contexts(store, options.travel ?? createDefaultTravelService());
@@ -27,14 +27,14 @@ export function createAssistantHandler(options: AssistantOptions = {}) {
   const add = <S extends Schema>(method: string, path: string, schema: S | undefined, handler: (c: RequestContext, body: Infer<S>) => Promise<Reply> | Reply) => {
     endpoints.push({ method, path, schema, match: new RegExp(`^${path.replace(/\{(\w+)\}/g, '(?<$1>[A-Za-z0-9_-]+)')}$`), handler: (c, body) => handler(c, body as Infer<S>) });
   };
-  const resource = <T>(c: RequestContext, param: string, prefix: string): T => {
-    const value = c.params[param]; id.parse(value); if (!value.startsWith(`${prefix}_`)) throw new ApiError(404, 'NOT_FOUND', 'Resource not found.'); return store.get<T>(value, c.owner);
+  const resource = async <T>(c: RequestContext, param: string, prefix: string): Promise<T> => {
+    const value = c.params[param]; id.parse(value); if (!value.startsWith(`${prefix}_`)) throw new ApiError(404, 'NOT_FOUND', 'Resource not found.'); return (await store.get<T>(value, c.owner));
   };
   const revision = (actual: number, expected: number) => { if (actual !== expected) throw new ApiError(409, 'REVISION_CONFLICT', 'Use the current revision.'); };
-  const prior = (c: RequestContext, body: unknown) => jobs.prior(c.owner, c.url.pathname, uuid.parse(c.key, 'Idempotency-Key'), body);
+  const prior = async (c: RequestContext, body: unknown) => (await jobs.prior(c.owner, c.url.pathname, uuid.parse(c.key, 'Idempotency-Key'), body));
   const accepted = (c: RequestContext, job: Job): Reply => { c.response.setHeader('Location', `${BASE}/jobs/${job.id}`); return { status: 202, data: job }; };
-  const submit = (c: RequestContext, body: unknown, type: string, ref: ContextRef | null, work: Parameters<Jobs['submit']>[6], accept?: Parameters<Jobs['submit']>[7]) =>
-    accepted(c, jobs.submit(c.owner, c.url.pathname, uuid.parse(c.key, 'Idempotency-Key'), body, type, ref, work, accept));
+  const submit = async (c: RequestContext, body: unknown, type: string, ref: ContextRef | null, work: Parameters<Jobs['submit']>[6], accept?: Parameters<Jobs['submit']>[7]) =>
+    accepted(c, (await jobs.submit(c.owner, c.url.pathname, uuid.parse(c.key, 'Idempotency-Key'), body, type, ref, work, accept)));
   const query = (c: RequestContext, allowed: string[]) => { for (const key of c.url.searchParams.keys()) if (!allowed.includes(key) || c.url.searchParams.getAll(key).length !== 1) throw new ApiError(400, 'VALIDATION_ERROR', 'Unsupported query parameter.'); };
   const numericQuery = (c: RequestContext, field: string) => { const v = c.url.searchParams.get(field); if (!v || !/^[1-9]\d*$/.test(v)) throw new ApiError(400, 'VALIDATION_ERROR', `Provide ${field}.`); return Number(v); };
   const selection = (ref: ContextRef, ids: string[]) => {
@@ -47,67 +47,67 @@ export function createAssistantHandler(options: AssistantOptions = {}) {
     features: { map: true, countryChat: model.configured, research: model.configured, groups: true, checklists: 'gaps_and_preparation', briefs: true, heldDocumentEligibility: false },
     limits: { bodyBytes: 32768, messageCharacters: 4000, travellers: 6, shortlist: 10, enrichmentCalls: 3, activeJobs: options.jobs?.concurrency ?? 2, queue: options.jobs?.queueLimit ?? 20, meteredPerMinute: options.jobs?.rate ?? 5 },
   } }));
-  add('POST', '/sessions', requests.empty, c => {
+  add('POST', '/sessions', requests.empty, async c => {
     let s: Session;
-    try { s = store.session(cookie(c.request)); } catch { s = { sessionId: opaque('session'), csrfToken: opaque('csrf'), expiresAt: new Date(Date.now() + 7 * 86_400_000).toISOString(), profile: { revision: 0, profile: null, updatedAt: null }, submissions: [] };
-      store.mutate(d => { d.sessions[s.sessionId] = s; }); }
-    c.response.setHeader('Set-Cookie', `aperiron_session=${s.sessionId}; Path=${BASE}; HttpOnly; SameSite=Strict; Max-Age=604800${process.env.ASSISTANT_COOKIE_SECURE === 'true' ? '; Secure' : ''}`);
+    try { s = (await store.session(cookie(c.request))); } catch { s = { sessionId: store.newSessionId(), csrfToken: opaque('csrf'), expiresAt: new Date(Date.now() + 7 * 86_400_000).toISOString(), profile: { revision: 0, profile: null, updatedAt: null }, submissions: [] };
+      (await store.mutate(d => { d.sessions[s.sessionId] = s; })); }
+    c.response.setHeader('Set-Cookie', `aperiron_session=${s.sessionId}; Path=${BASE}; HttpOnly; SameSite=Strict; Max-Age=604800${process.env.ASSISTANT_COOKIE_SECURE === 'true' || process.env.VERCEL ? '; Secure' : ''}`);
     return { status: 201, data: sessionView(s) };
   });
-  add('GET', '/sessions/current', undefined, c => ({ data: sessionView(store.session(c.owner)) }));
-  add('DELETE', '/sessions/current', undefined, c => {
-    for (const [jobId, r] of Object.entries(store.data.jobs)) if (r.owner === c.owner) jobs.cancel(jobId, c.owner);
-    store.mutate(d => { delete d.sessions[c.owner]; for (const [id, r] of Object.entries(d.resources)) if (r.owner === c.owner) delete d.resources[id];
-      for (const [id, r] of Object.entries(d.jobs)) if (r.owner === c.owner) delete d.jobs[id];
-      for (const key of Object.keys(d.idempotency)) if (key.startsWith(`${c.owner}:`)) delete d.idempotency[key]; });
+  add('GET', '/sessions/current', undefined, async c => ({ data: sessionView((await store.session(c.owner))) }));
+  add('DELETE', '/sessions/current', undefined, async c => {
+    for (const [jobId, r] of Object.entries((await store.read()).jobs)) if (r.owner === c.owner) (await jobs.cancel(jobId, c.owner));
+    (await store.mutate(d => { delete d.sessions[c.owner]; for (const [id, r] of Object.entries(d.resources)) if (r.owner === c.owner) delete d.resources[id];
+      for (const [id, r] of Object.entries(d.jobs)) if (r.owner === c.owner) { delete d.jobs[id]; delete d.inputs?.[id]; }
+      for (const key of Object.keys(d.idempotency)) if (key.startsWith(`${c.owner}:`)) delete d.idempotency[key]; }));
     c.response.setHeader('Set-Cookie', `aperiron_session=; Path=${BASE}; HttpOnly; SameSite=Strict; Max-Age=0`); return { status: 204 };
   });
-  add('GET', '/profile', undefined, c => ({ data: store.session(c.owner).profile }));
-  add('PUT', '/profile', requests.profilePut, (c, b) => {
-    revision(store.session(c.owner).profile.revision, b.expectedRevision); jobs.supersede(c.owner);
+  add('GET', '/profile', undefined, async c => ({ data: (await store.session(c.owner)).profile }));
+  add('PUT', '/profile', requests.profilePut, async (c, b) => {
+    revision((await store.session(c.owner)).profile.revision, b.expectedRevision); (await jobs.supersede(c.owner));
     const resource = { revision: b.expectedRevision + 1, profile: b.profile, updatedAt: stamp() };
-    store.mutate(d => { d.sessions[c.owner].profile = resource; }); return { data: resource };
+    (await store.mutate(d => { d.sessions[c.owner].profile = resource; })); return { data: resource };
   });
-  add('POST', '/profile/interpret', requests.profileInterpret, (c, b) => {
-    const old = prior(c, b); if (old) return accepted(c, old);
-    revision(store.session(c.owner).profile.revision, b.expectedRevision); service.requireModel();
+  add('POST', '/profile/interpret', requests.profileInterpret, async (c, b) => {
+    const old = (await prior(c, b)); if (old) return accepted(c, old);
+    revision((await store.session(c.owner)).profile.revision, b.expectedRevision); service.requireModel();
     return submit(c, b, 'profile_proposal', null, signal => service.interpretProfile(c.owner, b, signal));
   });
-  add('POST', '/map/interpret', requests.mapInterpret, (c, b) => {
-    const old = prior(c, b); if (old) return accepted(c, old);
-    contexts.profile(c.owner, b.profileRevision); service.requireModel();
+  add('POST', '/map/interpret', requests.mapInterpret, async (c, b) => {
+    const old = (await prior(c, b)); if (old) return accepted(c, old);
+    (await contexts.profile(c.owner, b.profileRevision)); service.requireModel();
     const ref: ContextRef = { kind: 'map', profileRevision: b.profileRevision, mapRevision: b.mapRevision, selectedCountryIds: b.selectedCountryIds };
     return submit(c, b, 'map_proposal', ref, signal => service.interpretMap(c.owner, b, signal));
   });
-  add('POST', '/map/query', requests.mapQuery, (c, b) => ({ data: contexts.query([{ id: 'self', profile: contexts.profile(c.owner, b.profileRevision) }], b.filters, b.destinationIds, b.page) }));
+  add('POST', '/map/query', requests.mapQuery, async (c, b) => ({ data: contexts.query([{ id: 'self', profile: (await contexts.profile(c.owner, b.profileRevision)) }], b.filters, b.destinationIds, b.page) }));
   add('GET', '/countries/{destinationId}/context', undefined, async c => {
     query(c, ['profileRevision']); const destinationId = country.parse(c.params.destinationId), profileRevision = numericQuery(c, 'profileRevision');
     return { data: await contexts.collect(c.owner, { kind: 'country', profileRevision, destinationId }) };
   });
   add('POST', '/conversations', requests.conversation, async (c, b) => {
-    const context = await contexts.collect(c.owner, b.contextRef); contexts.assert(c.owner, b.contextRef);
+    const context = await contexts.collect(c.owner, b.contextRef); (await contexts.assert(c.owner, b.contextRef));
     const conversation: Conversation = { id: opaque('conv'), revision: 0, contextRef: b.contextRef, contextHash: context.contextHash, messageIds: [], activeJobId: null, createdAt: stamp() };
-    store.put(conversation.id, c.owner, conversation); return { status: 201, data: conversation };
+    (await store.put(conversation.id, c.owner, conversation)); return { status: 201, data: conversation };
   });
-  add('GET', '/conversations/{conversationId}', undefined, c => {
-    query(c, ['cursor', 'limit']); const conversation = resource<Conversation>(c, 'conversationId', 'conv');
+  add('GET', '/conversations/{conversationId}', undefined, async c => {
+    query(c, ['cursor', 'limit']); const conversation = (await resource<Conversation>(c, 'conversationId', 'conv'));
     const limit = c.url.searchParams.get('limit') ?? '20'; if (!/^[1-9]\d*$/.test(limit) || +limit > 50) throw new ApiError(400, 'VALIDATION_ERROR', 'Invalid page limit.');
     let offset = 0; const cursor = c.url.searchParams.get('cursor');
     if (cursor) { try { const value = JSON.parse(Buffer.from(cursor, 'base64url').toString()) as { id: string; offset: number }; if (value.id !== conversation.id || !Number.isSafeInteger(value.offset) || value.offset < 0) throw new Error(); offset = value.offset; } catch { throw new ApiError(400, 'VALIDATION_ERROR', 'Invalid message cursor.'); } }
-    let historical = false; try { contexts.assert(c.owner, conversation.contextRef); } catch { historical = true; }
-    return { data: { ...conversation, historical, messages: conversation.messageIds.slice(offset, offset + +limit).map(id => store.get<Message>(id, c.owner)),
+    let historical = false; try { (await contexts.assert(c.owner, conversation.contextRef)); } catch { historical = true; }
+    return { data: { ...conversation, historical, messages: (await Promise.all(conversation.messageIds.slice(offset, offset + +limit).map(async id => (await store.get<Message>(id, c.owner))))),
       nextCursor: offset + +limit < conversation.messageIds.length ? Buffer.from(JSON.stringify({ id: conversation.id, offset: offset + +limit })).toString('base64url') : null } };
   });
-  add('POST', '/conversations/{conversationId}/messages', requests.message, (c, b) => {
-    const old = prior(c, b); if (old) return accepted(c, old);
-    const conv = resource<Conversation>(c, 'conversationId', 'conv'), clientKey = `client_${hash([c.owner, conv.id, b.clientMessageId])}`;
-    const duplicate = store.data.resources[clientKey]?.value as { hash: string; jobId: string } | undefined;
-    if (duplicate) { if (duplicate.hash !== hash(b)) throw new ApiError(409, 'IDEMPOTENCY_CONFLICT', 'Client message ID was reused with different content.'); return accepted(c, jobs.get(duplicate.jobId, c.owner)); }
-    contexts.assert(c.owner, b.contextRef); if (hash(conv.contextRef) !== hash(b.contextRef)) throw new ApiError(409, 'CONTEXT_CHANGED', 'Start a conversation for this context.');
-    if (conv.activeJobId && ['queued', 'running'].includes(store.data.jobs[conv.activeJobId]?.value.status)) throw new ApiError(409, 'CONVERSATION_BUSY', 'Wait for the current conversation answer.');
+  add('POST', '/conversations/{conversationId}/messages', requests.message, async (c, b) => {
+    const old = (await prior(c, b)); if (old) return accepted(c, old);
+    const conv = (await resource<Conversation>(c, 'conversationId', 'conv')), clientKey = `client_${hash([c.owner, conv.id, b.clientMessageId])}`;
+    const duplicate = (await store.read()).resources[clientKey]?.value as { hash: string; jobId: string } | undefined;
+    if (duplicate) { if (duplicate.hash !== hash(b)) throw new ApiError(409, 'IDEMPOTENCY_CONFLICT', 'Client message ID was reused with different content.'); return accepted(c, (await jobs.get(duplicate.jobId, c.owner))); }
+    (await contexts.assert(c.owner, b.contextRef)); if (hash(conv.contextRef) !== hash(b.contextRef)) throw new ApiError(409, 'CONTEXT_CHANGED', 'Start a conversation for this context.');
+    if (conv.activeJobId && ['queued', 'running'].includes((await store.read()).jobs[conv.activeJobId]?.value.status)) throw new ApiError(409, 'CONVERSATION_BUSY', 'Wait for the current conversation answer.');
     revision(conv.revision, b.expectedConversationRevision); if (b.intent !== 'checklist') service.requireModel();
     if (conv.messageIds.length >= 200) throw new ApiError(429, 'RATE_LIMITED', 'Start a new conversation; this history is full.');
-    if ('sourceMessageId' in b) { const source = service.sourceMessage(c.owner, b.sourceMessageId); if (source.role !== 'assistant' || hash(source.contextRef) !== hash(b.contextRef)) throw new ApiError(422, 'INVALID_EVIDENCE_SELECTION', 'Select a source answer in this context.'); }
+    if ('sourceMessageId' in b) { const source = (await service.sourceMessage(c.owner, b.sourceMessageId)); if (source.role !== 'assistant' || hash(source.contextRef) !== hash(b.contextRef)) throw new ApiError(422, 'INVALID_EVIDENCE_SELECTION', 'Select a source answer in this context.'); }
     return submit(c, b, 'message', b.contextRef, (signal, stage) => service.message(c.owner, conv.id, b, signal, stage), (d, job) => {
       const message: Message = { id: opaque('msg'), role: 'user', text: b.text ?? b.intent, cards: [], claims: [], evidenceIds: [], questions: [], actions: [], contextRef: b.contextRef, contextHash: conv.contextHash, createdAt: stamp(), warnings: [] };
       const expires = Date.parse(d.sessions[c.owner].expiresAt);
@@ -116,66 +116,66 @@ export function createAssistantHandler(options: AssistantOptions = {}) {
       const saved = d.resources[conv.id].value as Conversation; saved.revision++; saved.messageIds.push(message.id); saved.activeJobId = job.id;
     });
   });
-  add('POST', '/research', requests.research, (c, b) => {
-    const old = prior(c, b); if (old) return accepted(c, old);
-    contexts.assert(c.owner, b.contextRef); service.requireModel();
-    if (b.contextRef.kind === 'map' || b.contextRef.kind === 'group' && (!b.contextRef.destinationId || !('travellerId' in b) || !contexts.trip(c.owner, b.contextRef.tripId).trip.travellers.some(t => t.id === b.travellerId))) throw new ApiError(422, 'UNSUPPORTED_CONTEXT', 'Research requires one country and a valid group traveller.');
+  add('POST', '/research', requests.research, async (c, b) => {
+    const old = (await prior(c, b)); if (old) return accepted(c, old);
+    (await contexts.assert(c.owner, b.contextRef)); service.requireModel();
+    if (b.contextRef.kind === 'map' || b.contextRef.kind === 'group' && (!b.contextRef.destinationId || !('travellerId' in b) || !(await contexts.trip(c.owner, b.contextRef.tripId)).trip.travellers.some(t => t.id === b.travellerId))) throw new ApiError(422, 'UNSUPPORTED_CONTEXT', 'Research requires one country and a valid group traveller.');
     return submit(c, b, 'research', b.contextRef, (signal, stage) => service.research(c.owner, b.contextRef, b.question, b.refresh, 'travellerId' in b ? b.travellerId : undefined, signal, stage));
   });
-  add('GET', '/evidence/{evidenceId}', undefined, c => ({ data: resource<Evidence>(c, 'evidenceId', 'ev') }));
-  add('GET', '/jobs/{jobId}', undefined, c => ({ data: jobs.get(c.params.jobId, c.owner) }));
-  add('DELETE', '/jobs/{jobId}', undefined, c => { jobs.cancel(c.params.jobId, c.owner); return { status: 204 }; });
-  add('POST', '/explanations', requests.explanation, (c, b) => {
-    const old = prior(c, b); if (old) return accepted(c, old); service.requireModel();
+  add('GET', '/evidence/{evidenceId}', undefined, async c => ({ data: (await resource<Evidence>(c, 'evidenceId', 'ev')) }));
+  add('GET', '/jobs/{jobId}', undefined, async c => ({ data: (await jobs.get(c.params.jobId, c.owner)) }));
+  add('DELETE', '/jobs/{jobId}', undefined, async c => { (await jobs.cancel(c.params.jobId, c.owner)); return { status: 204 }; });
+  add('POST', '/explanations', requests.explanation, async (c, b) => {
+    const old = (await prior(c, b)); if (old) return accepted(c, old); service.requireModel();
     return submit(c, b, 'explanation', null, signal => service.explanation(c.owner, b, signal));
   });
-  add('POST', '/trips', requests.trip, (c, b) => {
-    const trip: TripResource = { id: opaque('trip'), revision: 1, trip: b, createdAt: stamp(), updatedAt: stamp() }; store.put(trip.id, c.owner, trip); return { status: 201, data: trip };
+  add('POST', '/trips', requests.trip, async (c, b) => {
+    const trip: TripResource = { id: opaque('trip'), revision: 1, trip: b, createdAt: stamp(), updatedAt: stamp() }; (await store.put(trip.id, c.owner, trip)); return { status: 201, data: trip };
   });
-  add('GET', '/trips/{tripId}', undefined, c => ({ data: resource<TripResource>(c, 'tripId', 'trip') }));
-  add('PUT', '/trips/{tripId}', requests.tripPut, (c, b) => {
-    const current = resource<TripResource>(c, 'tripId', 'trip'); revision(current.revision, b.expectedRevision); jobs.supersede(c.owner, current.id);
-    const trip = { ...current, trip: b.trip, revision: current.revision + 1, updatedAt: stamp() }; store.put(current.id, c.owner, trip); return { data: trip };
+  add('GET', '/trips/{tripId}', undefined, async c => ({ data: (await resource<TripResource>(c, 'tripId', 'trip')) }));
+  add('PUT', '/trips/{tripId}', requests.tripPut, async (c, b) => {
+    const current = (await resource<TripResource>(c, 'tripId', 'trip')); revision(current.revision, b.expectedRevision); (await jobs.supersede(c.owner, current.id));
+    const trip = { ...current, trip: b.trip, revision: current.revision + 1, updatedAt: stamp() }; (await store.put(current.id, c.owner, trip)); return { data: trip };
   });
-  add('DELETE', '/trips/{tripId}', undefined, c => { const trip = resource<TripResource>(c, 'tripId', 'trip'); jobs.supersede(c.owner, trip.id); store.remove(trip.id, c.owner); return { status: 204 }; });
-  add('POST', '/trips/{tripId}/destinations/query', requests.groupQuery, (c, b) => {
-    const t = contexts.trip(c.owner, c.params.tripId, b.tripRevision);
+  add('DELETE', '/trips/{tripId}', undefined, async c => { const trip = (await resource<TripResource>(c, 'tripId', 'trip')); (await jobs.supersede(c.owner, trip.id)); (await store.remove(trip.id, c.owner)); return { status: 204 }; });
+  add('POST', '/trips/{tripId}/destinations/query', requests.groupQuery, async (c, b) => {
+    const t = (await contexts.trip(c.owner, c.params.tripId, b.tripRevision));
     return { data: contexts.query(t.trip.travellers.map((person, i) => ({ id: person.id, profile: contexts.groupProfile(t, i) })), b.filters, b.destinationIds, b.page, true) };
   });
   add('GET', '/trips/{tripId}/countries/{destinationId}/context', undefined, async c => {
     query(c, ['tripRevision']); const tripRevision = numericQuery(c, 'tripRevision'), destinationId = country.parse(c.params.destinationId);
     return { data: await contexts.collect(c.owner, { kind: 'group', tripId: c.params.tripId, tripRevision, destinationId }) };
   });
-  add('POST', '/trips/{tripId}/enrichment', requests.enrichment, (c, b) => {
-    const old = prior(c, b); if (old) return accepted(c, old); const t = contexts.trip(c.owner, c.params.tripId, b.tripRevision);
+  add('POST', '/trips/{tripId}/enrichment', requests.enrichment, async (c, b) => {
+    const old = (await prior(c, b)); if (old) return accepted(c, old); const t = (await contexts.trip(c.owner, c.params.tripId, b.tripRevision));
     if (b.travellerIds.some(id => !t.trip.travellers.some(t => t.id === id))) throw new ApiError(400, 'VALIDATION_ERROR', 'Unknown traveller.');
     const ref: ContextRef = { kind: 'group', tripId: t.id, tripRevision: b.tripRevision, destinationId: null };
     return submit(c, b, 'enrichment', ref, (signal, stage) => service.enrich(c.owner, t.id, b, signal, stage));
   });
-  add('POST', '/checklists', requests.checklist, (c, b) => {
-    const old = prior(c, b); if (old) return accepted(c, old); contexts.assert(c.owner, b.contextRef); selection(b.contextRef, b.destinationIds);
-    return submit(c, b, 'checklist', b.contextRef, async () => contexts.checklist(c.owner, b.contextRef, b.destinationIds));
+  add('POST', '/checklists', requests.checklist, async (c, b) => {
+    const old = (await prior(c, b)); if (old) return accepted(c, old); (await contexts.assert(c.owner, b.contextRef)); selection(b.contextRef, b.destinationIds);
+    return submit(c, b, 'checklist', b.contextRef, async () => (await contexts.checklist(c.owner, b.contextRef, b.destinationIds)));
   });
-  add('POST', '/briefs', requests.brief, (c, b) => {
-    const old = prior(c, b); if (old) return accepted(c, old); contexts.assert(c.owner, b.contextRef); selection(b.contextRef, b.destinationIds);
+  add('POST', '/briefs', requests.brief, async (c, b) => {
+    const old = (await prior(c, b)); if (old) return accepted(c, old); (await contexts.assert(c.owner, b.contextRef)); selection(b.contextRef, b.destinationIds);
     return submit(c, b, 'brief', b.contextRef, signal => service.brief(c.owner, b, signal));
   });
-  add('GET', '/briefs/{briefId}', undefined, c => {
-    const b = resource<Brief>(c, 'briefId', 'brief'); let staleContext = false; try { contexts.assert(c.owner, b.contextRef); } catch { staleContext = true; }
+  add('GET', '/briefs/{briefId}', undefined, async c => {
+    const b = (await resource<Brief>(c, 'briefId', 'brief')); let staleContext = false; try { (await contexts.assert(c.owner, b.contextRef)); } catch { staleContext = true; }
     return { data: { ...b, staleContext } };
   });
-  add('GET', '/briefs/{briefId}/export', undefined, c => {
-    query(c, ['format']); const b = resource<Brief>(c, 'briefId', 'brief'), format = c.url.searchParams.get('format');
+  add('GET', '/briefs/{briefId}/export', undefined, async c => {
+    query(c, ['format']); const b = (await resource<Brief>(c, 'briefId', 'brief')), format = c.url.searchParams.get('format');
     if (format !== 'markdown' && format !== 'json') throw new ApiError(400, 'VALIDATION_ERROR', 'Format must be markdown or json.');
-    const evidence = b.evidenceIds.map(id => { try { return store.get<Evidence>(id, c.owner); } catch { return { id, unavailable: true }; } });
-    let staleContext = false; try { contexts.assert(c.owner, b.contextRef); } catch { staleContext = true; }
+    const evidence = (await Promise.all(b.evidenceIds.map(async id => { try { return (await store.get<Evidence>(id, c.owner)); } catch { return { id, unavailable: true }; } })));
+    let staleContext = false; try { (await contexts.assert(c.owner, b.contextRef)); } catch { staleContext = true; }
     c.response.setHeader('Content-Disposition', `attachment; filename="${b.id}.${format === 'json' ? 'json' : 'md'}"`);
     const escape = (s: string) => s.replace(/[<>&\[\]`*_#]/g, c => `\\${c}`);
     return { raw: format === 'json' ? JSON.stringify({ ...b, staleContext, evidence }, null, 2) :
       `# Travel brief\n\nCreated: ${b.createdAt}\n\nStale context: ${staleContext}\n\n${b.sections.map(s => `## ${escape(s.title)}\n\n${escape(s.text)}`).join('\n\n')}\n\n## Gaps\n\n${b.gaps.map(escape).join('\n\n')}\n\n## Evidence and provenance\n\n${escape(JSON.stringify(evidence, null, 2))}\n\n## Preparation\n\n${escape(JSON.stringify(b.checklist, null, 2))}`,
       contentType: format === 'json' ? 'application/json' : 'text/markdown; charset=utf-8' };
   });
-  add('DELETE', '/briefs/{briefId}', undefined, c => { const b = resource<Brief>(c, 'briefId', 'brief'); store.remove(b.id, c.owner); return { status: 204 }; });
+  add('DELETE', '/briefs/{briefId}', undefined, async c => { const b = (await resource<Brief>(c, 'briefId', 'brief')); (await store.remove(b.id, c.owner)); return { status: 204 }; });
 
   let lastPurge = 0;
   const handler = async (request: IncomingMessage, response: ServerResponse) => {
@@ -191,9 +191,9 @@ export function createAssistantHandler(options: AssistantOptions = {}) {
       }
       const route = endpoints.find(r => r.method === request.method && r.match.test(path));
       if (!route) throw new ApiError(404, 'NOT_FOUND', 'Endpoint not found.');
-      if (Date.now() - lastPurge > 60_000) { store.purge(); lastPurge = Date.now(); }
+      if (Date.now() - lastPurge > 60_000) { (await store.purge()); lastPurge = Date.now(); }
       const bootstrap = path === '/sessions' && request.method === 'POST', publicRead = path === '/capabilities' && request.method === 'GET';
-      const session = bootstrap || publicRead ? null : store.session(cookie(request));
+      const session = bootstrap || publicRead ? null : (await store.session(cookie(request)));
       if (!['GET', 'HEAD'].includes(request.method ?? '')) {
         if (!origin) throw new ApiError(403, 'ORIGIN_REJECTED', 'An allowed Origin is required.');
         if (!bootstrap && (!session || !equal(request.headers['x-csrf-token'], session.csrfToken))) throw new ApiError(403, 'CSRF_REJECTED', 'Invalid CSRF token.');
@@ -207,7 +207,12 @@ export function createAssistantHandler(options: AssistantOptions = {}) {
         body = route.schema.parse(body);
       }
       const c: RequestContext = { owner: session?.sessionId ?? '', url, params: route.match.exec(path)?.groups ?? {}, key: typeof request.headers['idempotency-key'] === 'string' ? request.headers['idempotency-key'] : '', request, response };
-      const reply = await route.handler(c, body);
+      const reply = await store.atomic(async () => {
+        if (!bootstrap && !publicRead) await store.session(c.owner);
+        return route.handler(c, body);
+      });
+      // The outbox reservation is committed before dispatch. Polling retries a failed dispatch.
+      if (!publicRead) await options.afterCommit?.().catch(() => {});
       if (reply.status === 204) { response.writeHead(204); response.end(); }
       else if (reply.raw !== undefined) { response.writeHead(reply.status ?? 200, { 'Content-Type': reply.contentType ?? 'text/plain' }); response.end(reply.raw); }
       else {

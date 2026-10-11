@@ -18,6 +18,7 @@ why a choice was made.
 | [0007](0007-local-groq-research.md) | Accepted | Local Groq Browser Search through a server endpoint and optional Country Notebook action. |
 | [0008](0008-travel-buddy-destination-enrichment.md) | Accepted; implemented | Local map and model calculations with cached Travel Buddy destination enrichment. |
 | [0009](0009-backend-map-assistant.md) | Accepted; backend implemented | Local map/country assistant and group planner services; frontend deferred. |
+| [0010](0010-vercel-full-app.md) | Accepted; configured locally | Full Vercel application runtime and Marketplace Postgres, production branch main. |
 
 ## Adding or superseding a record
 

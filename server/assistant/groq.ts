@@ -1,4 +1,4 @@
-import { ApiError, AssistantStore } from './store';
+import { ApiError, type AssistantStorage } from './store';
 import type { Schema } from '../../src/shared/assistant/schema';
 
 type Payload = { choices?: Array<{ message?: { content?: unknown; annotations?: unknown[]; executed_tools?: unknown[] } }>; usage?: Record<string, unknown>; [key: string]: unknown };
@@ -76,23 +76,24 @@ export function extractSources(payload: Payload): SearchResult['sources'] {
 }
 export class GroqModel implements Model {
   configured: boolean; model: string;
-  constructor(private store: AssistantStore, private options: { apiKey?: string; model?: string; fetchImpl?: typeof fetch; dailyTokens?: number; dailySearches?: number; timeoutMs?: number } = {}) {
+  constructor(private store: AssistantStorage, private options: { apiKey?: string; model?: string; fetchImpl?: typeof fetch; dailyTokens?: number; dailySearches?: number; timeoutMs?: number } = {}) {
     this.configured = !!(options.apiKey ?? process.env.GROQ_API_KEY)?.trim(); this.model = options.model ?? process.env.GROQ_ASSISTANT_MODEL ?? 'openai/gpt-oss-120b';
   }
   private async call(prompt: string, signal: AbortSignal, schema?: Schema): Promise<Payload> {
     if (!this.configured) throw new ApiError(503, 'MODEL_UNAVAILABLE', 'Configure GROQ_API_KEY on the server.');
-    if (this.store.data.providerCooldownUntil > Date.now()) throw new ApiError(429, 'RATE_LIMITED', 'Groq is cooling down after a rate limit.', true);
+    if ((await this.store.read()).providerCooldownUntil > Date.now()) throw new ApiError(429, 'RATE_LIMITED', 'Groq is cooling down after a rate limit.', true);
     if (prompt.length > 28_000) throw new ApiError(422, 'UNSUPPORTED_CONTEXT', 'Selected context is too large; narrow the selection.');
     signal.throwIfAborted();
     const day = new Date().toISOString().slice(0, 10), search = !schema;
     // Conservative reservation is retained on failure; actual usage is also persisted.
     const reservation = search ? 65_536 : 12_000;
-    this.store.mutate(d => {
+    (await this.store.mutate(d => {
+      if(d.providerCooldownUntil>Date.now()) throw new ApiError(429,'RATE_LIMITED','Groq is cooling down after a rate limit.',true);
       const b = d.budgets[day] ??= { tokens: 0, searches: 0, calls: 0, actualTokens: 0 };
       if (b.tokens + reservation > allowance(this.options.dailyTokens ?? process.env.ASSISTANT_DAILY_TOKEN_BUDGET, 500_000) ||
         (search && b.searches + 1 > allowance(this.options.dailySearches ?? process.env.ASSISTANT_DAILY_SEARCH_BUDGET, 10))) throw new ApiError(429, 'BUDGET_EXHAUSTED', 'Server assistant allowance is exhausted.', true);
       b.tokens += reservation; b.searches += search ? 1 : 0; b.calls++;
-    });
+    }));
     let response: Response;
     try {
       response = await (this.options.fetchImpl ?? fetch)('https://api.groq.com/openai/v1/chat/completions', {
@@ -105,7 +106,7 @@ export class GroqModel implements Model {
     } catch { throw new ApiError(503, 'UPSTREAM_TIMEOUT', 'Groq request did not complete within its deadline.', true); }
     if (!response.ok) {
       if (response.status === 429) { const seconds = Number(response.headers.get('retry-after'));
-        this.store.mutate(d => { d.providerCooldownUntil = Date.now() + (Number.isFinite(seconds) && seconds > 0 ? Math.min(seconds, 3600) : 60) * 1000; }); }
+        (await this.store.mutate(d => { d.providerCooldownUntil = Date.now() + (Number.isFinite(seconds) && seconds > 0 ? Math.min(seconds, 3600) : 60) * 1000; })); }
       throw new ApiError(response.status === 429 ? 429 : 503, response.status === 429 ? 'RATE_LIMITED' : response.status === 400 ? 'INVALID_MODEL_OUTPUT' : 'MODEL_UNAVAILABLE', response.status === 400 ? 'Groq rejected the assistant response schema.' : 'Groq rejected or could not complete the request.', response.status !== 400);
     }
     let payload: Payload;
@@ -113,9 +114,9 @@ export class GroqModel implements Model {
       const text = await response.text(); if (text.length > 500_000) throw new Error(); payload = JSON.parse(text) as Payload;
     } catch { throw new ApiError(503, 'INVALID_MODEL_OUTPUT', 'Groq returned an invalid response.'); }
     const tokens = payload.usage?.total_tokens;
-    this.store.mutate(d => { if (typeof tokens === 'number' && Number.isFinite(tokens) && tokens >= 0) {
+    (await this.store.mutate(d => { if (typeof tokens === 'number' && Number.isFinite(tokens) && tokens >= 0) {
       d.budgets[day].actualTokens += tokens; d.budgets[day].tokens += Math.max(0, tokens - reservation);
-    } });
+    } }));
     return payload;
   }
   async generate<T>(schema: Schema<T>, prompt: string, signal: AbortSignal): Promise<T> {

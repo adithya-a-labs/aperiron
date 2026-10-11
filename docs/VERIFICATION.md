@@ -1,5 +1,15 @@
 # Verification guide
 
+## Hosted runtime
+
+`server/deployment.test.ts` uses embedded Postgres to verify instance sharing,
+ownership, concurrent revisions, rollback, durable job inputs/outbox, cancellation,
+shared provider budgets/leases, quota persistence and serialized checklist work.
+`npm run build:vercel` verifies compilation of API and Workflow functions alongside
+static assets. Follow [deployment acceptance checks](DEPLOYMENT.md#verification-before-production-use)
+against a connected preview project before production use; local tests do not
+verify cloud Workflow execution or live provider credentials.
+
 ## Evidence standard
 
 Verify observable behavior and meaningful invariants. Record the command or manual

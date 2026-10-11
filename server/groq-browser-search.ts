@@ -121,7 +121,7 @@ function sendJson(response: ServerResponse, status: number, body: unknown) {
   response.end(JSON.stringify(body));
 }
 
-export function createResearchHandler(options: { fetchImpl?: typeof fetch; apiKey?: string } = {}) {
+export function createResearchHandler(options: { fetchImpl?: typeof fetch; apiKey?: string; beforeCall?: () => Promise<void>; onCooldown?: (seconds: number) => Promise<void> } = {}) {
   let retryAt = 0;
   return async (request: IncomingMessage, response: ServerResponse) => {
   if (request.method !== "POST" || request.url !== "/api/groq-research") {
@@ -134,9 +134,11 @@ export function createResearchHandler(options: { fetchImpl?: typeof fetch; apiKe
       const remaining = Math.ceil((retryAt - Date.now()) / 1000);
       throw new ResearchServiceError(429, `Groq's research allowance is temporarily exhausted. Try again in ${Math.ceil(remaining / 60)} minute(s).`, remaining);
     }
+    await options.beforeCall?.();
     const research = await researchWithGroq(selection, options.fetchImpl, options.apiKey);
     sendJson(response, 200, research);
   } catch (error) {
+    if (error instanceof ResearchServiceError && error.retryAfter > 0) await options.onCooldown?.(error.retryAfter).catch(() => {});
     if (error instanceof ResearchServiceError && error.status === 429) {
       retryAt = Math.max(retryAt, Date.now() + error.retryAfter * 1000);
       response.setHeader('Retry-After', String(error.retryAfter));

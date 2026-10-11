@@ -1,9 +1,9 @@
 {
   "openapi": "3.1.0",
   "info": {
-    "title": "aperiron local assistant backend",
+    "title": "aperiron assistant backend",
     "version": "1.0.0",
-    "description": "Single-process local backend. All research unreviewed. Eight-method engine and legacy HTTP APIs unchanged."
+    "description": "Local file storage or deployed Postgres and durable workflows. All research unreviewed. Eight-method engine and legacy HTTP APIs unchanged."
   },
   "servers": [
     {
@@ -849,7 +849,7 @@
         },
         "responses": {
           "202": {
-            "description": "Accepted job. Poll Location; polling never dispatches providers.",
+            "description": "Accepted job. Poll Location; durable scheduling may recover pending work during polling.",
             "content": {
               "application/json": {
                 "schema": {
@@ -1020,7 +1020,7 @@
         },
         "responses": {
           "202": {
-            "description": "Accepted job. Poll Location; polling never dispatches providers.",
+            "description": "Accepted job. Poll Location; durable scheduling may recover pending work during polling.",
             "content": {
               "application/json": {
                 "schema": {
@@ -1803,7 +1803,7 @@
         },
         "responses": {
           "202": {
-            "description": "Accepted job. Poll Location; polling never dispatches providers.",
+            "description": "Accepted job. Poll Location; durable scheduling may recover pending work during polling.",
             "content": {
               "application/json": {
                 "schema": {
@@ -1974,7 +1974,7 @@
         },
         "responses": {
           "202": {
-            "description": "Accepted job. Poll Location; polling never dispatches providers.",
+            "description": "Accepted job. Poll Location; durable scheduling may recover pending work during polling.",
             "content": {
               "application/json": {
                 "schema": {
@@ -2545,7 +2545,7 @@
         },
         "responses": {
           "202": {
-            "description": "Accepted job. Poll Location; polling never dispatches providers.",
+            "description": "Accepted job. Poll Location; durable scheduling may recover pending work during polling.",
             "content": {
               "application/json": {
                 "schema": {
@@ -3617,7 +3617,7 @@
         },
         "responses": {
           "202": {
-            "description": "Accepted job. Poll Location; polling never dispatches providers.",
+            "description": "Accepted job. Poll Location; durable scheduling may recover pending work during polling.",
             "content": {
               "application/json": {
                 "schema": {
@@ -3788,7 +3788,7 @@
         },
         "responses": {
           "202": {
-            "description": "Accepted job. Poll Location; polling never dispatches providers.",
+            "description": "Accepted job. Poll Location; durable scheduling may recover pending work during polling.",
             "content": {
               "application/json": {
                 "schema": {
@@ -3959,7 +3959,7 @@
         },
         "responses": {
           "202": {
-            "description": "Accepted job. Poll Location; polling never dispatches providers.",
+            "description": "Accepted job. Poll Location; durable scheduling may recover pending work during polling.",
             "content": {
               "application/json": {
                 "schema": {

@@ -16,16 +16,16 @@ for (const failAt of [2, 3]) {
       return original(fn);
     };
     const jobs = new Jobs(store), key = randomUUID();
-    const job = jobs.submit(owner, '/synthetic', key, {}, 'brief', null, async () => { calls++; return { saved: false }; });
+    const job = await jobs.submit(owner, '/synthetic', key, {}, 'brief', null, async () => { calls++; return { saved: false }; });
     await setImmediate();
-    const failed = jobs.get(job.id, owner);
+    const failed = await jobs.get(job.id, owner);
     assert.equal(failed.status, 'failed'); assert.equal(failed.error?.code, 'SERVICE_UNAVAILABLE');
     assert.equal(failed.result, null, 'An unsaved result must never be published');
     assert.equal(calls, failAt === 2 ? 0 : 1);
-    assert.equal(jobs.prior(owner, '/synthetic', key, {})?.id, job.id, 'Retain idempotency; never replay accepted work');
+    assert.equal((await jobs.prior(owner, '/synthetic', key, {}))?.id, job.id, 'Retain idempotency; never replay accepted work');
     store.mutate = original;
-    const recovered = jobs.submit(owner, '/synthetic', randomUUID(), {}, 'brief', null, async () => 'recovered');
+    const recovered = await jobs.submit(owner, '/synthetic', randomUUID(), {}, 'brief', null, async () => 'recovered');
     await setImmediate();
-    assert.equal(jobs.get(recovered.id, owner).status, 'completed', 'Failed persistence must release the queue slot');
+    assert.equal((await jobs.get(recovered.id, owner)).status, 'completed', 'Failed persistence must release the queue slot');
   });
 }

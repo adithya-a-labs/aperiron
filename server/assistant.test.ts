@@ -192,10 +192,10 @@ test('research caches exact scopes, keeps source discovery unreviewed, and restr
 
 test('restart preserves idempotency and fails interrupted work without re-dispatch', async t => {
   const f = await fixture(t), owner = Object.keys(f.store.data.sessions)[0], queue = new Jobs(f.store, { concurrency: 0 });
-  const key = randomUUID(), b = { arbitrary: 'test' }; queue.submit(owner, '/test', key, b, 'research', countryRef, async () => { throw new Error('must not dispatch'); });
-  const restarted = new AssistantStore(join(f.dir, 'assistant.json')), resumed = new Jobs(restarted).prior(owner, '/test', key, b);
+  const key = randomUUID(), b = { arbitrary: 'test' }; await queue.submit(owner, '/test', key, b, 'research', countryRef, async () => { throw new Error('must not dispatch'); });
+  const restarted = new AssistantStore(join(f.dir, 'assistant.json')), resumed = await new Jobs(restarted).prior(owner, '/test', key, b);
   assert.equal(resumed?.status, 'failed'); assert.equal(resumed?.error?.code, 'INTERRUPTED');
-  assert.throws(() => new Jobs(restarted).prior(owner, '/test', key, { changed: true }), ApiError);
+  await assert.rejects(() => new Jobs(restarted).prior(owner, '/test', key, { changed: true }), ApiError);
   await writeFile(join(f.dir, 'bad.json'), '{broken'); assert.throws(() => new AssistantStore(join(f.dir, 'bad.json')), ApiError);
 });
 
@@ -291,8 +291,8 @@ test('map pagination is scoped to its filters; group access does not label a vis
 
 test('queue saturation, invalid output and unavailable configuration do not dispatch extra calls', async t => {
   const f = await fixture(t), queue = new Jobs(f.store, { concurrency: 0, queueLimit: 1, rate: 100 }), owner = Object.keys(f.store.data.sessions)[0];
-  queue.submit(owner, '/test', randomUUID(), {}, 'research', countryRef, async () => null);
-  assert.throws(() => queue.submit(owner, '/test', randomUUID(), {}, 'research', countryRef, async () => null), (e: unknown) => e instanceof ApiError && e.code === 'QUEUE_FULL');
+  await queue.submit(owner, '/test', randomUUID(), {}, 'research', countryRef, async () => null);
+  await assert.rejects(() => queue.submit(owner, '/test', randomUUID(), {}, 'research', countryRef, async () => null), (e: unknown) => e instanceof ApiError && e.code === 'QUEUE_FULL');
   f.model.configured = false;
   assert.equal((await f.call('POST', '/profile/interpret', { expectedRevision: 1, text: 'Tourism' }, { 'Idempotency-Key': randomUUID() })).status, 503);
   const bad = new GroqModel(new AssistantStore(null), { apiKey: 'test', fetchImpl: async () => Response.json({ choices: [{ message: { content: '{invalid' } }] }) });

@@ -192,6 +192,13 @@ branch contains the work rather than claiming the whole project is synchronized.
 
 ### Travel Buddy destination enrichment
 
+For the hosted runtime, follow [Vercel deployment](DEPLOYMENT.md). Use npm and
+`package-lock.json`; production uses managed Postgres and Workflow. The file/cache
+instructions below describe local development without a database connection.
+`npm run travel:import` targets Postgres when a database URL is present; it does
+not initialize production allowance. Reconcile that explicitly with
+`npm run db:travel-quota -- --remaining N --limit 120` after migrations.
+
 `npm run dev` and `npm run preview` serve the local details routes alongside the
 frontend. `npm run server` serves both Travel Buddy and Groq routes only, on
 API_SERVER_PORT or GROQ_SERVER_PORT (default 8787); an independently hosted frontend

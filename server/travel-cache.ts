@@ -4,7 +4,17 @@ import { randomUUID } from 'node:crypto';
 import { isTravelDetails, travelKey, type TravelDetails } from '../src/shared/travelDetails';
 
 export interface QuotaState { remaining: number; limit: number; resetAt: number; blocked: boolean; retryAt: number; authTag?: string; initialized?: boolean }
-interface DiskCache { version: 1; entries: Record<string, TravelDetails>; quota: QuotaState }
+export interface DiskCache { version: 1; entries: Record<string, TravelDetails>; quota: QuotaState }
+export interface TravelStorage {
+  read(passport: string, destination?: string): Promise<TravelDetails[]>;
+  quota(): Promise<QuotaState>;
+  mutate(update: (next: DiskCache) => void): Promise<void>;
+  put(entry: TravelDetails): Promise<void>;
+  remember(entry: TravelDetails): Promise<boolean>;
+  acquire?(key: string, limit: number): Promise<string | null>;
+  release?(key: string, token: string): Promise<void>;
+  inFlight?(): Promise<number>;
+}
 export class TravelCache {
   private data: DiskCache;
   private ready: Promise<void>;

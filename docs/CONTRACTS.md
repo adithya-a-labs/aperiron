@@ -1,5 +1,10 @@
 # Shared contract specification
 
+Deployment uses asynchronous internal storage/context/job methods so Postgres can
+replace local files. Existing public assistant request/response schemas and the
+eight-method engine contract remain unchanged. Durable job dispatch/recovery,
+shared quota and session expiry are described in [deployment](DEPLOYMENT.md).
+
 ## Status and source of truth
 
 The backend assistant implements 30 versioned operations for map actions, country

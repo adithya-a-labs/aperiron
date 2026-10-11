@@ -90,7 +90,7 @@ export class AssistantClient {
     } catch (error) {
       if (options.signal?.aborted) throw error;
       throw new AssistantError(
-        "The local trip service could not be reached. Check the server and try again.",
+        "The trip service could not be reached. Please try again.",
       );
     }
     if (response.status === 204) return undefined as T;
@@ -202,7 +202,8 @@ export class AssistantClient {
       }).catch(() => {});
     };
     signal.addEventListener("abort", cancel, { once: true });
-    const deadline = Date.now() + 120000;
+    const deadline = Date.now() + 240000;
+    let pollInterval = 1000;
     try {
       for (;;) {
         signal.throwIfAborted();
@@ -228,10 +229,11 @@ export class AssistantClient {
           const timer = setTimeout(() => {
             signal.removeEventListener("abort", abort);
             resolve();
-          }, 600);
+          }, pollInterval);
           signal.addEventListener("abort", abort, { once: true });
         });
         job = await this.request(`/jobs/${job.id}`, responses.job, { signal });
+        pollInterval = Math.min(3000, pollInterval + 500);
       }
     } finally {
       signal.removeEventListener("abort", cancel);

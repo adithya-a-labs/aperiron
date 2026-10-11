@@ -1,6 +1,7 @@
 import { existsSync, mkdirSync, readFileSync, renameSync, writeFileSync, unlinkSync } from 'node:fs';
 import { dirname } from 'node:path';
 import { createHash, randomUUID } from 'node:crypto';
+import { AsyncLocalStorage } from 'node:async_hooks';
 import type { ContextRef, Profile, Trip } from '../../src/shared/assistant/schemas';
 import { profile as profileSchema } from '../../src/shared/assistant/schemas';
 
@@ -25,17 +26,41 @@ export interface Job {
   contextRef: ContextRef | null; result: unknown; error: { code: string; message: string; retryable: boolean } | null;
   createdAt: string; expiresAt: string;
 }
-interface Idempotency { hash: string; jobId: string; expires: number }
+export interface Idempotency { hash: string; jobId: string; expires: number }
+export interface JobInput { route: string; body: unknown; owner: string; deadlineMs: number; startedAt?: number }
 export interface StoreData {
   version: 1; sessions: Record<string, Session>; resources: Record<string, Owned>;
   jobs: Record<string, Owned<Job>>; idempotency: Record<string, Idempotency>;
   budgets: Record<string, { tokens: number; searches: number; calls: number; actualTokens: number }>;
   providerCooldownUntil: number;
+  inputs?: Record<string, JobInput>;
 }
-const empty = (): StoreData => ({ version: 1, sessions: {}, resources: {}, jobs: {}, idempotency: {}, budgets: {}, providerCooldownUntil: 0 });
+export const empty = (): StoreData => ({ version: 1, sessions: {}, resources: {}, jobs: {}, idempotency: {}, budgets: {}, providerCooldownUntil: 0, inputs: {} });
+type MaybePromise<T> = T | Promise<T>;
+export interface AssistantStorage {
+  read(): MaybePromise<StoreData>;
+  mutate<T>(fn: (data: StoreData) => T): MaybePromise<T>;
+  session(id: string | undefined): MaybePromise<Session>;
+  get<T>(id: string, owner: string): MaybePromise<T>;
+  put<T>(id: string, owner: string, value: T): MaybePromise<T>;
+  remove(id: string, owner: string): MaybePromise<void>;
+  purge(): MaybePromise<void>;
+  atomic<T>(fn: () => Promise<T>): Promise<T>;
+  newSessionId(): string;
+  queuedCount?(): Promise<number>;
+}
 /** One process per directory. Mutations are synchronous and atomically persisted before dispatch. */
 export class AssistantStore {
   data: StoreData;
+  private transaction = new AsyncLocalStorage<boolean>();
+  private pending: Promise<unknown> = Promise.resolve();
+  read() { return structuredClone(this.data); }
+  newSessionId() { return opaque('session'); }
+  async atomic<T>(fn: () => Promise<T>): Promise<T> {
+    if (this.transaction.getStore()) return fn();
+    const task = this.pending.then(() => this.transaction.run(true, fn));
+    this.pending = task.catch(() => {}); return task;
+  }
   constructor(public path: string | null) {
     this.data = empty();
     if (path && existsSync(path)) {

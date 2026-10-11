@@ -11,3 +11,8 @@ output/
 .playwright-cli/
 .cache/
 .local/
+/.swc
+/.vercel/
+/.nitro/
+/.output/
+/.workflow-data/

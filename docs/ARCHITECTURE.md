@@ -202,6 +202,11 @@ Bundle geography assets needed for the local demo rather than assuming an extern
 map URL will remain available. The baseline application should build to static
 assets. Confirm actual package scripts before documenting runnable commands.
 
-No hosting, public account service, external database, CI pipeline, scheduled agent
-or automatic sync service is added. Local assistant sessions and file persistence
-are implemented as described above. See [development](DEVELOPMENT.md) for setup.
+The complete app is configured for Vercel from `main`, with Nitro Node functions,
+Workflow background jobs and managed Postgres through Vercel Marketplace. Static
+assets remain bundled. Internal assistant storage methods are asynchronous; HTTP
+payload contracts and browser engine calculations are preserved. Production jobs,
+idempotency, provider budgets and Travel Buddy quota/cache persist across instances.
+Local file storage remains available outside Vercel without a database URL.
+See [deployment](DEPLOYMENT.md) for migrations, concurrency, recovery and external
+setup still required. Public accounts, CI and automatic Git sync are not added.

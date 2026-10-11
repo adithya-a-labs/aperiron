@@ -4,12 +4,13 @@ import { loadEnvFile } from 'node:process';
 import { fileURLToPath } from 'node:url';
 import { normalizeTravelDetails, record } from '../src/shared/travelDetails';
 import { createDefaultTravelService, validateDetailRequest } from '../server/travel-details';
+import { createDeployedTravel } from '../server/deployment/runtime';
 
 const env = fileURLToPath(new URL('../.env', import.meta.url));
 if (existsSync(env)) loadEnvFile(env);
 const files = process.argv.slice(2);
 if (!files.length) throw new Error('Pass local trial JSON paths; this command makes no API requests.');
-const service = createDefaultTravelService();
+const service = process.env.DATABASE_URL || process.env.POSTGRES_URL ? createDeployedTravel() : createDefaultTravelService();
 let imported = 0, skipped = 0;
 let remaining: number | undefined, resetAt = 0;
 for (const file of files) {

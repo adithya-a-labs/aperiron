@@ -1,11 +1,18 @@
 # dev-adithyaa state
 
-- Updated at: 2026-10-10T18:04:05Z
+- Updated at: 2026-10-11T02:59:06Z
 - Status: ready_for_review
-- Task: Draft accurate PR title and description for current branch
-- Branch: dev-adithyaa
-- Baseline commit: f690a63
-- Latest run: [PR copy](runs/20261010T180405Z-pr-copy-3c71a8.md)
+- Task: Configure complete Vercel deployment with managed Postgres
+- Branch: main
+- Baseline commit: 9ac269bdb590df79eae917f3bebcb50bcf471360
+- Latest run: [Vercel deployment](runs/20261011T024729Z-vercel-main-6d48a1.md)
+
+Configured Vercel Node API functions, durable Workflow jobs, managed Postgres
+persistence and quota controls on main. All 88 tests, typecheck, production build
+and compiled API smoke tests passed. User selected dev-adithyaa attribution and
+managed Postgres via Marketplace. External project/database setup and hosted
+acceptance checks remain; no commit, push or deployment performed. Earlier
+completed work below is historical; current verification supersedes older results.
 
 ## Completed
 
@@ -60,41 +67,37 @@ frontend integration `84a0e47`, and the accompanying documentation/state group.
 
 ## In progress
 
-No implementation in progress; optional Groq research is ready for local review.
+Local deployment configuration is ready for review. Cloud provisioning, secrets,
+migrations and live acceptance checks have not been performed.
 
 ## Verification
 
-Groq integration: 14 automated tests passed including actual loopback HTTP checks.
-Running dev frontend and API returned expected 200/400/503 responses on the same
-port. Direct Vite bundling passed. Full typecheck remains blocked by pre-existing
-Passport Index/core errors; new integration files have no reported diagnostics.
-Live provider calls were not run because no key is configured. Prior browser checks
-predate this hardening. Documentation links and whitespace checked.
+Current main: all 88 tests passed, including four embedded Postgres tests.
+Typecheck, Vercel build, generated OpenAPI check, compiled Node API HTTP smoke
+checks, documentation links and whitespace passed. All 262 WebP assets are in
+static output. Dependency audit reports zero vulnerabilities. Cloud Workflow,
+managed database migration and live provider checks were not run without connected
+external resources. See latest run for prior failures and corrections.
 
 ## Blockers
 
 Verified detailed regulation data and a production requirements resolver remain pending.
 Prototype classifications or generated regulation details must not be represented as
 verified travel guidance.
-Core TypeScript errors block full `npm run build`. Authenticated Groq check awaits key.
+Publishing requires Vercel project access, managed Postgres and server credentials.
+The earlier core TypeScript build blocker is no longer present on this main baseline.
 
 ## Next actions
 
-Validate one proposed workflow with intended users before changing accepted scope.
-Existing scope remains exploration, country information, comparison and Visa DNA.
-Set `GROQ_API_KEY` in ignored root `.env`, run only `npm run dev`, and
-exercise the research states. Coordinate source review before promoting results into
-requirements. Restore the game feature flag only when requested. Commit/push only
-when authorized.
+Review [deployment setup](../../DEPLOYMENT.md), connect Marketplace Postgres, set
+server secrets, run migrations and reconcile actual provider allowance. Set Vercel
+Production Branch to main and perform hosted acceptance checks. Commit/push only
+when authorized. Research remains unverified and must not become requirements.
 
 ## Coordination
 
-Game code retained; shared contracts and engine semantics unchanged. Other developer
-records untouched. Passport Index integration is merged at current HEAD `09f383e`;
-its detailed regulation fallback remains isolated from the active frontend resolver.
-Pause is in baseline 097ac17. Research and AI proposal records were committed as
-669b4a2 and c4562ac. Groq backend and UI are now committed as `92b9273` and
-`84a0e47`. Analysis, integration records and current state are included with the
-documentation commit f690a63, which matches the recorded origin/dev-adithyaa ref.
-Drafted PR copy against origin/main. Current run records local and uncommitted;
-no PR created or push performed this run.
+Deployment changes internal storage/context/job methods to asynchronous operations
+and updates their consumers/tests; HTTP payload schemas and browser engine semantics
+remain unchanged. Legacy and assistant research share production budgets/cooldowns.
+Other developers' records are untouched. Current work and records are local and
+uncommitted on main; no PR or push performed.

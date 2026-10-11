@@ -3,7 +3,7 @@ import { createHash } from 'node:crypto';
 import { fileURLToPath } from 'node:url';
 import { getFullCatalog } from '../src/data/catalog';
 import { record, type TravelResponse } from '../src/shared/travelDetails';
-import { TravelCache } from './travel-cache';
+import { TravelCache, type TravelStorage } from './travel-cache';
 import { fetchTravelDetails, TravelProviderError } from './travel-buddy';
 
 export interface DetailRequest { passportId: string; destinationId?: string; purpose?: string; passportType?: string }
@@ -20,7 +20,7 @@ export class TravelService {
   private pending = new Map<string, Promise<TravelResponse>>();
   private active = 0;
   private waiters: Array<() => void> = [];
-  constructor(public cache: TravelCache, private options: {
+  constructor(public cache: TravelStorage, private options: {
     apiKey?: string; fetchImpl?: typeof fetch; now?: () => number; freshMs?: number; reserve?: number;
     concurrency?: number; timeoutMs?: number;
   } = {}) {}
@@ -44,6 +44,9 @@ export class TravelService {
     if (cached.fresh && !force) return cached;
     const apiKey = this.options.apiKey;
     if (!apiKey?.trim()) return { ...cached, outcome: 'unavailable', message: 'Showing saved information; live details are not configured.' };
+    const leaseKey = `travel:${r.passportId}:${r.destinationId}`;
+    const lease = this.cache.acquire ? await this.cache.acquire(leaseKey, this.options.concurrency ?? 2) : undefined;
+    if (lease === null) return { ...cached, outcome: 'cooldown', retryAt: this.now() + 5000, message: 'Details refresh is already running or the provider is busy.' };
     // A released slot is transferred to a waiter without allowing new calls to jump the queue.
     if (this.active >= (this.options.concurrency ?? 2)) await new Promise<void>(resolve => this.waiters.push(resolve));
     else this.active++;
@@ -55,7 +58,7 @@ export class TravelService {
           const q = d.quota;
           q.initialized = true;
           if (q.blocked && q.authTag !== authTag) { q.blocked = false; q.authTag = undefined; }
-          if (q.resetAt > 0 && q.resetAt <= this.now()) { q.remaining = Math.max(0, q.limit - this.active); q.resetAt = 0; }
+          if (q.resetAt > 0 && q.resetAt <= this.now()) { q.remaining = Math.max(0, q.limit - (this.cache.acquire ? (this.options.concurrency ?? 2) : this.active)); q.resetAt = 0; }
           if (q.blocked) stop = 'unavailable';
           else if (q.retryAt > this.now()) stop = 'cooldown';
           else if (q.remaining <= (this.options.reserve ?? 20)) stop = 'quota';
@@ -90,7 +93,10 @@ export class TravelService {
         return { ...cached, outcome: kind === 'quota' ? 'quota' : 'unavailable', retryAt,
           message: 'Showing saved information; live details could not refresh.' };
       }
-    } finally { const next = this.waiters.shift(); if (next) next(); else this.active--; }
+    } finally {
+      const next = this.waiters.shift(); if (next) next(); else this.active--;
+      if (lease) await this.cache.release?.(leaseKey, lease).catch(() => {});
+    }
   }
 }
 

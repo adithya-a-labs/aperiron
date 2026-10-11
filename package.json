@@ -18,19 +18,26 @@
     "data:build": "tsx scripts/build-passport-index.ts",
     "travel:import": "tsx scripts/import-travel-buddy.ts",
     "assistant:openapi": "tsx scripts/generate-assistant-openapi.ts",
-    "assistant:live": "tsx scripts/test-assistant-live.ts"
+    "assistant:live": "tsx scripts/test-assistant-live.ts",
+    "build:vercel": "npm run typecheck && node scripts/build-vercel.mjs",
+    "db:migrate": "tsx scripts/migrate-deployment.ts",
+    "db:travel-quota": "tsx scripts/configure-travel-quota.ts"
   },
   "dependencies": {
     "d3-geo": "3.1.1",
     "lucide-react": "1.55.0",
+    "nitro": "3.0.260903-beta",
+    "postgres": "3.4.9",
     "react": "19.3.0",
     "react-dom": "19.3.0",
     "react-simple-maps": "5.0.5",
     "topojson-client": "3.1.0",
+    "workflow": "5.2.0",
     "world-atlas": "2.0.2",
     "zustand": "5.0.15"
   },
   "devDependencies": {
+    "@electric-sql/pglite": "0.5.8",
     "@tailwindcss/vite": "4.3.3",
     "@types/d3-geo": "3.1.1",
     "@types/node": "26.6.5",
@@ -42,5 +49,11 @@
     "tsx": "4.23.15",
     "typescript": "7.0.2",
     "vite": "8.3.4"
+  },
+  "overrides": {
+    "@workflow/core": {
+      "devalue": "5.9.3",
+      "nanoid": "5.1.16"
+    }
   }
 }
