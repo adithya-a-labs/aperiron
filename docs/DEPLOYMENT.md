@@ -64,6 +64,26 @@ files. The static map, comparison and Visa DNA remain available independently.
 
 ## Persistence and concurrency
 
+### Recover records written before the JSON binding correction
+
+The original Postgres adapter passed JSON text directly to a JSONB parameter.
+postgres.js encoded that text again, producing JSON strings where objects were
+expected. Travel refresh then reported request accounting unavailable; assistant
+resources could also fail to load. The corrected writes bind text before casting
+to JSONB. Production-driver tests now use PGlite Socket with postgres.js, in addition
+to the existing direct embedded SQL tests.
+
+After deploying the correction, run `npm run db:repair-json` against the intended
+database, or paste all of `server/deployment/repair-jsonb.sql` into Neon's SQL Editor.
+It is one statement, acquires state locks, decodes existing structured records once
+and preserves quota, expiry and ownership. It is safe to rerun; malformed records
+roll back the repair rather than being deleted or reopening allowance. Use the
+production database selected by the deployed connection URL.
+
+A repaired `remaining: 0` remains zero. Reconcile the actual remaining provider
+allowance with `npm run db:travel-quota`; never assume the historical trial balance
+or full plan allowance is still available. Do not reset it on every deployment.
+
 `server/deployment/schema.sql` creates records keyed by session scope, collection
 and resource ID, plus lease and dispatch tables. Records include sessions/profiles,
 trips, conversations/messages, evidence, briefs, answer/context caches, jobs,

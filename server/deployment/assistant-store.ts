@@ -77,7 +77,7 @@ export class PostgresAssistantStore implements AssistantStorage {
         if(row.kind==='inputs') await connection.query('DELETE FROM aperiron_dispatch WHERE job_id=$1 AND owner=$2',[row.id,this.owner]);
       }
       for (const [key, row] of after) if (JSON.stringify(before.get(key)) !== JSON.stringify(row)) {
-        await connection.query('INSERT INTO aperiron_records(scope,kind,id,data,expires_at) VALUES ($1,$2,$3,$4::jsonb,$5) ON CONFLICT(scope,kind,id) DO UPDATE SET data=excluded.data, expires_at=excluded.expires_at', [row.scope,row.kind,row.id,JSON.stringify(row.data),row.expiry]);
+        await connection.query('INSERT INTO aperiron_records(scope,kind,id,data,expires_at) VALUES ($1,$2,$3,$4::text::jsonb,$5) ON CONFLICT(scope,kind,id) DO UPDATE SET data=excluded.data, expires_at=excluded.expires_at', [row.scope,row.kind,row.id,JSON.stringify(row.data),row.expiry]);
         if (row.kind === 'inputs' && !before.has(key)) await connection.query('INSERT INTO aperiron_dispatch(job_id,owner) VALUES ($1,$2) ON CONFLICT DO NOTHING', [row.id,this.owner]);
       }
       return result;

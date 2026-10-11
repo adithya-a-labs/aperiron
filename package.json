@@ -22,6 +22,7 @@
     "build:vercel": "npm run typecheck && node scripts/build-vercel.mjs",
     "verify:vercel": "node scripts/verify-vercel.mjs",
     "db:migrate": "tsx scripts/migrate-deployment.ts",
+    "db:repair-json": "tsx scripts/repair-deployment-json.ts",
     "db:travel-quota": "tsx scripts/configure-travel-quota.ts"
   },
   "dependencies": {
@@ -39,6 +40,7 @@
   },
   "devDependencies": {
     "@electric-sql/pglite": "0.5.8",
+    "@electric-sql/pglite-socket": "0.2.11",
     "@tailwindcss/vite": "4.3.3",
     "@types/d3-geo": "3.1.1",
     "@types/node": "26.6.5",

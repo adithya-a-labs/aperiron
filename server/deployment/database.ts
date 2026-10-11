@@ -7,17 +7,20 @@ export interface Database extends Connection {
   transaction<T>(work: (connection: Connection) => Promise<T>): Promise<T>;
 }
 let database: Database | undefined;
-export function getDatabase(): Database {
-  if (database) return database;
-  const url = process.env.DATABASE_URL?.trim() || process.env.POSTGRES_URL?.trim();
-  if (!url) throw new Error('DATABASE_URL is required for the deployed API.');
+export function createDatabase(url: string): Database & { close(): Promise<void> } {
   const sql = postgres(url, { max: 3, idle_timeout: 20, connect_timeout: 10, prepare: false });
   const connection = (client: Pick<typeof sql, 'unsafe'>): Connection => ({
     query: async <T>(text: string, params: unknown[] = []) => [...await client.unsafe(text, params as never[])] as T[],
   });
-  database = { ...connection(sql), transaction: async <T>(work: (c: Connection) => Promise<T>) =>
-    await sql.begin(async tx => work(connection(tx as unknown as typeof sql))) as T };
-  return database;
+  return { ...connection(sql), transaction: async <T>(work: (c: Connection) => Promise<T>) =>
+    await sql.begin(async tx => work(connection(tx as unknown as typeof sql))) as T,
+    close: () => sql.end({ timeout: 5 }) };
+}
+export function getDatabase(): Database {
+  if (database) return database;
+  const url = process.env.DATABASE_URL?.trim() || process.env.POSTGRES_URL?.trim();
+  if (!url) throw new Error('DATABASE_URL is required for the deployed API.');
+  return database=createDatabase(url);
 }
 
 /** Serialize short state transitions, never provider calls. Locks are released by PostgreSQL on failure. */

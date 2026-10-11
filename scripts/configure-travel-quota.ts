@@ -8,6 +8,6 @@ await locked(getDatabase(),'travel',async c=>{
   const active=await c.query("SELECT name FROM aperiron_leases WHERE name LIKE 'travel:%' AND expires_at>now()");
   if(active.length) throw new Error('Wait for active provider requests before reconciling the allowance.');
   const quota={remaining,limit,resetAt:0,blocked:false,retryAt:0,initialized:true};
-  await c.query("INSERT INTO aperiron_records(scope,kind,id,data) VALUES ('travel','quota','account',$1::jsonb) ON CONFLICT(scope,kind,id) DO UPDATE SET data=excluded.data",[JSON.stringify(quota)]);
+  await c.query("INSERT INTO aperiron_records(scope,kind,id,data) VALUES ('travel','quota','account',$1::text::jsonb) ON CONFLICT(scope,kind,id) DO UPDATE SET data=excluded.data",[JSON.stringify(quota)]);
 });
 console.log('The explicitly supplied Travel Buddy allowance has been saved.');

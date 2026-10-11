@@ -5,6 +5,10 @@
 `server/deployment.test.ts` uses embedded Postgres to verify instance sharing,
 ownership, concurrent revisions, rollback, durable job inputs/outbox, cancellation,
 shared provider budgets/leases, quota persistence and serialized checklist work.
+`server/postgres-driver.test.ts` additionally uses the actual production postgres.js
+driver over PGlite Socket to cover JSONB serialization, quota/cache persistence,
+session/resource reload and atomic repair of historically encoded records. Direct
+embedded queries alone do not test driver parameter serialization.
 `npm run build:vercel` verifies compilation of API and Workflow functions alongside
 static assets. Its packaging guard rejects top-level source API files and checks
 the API function resolves to Nitro's bundle. `npm run verify:vercel` then exercises

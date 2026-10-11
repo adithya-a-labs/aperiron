@@ -1,18 +1,18 @@
 # dev-adithyaa state
 
-- Updated at: 2026-10-11T03:40:38Z
+- Updated at: 2026-10-11T03:58:40Z
 - Status: ready_for_review
-- Task: Correct Vercel source API discovery collision causing runtime HTTP 500
+- Task: Correct production JSON binding breaking Travel Buddy quota/cache persistence
 - Branch: main
-- Baseline commit: 404a7cd861e7a511de9f08786361cc778740b50c
-- Latest run: [Route packaging correction](runs/20261011T034038Z-vercel-route-packaging-a38c10.md)
+- Baseline commit: 40799252fe9e43594f3d973fd39d5046d549b9ec
+- Latest run: [Travel JSON storage correction](runs/20261011T035840Z-travel-json-storage-d42a19.md)
 
-User runtime logs revealed raw source API discovery after the successful build.
-Moved the handler to routes/api and added packaging guards/compiled HTTP smoke
-checks. Typecheck, Vercel build, packaging checks and HTTP smoke passed locally.
-The fix must be published as a new main commit and redeployed; old 404a7cd retains
-the failure. No commit, push or deployment performed by this run. Prior business
-logic test results and completed work below are historical; see latest run.
+Production health now passes. Travel refresh fails during quota accounting; user
+confirmed the JSONB ledger contains an encoded string. Reproduced with the actual
+postgres.js driver, corrected JSON text binding, added safe stored-data repair and
+real-driver regression coverage. All 89 tests, typecheck, Vercel build/packaging
+and HTTP smoke checks pass. Deploy/repair and actual provider allowance are still
+required. Changes are local and uncommitted; no commit, push or deployment by this run.
 
 ## Completed
 
@@ -67,32 +67,33 @@ frontend integration `84a0e47`, and the accompanying documentation/state group.
 
 ## In progress
 
-Packaging correction is ready for review. New commit publication, redeployment
-and live database/API/Workflow acceptance checks remain.
+JSON binding correction is ready for review. Publication, deployment, encoded-data
+repair and actual quota reconciliation remain. Real provider success is unverified.
 
 ## Verification
 
-Current main: all 88 tests passed, including four embedded Postgres tests.
+Current local main: all 89 tests passed, including direct embedded Postgres and
+actual production-driver JSON/repair regression coverage.
 Typecheck, Vercel build, generated OpenAPI check, compiled Node API HTTP smoke
 checks, documentation links and whitespace passed. All 262 WebP assets are in
-static output. Dependency audit reports zero vulnerabilities. Cloud Workflow,
-managed database migration and live provider checks were not run without connected
-external resources. See latest run for prior failures and corrections.
+static output. Dependency audit reports zero vulnerabilities. Deployed health
+and cache-read requests pass; refresh reports accounting unavailable. Cloud
+Workflow and real provider success remain unverified. See latest run for evidence.
 
 ## Blockers
 
 Verified detailed regulation data and a production requirements resolver remain pending.
 Prototype classifications or generated regulation details must not be represented as
 verified travel guidance.
-The deployed old source still fails until a deployment includes the local fix.
+Production stored quota is encoded and zero; requires corrected deployment, repair
+and current RapidAPI allowance from user. Database secrets were not requested.
 The earlier core TypeScript build blocker is no longer present on this main baseline.
 
 ## Next actions
 
-Publish the packaging fix to main when authorized, then redeploy that new commit.
-Follow [deployment setup](../../DEPLOYMENT.md) and verify /api/health plus cloud
-Workflow execution. User reports schema executed in the database SQL editor;
-the actual connected production database has not been independently verified.
+Publish/deploy the new JSON binding fix, repair encoded records using the provided
+SQL, reconcile actual provider allowance and verify one refresh plus cache reuse.
+Follow [deployment setup](../../DEPLOYMENT.md) and verify cloud Workflow execution.
 Research remains unverified and must not become requirements.
 
 ## Coordination

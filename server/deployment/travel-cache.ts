@@ -29,10 +29,11 @@ export class PostgresTravelCache implements TravelStorage {
       }
       const before=structuredClone(data); update(data);
       this.validateQuota(data.quota);
-      await c.query("INSERT INTO aperiron_records(scope,kind,id,data) VALUES ('travel','quota','account',$1::jsonb) ON CONFLICT(scope,kind,id) DO UPDATE SET data=excluded.data",[JSON.stringify(data.quota)]);
+      // Force text binding before casting: postgres.js otherwise JSON-encodes this string again.
+      await c.query("INSERT INTO aperiron_records(scope,kind,id,data) VALUES ('travel','quota','account',$1::text::jsonb) ON CONFLICT(scope,kind,id) DO UPDATE SET data=excluded.data",[JSON.stringify(data.quota)]);
       for(const [id,d] of Object.entries(data.entries)) if(JSON.stringify(before.entries[id])!==JSON.stringify(d)) {
         if(!isTravelDetails(d)) throw new Error('Invalid cache entry.');
-        await c.query("INSERT INTO aperiron_records(scope,kind,id,data,expires_at) VALUES ('travel','entries',$1,$2::jsonb,$3) ON CONFLICT(scope,kind,id) DO UPDATE SET data=excluded.data,expires_at=excluded.expires_at",[id,JSON.stringify(d),new Date(Date.parse(d.fetchedAt)+this.retentionMs).toISOString()]);
+        await c.query("INSERT INTO aperiron_records(scope,kind,id,data,expires_at) VALUES ('travel','entries',$1,$2::text::jsonb,$3) ON CONFLICT(scope,kind,id) DO UPDATE SET data=excluded.data,expires_at=excluded.expires_at",[id,JSON.stringify(d),new Date(Date.parse(d.fetchedAt)+this.retentionMs).toISOString()]);
       }
       await c.query("DELETE FROM aperiron_records WHERE scope='travel' AND kind='entries' AND expires_at <= now()");
     });
