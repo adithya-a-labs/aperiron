@@ -1,11 +1,11 @@
 # dev-integration state
 
-- Updated at: 2026-10-11T01:24:20Z
+- Updated at: 2026-10-11T01:26:38Z
 - Status: ready_for_review
-- Task: Audit unified application and APIs; fix documented behavior
+- Task: Commit and push audited integration fixes and docs
 - Branch: dev-integration
 - Baseline commit: 1f224ca598363030f293da510f7259cbacf51107
-- Latest run: [Integrated functional audit](runs/20261011T011500Z-integrated-audit-7a3c91.md)
+- Latest run: [Publish integration fixes](runs/20261011T012638Z-publish-fixes-4b9d72.md)
 
 ## Completed
 
@@ -28,7 +28,8 @@ desktop audit implementation remain present. Historical handoff:
 
 ## In progress
 
-None for this functional audit; local changes ready for review.
+Implementation commit 2f069c1 has been pushed; this publication record accompanies
+the authorized follow-up documentation commit.
 
 ## Verification
 
@@ -54,7 +55,7 @@ research evidence remain unreviewed.
 
 ## Next actions
 
-Review the local diff; commit/push only when authorized. Respect provider
+Review pushed commit 2f069c1. Respect provider
 cooldowns and reuse persistent accounting. Formal accessibility and official
 source review remain separate validation work.
 
@@ -62,5 +63,6 @@ source review remain separate validation work.
 
 Explicit integration assignment. Origin/dev-integration matched starting HEAD.
 Public interfaces, source data, scoring and DNA unchanged; additive Retry-After
-documented. Other lane records untouched. All changes local/uncommitted; no push
-or PR. Audit-owned servers/browser stopped; pre-existing servers preserved.
+documented. Other lane records untouched. User authorized commit and push;
+2f069c1 successfully pushed to origin/dev-integration. No PR created.
+Audit-owned servers/browser stopped; pre-existing servers preserved.
