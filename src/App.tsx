@@ -42,6 +42,7 @@ import { TravelBrief } from "./components/TravelBrief";
 import { PassportSelect } from "./components/PassportSelect";
 import { ResearchAnswer } from "./components/ResearchAnswer";
 import { pageHash, readPage, type Page } from "./frontend/navigation";
+import { TripPlanner } from "./pages/TripPlanner";
 
 type GroqResearch = ResearchResponse & { contextKey: string };
 function unwrap<T>(result: Result<T>): T {
@@ -1336,7 +1337,7 @@ export default function App() {
     return () => window.removeEventListener("hashchange", change);
   }, []);
   useEffect(() => {
-    document.title = `${{ explore: "Explore", country: "Country notebook", compare: "Compare", dna: "Visa DNA", market: "Border Market", impact: "Your impact", optimizer: "Optimizer", more: "More possibilities" }[page]} · aperiron`;
+    document.title = `${{ explore: "Explore", country: "Country notebook", compare: "Compare", dna: "Visa DNA", trips: "Plan a trip", market: "Border Market", impact: "Your impact", optimizer: "Optimizer", more: "More possibilities" }[page]} · aperiron`;
   }, [page]);
   const active =
     page === "country"
@@ -1366,6 +1367,7 @@ export default function App() {
               ["explore", "Explore"],
               ["compare", "Compare"],
               ["dna", "Visa DNA"],
+              ["trips", "Trips"],
               ["market", "Play"],
               ["more", "More"],
             ] as const
@@ -1397,6 +1399,8 @@ export default function App() {
           <Compare />
         ) : page === "dna" ? (
           <Dna />
+        ) : page === "trips" ? (
+          <TripPlanner />
         ) : GAME_ENABLED && page === "market" ? (
           <Market />
         ) : GAME_ENABLED && page === "impact" ? (

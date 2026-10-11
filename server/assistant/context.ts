@@ -105,8 +105,8 @@ export class Contexts {
     return { ...d, notes: d.notes ?? null, accessLevel: supported(p) ? d.accessLevel : 'unknown', maxStayDays: supported(p) ? d.maxStayDays ?? null : null,
       basis: 'snapshot', stayAssessment, unknownConditions: [...profileGaps(p), ...(stayAssessment === 'unknown' ? ['Requested stay cannot be assessed from the numeric snapshot data.'] : [])], assumptions: ['Bundled unreviewed snapshot; ordinary-passport tourism baseline.'], matchedConditions: [] };
   }
-  query(profiles: Array<{ id: string; profile: Profile }>, f: Filters, ids: string[], page: { cursor: string | null; limit: number } | null) {
-    const requestHash = hash({ profiles, f, ids }), size = page?.limit ?? 20;
+  query(profiles: Array<{ id: string; profile: Profile }>, f: Filters, ids: string[], page: { cursor: string | null; limit: number } | null, group = profiles.length > 1) {
+    const requestHash = hash({ profiles, f, ids, group }), size = page?.limit ?? 20;
     let offset = 0;
     if (page?.cursor) { try { const c = JSON.parse(Buffer.from(page.cursor, 'base64url').toString()) as { offset: number; hash: string };
       if (c.hash !== requestHash || !Number.isSafeInteger(c.offset) || c.offset < 0) throw new Error(); offset = c.offset;
@@ -117,7 +117,7 @@ export class Contexts {
       const travellers = profiles.map(p => ({ travellerId: p.id, ...this.cell(p.profile, d.id) }));
       const stay = 'minimumStayDays' in f ? f.minimumStayDays : null;
       const unknown = travellers.some(t => t.accessLevel === 'unknown' || t.stayAssessment === 'unknown' || (!!stay && t.maxStayDays === null));
-      const allowed = f.accessLevels.length ? f.accessLevels : profiles.length > 1 ? ['visa_free', 'visa_on_arrival', 'evisa'] : [];
+      const allowed = f.accessLevels.length ? f.accessLevels : group ? ['visa_free', 'visa_on_arrival', 'evisa'] : [];
       const matches = !unknown && travellers.every(t => t.stayAssessment !== 'exceeds_snapshot' && (!allowed.length || allowed.includes(t.accessLevel as never)) && (!stay || (t.maxStayDays !== null && t.maxStayDays >= stay)));
       if (unknown) unassessedCount++;
       return { destinationId: d.id, destinationName: d.name, travellers, groupAssessment: unknown ? 'unassessed' : !matches ? 'does_not_match' : travellers.some(t => t.unknownConditions.length) ? 'needs_review' : 'baseline_match', matches };

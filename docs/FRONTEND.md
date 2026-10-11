@@ -64,12 +64,18 @@ implementation. No new runtime dependencies were needed.
 | `#/country` | Country notebook, purpose, missing-data and source context, separate fictional effect | `getDestinationRequirements`, `getPassportView` |
 | `#/compare` | Two passports, swap, shared/unique sets, category differences, scores | `comparePassports` |
 | `#/dna` | Deterministic petals, baseline/simulation patterns | `generateVisaDNA` |
+| `#/trips` | Local group setup, map/list, shortlist, per-person review, preparation and export | Existing `/api/v1/assistant` trip/group/job routes |
 | `#/market` | Category filters, preview dialog, purchase, balance, reset | `getCatalog`, `purchaseTreaty` |
 | `#/impact` | Before/after maps and DNA, global delta, new pairs, purchased treaties | `calculateImpact`, `getPassportView`, `generateVisaDNA` |
 | `#/optimizer` | Budget, greedy suggestions, projected world, explicit individual purchase | `optimizeTreaties`, `purchaseTreaty`, `getPassportView` |
 | `#/more` | Supported-passport lottery and rotating globe; unavailable route/AI concepts | `getCatalog`, `getPassportView` |
 
 ## Engine integration
+
+The [local trip planner](TRIP_PLANNER.md) adds a Trips navigation item and consumes
+the existing assistant backend with cookie/CSRF and revision-aware requests.
+It requires the local Vite/API process for persistence and group queries; no model
+key is needed for setup, queries, review tasks or brief exports.
 
 `src/frontend/engine.ts` selects the implementation of the authoritative
 `src/shared/engineApi.ts` interface. It selects `RealAperironEngine` with the

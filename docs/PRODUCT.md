@@ -107,7 +107,7 @@ called a guaranteed global optimum. A player may compare their results with it.
 | Optional | Detailed routes and transit | Requires a separately defined journey model and route data. |
 | Optional | 3D globe | Added after core interactions are reliable. |
 | Proposed | Verified regulation explanations | Reviewed source coverage and semantic claim evaluation are still needed. |
-| Accepted backend milestone | Map/country assistant and local group planning | [Decision 0009](decisions/0009-backend-map-assistant.md); services implemented, frontend deferred. |
+| Accepted implementation | Map/country assistant and local group planning | [Decision 0009](decisions/0009-backend-map-assistant.md) services; [local Trips frontend](TRIP_PLANNER.md) now implemented. Broader assistant UI remains deferred. |
 | Last | Public deployment | Local build and demo work first. |
 
 The original prototype target is about 12 passports, 30 destinations, and 15-20

@@ -23,6 +23,15 @@ Ownership reduces conflicting work; it does not prohibit agreed collaboration.
 Record role assignments when the users decide them. Coordinate changes across
 the boundary before changing another developer's expected interface.
 
+### dev-tripplanner work lane
+
+The user assigned the exact `dev-tripplanner` branch and separate branch-scoped
+records in `docs/state/dev-tripplanner/`. It implements the
+[local group planner](TRIP_PLANNER.md) through existing assistant contracts.
+Coordinate shared navigation/styles with frontend owners and any backend contract
+extensions with core/integration owners. This assignment does not reassign either
+personal developer's module ownership.
+
 ### dev-adithyaa frontend scope and first milestones
 
 Own React/Vite setup, styling, responsive layout, accessibility, components/pages,

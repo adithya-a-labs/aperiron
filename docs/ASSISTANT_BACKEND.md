@@ -4,6 +4,11 @@ The backend milestone implements all 30 operations from the
 [plan](LLM_BACKEND_PLAN.md) under `/api/v1/assistant`. Frontend components, styles,
 stores and the eight-method engine interface are unchanged.
 
+The subsequent [Trips frontend](TRIP_PLANNER.md) now consumes the existing group
+routes for local planning, review tasks and export. This frontend addition needed
+no new HTTP endpoints. The original backend milestone and its recorded validation
+below remain historical evidence for that implementation.
+
 Authoritative contracts:
 
 - [Request schemas and inferred types](../src/shared/assistant/schemas.ts).

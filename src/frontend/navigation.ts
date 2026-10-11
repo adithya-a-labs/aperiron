@@ -1,7 +1,7 @@
 import { catalog } from './engine';
 import { GAME_ENABLED } from './features';
 
-export const pages = ['explore', 'country', 'compare', 'dna', 'market', 'impact', 'optimizer', 'more'] as const;
+export const pages = ['explore', 'country', 'compare', 'dna', 'trips', 'market', 'impact', 'optimizer', 'more'] as const;
 export type Page = typeof pages[number];
 export interface Selection { passport: string; destination: string; comparison: string }
 export function readPage(hash: string): Page {

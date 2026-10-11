@@ -45,7 +45,7 @@ not install tools, create schedules, or authorize extra external actions. Per-ru
 logging applies even if a skill was not automatically selected.
 
 Assigned branch names are exactly `dev-adithyaa`, `dev-prabhu`, `dev-frontend`,
-and `dev-integration`. Do not add
+`dev-integration`, and `dev-tripplanner`. Do not add
 slash prefixes or task suffixes to these names. Developer identity and module
 ownership remain separate concerns.
 The user assigned `dev-adithyaa` to frontend experience. Follow the scope in
@@ -62,6 +62,10 @@ a friend. Follow its scope in `docs/DEVELOPMENT.md` and maintain its own
 reassign either module owner's role. Coordinate shared UI files with dev-adithyaa;
 consume existing engine contracts and coordinate engine/data changes with dev-prabhu.
 
+The user assigned `dev-tripplanner` as a separate branch-scoped trip-planner lane.
+Use its own `docs/state/dev-tripplanner/` records, consume existing assistant
+contracts, and coordinate shared UI/backend changes with their owners.
+
 ## Start of every run
 
 1. Read `docs/state/README.md` and both developer state files.
@@ -69,8 +73,8 @@ consume existing engine contracts and coordinate engine/data changes with dev-pr
    Verify recorded claims against the code; state files can be stale.
 3. Establish your developer identity from an explicit user instruction or an
    explicitly assigned task: `dev-adithyaa`, `dev-prabhu`, explicitly assigned
-   `dev-integration`, or the explicitly assigned `dev-frontend` work lane. The latter
-   records branch-scoped work without assigning a personal developer identity. Read
+   `dev-integration`, or the explicitly assigned `dev-frontend` or `dev-tripplanner` work lane. The latter lanes
+   record branch-scoped work without assigning a personal developer identity. Read
    the assigned lane's state and latest run as well. Do not infer identity
    from a computer username, Git author, or files you happen to edit. If it is
    unknown, ask which developer you represent before writing an attributed log.

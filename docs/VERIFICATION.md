@@ -141,6 +141,10 @@ be requested. Record screen-reader/actual-zoom checks separately when available.
 
 ## Assistant backend checks
 
+The [Trips frontend](TRIP_PLANNER.md) adds client-over-HTTP and store race/recovery
+tests, plus browser scenarios for setup, shortlist, per-person context, tasks,
+export downloads and responsive layout. See its branch state for observed results.
+
 `npm test` includes `server/assistant.test.ts`: actual loopback HTTP coverage for
 all 30 operations and runtime request/response schemas. Tests cover Origin/CSRF,
 session isolation, malformed/oversized requests, calendar dates, idempotency,
