@@ -11,6 +11,11 @@ detailed official regulation coverage remains future work. See
 [FRONTEND.md](FRONTEND.md) for implemented routes, dependency details and integration.
 Progress and verification belong in the [state map](state/README.md).
 
+The [Trips frontend](TRIP_PLANNER.md) uses a separate cookie-owned assistant client
+and trip store for group planning. The page consumes existing server group
+assessments and keeps editable traveller drafts separate from saved revisions.
+It does not calculate eligibility or alter the browser engine's baseline matrix.
+
 Implemented [Travel Buddy destination enrichment](decisions/0008-travel-buddy-destination-enrichment.md)
 adds selected destination details and precise exploration overrides through the
 local API and a persistent server cache. The local snapshot remains the map and
