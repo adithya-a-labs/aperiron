@@ -1,0 +1,174 @@
+{
+  "id": "batch-2",
+  "name": "Europe East & South",
+  "items": [
+    {
+      "id": "LU",
+      "name": "Luxembourg",
+      "continent": "Europe",
+      "landmarkName": "Bock Casemates & Adolphe Bridge",
+      "location": "Luxembourg City",
+      "imagePath": "/images/postcards/lu-bock-casemates.webp"
+    },
+    {
+      "id": "LV",
+      "name": "Latvia",
+      "continent": "Europe",
+      "landmarkName": "Riga Old Town & House of the Black Heads",
+      "location": "Riga",
+      "imagePath": "/images/postcards/lv-riga-old-town.webp"
+    },
+    {
+      "id": "MC",
+      "name": "Monaco",
+      "continent": "Europe",
+      "landmarkName": "Casino de Monte-Carlo & Port",
+      "location": "Monte Carlo",
+      "imagePath": "/images/postcards/mc-casino-de-monte-carlo-port.webp"
+    },
+    {
+      "id": "MD",
+      "name": "Moldova",
+      "continent": "Europe",
+      "landmarkName": "Orheiul Vechi Monastery",
+      "location": "Trebujeni",
+      "imagePath": "/images/postcards/md-orheiul-vechi.webp"
+    },
+    {
+      "id": "ME",
+      "name": "Montenegro",
+      "continent": "Europe",
+      "landmarkName": "Bay of Kotor & Our Lady of the Rocks",
+      "location": "Kotor",
+      "imagePath": "/images/postcards/me-bay-of-kotor.webp"
+    },
+    {
+      "id": "MK",
+      "name": "North Macedonia",
+      "continent": "Europe",
+      "landmarkName": "Church of St. John at Kaneo",
+      "location": "Ohrid",
+      "imagePath": "/images/postcards/mk-st-john-kaneo.webp"
+    },
+    {
+      "id": "MT",
+      "name": "Malta",
+      "continent": "Europe",
+      "landmarkName": "Valletta Grand Harbour & Blue Grotto",
+      "location": "Valletta",
+      "imagePath": "/images/postcards/mt-valletta-harbour.webp"
+    },
+    {
+      "id": "NL",
+      "name": "Netherlands",
+      "continent": "Europe",
+      "landmarkName": "Zaanse Schans Windmills",
+      "location": "Zaandam, North Holland",
+      "imagePath": "/images/postcards/nl-windmills.webp"
+    },
+    {
+      "id": "NO",
+      "name": "Norway",
+      "continent": "Europe",
+      "landmarkName": "Geirangerfjord",
+      "location": "Møre og Romsdal",
+      "imagePath": "/images/postcards/no-geirangerfjord.webp"
+    },
+    {
+      "id": "PL",
+      "name": "Poland",
+      "continent": "Europe",
+      "landmarkName": "Wawel Royal Castle & Main Square",
+      "location": "Kraków",
+      "imagePath": "/images/postcards/pl-wawel-castle.webp"
+    },
+    {
+      "id": "PT",
+      "name": "Portugal",
+      "continent": "Europe",
+      "landmarkName": "Belém Tower & Sintra",
+      "location": "Lisbon & Sintra",
+      "imagePath": "/images/postcards/pt-belem-tower-sintra.webp"
+    },
+    {
+      "id": "RO",
+      "name": "Romania",
+      "continent": "Europe",
+      "landmarkName": "Bran Castle (Dracula's Castle)",
+      "location": "Transylvania",
+      "imagePath": "/images/postcards/ro-bran-castle.webp"
+    },
+    {
+      "id": "RS",
+      "name": "Serbia",
+      "continent": "Europe",
+      "landmarkName": "Kalemegdan Fortress & Saint Sava",
+      "location": "Belgrade",
+      "imagePath": "/images/postcards/rs-kalemegdan.webp"
+    },
+    {
+      "id": "RU",
+      "name": "Russia",
+      "continent": "Europe",
+      "landmarkName": "Saint Basil's Cathedral & Red Square",
+      "location": "Moscow",
+      "imagePath": "/images/postcards/ru-saint-basils.webp"
+    },
+    {
+      "id": "SE",
+      "name": "Sweden",
+      "continent": "Europe",
+      "landmarkName": "Gamla Stan",
+      "location": "Stockholm",
+      "imagePath": "/images/postcards/se-gamla-stan.webp"
+    },
+    {
+      "id": "SI",
+      "name": "Slovenia",
+      "continent": "Europe",
+      "landmarkName": "Lake Bled Island & Castle",
+      "location": "Upper Carniola",
+      "imagePath": "/images/postcards/si-lake-bled.webp"
+    },
+    {
+      "id": "SK",
+      "name": "Slovakia",
+      "continent": "Europe",
+      "landmarkName": "Spiš Castle & High Tatras",
+      "location": "Žehra & Tatras",
+      "imagePath": "/images/postcards/sk-spis-castle.webp"
+    },
+    {
+      "id": "SM",
+      "name": "San Marino",
+      "continent": "Europe",
+      "landmarkName": "Three Towers of San Marino",
+      "location": "Mount Titano",
+      "imagePath": "/images/postcards/sm-three-towers.webp"
+    },
+    {
+      "id": "UA",
+      "name": "Ukraine",
+      "continent": "Europe",
+      "landmarkName": "Saint Sophia's Cathedral & Pechersk Lavra",
+      "location": "Kyiv",
+      "imagePath": "/images/postcards/ua-saint-sophia.webp"
+    },
+    {
+      "id": "VA",
+      "name": "Vatican City",
+      "continent": "Europe",
+      "landmarkName": "St. Peter's Basilica",
+      "location": "Vatican City",
+      "imagePath": "/images/postcards/va-st-peter-s-basilica.webp"
+    },
+    {
+      "id": "XK",
+      "name": "Kosovo",
+      "continent": "Europe",
+      "landmarkName": "Rugova Canyon & Patriarchate of Peć",
+      "location": "Peja",
+      "imagePath": "/images/postcards/xk-rugova-canyon.webp"
+    }
+  ]
+}

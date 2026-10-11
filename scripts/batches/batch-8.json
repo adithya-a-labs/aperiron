@@ -1,0 +1,222 @@
+{
+  "id": "batch-8",
+  "name": "Africa North & West",
+  "items": [
+    {
+      "id": "AO",
+      "name": "Angola",
+      "continent": "Africa",
+      "landmarkName": "Kalandula Falls & Miradouro da Lua",
+      "location": "Malanje & Luanda",
+      "imagePath": "/images/postcards/ao-kalandula-falls.webp"
+    },
+    {
+      "id": "BF",
+      "name": "Burkina Faso",
+      "continent": "Africa",
+      "landmarkName": "Sindou Peaks & Grand Mosque",
+      "location": "Cascades & Bobo-Dioulasso",
+      "imagePath": "/images/postcards/bf-sindou-peaks.webp"
+    },
+    {
+      "id": "BI",
+      "name": "Burundi",
+      "continent": "Africa",
+      "landmarkName": "Lake Tanganyika & Karera Falls",
+      "location": "Rutana",
+      "imagePath": "/images/postcards/bi-lake-tanganyika.webp"
+    },
+    {
+      "id": "BJ",
+      "name": "Benin",
+      "continent": "Africa",
+      "landmarkName": "Ganvié Stilt Village & Abomey Palaces",
+      "location": "Lake Nokoué",
+      "imagePath": "/images/postcards/bj-ganvie-village.webp"
+    },
+    {
+      "id": "BW",
+      "name": "Botswana",
+      "continent": "Africa",
+      "landmarkName": "Okavango Delta & Chobe Elephants",
+      "location": "North-West District",
+      "imagePath": "/images/postcards/bw-okavango-delta.webp"
+    },
+    {
+      "id": "CD",
+      "name": "DR Congo",
+      "continent": "Africa",
+      "landmarkName": "Virunga Volcanoes & Mount Nyiragongo",
+      "location": "North Kivu",
+      "imagePath": "/images/postcards/cd-virunga-volcanoes.webp"
+    },
+    {
+      "id": "CF",
+      "name": "Central African Republic",
+      "continent": "Africa",
+      "landmarkName": "Dzanga-Ndoki Rainforest & Bais",
+      "location": "Sangha-Mbaéré",
+      "imagePath": "/images/postcards/cf-dzanga-ndoki.webp"
+    },
+    {
+      "id": "CG",
+      "name": "Congo",
+      "continent": "Africa",
+      "landmarkName": "Odzala-Kokoua Canopy & Congo River",
+      "location": "Cuvette-Ouest",
+      "imagePath": "/images/postcards/cg-odzala-kokoua.webp"
+    },
+    {
+      "id": "CI",
+      "name": "Ivory Coast",
+      "continent": "Africa",
+      "landmarkName": "Basilica of Our Lady of Peace",
+      "location": "Yamoussoukro",
+      "imagePath": "/images/postcards/ci-basilica-yamoussoukro.webp"
+    },
+    {
+      "id": "CM",
+      "name": "Cameroon",
+      "continent": "Africa",
+      "landmarkName": "Mount Cameroon & Waza Park",
+      "location": "Southwest Region",
+      "imagePath": "/images/postcards/cm-mount-cameroon.webp"
+    },
+    {
+      "id": "CV",
+      "name": "Cape Verde",
+      "continent": "Africa",
+      "landmarkName": "Pico do Fogo Volcano",
+      "location": "Fogo Island",
+      "imagePath": "/images/postcards/cv-pico-do-fogo.webp"
+    },
+    {
+      "id": "DJ",
+      "name": "Djibouti",
+      "continent": "Africa",
+      "landmarkName": "Lake Assal Salt Formations",
+      "location": "Danakil Desert",
+      "imagePath": "/images/postcards/dj-lake-assal.webp"
+    },
+    {
+      "id": "DZ",
+      "name": "Algeria",
+      "continent": "Africa",
+      "landmarkName": "Notre Dame d'Afrique & Tassili n'Ajjer",
+      "location": "Algiers & Sahara",
+      "imagePath": "/images/postcards/dz-notre-dame-afrique.webp"
+    },
+    {
+      "id": "EG",
+      "name": "Egypt",
+      "continent": "Africa",
+      "landmarkName": "The Great Pyramids & Sphinx",
+      "location": "Giza Plateau, Cairo",
+      "imagePath": "/images/postcards/eg-pyramids.webp"
+    },
+    {
+      "id": "ER",
+      "name": "Eritrea",
+      "continent": "Africa",
+      "landmarkName": "Asmara Art Deco & Red Sea Dahlak",
+      "location": "Asmara",
+      "imagePath": "/images/postcards/er-asmara-art-deco.webp"
+    },
+    {
+      "id": "ET",
+      "name": "Ethiopia",
+      "continent": "Africa",
+      "landmarkName": "Rock-Hewn Churches of Lalibela",
+      "location": "Amhara Region",
+      "imagePath": "/images/postcards/et-lalibela-churches.webp"
+    },
+    {
+      "id": "GA",
+      "name": "Gabon",
+      "continent": "Africa",
+      "landmarkName": "Loango National Park",
+      "location": "Ogooué-Maritime",
+      "imagePath": "/images/postcards/ga-loango-park.webp"
+    },
+    {
+      "id": "GH",
+      "name": "Ghana",
+      "continent": "Africa",
+      "landmarkName": "Cape Coast Castle",
+      "location": "Central Region",
+      "imagePath": "/images/postcards/gh-cape-coast-castle.webp"
+    },
+    {
+      "id": "GM",
+      "name": "Gambia",
+      "continent": "Africa",
+      "landmarkName": "Kunta Kinteh Island & River Gambia",
+      "location": "North Bank",
+      "imagePath": "/images/postcards/gm-kunta-kinteh.webp"
+    },
+    {
+      "id": "GN",
+      "name": "Guinea",
+      "continent": "Africa",
+      "landmarkName": "Fouta Djallon Highlands",
+      "location": "Labé",
+      "imagePath": "/images/postcards/gn-fouta-djallon.webp"
+    },
+    {
+      "id": "GQ",
+      "name": "Equatorial Guinea",
+      "continent": "Africa",
+      "landmarkName": "Malabo Santa Isabel & Pico Basile",
+      "location": "Bioko Island",
+      "imagePath": "/images/postcards/gq-santa-isabel.webp"
+    },
+    {
+      "id": "GW",
+      "name": "Guinea-Bissau",
+      "continent": "Africa",
+      "landmarkName": "Bijagós Biosphere Archipelago",
+      "location": "Bijagós Islands",
+      "imagePath": "/images/postcards/gw-bijagos-islands.webp"
+    },
+    {
+      "id": "KE",
+      "name": "Kenya",
+      "continent": "Africa",
+      "landmarkName": "Maasai Mara Savanna",
+      "location": "Narok County",
+      "imagePath": "/images/postcards/ke-maasai-mara-savanna.webp"
+    },
+    {
+      "id": "KM",
+      "name": "Comoros",
+      "continent": "Africa",
+      "landmarkName": "Mount Karthala & Chomoni Beaches",
+      "location": "Grande Comore",
+      "imagePath": "/images/postcards/km-mount-karthala.webp"
+    },
+    {
+      "id": "LR",
+      "name": "Liberia",
+      "continent": "Africa",
+      "landmarkName": "Providence Island & Mount Nimba",
+      "location": "Monrovia",
+      "imagePath": "/images/postcards/lr-providence-island.webp"
+    },
+    {
+      "id": "LS",
+      "name": "Lesotho",
+      "continent": "Africa",
+      "landmarkName": "Maletsunyane Falls & Drakensberg",
+      "location": "Semonkong",
+      "imagePath": "/images/postcards/ls-maletsunyane-falls.webp"
+    },
+    {
+      "id": "LY",
+      "name": "Libya",
+      "continent": "Africa",
+      "landmarkName": "Leptis Magna Roman Ruins",
+      "location": "Al-Khums",
+      "imagePath": "/images/postcards/ly-leptis-magna.webp"
+    }
+  ]
+}

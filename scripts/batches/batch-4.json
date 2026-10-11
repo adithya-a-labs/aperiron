@@ -1,0 +1,190 @@
+{
+  "id": "batch-4",
+  "name": "Asia Central, South & West",
+  "items": [
+    {
+      "id": "LK",
+      "name": "Sri Lanka",
+      "continent": "Asia",
+      "landmarkName": "Sigiriya Lion Rock Fortress",
+      "location": "Matale District",
+      "imagePath": "/images/postcards/lk-sigiriya-lion-rock-fortress.webp"
+    },
+    {
+      "id": "MM",
+      "name": "Myanmar",
+      "continent": "Asia",
+      "landmarkName": "Ancient Temples of Bagan",
+      "location": "Mandalay Region",
+      "imagePath": "/images/postcards/mm-ancient-temples-of-bagan.webp"
+    },
+    {
+      "id": "MN",
+      "name": "Mongolia",
+      "continent": "Asia",
+      "landmarkName": "Genghis Khan Statue & Gobi Dunes",
+      "location": "Tsonjin Boldog & Gobi",
+      "imagePath": "/images/postcards/mn-genghis-khan.webp"
+    },
+    {
+      "id": "MO",
+      "name": "Macau",
+      "continent": "Asia",
+      "landmarkName": "Ruins of St. Paul's & Senado Square",
+      "location": "Macau Peninsula",
+      "imagePath": "/images/postcards/mo-ruins-of-st-pauls.webp"
+    },
+    {
+      "id": "MV",
+      "name": "Maldives",
+      "continent": "Asia",
+      "landmarkName": "Malé Atoll & Overwater Villas",
+      "location": "Kaafu Atoll",
+      "imagePath": "/images/postcards/mv-male-atoll-overwater-villas.webp"
+    },
+    {
+      "id": "MY",
+      "name": "Malaysia",
+      "continent": "Asia",
+      "landmarkName": "Petronas Twin Towers",
+      "location": "Kuala Lumpur",
+      "imagePath": "/images/postcards/my-petronas-towers.webp"
+    },
+    {
+      "id": "NP",
+      "name": "Nepal",
+      "continent": "Asia",
+      "landmarkName": "Mount Everest & Swayambhunath",
+      "location": "Solukhumbu & Kathmandu",
+      "imagePath": "/images/postcards/np-mount-everest-swayambhunath.webp"
+    },
+    {
+      "id": "OM",
+      "name": "Oman",
+      "continent": "Asia",
+      "landmarkName": "Sultan Qaboos Grand Mosque",
+      "location": "Muscat",
+      "imagePath": "/images/postcards/om-sultan-qaboos-grand-mosque.webp"
+    },
+    {
+      "id": "PH",
+      "name": "Philippines",
+      "continent": "Asia",
+      "landmarkName": "Chocolate Hills & El Nido",
+      "location": "Bohol & Palawan",
+      "imagePath": "/images/postcards/ph-chocolate-hills.webp"
+    },
+    {
+      "id": "PK",
+      "name": "Pakistan",
+      "continent": "Asia",
+      "landmarkName": "Badshahi Mosque & K2",
+      "location": "Lahore & Karakoram",
+      "imagePath": "/images/postcards/pk-badshahi-mosque.webp"
+    },
+    {
+      "id": "PS",
+      "name": "Palestine",
+      "continent": "Asia",
+      "landmarkName": "Church of the Nativity & Mar Saba",
+      "location": "Bethlehem & Judean Desert",
+      "imagePath": "/images/postcards/ps-mar-saba.webp"
+    },
+    {
+      "id": "QA",
+      "name": "Qatar",
+      "continent": "Asia",
+      "landmarkName": "Museum of Islamic Art",
+      "location": "Doha",
+      "imagePath": "/images/postcards/qa-museum-of-islamic-art.webp"
+    },
+    {
+      "id": "SA",
+      "name": "Saudi Arabia",
+      "continent": "Asia",
+      "landmarkName": "Al-Ula & Hegra",
+      "location": "Madinah Region",
+      "imagePath": "/images/postcards/sa-al-ula-hegra.webp"
+    },
+    {
+      "id": "SY",
+      "name": "Syria",
+      "continent": "Asia",
+      "landmarkName": "Palmyra Colonnade & Krak des Chevaliers",
+      "location": "Tadmur & Homs",
+      "imagePath": "/images/postcards/sy-palmyra.webp"
+    },
+    {
+      "id": "TH",
+      "name": "Thailand",
+      "continent": "Asia",
+      "landmarkName": "Wat Arun & Grand Palace",
+      "location": "Bangkok",
+      "imagePath": "/images/postcards/th-wat-arun.webp"
+    },
+    {
+      "id": "TJ",
+      "name": "Tajikistan",
+      "continent": "Asia",
+      "landmarkName": "Pamir Highway & Iskanderkul",
+      "location": "Fann Mountains",
+      "imagePath": "/images/postcards/tj-pamir-highway.webp"
+    },
+    {
+      "id": "TL",
+      "name": "Timor-Leste",
+      "continent": "Asia",
+      "landmarkName": "Cristo Rei & Atauro Coral Reefs",
+      "location": "Dili",
+      "imagePath": "/images/postcards/tl-cristo-rei.webp"
+    },
+    {
+      "id": "TM",
+      "name": "Turkmenistan",
+      "continent": "Asia",
+      "landmarkName": "Darvaza Gas Crater & Ashgabat Marble",
+      "location": "Karakum Desert",
+      "imagePath": "/images/postcards/tm-darvaza-crater.webp"
+    },
+    {
+      "id": "TR",
+      "name": "Türkiye",
+      "continent": "Asia",
+      "landmarkName": "Hagia Sophia & Bosphorus",
+      "location": "Istanbul",
+      "imagePath": "/images/postcards/tr-hagia-sophia.webp"
+    },
+    {
+      "id": "TW",
+      "name": "Taiwan",
+      "continent": "Asia",
+      "landmarkName": "Taipei 101 & Elephant Mountain",
+      "location": "Taipei",
+      "imagePath": "/images/postcards/tw-taipei-101-elephant-mountain.webp"
+    },
+    {
+      "id": "UZ",
+      "name": "Uzbekistan",
+      "continent": "Asia",
+      "landmarkName": "Registan Square",
+      "location": "Samarkand",
+      "imagePath": "/images/postcards/uz-registan-square.webp"
+    },
+    {
+      "id": "VN",
+      "name": "Vietnam",
+      "continent": "Asia",
+      "landmarkName": "Ha Long Bay",
+      "location": "Quảng Ninh",
+      "imagePath": "/images/postcards/vn-ha-long-bay.webp"
+    },
+    {
+      "id": "YE",
+      "name": "Yemen",
+      "continent": "Asia",
+      "landmarkName": "Old Walled City of Shibam & Socotra",
+      "location": "Hadramawt & Socotra",
+      "imagePath": "/images/postcards/ye-shibam-socotra.webp"
+    }
+  ]
+}

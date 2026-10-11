@@ -1,0 +1,222 @@
+{
+  "id": "batch-9",
+  "name": "Africa East, Central & South",
+  "items": [
+    {
+      "id": "MA",
+      "name": "Morocco",
+      "continent": "Africa",
+      "landmarkName": "Hassan II Mosque & Chefchaouen",
+      "location": "Casablanca & Rif Mountains",
+      "imagePath": "/images/postcards/ma-hassan-ii-mosque-chefchaouen.webp"
+    },
+    {
+      "id": "MG",
+      "name": "Madagascar",
+      "continent": "Africa",
+      "landmarkName": "Avenue of the Baobabs",
+      "location": "Menabe",
+      "imagePath": "/images/postcards/mg-avenue-of-baobabs.webp"
+    },
+    {
+      "id": "ML",
+      "name": "Mali",
+      "continent": "Africa",
+      "landmarkName": "Great Mosque of Djenné",
+      "location": "Mopti Region",
+      "imagePath": "/images/postcards/ml-djenne-mosque.webp"
+    },
+    {
+      "id": "MR",
+      "name": "Mauritania",
+      "continent": "Africa",
+      "landmarkName": "Eye of the Sahara (Richat Structure)",
+      "location": "Ouadane",
+      "imagePath": "/images/postcards/mr-eye-of-sahara.webp"
+    },
+    {
+      "id": "MU",
+      "name": "Mauritius",
+      "continent": "Africa",
+      "landmarkName": "Le Morne Brabant & Seven Colours",
+      "location": "Black River District",
+      "imagePath": "/images/postcards/mu-le-morne-brabant-seven-colours.webp"
+    },
+    {
+      "id": "MW",
+      "name": "Malawi",
+      "continent": "Africa",
+      "landmarkName": "Lake Malawi & Cape Maclear",
+      "location": "Mangochi",
+      "imagePath": "/images/postcards/mw-lake-malawi.webp"
+    },
+    {
+      "id": "MZ",
+      "name": "Mozambique",
+      "continent": "Africa",
+      "landmarkName": "Bazaruto Coral Archipelago",
+      "location": "Inhambane",
+      "imagePath": "/images/postcards/mz-bazaruto-archipelago.webp"
+    },
+    {
+      "id": "NA",
+      "name": "Namibia",
+      "continent": "Africa",
+      "landmarkName": "Sossusvlei & Deadvlei Dunes",
+      "location": "Namib Desert",
+      "imagePath": "/images/postcards/na-sossusvlei-dunes.webp"
+    },
+    {
+      "id": "NE",
+      "name": "Niger",
+      "continent": "Africa",
+      "landmarkName": "Agadez Grand Mosque & Aïr Mountains",
+      "location": "Agadez",
+      "imagePath": "/images/postcards/ne-agadez-mosque.webp"
+    },
+    {
+      "id": "NG",
+      "name": "Nigeria",
+      "continent": "Africa",
+      "landmarkName": "Zuma Rock",
+      "location": "Niger State / Abuja",
+      "imagePath": "/images/postcards/ng-zuma-rock.webp"
+    },
+    {
+      "id": "RW",
+      "name": "Rwanda",
+      "continent": "Africa",
+      "landmarkName": "Volcanoes National Park",
+      "location": "Musanze",
+      "imagePath": "/images/postcards/rw-volcanoes-park.webp"
+    },
+    {
+      "id": "SC",
+      "name": "Seychelles",
+      "continent": "Africa",
+      "landmarkName": "Anse Source d'Argent",
+      "location": "La Digue Island",
+      "imagePath": "/images/postcards/sc-anse-source-d-argent.webp"
+    },
+    {
+      "id": "SD",
+      "name": "Sudan",
+      "continent": "Africa",
+      "landmarkName": "Meroë Pyramids",
+      "location": "River Nile State",
+      "imagePath": "/images/postcards/sd-meroe-pyramids.webp"
+    },
+    {
+      "id": "SL",
+      "name": "Sierra Leone",
+      "continent": "Africa",
+      "landmarkName": "Banana Islands & River Number Two",
+      "location": "Freetown Peninsula",
+      "imagePath": "/images/postcards/sl-banana-islands.webp"
+    },
+    {
+      "id": "SN",
+      "name": "Senegal",
+      "continent": "Africa",
+      "landmarkName": "Gorée Island & Lake Retba",
+      "location": "Dakar",
+      "imagePath": "/images/postcards/sn-goree-island.webp"
+    },
+    {
+      "id": "SO",
+      "name": "Somalia",
+      "continent": "Africa",
+      "landmarkName": "Laas Geel Rock Art & Mogadishu Coast",
+      "location": "Woqooyi Galbeed",
+      "imagePath": "/images/postcards/so-laas-geel.webp"
+    },
+    {
+      "id": "SS",
+      "name": "South Sudan",
+      "continent": "Africa",
+      "landmarkName": "The Sudd Wetlands & Nile",
+      "location": "Unity State",
+      "imagePath": "/images/postcards/ss-sudd-wetlands.webp"
+    },
+    {
+      "id": "ST",
+      "name": "São Tomé and Príncipe",
+      "continent": "Africa",
+      "landmarkName": "Pico Cão Grande",
+      "location": "Caué District",
+      "imagePath": "/images/postcards/st-pico-cao-grande.webp"
+    },
+    {
+      "id": "SZ",
+      "name": "Eswatini",
+      "continent": "Africa",
+      "landmarkName": "Mlilwane Sanctuary & Mantenga Falls",
+      "location": "Ezulwini Valley",
+      "imagePath": "/images/postcards/sz-mlilwane-sanctuary.webp"
+    },
+    {
+      "id": "TD",
+      "name": "Chad",
+      "continent": "Africa",
+      "landmarkName": "Ennedi Plateau & Guelta d'Archei",
+      "location": "Ennedi",
+      "imagePath": "/images/postcards/td-ennedi-plateau.webp"
+    },
+    {
+      "id": "TG",
+      "name": "Togo",
+      "continent": "Africa",
+      "landmarkName": "Koutammakou Mud Tower-Houses",
+      "location": "Kara Region",
+      "imagePath": "/images/postcards/tg-koutammakou-towers.webp"
+    },
+    {
+      "id": "TN",
+      "name": "Tunisia",
+      "continent": "Africa",
+      "landmarkName": "El Jem Amphitheatre & Sidi Bou Said",
+      "location": "Mahdia & Tunis",
+      "imagePath": "/images/postcards/tn-el-jem.webp"
+    },
+    {
+      "id": "TZ",
+      "name": "Tanzania",
+      "continent": "Africa",
+      "landmarkName": "Mount Kilimanjaro",
+      "location": "Kilimanjaro Region",
+      "imagePath": "/images/postcards/tz-mount-kilimanjaro.webp"
+    },
+    {
+      "id": "UG",
+      "name": "Uganda",
+      "continent": "Africa",
+      "landmarkName": "Murchison Falls & Bwindi Impenetrable",
+      "location": "Masindi & Kanungu",
+      "imagePath": "/images/postcards/ug-murchison-falls.webp"
+    },
+    {
+      "id": "ZA",
+      "name": "South Africa",
+      "continent": "Africa",
+      "landmarkName": "Table Mountain",
+      "location": "Cape Town",
+      "imagePath": "/images/postcards/za-table-mountain.webp"
+    },
+    {
+      "id": "ZM",
+      "name": "Zambia",
+      "continent": "Africa",
+      "landmarkName": "Victoria Falls (Mosi-oa-Tunya)",
+      "location": "Livingstone",
+      "imagePath": "/images/postcards/zm-victoria-falls.webp"
+    },
+    {
+      "id": "ZW",
+      "name": "Zimbabwe",
+      "continent": "Africa",
+      "landmarkName": "Great Zimbabwe Ruins & Victoria Falls",
+      "location": "Masvingo",
+      "imagePath": "/images/postcards/zw-great-zimbabwe.webp"
+    }
+  ]
+}

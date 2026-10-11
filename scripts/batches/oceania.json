@@ -1,0 +1,132 @@
+[
+  {
+    "id": "FJ",
+    "name": "Fiji",
+    "continent": "Oceania",
+    "landmarkName": "Fiji Heritage & Landscapes",
+    "location": "Oceania",
+    "caption": "Discover the breathtaking sights and unique heritage of Fiji.",
+    "imagePath": "/images/postcards/fj-fiji-heritage-landscapes.png",
+    "imageFilename": "fj-fiji-heritage-landscapes.png"
+  },
+  {
+    "id": "FM",
+    "name": "Micronesia",
+    "continent": "Oceania",
+    "landmarkName": "Nan Madol Ancient City",
+    "location": "Pohnpei",
+    "caption": "Megalithic basalt stone city built on coral reef canals.",
+    "imagePath": "/images/postcards/fm-nan-madol-ancient-city.png",
+    "imageFilename": "fm-nan-madol-ancient-city.png"
+  },
+  {
+    "id": "KI",
+    "name": "Kiribati",
+    "continent": "Oceania",
+    "landmarkName": "Christmas Island (Kiritimati) Lagoons",
+    "location": "Line Islands",
+    "caption": "Vast coral atoll lagoons and seabird colonies on the equator.",
+    "imagePath": "/images/postcards/ki-christmas-island-kiritimati-lagoons.png",
+    "imageFilename": "ki-christmas-island-kiritimati-lagoons.png"
+  },
+  {
+    "id": "MH",
+    "name": "Marshall Islands",
+    "continent": "Oceania",
+    "landmarkName": "Majuro Atoll & Arno Coral Lagoon",
+    "location": "Majuro",
+    "caption": "Narrow palm-lined coral ring encircled by vast turquoise Pacific.",
+    "imagePath": "/images/postcards/mh-majuro-atoll-arno-coral-lagoon.png",
+    "imageFilename": "mh-majuro-atoll-arno-coral-lagoon.png"
+  },
+  {
+    "id": "NR",
+    "name": "Nauru",
+    "continent": "Oceania",
+    "landmarkName": "Anibare Bay & Command Ridge",
+    "location": "Anibare District",
+    "caption": "Pristine white sand bay framed by jagged coastal coral pinnacles.",
+    "imagePath": "/images/postcards/nr-anibare-bay-command-ridge.png",
+    "imageFilename": "nr-anibare-bay-command-ridge.png"
+  },
+  {
+    "id": "NZ",
+    "name": "New Zealand",
+    "continent": "Oceania",
+    "landmarkName": "New Zealand Heritage & Landscapes",
+    "location": "Oceania",
+    "caption": "Discover the breathtaking sights and unique heritage of New Zealand.",
+    "imagePath": "/images/postcards/nz-new-zealand-heritage-landscapes.png",
+    "imageFilename": "nz-new-zealand-heritage-landscapes.png"
+  },
+  {
+    "id": "PG",
+    "name": "Papua New Guinea",
+    "continent": "Oceania",
+    "landmarkName": "Tavurvur Volcano & Sepik River",
+    "location": "Rabaul & East Sepik",
+    "caption": "Smoking active caldera and sacred carved spirit houses.",
+    "imagePath": "/images/postcards/pg-tavurvur-volcano-sepik-river.png",
+    "imageFilename": "pg-tavurvur-volcano-sepik-river.png"
+  },
+  {
+    "id": "PW",
+    "name": "Palau",
+    "continent": "Oceania",
+    "landmarkName": "Rock Islands Southern Lagoon",
+    "location": "Koror",
+    "caption": "Mushroom-shaped emerald limestone islets in luminous turquoise seas.",
+    "imagePath": "/images/postcards/pw-rock-islands-southern-lagoon.png",
+    "imageFilename": "pw-rock-islands-southern-lagoon.png"
+  },
+  {
+    "id": "SB",
+    "name": "Solomon Islands",
+    "continent": "Oceania",
+    "landmarkName": "Marovo Lagoon",
+    "location": "Western Province",
+    "caption": "The world's largest saltwater lagoon dotted with hundreds of islets.",
+    "imagePath": "/images/postcards/sb-marovo-lagoon.png",
+    "imageFilename": "sb-marovo-lagoon.png"
+  },
+  {
+    "id": "TO",
+    "name": "Tonga",
+    "continent": "Oceania",
+    "landmarkName": "Ha'amonga 'a Maui Trilithon",
+    "location": "Heketā, Tongatapu",
+    "caption": "Ancient Polynesian coral stone megalith known as Stonehenge of the Pacific.",
+    "imagePath": "/images/postcards/to-ha-amonga-a-maui-trilithon.png",
+    "imageFilename": "to-ha-amonga-a-maui-trilithon.png"
+  },
+  {
+    "id": "TV",
+    "name": "Tuvalu",
+    "continent": "Oceania",
+    "landmarkName": "Funafuti Conservation Marine Lagoon",
+    "location": "Funafuti",
+    "caption": "Translucent turquoise atoll ribbon and tropical coconut motus.",
+    "imagePath": "/images/postcards/tv-funafuti-conservation-marine-lagoon.png",
+    "imageFilename": "tv-funafuti-conservation-marine-lagoon.png"
+  },
+  {
+    "id": "VU",
+    "name": "Vanuatu",
+    "continent": "Oceania",
+    "landmarkName": "Mount Yasur Volcano & Blue Cave",
+    "location": "Tanna Island",
+    "caption": "One of the world's most accessible living lava firework calderas.",
+    "imagePath": "/images/postcards/vu-mount-yasur-volcano-blue-cave.png",
+    "imageFilename": "vu-mount-yasur-volcano-blue-cave.png"
+  },
+  {
+    "id": "WS",
+    "name": "Samoa",
+    "continent": "Oceania",
+    "landmarkName": "Samoa Heritage & Landscapes",
+    "location": "Oceania",
+    "caption": "Discover the breathtaking sights and unique heritage of Samoa.",
+    "imagePath": "/images/postcards/ws-samoa-heritage-landscapes.png",
+    "imageFilename": "ws-samoa-heritage-landscapes.png"
+  }
+]

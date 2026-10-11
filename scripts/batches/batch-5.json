@@ -1,0 +1,134 @@
+{
+  "id": "batch-5",
+  "name": "North & Central America",
+  "items": [
+    {
+      "id": "AG",
+      "name": "Antigua and Barbuda",
+      "continent": "North America",
+      "landmarkName": "Nelson's Dockyard & Shirley Heights",
+      "location": "English Harbour",
+      "imagePath": "/images/postcards/ag-nelsons-dockyard.webp"
+    },
+    {
+      "id": "AR",
+      "name": "Argentina",
+      "continent": "South America",
+      "landmarkName": "Iguazu Falls",
+      "location": "Misiones Province",
+      "imagePath": "/images/postcards/ar-iguazu-falls.webp"
+    },
+    {
+      "id": "BB",
+      "name": "Barbados",
+      "continent": "North America",
+      "landmarkName": "Harrison's Cave & Bathsheba Beach",
+      "location": "Saint Joseph",
+      "imagePath": "/images/postcards/bb-harrisons-cave.webp"
+    },
+    {
+      "id": "BO",
+      "name": "Bolivia",
+      "continent": "South America",
+      "landmarkName": "Salar de Uyuni Salt Flats",
+      "location": "Potosí",
+      "imagePath": "/images/postcards/bo-salar-de-uyuni.webp"
+    },
+    {
+      "id": "BS",
+      "name": "Bahamas",
+      "continent": "North America",
+      "landmarkName": "Paradise Island & Exuma Cays",
+      "location": "New Providence",
+      "imagePath": "/images/postcards/bs-paradise-island-exuma-cays.webp"
+    },
+    {
+      "id": "BZ",
+      "name": "Belize",
+      "continent": "North America",
+      "landmarkName": "The Great Blue Hole & Barrier Reef",
+      "location": "Lighthouse Reef",
+      "imagePath": "/images/postcards/bz-blue-hole.webp"
+    },
+    {
+      "id": "CL",
+      "name": "Chile",
+      "continent": "South America",
+      "landmarkName": "Moai of Easter Island",
+      "location": "Rapa Nui",
+      "imagePath": "/images/postcards/cl-moai-of-easter-island.webp"
+    },
+    {
+      "id": "CO",
+      "name": "Colombia",
+      "continent": "South America",
+      "landmarkName": "The Rock of Guatapé & Salento",
+      "location": "Antioquia & Quindío",
+      "imagePath": "/images/postcards/co-the-rock-of-guatape-salento.webp"
+    },
+    {
+      "id": "CR",
+      "name": "Costa Rica",
+      "continent": "North America",
+      "landmarkName": "Arenal Volcano",
+      "location": "Alajuela Province",
+      "imagePath": "/images/postcards/cr-arenal-volcano.webp"
+    },
+    {
+      "id": "CU",
+      "name": "Cuba",
+      "continent": "North America",
+      "landmarkName": "Old Havana & El Malecón",
+      "location": "Havana",
+      "imagePath": "/images/postcards/cu-old-havana-el-malecon.webp"
+    },
+    {
+      "id": "DM",
+      "name": "Dominica",
+      "continent": "North America",
+      "landmarkName": "Boiling Lake & Trafalgar Falls",
+      "location": "Morne Trois Pitons",
+      "imagePath": "/images/postcards/dm-boiling-lake.webp"
+    },
+    {
+      "id": "DO",
+      "name": "Dominican Republic",
+      "continent": "North America",
+      "landmarkName": "Zona Colonial & Saona Island",
+      "location": "Santo Domingo",
+      "imagePath": "/images/postcards/do-zona-colonial.webp"
+    },
+    {
+      "id": "EC",
+      "name": "Ecuador",
+      "continent": "South America",
+      "landmarkName": "Galápagos Islands & Cotopaxi",
+      "location": "Galápagos & Andes",
+      "imagePath": "/images/postcards/ec-galapagos.webp"
+    },
+    {
+      "id": "GD",
+      "name": "Grenada",
+      "continent": "North America",
+      "landmarkName": "Grand Anse & Underwater Sculpture Park",
+      "location": "Saint George's",
+      "imagePath": "/images/postcards/gd-grand-anse.webp"
+    },
+    {
+      "id": "GT",
+      "name": "Guatemala",
+      "continent": "North America",
+      "landmarkName": "Tikal Pyramids & Lake Atitlán",
+      "location": "Petén & Sololá",
+      "imagePath": "/images/postcards/gt-tikal-pyramids.webp"
+    },
+    {
+      "id": "GY",
+      "name": "Guyana",
+      "continent": "South America",
+      "landmarkName": "Kaieteur Falls",
+      "location": "Potaro-Siparuni",
+      "imagePath": "/images/postcards/gy-kaieteur-falls.webp"
+    }
+  ]
+}
