@@ -2331,7 +2331,9 @@ dialog::backdrop {
   align-items: center;
   gap: 12px;
   width: 100%;
+  min-width: 0;
 }
+.explore-sidebar > .postcard { width: 100%; }
 .bot-explorer {
   display: flex;
   justify-content: center;
@@ -2355,4 +2357,22 @@ dialog::backdrop {
 }
 .bot-explorer-img:active {
   transform: scale(0.96);
+}
+
+/* Keep the map and destination action within a typical laptop viewport. */
+@media (min-width: 901px) and (max-height: 900px) {
+  main.page-explore { padding-top: 24px; }
+  .page-explore .page-heading { margin-bottom: 20px; }
+  .page-explore .toolbar { margin-bottom: 20px; }
+  .page-explore .map-stage > .world-map > svg { max-height: 340px; }
+  .page-explore .map-stage > .legend { padding-left: 125px; }
+  .page-explore .map-keyboard-help { font-size: 11px; }
+  .page-explore .explore-sidebar { gap: 4px; }
+  .page-explore .bot-explorer-img { width: 100px; }
+  .page-explore .postcard-art-wrap { max-height: 125px; }
+  .page-explore .postcard > .eyebrow { margin: 12px 0 8px; }
+  .page-explore .postcard h2 { font-size: 22px; margin-bottom: 12px; }
+  .page-explore .postcard-details { margin-bottom: 12px; gap: 9px; }
+  .page-explore .postcard .travel-status { font-size: 10px; }
+  .page-explore .postcard > .button { margin-top: 10px; }
 }

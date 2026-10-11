@@ -165,6 +165,13 @@ without returning upstream bodies. The frontend aborts and invalidates requests 
 selection changes and unmount. HTTP request/response types live in
 `src/shared/research.ts`; these do not change the eight-method engine API.
 
+Legacy research uses low reasoning effort and a 2400-token completion budget;
+reasoning alone never becomes an answer. A truncated empty response returns a
+recoverable error. Provider 429 responses expose a bounded Retry-After and a
+useful wait estimate. The handler suppresses further upstream requests during
+that cooldown within its process, with no automatic retry or model fallback.
+This legacy cooldown is in memory; assistant accounting remains persistent.
+
 ## Versioned assistant services
 
 The user-authorized [backend assistant milestone](decisions/0009-backend-map-assistant.md)

@@ -42,10 +42,17 @@ export function BotExplorer({ countryId }: { countryId: string }) {
       cancelled = true;
       framesReadyRef.current = false;
       preloadedFramesRef.current = [];
+      if (animRef.current !== null) cancelAnimationFrame(animRef.current);
     };
   }, []);
 
   const playTwoLoops = () => {
+    if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+      if (animRef.current !== null) cancelAnimationFrame(animRef.current);
+      animRef.current = null;
+      setFrameIndex(0);
+      return;
+    }
     if (!framesReadyRef.current) {
       setFrameIndex(0);
       return;
@@ -61,6 +68,11 @@ export function BotExplorer({ countryId }: { countryId: string }) {
     const startTime = performance.now();
 
     const tick = (now: number) => {
+      if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+        setFrameIndex(0);
+        animRef.current = null;
+        return;
+      }
       const elapsed = now - startTime;
       const step = Math.floor(elapsed / frameInterval);
 
@@ -95,14 +107,13 @@ export function BotExplorer({ countryId }: { countryId: string }) {
   }, [countryId]);
 
   return (
-    <div className="bot-explorer" title="Explorer companion">
+    <button type="button" className="bot-explorer" aria-label="Animate explorer companion" onClick={playTwoLoops}>
       <img
         src={BOT_FRAMES[frameIndex]}
-        alt="Explorer companion"
+        alt=""
         className="bot-explorer-img"
         draggable={false}
-        onClick={playTwoLoops}
       />
-    </div>
+    </button>
   );
 }

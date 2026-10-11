@@ -52,6 +52,17 @@ jobs per minute. No-tool calls time out at thirty seconds, browser calls at
 forty-five seconds and jobs at ninety seconds. Provider 429 responses persist a
 cooldown using Retry-After or sixty seconds. No automatic retries or model
 fallbacks occur. Strict schemas use `$defs` to reduce repeated enum overhead.
+The provider compiler translates nullable values into type unions and includes
+null in nullable enums, matching [Groq's structured-output guidance](https://console.groq.com/docs/structured-outputs).
+Discriminated object unions and authoritative runtime/public schemas stay intact.
+
+Persistence failures are contained within each job. If the running transition
+cannot be saved, no provider work is dispatched. If result persistence fails,
+polling reports a storage failure without publishing an unsaved result. The
+accepted idempotency reservation remains intact; restart never replays the work.
+Queue slots are released so recovered storage can serve new explicit attempts.
+Windows atomic renames have at most two short retries for transient file locks;
+these retries never repeat a provider request or reset accounting.
 
 Travel Buddy retains its independent cache, seven-day refresh age, quota
 reservations, deduplication and twenty-request reserve; see

@@ -13,6 +13,24 @@ const allowance = (value: number | string | undefined, fallback: number) => {
 };
 /** Reuse repeated enums/objects with $defs to fit the free account's small token window. */
 export function compileGroqSchema(root: Record<string, unknown>): Record<string, unknown> {
+  // Groq requires primitive nullability as a type union. Keep discriminated
+  // object unions intact, and preserve null in enums as well as in the type.
+  const normalize = (value: unknown): unknown => {
+    if (Array.isArray(value)) return value.map(normalize);
+    if (!value || typeof value !== 'object') return value;
+    const node = Object.fromEntries(Object.entries(value).map(([key, child]) => [key, normalize(child)]));
+    if (Array.isArray(node.anyOf) && node.anyOf.length === 2) {
+      const branches = node.anyOf as Record<string, unknown>[];
+      const nonNull = branches.find(branch => branch.type !== 'null');
+      if (branches.some(branch => branch.type === 'null') && nonNull && typeof nonNull.type === 'string') {
+        const { anyOf: _anyOf, ...rest } = node;
+        return { ...rest, ...nonNull, type: [nonNull.type, 'null'],
+          ...(Array.isArray(nonNull.enum) ? { enum: [...nonNull.enum, null] } : {}) };
+      }
+    }
+    return node;
+  };
+  root = normalize(root) as Record<string, unknown>;
   const counts = new Map<string, { count: number; value: Record<string, unknown>; name: string }>();
   const collect = (v: unknown) => {
     if (Array.isArray(v)) { v.forEach(collect); return; }

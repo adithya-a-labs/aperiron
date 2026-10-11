@@ -49,11 +49,14 @@ test('reserve threshold survives restart and blocks forced refresh', async t => 
   const s = new TravelService(new TravelCache(dir, 120), { apiKey: 'test', fetchImpl: (async () => { calls++; return Response.json(payload()); }) as typeof fetch });
   assert.equal((await s.refresh(request, true)).outcome, 'quota'); assert.equal(calls, 0);
 });
-test('different pairs respect global concurrency and cannot spend the reserve concurrently', async t => {
+test('different pairs respect global concurrency and cannot spend the reserve concurrently', { timeout: 5000 }, async t => {
   const { cache } = await setup(t, 23); let active = 0, maximum = 0, calls = 0;
+  let releaseFirstWave!: () => void;
+  const firstWave = new Promise<void>(resolve => { releaseFirstWave = resolve; });
   const s = new TravelService(cache, { apiKey: 'test', fetchImpl: (async (_url, init) => {
     active++; calls++; maximum = Math.max(maximum, active);
-    await new Promise(r => setTimeout(r, 15)); active--;
+    if (calls === 2) releaseFirstWave();
+    await firstWave; active--;
     const r = JSON.parse(String(init?.body)); return Response.json(payload(r.passport, r.destination));
   }) as typeof fetch });
   const results = await Promise.all(['JP', 'SG', 'TR', 'AU', 'GB'].map(destinationId => s.refresh({ passportId: 'IN', destinationId })));

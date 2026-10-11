@@ -51,6 +51,11 @@ target 1366×768, 1440×900 and 1920×1080. Existing narrow-width reflow remains
 but mobile optimization is outside this work. Keyboard focus and reduced-motion
 support apply across the active screens.
 
+Explore includes the bundled 52-frame WebP companion above the destination card.
+Its button supports keyboard activation, stays static with reduced motion and
+cancels playback on unmount. Compact desktop styling keeps the legend and
+destination action visible on laptop-height screens.
+
 React, TypeScript, Vite, Zustand, Lucide and Tailwind's Vite plugin remain the stack.
 Most visual styling is semantic CSS. D3 and TopoJSON render the map and rotating
 orthographic globe. React Simple Maps remains installed but is not used by this

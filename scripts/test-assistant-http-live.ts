@@ -34,7 +34,7 @@ async function run(path: string, body: unknown) {
   const started = performance.now(), job = await request<Job>('POST', path, body);
   for (let i = 0; i < 100; i++) {
     const current = await request<Job>('GET', `/jobs/${job.id}`); jobSchema.parse(current);
-    if (!['queued', 'running'].includes(current.status)) { const result = { path, status: current.status, latencyMs: Math.round(performance.now() - started), error: current.error, result: current.result }; report.push(result); console.log(JSON.stringify(result)); return current; }
+    if (!['queued', 'running'].includes(current.status)) { const result = { path, status: current.status, latencyMs: Math.round(performance.now() - started), error: current.error, result: current.result }; report.push(result); console.log(JSON.stringify(result)); if (current.status !== 'completed') process.exitCode = 1; return current; }
     await new Promise(resolve => setTimeout(resolve, 500));
   }
   throw new Error('Live job timed out.');

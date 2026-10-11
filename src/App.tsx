@@ -257,11 +257,12 @@ function Explore() {
             />
           )}
         </section>
+        <div className="explore-sidebar">
+          <BotExplorer countryId={destination} />
         <aside className="postcard" aria-label="Selected destination details">
           <div className="postcard-image">
             <PostcardArt
               countryId={destination}
-              stableImage
               variant={
                 destination === "JP"
                   ? 0

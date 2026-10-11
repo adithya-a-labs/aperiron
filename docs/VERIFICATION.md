@@ -111,6 +111,17 @@ provider auth/rate-limit failures, malformed responses and credential non-disclo
 Provider responses in automated tests are mocked; authenticated Groq requests need
 an account key and are a separate verification step.
 
+Research regressions also cover upstream cooldown preservation, no repeated
+dispatch during cooldown and truncated empty completions. Assistant schema tests
+exercise nullable enum/type handling across every generation schema without
+changing the public runtime contracts. The manual HTTP assistant diagnostic exits
+nonzero when a submitted job fails; inspect its report for provider rate limits
+instead of treating successful script startup as API success.
+
+Storage fault regressions cover failed running/result writes, no provider dispatch
+before a saved transition, no unsaved result publication, retained idempotency and
+queue recovery. They run in `npm test` alongside all assistant HTTP operations.
+
 ## Desktop frontend audit regression
 
 The [desktop audit resolution](FRONTEND_AUDIT_2026-10-11.md#resolution--2026-10-11)
