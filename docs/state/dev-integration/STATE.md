@@ -1,11 +1,11 @@
 # dev-integration state
 
-- Updated at: 2026-10-11T02:15:20Z
+- Updated at: 2026-10-11T02:17:50Z
 - Status: ready_for_review
-- Task: Integrate imagegen postcards and landmark pipeline into dev-integration
+- Task: Publish postcard integration commits to origin/dev-integration
 - Branch: dev-integration
-- Baseline commit: 23524ea
-- Latest run: [Postcard integration](runs/20261011T021520Z-postcard-cherry-picks-e6a49c.md)
+- Baseline commit: 46cc078
+- Latest run: [Publish postcards](runs/20261011T021750Z-publish-postcards-9c14ea.md)
 
 ## Completed
 
@@ -48,7 +48,7 @@ constraints remain separate from decorative artwork integration.
 
 ## Next actions
 
-Review local integration commits; push only when requested. Preserve the corrected
+Origin now includes all four postcard commits through 46cc078. Preserve the corrected
 registry generation input and the existing frontend repairs.
 
 ## Coordination
@@ -56,5 +56,5 @@ registry generation input and the existing frontend repairs.
 Explicit dev-integration task. Other developer histories unchanged; source imagegen
 checkout untouched. Shared Artwork changes preserve DNA categories and existing CSS.
 Catalog, baseline matrix and shared engine contracts unchanged. Existing app on
-5174 reused for isolated browser verification. Commits and records remain local;
-no push performed.
+5174 reused for isolated browser verification. Origin/dev-integration advanced from
+23524ea to 46cc078 by a successful normal push. Publication handoff accompanies it.
