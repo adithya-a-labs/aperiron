@@ -1,5 +1,9 @@
 # Desktop frontend audit — 2026-10-11
 
+Current follow-up: [desktop re-audit](FRONTEND_REAUDIT_2026-10-11.md) records
+regressions in baseline 59333b4. The findings/resolution below describe their
+historical baselines and do not certify the latest integrated styling.
+
 Audit baseline: `dev-integration`, `11bc22adab3efbf52fab7ed6dce0d86dc4d5a541`.
 Original read-only implementation review. The original findings below describe
 that baseline; the resolution section records the subsequent fixes requested by
