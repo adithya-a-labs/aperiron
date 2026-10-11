@@ -1,56 +1,60 @@
 # dev-integration state
 
-- Updated at: 2026-10-11T01:48:12Z
+- Updated at: 2026-10-11T02:15:20Z
 - Status: ready_for_review
-- Task: Stage and commit the nine frontend repairs in meaningful groups
+- Task: Integrate imagegen postcards and landmark pipeline into dev-integration
 - Branch: dev-integration
-- Baseline commit: 59333b420011c04814328e767827bcf0330060f6
-- Latest run: [Grouped commits](runs/20261011T014812Z-grouped-commits-c482a7.md)
+- Baseline commit: 23524ea
+- Latest run: [Postcard integration](runs/20261011T021520Z-postcard-cherry-picks-e6a49c.md)
 
 ## Completed
 
-All R01–R09 findings in the [re-audit](../../FRONTEND_REAUDIT_2026-10-11.md)
-are repaired. Map, companion and panel now use deliberate desktop sizing without
-the 900px height cliff. Restored readable interpretation text, comparison table,
-notebook actions, DNA count grid and contained research leads. Navigation keeps
-the companion static; optional pointer playback respects reduced motion and
-cancels on destination changes. Normal vertical scrolling preserves readability.
+Imported source commits 69c7546 and 4585357 as be28c3e and c1637af with reviewed
+resolutions preserving current summaries and other developers' records. All 210
+WebPs are present, covering every one of the 199 catalog destinations. Imported
+landmark registry, authoring scripts, generation inputs and regional batches.
 
-Prior integration/backend/Trips milestones remain present at the baseline above;
-see the [previous audit run](runs/20261011T013735Z-desktop-reaudit-9c72e1.md)
-and earlier publication history. No engine/data or shared contract changes here.
+Committed UI wiring and pipeline corrections as b347467. Explore and Trips share
+the postcard component, with image loading, landmark/location badge, honest generic
+SVG fallback and country-change recovery. Corrected JSON generation paths to match
+the shipped registry and added three regression tests. Frontend documentation updated.
+
+Prior R01-R09 frontend repairs, layout, companion behavior, comparison, notebook,
+DNA, backend and Trips milestones remain preserved. See the
+[previous grouped repair record](runs/20261011T014812Z-grouped-commits-c482a7.md)
+and earlier integration history for their evidence and limits.
 
 ## In progress
 
-None. Repairs and supporting documentation are committed locally in twelve focused commits.
+None for the requested integration.
 
 ## Verification
 
-Typecheck, production build, 81/81 tests, documentation links and whitespace pass.
-Browser inspection used only port 5174: desktop viewports/boundary heights,
-comparison inspect/reload, cached notebook actions, long research URL/escaped
-text, all six DNA counts, keyboard/pointer/reduced motion, empty-search recovery,
-long destination names, single map/globe Tab stops and Trips entry passed.
-Screenshots and measured Before/After evidence are in the re-audit report.
-Existing Vite native-loader/chunk advisories remain non-fatal.
+Final npm run check passes TypeScript, 84/84 tests and production build. All 210
+assets match the source commit byte for byte; all 199 runtime images decode in the
+browser. Registry regeneration preserves metadata and image paths. Keyboard map
+selection tested for France, Iran, Macau, Kosovo and Japan; failed image fallback
+and subsequent recovery pass. Three desktop sizes have no horizontal overflow;
+reduced-motion transitions disabled. Documentation and whitespace checks pass.
 
-Provider writes were intercepted; research success was synthetic. Formal
-screen-reader/actual zoom/exhaustive contrast, mobile optimization and authenticated
-Trips editing/export were not performed in this run.
+Initial sandbox HTTP fixture failures resolved with loopback-enabled execution.
+Existing Vite loader/chunk warnings are non-fatal. Browser API calls intercepted;
+no live provider generation, authenticated Trips or exhaustive pointer-map audit.
 
 ## Blockers
 
-None for this task. Regulation/research source review and provider account/storage
-operational constraints remain separate from frontend layout verification.
+None for this task. Existing regulation/source review and provider operational
+constraints remain separate from decorative artwork integration.
 
 ## Next actions
 
-Review the twelve local commits and push only when requested. Preserve width-driven desktop
-sizing and restored shared styles in future integrations.
+Review local integration commits; push only when requested. Preserve the corrected
+registry generation input and the existing frontend repairs.
 
 ## Coordination
 
-Explicit integration assignment; branch remained dev-integration, app inspection
-remained on 5174, no alternate server/worktree. Shared frontend CSS overlaps owners;
-other lanes' history and Trips source unchanged. Prior audit documents preserved.
-Repairs and records are committed locally; no push performed. Eight implementation commits and four documentation/handoff commits preserve the verified final source.
+Explicit dev-integration task. Other developer histories unchanged; source imagegen
+checkout untouched. Shared Artwork changes preserve DNA categories and existing CSS.
+Catalog, baseline matrix and shared engine contracts unchanged. Existing app on
+5174 reused for isolated browser verification. Commits and records remain local;
+no push performed.
