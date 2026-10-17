@@ -35,6 +35,7 @@ Set secrets only in ignored `.env`; never use a VITE-prefixed API key.
 | --- | --- |
 | `GROQ_API_KEY` | Required only for model/search work |
 | `GROQ_ASSISTANT_MODEL` | `openai/gpt-oss-120b` |
+| `GROQ_ASSISTANT_SEARCH_MODEL` | `openai/gpt-oss-20b` for browser-source discovery |
 | `ASSISTANT_DAILY_TOKEN_BUDGET` | 500000 reserved tokens per UTC day |
 | `ASSISTANT_DAILY_SEARCH_BUDGET` | 10 browser-search API requests per UTC day |
 | `ASSISTANT_ALLOWED_ORIGINS` | Exact comma-separated origins; defaults to localhost and 127.0.0.1 on ports 5173, 4173, 5184, 8787 |
@@ -159,8 +160,18 @@ do not trigger enrichment.
 
 Ordinary messages default to cache-only Travel Buddy and no search; dataPolicy is
 optional. Explicit country research or if_gap authorizes one search stage and
-at most one structured finalization. Map/group chat never fans out. Group research
-selects one destination and traveller through `/research`; enrichment is separate.
+at most one structured finalization. A country-chat client may use explicit
+research for narrowly detected destination-discovery questions, such as places to
+visit, attractions, or things to do; it must keep entry questions cache-only.
+Visitor discovery prefers official tourism and venue sources, remains unreviewed,
+and never changes the passport matrix or entry guidance. Map/group chat never
+fans out. Group research selects one destination and traveller through `/research`;
+enrichment is separate.
+
+For an explicit country-chat research question, the browser-search response is
+rendered directly with its owned source links. This avoids a second strict-JSON
+generation request after a successful search; ordinary map-context questions
+continue through the configured assistant model.
 
 Sources come from actual annotations or
 `message.executed_tools[].search_results.results[]`, as observed live. The adapter

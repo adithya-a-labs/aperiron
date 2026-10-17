@@ -22,6 +22,7 @@ import {
   AssistantError,
   errorMessage,
   type AssistantMessage,
+  type AssistantEvidence,
   type Conversation,
   type CountryContext,
 } from "../frontend/assistantClient";
@@ -40,6 +41,14 @@ type ChatItem =
   | { id: string; role: "assistant"; message: AssistantMessage };
 
 const MAX_MESSAGE_LENGTH = 4000;
+
+/**
+ * Only destination-discovery questions opt into the metered research stage.
+ * Entry, visa, and document questions remain cache-only.
+ */
+export function isDestinationDiscoveryQuestion(text: string) {
+  return /\b(?:tourist\s+(?:places?|spots?|attractions?|destinations?|sites?)|attractions?|sightseeing|sightsee|landmarks?|must[-\s]?see|points?\s+of\s+interest|things?\s+to\s+(?:do|see)|places?\s+to\s+(?:visit|see|go)|what\s+(?:are|is)\s+(?:the\s+)?(?:best|top|popular|famous)?\s*(?:places?|attractions?|things?\s+to\s+do))\b/i.test(text);
+}
 
 function mapProfile(passportId: string): Profile {
   return {
@@ -85,6 +94,12 @@ function toChatItems(messages: readonly AssistantMessage[]): ChatItem[] {
 }
 
 function messageError(error: unknown) {
+  if (error instanceof AssistantError && error.code === "UPSTREAM_TIMEOUT") {
+    return "The travel assistant is taking longer than expected. Please try again.";
+  }
+  if (error instanceof AssistantError && error.code === "INVALID_MODEL_OUTPUT") {
+    return "The travel assistant returned an incomplete response. Please try again.";
+  }
   const message = errorMessage(error);
   if (error instanceof AssistantError && error.retryAfter > 0) {
     return `${message} Try again in about ${error.retryAfter} seconds.`;
@@ -332,6 +347,33 @@ function AssistantAnswer({
   disabled: boolean;
   onAsk: (question: string) => void;
 }) {
+  const [sources, setSources] = useState<AssistantEvidence[]>([]);
+  const sourceIds = message.evidenceIds.slice(-6);
+
+  useEffect(() => {
+    const controller = new AbortController();
+    const ids = [...new Set(sourceIds)];
+    if (ids.length === 0) {
+      setSources([]);
+      return () => controller.abort();
+    }
+
+    void Promise.all(
+      ids.map((id) => assistant.getEvidence(id, controller.signal).catch(() => null)),
+    ).then((values) => {
+      if (controller.signal.aborted) return;
+      setSources(
+        values.filter(
+          (source): source is AssistantEvidence =>
+            source !== null &&
+            source.sourceType === "third_party_page" &&
+            source.url !== null,
+        ),
+      );
+    });
+    return () => controller.abort();
+  }, [message.id, sourceIds.join("|")]);
+
   return (
     <>
       <FormattedAssistantText text={message.text} />
@@ -358,6 +400,21 @@ function AssistantAnswer({
           {warning}
         </p>
       ))}
+      {sources.length > 0 && (
+        <details className="country-chat-sources">
+          <summary>Sources used for this answer</summary>
+          <ul>
+            {sources.map((source) => (
+              <li key={source.id}>
+                <a href={source.url ?? undefined} target="_blank" rel="noreferrer">
+                  {source.title}
+                </a>
+                <span>Unreviewed</span>
+              </li>
+            ))}
+          </ul>
+        </details>
+      )}
       {message.questions.length > 0 && (
         <div className="country-chat-followups" aria-label="Suggested follow-up questions">
           {message.questions.map((question) => (
@@ -522,6 +579,7 @@ export function CountryChatDrawer({
     async (value: string) => {
       const text = value.trim();
       if (!text || !conversation || status !== "ready" || isSending) return;
+      const isDiscoveryQuestion = isDestinationDiscoveryQuestion(text);
 
       const contextRef = conversation.contextRef;
       if (contextRef.kind !== "country") return;
@@ -547,7 +605,7 @@ export function CountryChatDrawer({
             clientMessageId,
             expectedConversationRevision: expectedRevision,
             contextRef,
-            intent: "ask",
+            intent: isDiscoveryQuestion ? "research" : "ask",
             text,
             dataPolicy: { travelBuddy: "cache_only", research: "never" },
           },
@@ -692,8 +750,8 @@ export function CountryChatDrawer({
             <div className="country-chat-welcome">
               <Bot aria-hidden="true" />
               <div>
-                <b>Hi — I can explain the selected map context.</b>
-                <p>The snapshot and any answer remain unverified. I will not search the web or refresh provider data from this chat.</p>
+                <b>Ask about the map, entry context, or places to visit.</b>
+                <p>Questions about attractions and things to do use one source-backed visitor search. Entry questions stay cache-only, and travel information remains unverified.</p>
               </div>
             </div>
           )}

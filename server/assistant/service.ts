@@ -31,7 +31,7 @@ export class AssistantService {
     }
     return actions;
   }
-  ground(answer: GeneratedAnswer, evidence: Evidence[], ref: ContextRef) {
+  ground(answer: GeneratedAnswer, evidence: Evidence[], ref: ContextRef, researched = false) {
     const ids = new Set(evidence.map(e => e.id));
     const valid = (refs: string[]) => { if (refs.some(id => !ids.has(id))) throw new ApiError(503, 'INVALID_MODEL_OUTPUT', 'Model referred to unavailable evidence.'); };
     for (const c of answer.claims) {
@@ -50,7 +50,9 @@ export class AssistantService {
       return c;
     });
     answer.actions = this.validateActions(answer.actions, ref);
-    answer.warnings = [...new Set([...answer.warnings, 'AI explanation of unreviewed evidence; requirements and admission are not confirmed.'])];
+    answer.warnings = [...new Set([...answer.warnings, researched
+      ? 'AI summary based on unreviewed web sources. Check the linked sources for current visitor details.'
+      : 'AI explanation of unreviewed evidence; requirements and admission are not confirmed.'])];
     return answer;
   }
   async research(owner: string, ref: ContextRef, question: string, refresh: boolean, travellerId: string | undefined, signal: AbortSignal, stage: (s: Job['stage']) => Promise<void>) {
@@ -63,7 +65,7 @@ export class AssistantService {
     const key = `research_${hash([owner, ref, profile, question.trim().toLowerCase(), this.model.model])}`;
     const saved = (await this.store.read()).resources[key];
     if (!refresh && saved && saved.expires > Date.now()) return (await this.store.get<ResearchResult>(key, owner));
-    (await stage('researching')); const found = await this.model.search(prompt('Research only this traveller and destination. Do not collect identity numbers.', { profile, destinationId: ref.destinationId, question }), signal);
+    (await stage('researching')); const found = await this.model.search(prompt('Research the user\'s exact question about this traveller and destination. Do not collect identity numbers. For visitor attractions, culture, or local experiences, prefer official tourism, venue, national-park, museum, or cultural-site sources. If the user asks for places to visit, return a short Markdown heading and a scannable list of named suggestions with one reason each. For entry questions, prefer official immigration, foreign-affairs, embassy, or consular sources. Do not present an attraction search as visa guidance.', { profile, destinationId: ref.destinationId, question }), signal);
     signal.throwIfAborted(); (await this.contexts.assert(owner, ref));
     const evidence = (await Promise.all(found.sources.map(async source => (await this.contexts.saveEvidence(owner, {
       sourceType: 'third_party_page', url: source.url, title: source.title || new URL(source.url).hostname, issuer: null, excerpt: source.excerpt,
@@ -109,12 +111,19 @@ export class AssistantService {
       const ids = ref.kind === 'country' ? [ref.destinationId] : ref.kind === 'map' ? ref.selectedCountryIds : ref.destinationId ? [ref.destinationId] : (await this.contexts.trip(owner, ref.tripId)).trip.shortlistCountryIds;
       const checklist = (await this.contexts.checklist(owner, ref, ids));
       answer = { text: checklist.gaps.join('\n'), cards: checklist.gaps.map(text => ({ type: 'gap', payload: { text } })), claims: [], questions: [], actions: [], warnings: ['No reviewed requirement checklist is available.'] };
+    } else if (research && body.intent === 'research') {
+      // Browser search already returns the requested visitor answer. Reusing it
+      // avoids a second strict-JSON model call that can fail after a successful
+      // search and makes destination discovery fit the job deadline.
+      answer = this.ground({ text: research.answer.slice(0, 8_000), cards: [], claims: [], questions: [], actions: [], warnings: [] }, evidence, ref, true);
     } else {
       const cached = (await this.store.read()).resources[cacheKey];
       (await stage('generating')); answer = cached && cached.expires > Date.now() ? (await this.store.get<GeneratedAnswer>(cacheKey, owner)) : await this.model.generate(generatedAnswer,
-        prompt('Explain the supplied facts and gaps, preserving provenance and conditions. Do not assert generated facts as confirmed. Every factual claim needs exact supplied evidence IDs or unknown support. Map actions only for map context. For simplify/translate preserve the original claims, numbers, negations and conditions; no new facts.', this.modelContext({ context, evidence, research, history, source, request: body })), signal);
+        prompt(research
+          ? 'Answer the user\'s exact question directly from the supplied research and evidence. For questions about places, attractions, activities, or local experiences, use a short heading and a scannable bullet list of named suggestions with one plain-language reason each. Keep entry requirements out unless asked. Do not assert generated facts as confirmed: every factual claim needs exact supplied evidence IDs or unknown support. Map actions only for map context.'
+          : 'Explain the supplied facts and gaps, preserving provenance and conditions. Do not assert generated facts as confirmed. Every factual claim needs exact supplied evidence IDs or unknown support. Map actions only for map context. For simplify/translate preserve the original claims, numbers, negations and conditions; no new facts.', this.modelContext({ context, evidence, research, history, source, request: body })), signal);
       if (source) this.verifyTransform(source, answer, body.intent === 'simplify');
-      answer = this.ground(answer, evidence, ref);
+      answer = this.ground(answer, evidence, ref, research !== null);
       signal.throwIfAborted(); (await this.contexts.assert(owner, ref)); (await this.store.put(cacheKey, owner, answer));
     }
     (await stage('validating')); signal.throwIfAborted(); (await this.contexts.assert(owner, ref));

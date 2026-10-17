@@ -2562,8 +2562,9 @@ main { overflow: visible; }
   border-bottom-right-radius: 5px; background: var(--yellow); color: var(--navy);
 }
 .country-chat-message.assistant {
-  justify-self: start; padding: 15px; border: 1px solid var(--line);
-  border-bottom-left-radius: 5px; background: #fffefa; box-shadow: 0 2px 7px #032b4308;
+  justify-self: start; padding: 16px; border: 1px solid #136f6333;
+  border-left: 4px solid var(--teal); border-bottom-left-radius: 5px;
+  background: #fffefa; box-shadow: 0 7px 18px -14px #032b435c;
 }
 .country-chat-message-label {
   display: block; margin-bottom: 6px; color: #4f6b76;
@@ -2573,11 +2574,12 @@ main { overflow: visible; }
 .country-chat-answer { display: grid; gap: 10px; }
 .country-chat-answer p { margin: 0; }
 .country-chat-answer h3 {
-  margin: 2px 0 0; color: var(--teal); font-size: 13px;
-  letter-spacing: -.015em;
+  margin: 2px 0 0; color: #075d52; font-size: 13px;
+  letter-spacing: -.015em; font-weight: 850;
 }
-.country-chat-answer ul { display: grid; gap: 6px; margin: 0; padding-left: 18px; }
-.country-chat-answer li { padding-left: 2px; }
+.country-chat-answer ul { display: grid; gap: 8px; margin: 0; padding-left: 19px; }
+.country-chat-answer li { padding-left: 4px; }
+.country-chat-answer li::marker { color: var(--teal); font-size: 1.05em; }
 .country-chat-card {
   margin-top: 10px; padding: 10px 11px; border-left: 3px solid var(--blue);
   border-radius: 0 10px 10px 0; background: #edf6fb; color: var(--navy);
@@ -2605,6 +2607,13 @@ main { overflow: visible; }
   margin-top: 10px; border-left: 3px solid var(--red); padding: 7px 9px;
   background: #fff1ee; color: #7b2a1e; font-size: 12px;
 }
+.country-chat-sources { margin-top: 12px; border-top: 1px solid #136f6326; padding-top: 10px; }
+.country-chat-sources summary { cursor: pointer; color: #075d52; font-size: 12px; font-weight: 800; }
+.country-chat-sources ul { display: grid; gap: 7px; margin: 9px 0 0; padding-left: 17px; }
+.country-chat-sources li { padding-left: 2px; }
+.country-chat-sources li::marker { color: var(--teal); }
+.country-chat-sources a { color: #155779; font-size: 12px; font-weight: 700; text-decoration: underline; text-underline-offset: 3px; }
+.country-chat-sources span { display: inline-block; margin-left: 6px; border-radius: 999px; padding: 1px 6px; background: #fff0b6; color: #735100; font-size: 10px; font-weight: 800; }
 .country-chat-followups { display: flex; flex-wrap: wrap; gap: 7px; margin-top: 12px; }
 .country-chat-followups button {
   border: 1px solid #136f6352; border-radius: 999px; padding: 7px 10px;

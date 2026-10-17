@@ -26,6 +26,7 @@ export type CountryContextRef = Extract<ContextRef, { kind: "country" }>;
 export type Checklist = Infer<typeof responses.checklist>;
 export type Brief = Infer<typeof responses.brief>;
 export type Job = Infer<typeof responses.job>;
+export type AssistantEvidence = Infer<typeof responses.evidence>;
 export class AssistantError extends Error {
   constructor(
     message: string,
@@ -170,6 +171,13 @@ export class AssistantClient {
     return this.request(
       `/conversations/${encodeURIComponent(id)}`,
       responses.conversationPage,
+      { signal },
+    );
+  }
+  getEvidence(id: string, signal?: AbortSignal) {
+    return this.request(
+      `/evidence/${encodeURIComponent(id)}`,
+      responses.evidence,
       { signal },
     );
   }
