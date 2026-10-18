@@ -202,9 +202,18 @@ test('country research answers visitor-discovery questions without a visa-only w
   assert.equal(f.model.searches, 1);
   assert.equal(f.model.calls, 0, 'research-mode chat reuses the browser-search answer instead of issuing a second model request');
   assert.match(f.model.searchPrompts[0], /visitor attractions/i);
+  assert.match(f.model.searchPrompts[0], /Do not use Markdown tables/i);
   assert.match(answer.text, /Places to consider/);
   assert.match(answer.warnings.join(' '), /unreviewed web sources/i);
   assert.doesNotMatch(answer.warnings.join(' '), /requirements and admission/i);
+
+  const retry = (await f.call<Conversation>('POST', '/conversations', { contextRef: countryRef })).data;
+  const reused = await f.done(await f.postJob(`/conversations/${retry.id}/messages`, {
+    ...msg(countryRef, retry.revision), intent: 'research', text: 'What tourist spots should I see in Japan?',
+  }));
+  assert.equal(reused.status, 'completed');
+  assert.equal(f.model.searches, 1, 'a recent same-destination visitor answer avoids another browser request');
+  assert.match(((reused.result as { data: Message }).data).warnings.join(' '), /recent source-backed suggestions/i);
 });
 
 test('restart preserves idempotency and fails interrupted work without re-dispatch', async t => {

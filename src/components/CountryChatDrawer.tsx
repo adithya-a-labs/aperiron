@@ -157,19 +157,91 @@ function readableJsonValue(value: unknown, depth = 0): string {
   return "";
 }
 
+function stripProviderCitations(text: string) {
+  return text
+    .replace(/【\d+\s*†[^】\]]+[】\]]/g, "")
+    .replace(/\[\d+\s*†[^\]]+\]/g, "")
+    .replace(/\\\|/g, "|")
+    .replace(/[ \t]+\n/g, "\n")
+    .replace(/[ \t]{2,}/g, " ")
+    .trim();
+}
+
+function tableCells(row: string) {
+  return row
+    .trim()
+    .replace(/^\|/, "")
+    .replace(/\|$/, "")
+    .split("|")
+    .map((cell) => cell.trim());
+}
+
+function isTableDivider(cells: string[]) {
+  return cells.length > 0 && cells.every((cell) => /^:?-{3,}:?$/.test(cell));
+}
+
+function tableAsRecommendationList(rows: string[][]) {
+  const contentRows = rows.filter((cells) => !isTableDivider(cells));
+  if (contentRows.length < 2 || contentRows.some((cells) => cells.length < 2)) return null;
+
+  const [header, ...entries] = contentRows;
+  const heading = /^(?:attraction|destination|place|site|location|thing)/i.test(header[0])
+    ? "Places to consider"
+    : header[0].replace(/\*\*/g, "");
+  const items = entries.map(([title, ...details]) => {
+    const reason = details.filter(Boolean).join(" — ");
+    return `- ${title}${reason ? ` — ${reason}` : ""}`;
+  });
+  return `### ${heading}\n${items.join("\n")}`;
+}
+
+function normaliseMarkdownTables(text: string) {
+  const inlineDivider = text.search(/\|\s*:?-{3,}:?\s*\|/);
+  if (inlineDivider >= 0 && text.trimStart().startsWith("|")) {
+    const tableEnd = text.lastIndexOf("|");
+    const table = text.slice(0, tableEnd + 1);
+    const trailing = text.slice(tableEnd + 1).trim();
+    const rows = table
+      .split("|")
+      .reduce<string[][]>((groups, cell) => {
+        const value = cell.trim();
+        if (value) groups.at(-1)?.push(value);
+        else groups.push([]);
+        return groups;
+      }, [[]])
+      .filter((cells) => cells.length >= 2);
+    const rendered = tableAsRecommendationList(rows);
+    if (rendered) return [rendered, trailing].filter(Boolean).join("\n\n");
+  }
+
+  return text.replace(/(?:^\s*\|.*\|\s*(?:\r?\n|$)){3,}/gm, (table) => {
+    const rendered = tableAsRecommendationList(
+      table
+        .split(/\r?\n/)
+        .filter((line) => line.trim())
+        .map(tableCells),
+    );
+    return rendered ?? table;
+  });
+}
+
+function normalisePresentationText(text: string) {
+  return normaliseMarkdownTables(stripProviderCitations(text));
+}
+
 /** Some providers place a schema-shaped JSON object inside the text field.
  * Keep the UI readable without trusting or rendering arbitrary HTML. */
 function normaliseAnswerText(text: string) {
   const trimmed = text.trim();
   const fenced = trimmed.match(/^```(?:json)?\s*([\s\S]*?)\s*```$/i)?.[1] ?? trimmed;
-  if (!fenced.startsWith("{") && !fenced.startsWith("[")) return text;
+  if (!fenced.startsWith("{") && !fenced.startsWith("[")) return normalisePresentationText(text);
 
   try {
     const parsed: unknown = JSON.parse(fenced);
     if (isRecord(parsed)) {
       for (const key of ["text", "answer", "message", "summary", "content"]) {
         if (typeof parsed[key] === "string" && parsed[key].trim()) {
-          return parsed[key].trim();
+          return normalisePresentationText(parsed[key].trim());
         }
       }
       const sections = Object.entries(parsed)
@@ -179,16 +251,16 @@ function normaliseAnswerText(text: string) {
           return rendered ? `**${humanizeKey(key)}**:\n${rendered}` : "";
         })
         .filter(Boolean);
-      return sections.join("\n\n") || "The assistant returned no readable answer text.";
+      return normalisePresentationText(sections.join("\n\n") || "The assistant returned no readable answer text.");
     }
     if (Array.isArray(parsed)) {
       const list = readableJsonValue(parsed);
-      if (list) return list;
+      if (list) return normalisePresentationText(list);
     }
   } catch {
     // Plain text that happens to start with a brace remains visible as entered.
   }
-  return text;
+  return normalisePresentationText(text);
 }
 
 function headingText(line: string) {
@@ -197,10 +269,10 @@ function headingText(line: string) {
 }
 
 function listItemText(line: string) {
-  return line.match(/^(?:[-*•])\s+(.+)$/)?.[1] ?? null;
+  return line.match(/^(?:(?:[-*•])|(?:\d{1,2}[.)]))\s+(.+)$/)?.[1] ?? null;
 }
 
-function answerBlocks(text: string): TextBlock[] {
+export function answerBlocks(text: string): TextBlock[] {
   const lines = normaliseAnswerText(text).split(/\r?\n/);
   const blocks: TextBlock[] = [];
   let index = 0;
@@ -268,7 +340,7 @@ function FormattedAssistantText({ text }: { text: string }) {
         }
         if (block.type === "list") {
           return (
-            <ul key={index}>
+            <ul className="country-chat-answer-list" key={index}>
               {block.items.map((item, itemIndex) => (
                 <li key={itemIndex}><InlineMarkdown text={item} /></li>
               ))}
@@ -397,12 +469,16 @@ function AssistantAnswer({
       )}
       {message.warnings.map((warning, index) => (
         <p className="country-chat-warning" key={`${warning}-${index}`}>
+          <span className="country-chat-warning-label">Note</span>
           {warning}
         </p>
       ))}
       {sources.length > 0 && (
         <details className="country-chat-sources">
-          <summary>Sources used for this answer</summary>
+          <summary>
+            <span>Sources used for this answer</span>
+            <span className="country-chat-source-status">Unreviewed</span>
+          </summary>
           <ul>
             {sources.map((source) => (
               <li key={source.id}>

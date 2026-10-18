@@ -173,6 +173,13 @@ rendered directly with its owned source links. This avoids a second strict-JSON
 generation request after a successful search; ordinary map-context questions
 continue through the configured assistant model.
 
+Exact research cache reuse is one day. For a repeated broad visitor-discovery
+question in the same session and selected country, country chat may also reuse the
+most recent cached visitor answer rather than dispatch another browser search. The
+message says that the suggestions are recent, source-backed, and still unreviewed;
+entry research never uses this broader fallback. A fresh browser-search call is
+bounded to 75 seconds within the 90-second job deadline.
+
 Sources come from actual annotations or
 `message.executed_tools[].search_results.results[]`, as observed live. The adapter
 ignores prose URLs, opaque markers, reasoning, unsafe addresses and arbitrary tool
@@ -205,8 +212,10 @@ Public links, invitations and multi-user synchronization are outside v1.
 
 Local sessions/profiles/chat/evidence/briefs expire after seven days. Job payloads
 expire after one hour; idempotency reservations remain twenty-four hours. Research
-reuse is limited to one day and exact session/question/context. Answer caches also
-bind history/model/intent. Cleanup occurs during requests, not while stopped.
+reuse is limited to one day and exact session/question/context, except for the
+explicitly labelled same-session/country visitor-discovery fallback above. Answer
+caches also bind history/model/intent. Cleanup occurs during requests, not while
+stopped.
 Restart interrupts pending work without replay. Corrupt accounting fails closed
 without disabling legacy APIs.
 
