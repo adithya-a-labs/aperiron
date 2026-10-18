@@ -21,15 +21,16 @@ import type { Message, Brief } from './assistant/service';
 import { Contexts, type Evidence } from './assistant/context';
 
 class FakeModel implements Model {
-  configured = true; model = 'test-120b'; calls = 0; searches = 0; delay = 0;
+  configured = true; model = 'test-120b'; calls = 0; searches = 0; delay = 0; searchPrompts: string[] = [];
   answer = { text: 'Review unresolved requirements.', cards: [], claims: [], questions: [], actions: [], warnings: [] };
+  searchAnswer = 'Unreviewed official-source discovery.';
   async generate<T>(schema: Schema<T>, _prompt: string, signal: AbortSignal): Promise<T> {
     this.calls++; if (this.delay) await new Promise<void>((resolve, reject) => { const timer = setTimeout(resolve, this.delay); signal.addEventListener('abort', () => { clearTimeout(timer); reject(signal.reason); }, { once: true }); });
     const value = schema === profileProposal ? { proposedProfile: null, fields: [{ field: 'passportId', state: 'missing' }], questions: [], unsupportedConstraints: [] } :
       schema === mapProposal ? { actions: [], proposedProfile: null, questions: [], unsupportedConstraints: ['Weather is not assessed.'] } : this.answer;
     return schema.parse(value);
   }
-  async search() { this.searches++; return { text: 'Unreviewed official-source discovery.', sources: [{ url: 'https://www.mofa.go.jp/j_info/visit/visa/index.html', title: 'Visa', excerpt: null }], usage: { total_tokens: 250 } }; }
+  async search(prompt: string) { this.searches++; this.searchPrompts.push(prompt); return { text: this.searchAnswer, sources: [{ url: 'https://www.mofa.go.jp/j_info/visit/visa/index.html', title: 'Visa', excerpt: null }], usage: { total_tokens: 250 } }; }
 }
 type ResponseData<T> = { status: number; data: T; error?: { code: string }; headers: Headers; raw: string };
 async function fixture(t: TestContext, options: { rate?: number; deadlineMs?: number; quota?: number; model?: FakeModel } = {}) {
@@ -211,6 +212,31 @@ test('research caches exact scopes, keeps source discovery unreviewed, and restr
   assert.equal((await f.done(await f.postJob('/research', { ...body, contextRef: ref, travellerId: 'a' }))).status, 'completed'); assert.equal(f.model.searches, 2);
 });
 
+test('country research answers visitor-discovery questions without a visa-only warning', async t => {
+  const f = await fixture(t), conv = (await f.call<Conversation>('POST', '/conversations', { contextRef: countryRef })).data;
+  f.model.searchAnswer = '### Places to consider\n- **Kyoto** — historic temples and gardens.';
+  const result = await f.done(await f.postJob(`/conversations/${conv.id}/messages`, {
+    ...msg(countryRef, conv.revision), intent: 'research', text: 'What are the tourist places in Japan?',
+  }));
+  assert.equal(result.status, 'completed');
+  const answer = (result.result as { data: Message }).data;
+  assert.equal(f.model.searches, 1);
+  assert.equal(f.model.calls, 0, 'research-mode chat reuses the browser-search answer instead of issuing a second model request');
+  assert.match(f.model.searchPrompts[0], /visitor attractions/i);
+  assert.match(f.model.searchPrompts[0], /Do not use Markdown tables/i);
+  assert.match(answer.text, /Places to consider/);
+  assert.match(answer.warnings.join(' '), /unreviewed web sources/i);
+  assert.doesNotMatch(answer.warnings.join(' '), /requirements and admission/i);
+
+  const retry = (await f.call<Conversation>('POST', '/conversations', { contextRef: countryRef })).data;
+  const reused = await f.done(await f.postJob(`/conversations/${retry.id}/messages`, {
+    ...msg(countryRef, retry.revision), intent: 'research', text: 'What tourist spots should I see in Japan?',
+  }));
+  assert.equal(reused.status, 'completed');
+  assert.equal(f.model.searches, 1, 'a recent same-destination visitor answer avoids another browser request');
+  assert.match(((reused.result as { data: Message }).data).warnings.join(' '), /recent source-backed suggestions/i);
+});
+
 test('restart preserves idempotency and fails interrupted work without re-dispatch', async t => {
   const f = await fixture(t), owner = Object.keys(f.store.data.sessions)[0], queue = new Jobs(f.store, { concurrency: 0 });
   const key = randomUUID(), b = { arbitrary: 'test' }; await queue.submit(owner, '/test', key, b, 'research', countryRef, async () => { throw new Error('must not dispatch'); });
@@ -236,6 +262,7 @@ test('Groq adapter separates strict JSON from browser tools and accounts before 
   } });
   await groq.generate(generatedAnswer, 'Explain unknowns.', AbortSignal.timeout(1000)); await groq.search('Locate official sources.', AbortSignal.timeout(1000));
   assert(captured[0].response_format); assert.equal(captured[0].tools, undefined); assert(captured[1].tools); assert.equal(captured[1].response_format, undefined);
+  assert.equal(captured[0].model, 'openai/gpt-oss-120b'); assert.equal(captured[1].model, 'openai/gpt-oss-20b');
   assert.equal(Object.values(store.data.budgets)[0].actualTokens, 500);
   const exhausted = new GroqModel(store, { apiKey: 'test', dailyTokens: 0, fetchImpl: async () => { throw new Error('should not dispatch'); } });
   await assert.rejects(exhausted.generate(generatedAnswer, 'Test', AbortSignal.timeout(1000)), (e: unknown) => e instanceof ApiError && e.code === 'BUDGET_EXHAUSTED');

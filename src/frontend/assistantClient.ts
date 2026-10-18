@@ -1,5 +1,11 @@
 import { responses } from "../shared/assistant/responses";
-import { requests, type Trip, type Filters } from "../shared/assistant/schemas";
+import {
+  requests,
+  type ContextRef,
+  type Filters,
+  type Profile,
+  type Trip,
+} from "../shared/assistant/schemas";
 import {
   ValidationError,
   type Infer,
@@ -10,9 +16,17 @@ export type TripResource = Infer<typeof responses.tripResource>;
 export type GroupResult = Infer<typeof responses.mapResult>;
 export type DestinationRow = GroupResult["destinations"][number];
 export type GroupContext = Infer<typeof responses.groupContext>;
+export type ProfileResource = Infer<typeof responses.profileResource>;
+export type CountryContext = Infer<typeof responses.countryContext>;
+export type Conversation = Infer<typeof responses.conversation>;
+export type ConversationPage = Infer<typeof responses.conversationPage>;
+export type AssistantMessage = Infer<typeof responses.message>;
+export type MessageRequest = Infer<typeof requests.message>;
+export type CountryContextRef = Extract<ContextRef, { kind: "country" }>;
 export type Checklist = Infer<typeof responses.checklist>;
 export type Brief = Infer<typeof responses.brief>;
 export type Job = Infer<typeof responses.job>;
+export type AssistantEvidence = Infer<typeof responses.evidence>;
 export class AssistantError extends Error {
   constructor(
     message: string,
@@ -119,8 +133,73 @@ export class AssistantClient {
       );
     }
   }
-  capabilities() {
-    return this.request("/capabilities", responses.capabilities);
+  capabilities(signal?: AbortSignal) {
+    return this.request("/capabilities", responses.capabilities, { signal });
+  }
+  getProfile(signal?: AbortSignal) {
+    return this.request("/profile", responses.profileResource, { signal });
+  }
+  saveProfile(
+    profile: Profile,
+    current: ProfileResource,
+    signal?: AbortSignal,
+  ) {
+    return this.request("/profile", responses.profileResource, {
+      method: "PUT",
+      signal,
+      body: requests.profilePut.parse({
+        expectedRevision: current.revision,
+        profile,
+      }),
+    });
+  }
+  countryContext(contextRef: CountryContextRef, signal: AbortSignal) {
+    return this.request(
+      `/countries/${encodeURIComponent(contextRef.destinationId)}/context?profileRevision=${contextRef.profileRevision}`,
+      responses.countryContext,
+      { signal },
+    );
+  }
+  createConversation(contextRef: ContextRef, signal?: AbortSignal) {
+    return this.request("/conversations", responses.conversation, {
+      method: "POST",
+      signal,
+      body: requests.conversation.parse({ contextRef }),
+    });
+  }
+  getConversation(id: string, signal?: AbortSignal) {
+    return this.request(
+      `/conversations/${encodeURIComponent(id)}`,
+      responses.conversationPage,
+      { signal },
+    );
+  }
+  getEvidence(id: string, signal?: AbortSignal) {
+    return this.request(
+      `/evidence/${encodeURIComponent(id)}`,
+      responses.evidence,
+      { signal },
+    );
+  }
+  async sendConversationMessage(
+    conversationId: string,
+    body: MessageRequest,
+    signal: AbortSignal,
+    onJob?: (job: Job) => void,
+  ): Promise<AssistantMessage> {
+    const result = await this.job(
+      `/conversations/${encodeURIComponent(conversationId)}/messages`,
+      requests.message.parse(body),
+      signal,
+      onJob,
+    );
+    if (result.type !== "message") {
+      throw new AssistantError(
+        "The assistant returned an unexpected response. Please try again.",
+        "INVALID_RESPONSE",
+      );
+    }
+    return result.data;
   }
   getTrip(id: string) {
     return this.request(

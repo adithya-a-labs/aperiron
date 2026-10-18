@@ -6,11 +6,23 @@ const BOT_FRAMES: string[] = Array.from({ length: FRAME_COUNT }, (_, i) => {
   return `/bot-frames/ezgif-frame-${pad}.webp`;
 });
 
-export function BotExplorer({ countryId }: { countryId: string }) {
+export function BotExplorer({
+  countryId,
+  countryName,
+  open,
+  onOpen,
+}: {
+  countryId: string;
+  countryName: string;
+  open: boolean;
+  onOpen: () => void;
+}) {
   const [frameIndex, setFrameIndex] = useState(0);
   const animRef = useRef<number | null>(null);
   const framesReadyRef = useRef(false);
   const preloadedFramesRef = useRef<HTMLImageElement[]>([]);
+  const previousCountryIdRef = useRef(countryId);
+  const pendingCountryJumpRef = useRef(false);
 
   // Keep decoded frames alive before playback so source changes cannot flash.
   useEffect(() => {
@@ -34,6 +46,10 @@ export function BotExplorer({ countryId }: { countryId: string }) {
     ).then(() => {
       if (!cancelled) {
         framesReadyRef.current = true;
+        if (pendingCountryJumpRef.current) {
+          pendingCountryJumpRef.current = false;
+          playTwoLoops();
+        }
       }
     });
 
@@ -45,7 +61,7 @@ export function BotExplorer({ countryId }: { countryId: string }) {
     };
   }, []);
 
-  const playTwoLoops = () => {
+  function playTwoLoops() {
     if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
       if (animRef.current !== null) cancelAnimationFrame(animRef.current);
       animRef.current = null;
@@ -86,13 +102,19 @@ export function BotExplorer({ countryId }: { countryId: string }) {
     };
 
     animRef.current = requestAnimationFrame(tick);
-  };
+  }
 
-  // Destination navigation is frequent: keep it static and cancel any flourish.
+  // Replay the existing flourish when a new map destination is selected.
   useEffect(() => {
-    if (animRef.current !== null) cancelAnimationFrame(animRef.current);
-    animRef.current = null;
-    setFrameIndex(0);
+    if (previousCountryIdRef.current === countryId) return;
+    previousCountryIdRef.current = countryId;
+
+    if (!framesReadyRef.current) {
+      pendingCountryJumpRef.current = true;
+      return;
+    }
+
+    playTwoLoops();
 
     return () => {
       if (animRef.current !== null) {
@@ -103,12 +125,15 @@ export function BotExplorer({ countryId }: { countryId: string }) {
   }, [countryId]);
 
   return (
-    <div
+    <button
+      type="button"
       className="bot-explorer"
-      aria-hidden="true"
-      onPointerDown={(event) => {
-        // A decorative Easter egg, not a keyboard stop or navigation response.
-        if (event.isPrimary && event.button === 0) playTwoLoops();
+      aria-label={`Ask aperiron about ${countryName}`}
+      aria-haspopup="dialog"
+      aria-expanded={open}
+      onClick={() => {
+        playTwoLoops();
+        onOpen();
       }}
     >
       <img
@@ -117,6 +142,8 @@ export function BotExplorer({ countryId }: { countryId: string }) {
         className="bot-explorer-img"
         draggable={false}
       />
-    </div>
+      <span className="bot-explorer-label" aria-hidden="true">Ask me</span>
+      <span className="sr-only">Ask aperiron about {countryName}</span>
+    </button>
   );
 }

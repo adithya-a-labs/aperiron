@@ -34,6 +34,7 @@ import {
 } from "./components/Artwork";
 import { WorldMap } from "./components/AccessMap";
 import { BotExplorer } from "./components/BotExplorer";
+import { CountryChatDrawer } from "./components/CountryChatDrawer";
 import { GAME_ENABLED } from "./frontend/features";
 import { isResearchResponse, type ResearchResponse } from "./shared/research";
 import { useTravelDetails } from "./store/travelDetailsStore";
@@ -149,6 +150,7 @@ function Explore() {
   const [search, setSearch] = useState("");
   const [list, setList] = useState(false);
   const [simulated, setSimulated] = useState(false);
+  const [isChatOpen, setIsChatOpen] = useState(false);
   const travel = useTravelDetails(passport, destination, selectionKey === `${passport}:${destination}` ? selectionRevision : null);
   const snapshot = unwrap(
     engine.getPassportView(
@@ -258,7 +260,12 @@ function Explore() {
           )}
         </section>
         <div className="explore-sidebar">
-          <BotExplorer countryId={destination} />
+          <BotExplorer
+            countryId={destination}
+            countryName={country(destination).name}
+            open={isChatOpen}
+            onOpen={() => setIsChatOpen(true)}
+          />
         <aside className="postcard" aria-label="Selected destination details">
           <div className="postcard-image">
             <PostcardArt
@@ -296,6 +303,14 @@ function Explore() {
         </aside>
         </div>
       </div>
+      <CountryChatDrawer
+        open={isChatOpen}
+        passportId={passport}
+        passportName={country(passport).name}
+        destinationId={destination}
+        destinationName={country(destination).name}
+        onClose={() => setIsChatOpen(false)}
+      />
       <div className="explore-bottom">
         <div className="travel-seal">
           <Compass size={32} />
